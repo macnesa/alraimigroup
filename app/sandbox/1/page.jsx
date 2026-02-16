@@ -4,13 +4,32 @@
 import Image from "next/image";
 import Link from 'next/link'
 import React, { useRef, useEffect, useState } from "react";
+import {
+  FaApple,
+  FaAmazon,
+  FaGoogle,
+  FaMicrosoft,
+  FaFacebook,
+  FaShopify,
+} from "react-icons/fa";
+
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
+import { motion } from "framer-motion";
+
 
 export default function Page() {
   return (
     <main className="bg-neutral-950 text-neutral-100">
       <Hero />
+      {/* <SocialProof/> */}
+      {/* <HowWeWork/> */}
       {/* <TrustWith /> */}
       {/* <ClientSuccess /> */}
+      {/* <Services/>    */}
       {/* <GrowthProof />  */}
       {/* <OurProcess /> */}
       {/* <AKMNumbers /> */}
@@ -19,8 +38,8 @@ export default function Page() {
       {/* <LogoWall /> */}
       {/* <Team /> */}
       {/* <Events /> */}
-      <FAQ/>
-      <FinalCTA />
+      {/* <FAQ/> */}
+      {/* <FinalCTA /> */}
     </main>
   );
 }
@@ -34,102 +53,503 @@ export default function Page() {
    SECTIONS
 ========================= */
 function Hero() {
-  const partners = [
-    "Fashion Manufacturing",
-    "Luxury Packaging",
-    "AQL Quality Control",
-    "Sampling & Production",
-    "Global Shipping (EXW / FOB / DDP)",
-    "Factory Management",
+  const brandIcons = [
+    FaApple,
+    FaAmazon,
+    FaGoogle,
+    FaMicrosoft,
+    FaFacebook,
+    FaShopify,
   ];
 
+  const container = {
+    hidden: {},
+    show: {
+      transition: {
+        staggerChildren: 0.08,
+      },
+    },
+  };
+
+  const item = {
+    hidden: { y: 50, opacity: 0 },
+    show: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.75,
+        ease: [0.16, 1, 0.3, 1],
+      },
+    },
+  };
+
   return (
-    <section className="relative overflow-hidden bg-neutral-950 pt-28 pb-24">
-      <Container>
-        <div className="relative grid items-center gap-20 lg:grid-cols-2">
+    <section className="relative overflow-hidden bg-[#070b14] text-white">
+      {/* ATMOSPHERE */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_25%,rgba(59,130,246,0.25),transparent_40%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_75%,rgba(99,102,241,0.2),transparent_40%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:60px_60px]" />
+      </div>
+
+      <motion.div
+        variants={container}
+        initial="hidden"
+        animate="show"
+        className="mx-auto max-w-7xl px-6 pt-8 pb-32"
+      >
+        {/* HEADER */}
+        <motion.header
+          variants={item}
+          className="flex items-center justify-between"
+        >
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/images/alraimi-logo-white-1.png"
+              alt="Alraimi Logo"
+              width={48}
+              height={40}
+              priority
+            />
+          </Link>
+
+          <nav className="hidden items-center gap-10 text-sm text-neutral-400 md:flex">
+            <Link href="/">Home</Link>
+            <Link href="/fashion-manufacturing">
+              Fashion Manufacturing
+            </Link>
+            <Link href="/luxury-packaging">
+              Luxury Packaging
+            </Link>
+            <Link href="#contact">Contact</Link>
+          </nav>
+
+          <button className="hidden md:block rounded-full bg-white px-6 py-2 text-sm font-medium text-black hover:bg-neutral-200 transition">
+            Get Your PI →
+          </button>
+        </motion.header>
+
+        {/* HEADLINE ZONE */}
+        <div className="mt-28 grid gap-20 lg:grid-cols-[1.1fr_0.9fr]">
           {/* LEFT */}
-          <div className="relative z-10">
-            {/* pill */}
-            <div className="inline-flex items-center gap-2 rounded-full border border-neutral-700 bg-neutral-900 px-4 py-1 text-xs text-neutral-200">
+          <div>
+            <motion.div
+              variants={item}
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-xs text-neutral-300 backdrop-blur"
+            >
               <span className="rounded-full bg-blue-600 px-2 py-0.5 text-[11px] font-medium">
                 China
               </span>
-              End-to-End Manufacturing Partner
-            </div>
+              End-to-End Factory Operator
+            </motion.div>
 
-            {/* headline */}
-            <h1 className="mt-8 max-w-xl text-4xl font-base tracking-tight md:text-7xl">
-              Your factory partner in China
-            </h1>
-
-            {/* body — compressed from project meaning */}
-            <p className="mt-6 max-w-lg text-base leading-relaxed text-neutral-300">
-            From idea to finished product — fast, transparent, global. Samples, production, QC, and logistics
-            under one roof.
-            </p>
-
-            {/* CTA */}
-            <div className="mt-10 flex flex-wrap items-center gap-4">
-              <button className="rounded-full bg-white px-8 py-3 text-sm font-medium text-neutral-950 hover:bg-neutral-200">
-                Start a Production Inquiry →
-              </button>
-            </div>
-
-            {/* trust */}
-            <div className="mt-6 flex items-center gap-3 text-sm text-neutral-300">
-              <span>
-              Your Brand. Our Factories. Premium Fashion & Packaging, Delivered.
+            <motion.h1
+              variants={item}
+              className="mt-8 text-6xl font-semibold leading-[1.05] tracking-tight md:text-7xl"
+            >
+              Build Products.
+              <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">
+                Remove the Risk.
               </span>
-            </div>
+            </motion.h1>
+
+            <motion.p
+              variants={item}
+              className="mt-8 max-w-xl text-lg text-neutral-400 leading-relaxed"
+            >
+              We translate your brand into factory-ready execution —
+              managing sampling, production, AQL inspection, and global
+              shipping under one accountable structure.
+            </motion.p>
+
+            <motion.div variants={item} className="mt-12 flex gap-5">
+              <button className="rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-3 text-sm font-medium hover:opacity-90 transition">
+                Start Production Inquiry →
+              </button>
+
+              <button className="rounded-full border border-white/20 px-8 py-3 text-sm text-neutral-300 hover:border-white hover:text-white transition">
+                View Process
+              </button>
+            </motion.div>
           </div>
 
           {/* RIGHT */}
-          <div className="relative z-10">
-            {/* image frame */}
-            <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-white p-4 shadow-2xl">
-              <div className="relative h-full w-full overflow-hidden rounded-2xl">
+          <motion.div variants={item} className="relative">
+            {/* MAIN IMAGE */}
+            <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-4 shadow-[0_40px_120px_rgba(0,0,0,0.6)]">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
                 <Image
-                  src="https://images.unsplash.com/photo-1675176785803-bffbbb0cd2f4?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D   "
-                  alt="Factory production and quality control"
+                  src="https://i.pinimg.com/736x/de/ef/39/deef39f72f889cdf21b163bcf66c3498.jpg"
+                  alt="Factory floor"
                   fill
                   className="object-cover"
                 />
               </div>
             </div>
 
-            {/* floating stat 1 */}
-            <div className="absolute -left-10 top-12 hidden rounded-2xl bg-white px-5 py-4 text-sm text-neutral-900 shadow-xl md:block">
-              <p className="text-xs text-neutral-500">Production</p>
-              <p className="text-xl font-semibold">Factory Managed</p>
-            </div>
+            {/* FLOATING QC PANEL */}
+            <motion.div
+              variants={item}
+              className="absolute -left-10 top-10 hidden w-60 rounded-2xl border border-white/10 backdrop-blur-xl shadow-xl md:block overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-white/10" />
+              <div className="absolute inset-0 bg-black/45" />
+              <div className="relative p-5">
+                <p className="text-xs text-neutral-200">Quality Control</p>
+                <p className="mt-2 text-xl font-semibold text-white">
+                  AQL Inspection
+                </p>
+                <div className="mt-3 h-2 w-full rounded-full bg-white/20">
+                  <div className="h-2 w-[82%] rounded-full bg-green-400" />
+                </div>
+                <p className="mt-2 text-xs text-neutral-200">
+                  Pre-shipment verification completed
+                </p>
+              </div>
+            </motion.div>
 
-            {/* floating stat 2 */}
-            <div className="absolute -bottom-10 right-6 hidden rounded-2xl bg-white px-5 py-4 text-sm text-neutral-900 shadow-xl md:block">
-              <p className="text-xs text-neutral-500">Inspection</p>
-              <p className="text-xl font-semibold">AQL Standard</p>
-            </div>
-          </div>
+            {/* FLOATING LOGISTICS PANEL */}
+            <motion.div
+              variants={item}
+              className="absolute -bottom-10 right-0 hidden w-64 rounded-2xl border border-white/10 backdrop-blur-xl shadow-xl md:block overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-white/10" />
+              <div className="absolute inset-0 bg-black/45" />
+              <div className="relative p-5">
+                <p className="text-xs text-neutral-200">Logistics</p>
+                <p className="mt-2 text-xl font-semibold text-white">
+                  DDP / FOB Shipping
+                </p>
+                <p className="mt-2 text-xs text-neutral-200">
+                  Customs, freight, and delivery managed globally
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
         </div>
 
-        {/* capabilities */}
-        <div className="relative z-10 mt-24 border-t border-neutral-800 pt-10">
-          <p className="mb-6 text-sm text-neutral-400">
-            Manufacturing capabilities
+        {/* METRICS */}
+        <motion.div
+          variants={item}
+          className="mt-32 grid grid-cols-1 gap-12 border-t border-white/10 pt-16 md:grid-cols-4"
+        >
+          {[
+            { title: "20+", desc: "Verified Factory Partners" },
+            { title: "AQL", desc: "Standardized Inspection Protocol" },
+            { title: "DDP", desc: "Door-to-Door International Delivery" },
+            { title: "End-to-End", desc: "Sampling to Final Shipment" },
+          ].map((metric, i) => (
+            <div key={i}>
+              <p className="text-3xl font-semibold">{metric.title}</p>
+              <p className="mt-2 text-sm text-neutral-400">
+                {metric.desc}
+              </p>
+            </div>
+          ))}
+        </motion.div>
+
+        {/* TRUST LOGOS */}
+        <motion.div variants={item} className="mt-20 text-center">
+          <p className="mb-10 text-sm text-neutral-500">
+            Trusted by global brands & procurement teams
           </p>
 
-          <div className="flex flex-wrap items-center gap-10 text-neutral-400">
-            {partners.map((p, i) => (
-              <span key={i} className="text-sm opacity-80">
-                {p}
-              </span>
+          <div className="flex flex-wrap justify-center gap-12 text-3xl text-white/40">
+            {brandIcons.map((Icon, index) => (
+              <motion.div key={index} variants={item}>
+                <Icon className="transition duration-300 hover:text-white" />
+              </motion.div>
             ))}
           </div>
+        </motion.div>
+      </motion.div>
+    </section>
+  );
+}
+
+
+
+function SocialProof() {
+  const metrics = [
+    { value: "15+", label: "Years in China Manufacturing" },
+    { value: "500,000+", label: "Luxury Packs Delivered" },
+    { value: "100,000+", label: "Apparel Pieces Delivered" },
+  ];
+
+  const guarantees = [
+    "Pre-shipment Quality Control (AQL)",
+    "Door-to-door (DDP) incl. customs clearance",
+    "Factory tours — on-site or live video",
+    "Serving brands worldwide",
+  ];
+
+  return (
+    <section className="bg-neutral-50 py-24">
+      <Container>
+        
+        {/* METRICS STRIP */}
+        <div className="border-t border-b border-neutral-200">
+          <div className="flex flex-col md:flex-row">
+
+            {metrics.map((item, i) => (
+              <div
+                key={i}
+                className="flex-1 px-10 py-16 md:border-r md:border-neutral-200 last:md:border-r-0"
+              >
+                <div className="text-6xl md:text-7xl font-semibold tracking-tight text-neutral-900">
+                  {item.value}
+                </div>
+
+                <div className="mt-4 text-xs uppercase tracking-[0.18em] text-neutral-500">
+                  {item.label}
+                </div>
+              </div>
+            ))}
+
+          </div>
         </div>
+
+        {/* OPERATIONAL GUARANTEES */}
+        <div className="mt-16 flex flex-wrap gap-x-12 gap-y-6 text-sm text-neutral-600">
+          {guarantees.map((item, i) => (
+            <div key={i} className="flex items-center gap-3">
+              <div className="h-1.5 w-1.5 bg-neutral-400" />
+              <span className="tracking-wide">{item}</span>
+            </div>
+          ))}
+        </div>
+
       </Container>
     </section>
   );
 }
 
+function HowWeWork() {
+  const steps = [
+    {
+      short: "BRIEF",
+      title: "Quick Brief & NDA (24–48h)",
+      desc: "Style references, quantities, timeline, ship-to country, brand files.",
+    },
+    {
+      short: "DESIGN",
+      title: "Design & Technical Prep (2–5 days)",
+      desc: "Tech packs / dielines finalized. Specs and materials confirmed.",
+    },
+    {
+      short: "SAMPLE",
+      title: "Samples & PI (7–21 days)",
+      desc: "Prototype production and guide pricing (ex-factory). Formal PI issued.",
+    },
+    {
+      short: "BOOK",
+      title: "Production Booking",
+      desc: "Golden sample approval. Deposit secures production line.",
+    },
+    {
+      short: "MAKE",
+      title: "Manufacturing",
+      desc: "Apparel 3–8 wks / Packaging 2–6 wks. In-line QC & milestone updates.",
+    },
+    {
+      short: "QA",
+      title: "Quality Assurance (AQL)",
+      desc: "Pre-shipment inspection report with measurements & checks.",
+    },
+    {
+      short: "SHIP",
+      title: "Logistics (EXW / FOB / DDP)",
+      desc: "Export docs and global shipping arranged.",
+    },
+    {
+      short: "DELIVER",
+      title: "Delivery & Aftercare",
+      desc: "Unboxing checks, reorders, continuous improvement.",
+    },
+  ];
+
+  return (
+    <section className="bg-neutral-50 py-28">
+      <Container>
+
+        {/* HEADER */}
+        <div className="mb-20 max-w-3xl">
+          <div className="text-xs uppercase tracking-[0.25em] text-neutral-500">
+            Production Pipeline
+          </div>
+
+          <h2 className="mt-4 text-3xl font-semibold tracking-tight text-neutral-900 md:text-4xl">
+            From idea to global delivery — executed in China
+          </h2>
+        </div>
+
+        {/* PIPELINE STRIP */}
+        <div className="overflow-x-auto">
+          <div className="min-w-[1000px] border border-neutral-200 bg-white">
+
+            <div className="flex divide-x divide-neutral-200">
+
+              {steps.map((step, i) => (
+                <div key={i} className="flex-1 p-8">
+
+                  <div className="text-[11px] tracking-[0.25em] text-neutral-400">
+                    {step.short}
+                  </div>
+
+                  <div className="mt-4 text-sm font-medium text-neutral-900">
+                    {step.title}
+                  </div>
+
+                  <div className="mt-3 text-xs leading-relaxed text-neutral-600">
+                    {step.desc}
+                  </div>
+
+                </div>
+              ))}
+
+            </div>
+
+          </div>
+        </div>
+
+        {/* OPERATIONAL LAYER */}
+        <div className="mt-24 border-t border-neutral-200 pt-14 grid md:grid-cols-2 gap-16">
+
+          <div>
+            <div className="text-xs uppercase tracking-[0.25em] text-neutral-500">
+              Communication & Visibility
+            </div>
+
+            <p className="mt-4 text-sm leading-relaxed text-neutral-600">
+              WhatsApp group with your project manager. Weekly updates.
+              Factory tours in China by appointment. Live video inspections anytime.
+            </p>
+          </div>
+
+          <div>
+            <div className="text-xs uppercase tracking-[0.25em] text-neutral-500">
+              Typical Terms
+            </div>
+
+            <p className="mt-4 text-sm leading-relaxed text-neutral-600">
+              PI with unit price (ex-factory), MOQ, timeline.
+              Standard terms: 50% deposit / 50% pre-shipment (adjustable).
+              DDP quotes available.
+            </p>
+          </div>
+
+        </div>
+
+        {/* CTA */}
+        <div className="mt-24">
+          <button className="rounded-full bg-neutral-900 px-8 py-3 text-sm font-medium text-white transition hover:bg-neutral-700">
+            Get Your PI →
+          </button>
+        </div>
+
+      </Container>
+    </section>
+  );
+}
+
+function Services() {
+  return (
+    <section className="bg-neutral-950 py-32 text-neutral-100">
+      <Container>
+
+        {/* HEADER */}
+        <div className="max-w-3xl">
+          <div className="text-xs uppercase tracking-[0.3em] text-neutral-500">
+            Services Overview
+          </div>
+          <h2 className="mt-6 text-4xl font-semibold tracking-tight">
+            Core Production Capabilities
+          </h2>
+        </div>
+
+        {/* GRID */}
+        <div className="mt-24 grid gap-20 lg:grid-cols-2">
+
+          {/* PACKAGING — IMAGE DOMINANT */}
+          <div className="relative">
+            <div className="relative aspect-[4/3] overflow-hidden border border-neutral-800">
+              <Image
+                src="https://images.unsplash.com/photo-1607083206968-13611e3d76db?q=80&w=1600"
+                alt="Packaging Engineering"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-black/60" />
+            </div>
+
+            <div className="mt-8">
+              <h3 className="text-2xl font-medium">
+                Packaging Engineering & Structural Development
+              </h3>
+              <p className="mt-6 text-sm text-neutral-400 leading-relaxed max-w-xl">
+                Rigid box structures, sleeves, inserts, and custom folding constructions engineered for durability and premium presentation. Pantone and physical sample color-matching available.
+              </p>
+            </div>
+          </div>
+
+          {/* FASHION — TEXT DOMINANT */}
+          <div className="flex flex-col justify-center border-t border-neutral-800 pt-12 lg:border-0 lg:pt-0">
+            <h3 className="text-2xl font-medium">
+              Sampling & Mass Production
+            </h3>
+            <p className="mt-6 text-sm text-neutral-400 leading-relaxed max-w-xl">
+              From tech packs and dielines to golden samples and full-scale production. Material sourcing, line booking, and timeline control managed by our China factory team.
+            </p>
+          </div>
+
+          {/* QC — TEXT DOMINANT */}
+          <div className="flex flex-col justify-center border-t border-neutral-800 pt-12">
+            <h3 className="text-2xl font-medium">
+              In-line Quality Control (AQL)
+            </h3>
+            <p className="mt-6 text-sm text-neutral-400 leading-relaxed max-w-xl">
+              Structured in-line inspections during production plus pre-shipment AQL checks with detailed reports, measurements, and documentation.
+            </p>
+          </div>
+
+          {/* LOGISTICS — IMAGE DOMINANT */}
+          <div className="relative">
+            <div className="relative aspect-[4/3] overflow-hidden border border-neutral-800">
+              <Image
+                src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?q=80&w=1600"
+                alt="Global Delivery"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-black/60" />
+            </div>
+
+            <div className="mt-8">
+              <h3 className="text-2xl font-medium">
+                Global Delivery (EXW / FOB / DDP)
+              </h3>
+              <p className="mt-6 text-sm text-neutral-400 leading-relaxed max-w-xl">
+                Export documentation, freight coordination, and door-to-door delivery including customs clearance. Air and sea options based on timeline and volume.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        {/* CTA */}
+        <div className="mt-32 border-t border-neutral-800 pt-12">
+          <button className="border border-neutral-700 px-8 py-3 text-sm text-neutral-200 hover:bg-neutral-900 transition">
+            Start Your Brand →
+          </button>
+        </div>
+
+      </Container>
+    </section>
+  );
+}
+
+ 
 function TrustBar() {
   return (
     <section className="border-t border-neutral-900 bg-neutral-950 py-10">
@@ -234,40 +654,43 @@ function TrustWith() {
 function ClientSuccess() {
   const cases = [
     {
-      brand: "Conzuri",
+      brand: "Multiple Luxury Perfume Packaging — Saudi Arabia",
       desc:
-        "From $110,000 per month to $1.7M in just 14 months. Learn more about Conzuri",
+        "Comprehensive paper packaging for several Saudi perfume brands. 100,000+ luxury rigid boxes, premium paper bags, tester blotter cards and branded ribbon delivered across SKUs.",
       image:
-        "https://images.unsplash.com/photo-1528701800489-20be3c6f3b35?q=80&w=1200",
+        "https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?q=80&w=1200",
       stats: [
-        { label: "35% Lower CPA", tone: "blue" },
-        { label: "3.2 ROAS", tone: "gray" },
+        { label: "Matte / Soft-touch Lamination", tone: "gray" },
+        { label: "Foil & Emboss", tone: "gray" },
+        { label: "AQL + Production Videos", tone: "blue" },
       ],
-      sales: "$60M+ in Sales Generated",
+      sales: "DDP Air ≈15 days • Sea ≈30 days",
     },
     {
-      brand: "Heights",
+      brand: "Boutique Womenswear Brand — Dubai",
       desc:
-        "CPG Brand: Scaling New Revenue by 240% in 5 Months",
+        "Ongoing manufacturing for a Dubai-based womenswear label. 5,000+ pieces across multiple drops including evening & day collections with mixed performance materials.",
+      image:
+        "https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?q=80&w=1200",
+      stats: [
+        { label: "Editable Size Charts", tone: "gray" },
+        { label: "In-line QC + AQL", tone: "blue" },
+        { label: "Eco Garment Bags", tone: "gray" },
+      ],
+      sales: "Production 4–8 weeks (style dependent)",
+    },
+    {
+      brand: "Golf Apparel Startup — Dubai",
+      desc:
+        "End-to-end apparel manufacturing and custom packaging from first collection onward. Polo shirts, shorts, pants, caps and custom rigid paper box packaging.",
       image:
         "https://images.unsplash.com/photo-1600180758890-6b94519a8ba6?q=80&w=1200",
       stats: [
-        { label: "79% Lower CPA", tone: "blue" },
-        { label: "4.6X MER", tone: "gray" },
+        { label: "≈3,000 pcs Initial Order", tone: "gray" },
+        { label: "Performance Blends", tone: "gray" },
+        { label: "AQL Inspection", tone: "blue" },
       ],
-      sales: "$30M+ Generated",
-    },
-    {
-      brand: "DIRTEA",
-      desc:
-        "Functional Mushrooms Meets Scale. 2391% Growth in 2.5 years",
-      image:
-        "https://images.unsplash.com/photo-1585386959984-a4155228f9c4?q=80&w=1200",
-      stats: [
-        { label: "3X+ ROAS", tone: "blue" },
-        { label: "62% Lower CPA", tone: "gray" },
-      ],
-      sales: "£20M+ in Sales Generated",
+      sales: "On-schedule launch • Scalable reorders",
     },
   ];
 
@@ -278,16 +701,16 @@ function ClientSuccess() {
         <div className="mb-20 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-4 py-1 text-xs text-neutral-700">
-              ⭐ Case Studies
+              Project Snapshots (Confidential)
             </span>
 
             <h2 className="mt-6 text-4xl font-semibold tracking-tight">
-              Client success stories
+              Typical Scopes & Production Outcomes
             </h2>
           </div>
 
           <button className="self-start rounded-full bg-neutral-900 px-6 py-3 text-sm font-medium text-white hover:bg-neutral-800 md:self-auto">
-            Schedule Free Growth Audit →
+            See All Project Snapshots →
           </button>
         </div>
 
@@ -311,18 +734,18 @@ function ClientSuccess() {
                   {c.brand}
                 </h3>
 
-                <p className="mt-2 text-sm leading-relaxed text-neutral-600">
+                <p className="mt-3 text-sm leading-relaxed text-neutral-600">
                   {c.desc}
                 </p>
 
                 {/* stat pills */}
-                <div className="mt-4 flex flex-wrap gap-2">
+                <div className="mt-5 flex flex-wrap gap-2">
                   {c.stats.map((s, idx) => (
                     <span
                       key={idx}
                       className={`rounded-full px-3 py-1 text-xs font-medium ${
                         s.tone === "blue"
-                          ? "bg-blue-600 text-white"
+                          ? "bg-neutral-900 text-white"
                           : "bg-neutral-200 text-neutral-700"
                       }`}
                     >
@@ -331,8 +754,8 @@ function ClientSuccess() {
                   ))}
                 </div>
 
-                {/* sales */}
-                <div className="mt-4">
+                {/* bottom badge */}
+                <div className="mt-5">
                   <span className="inline-block rounded-full bg-neutral-900 px-4 py-2 text-xs font-medium text-white">
                     {c.sales}
                   </span>
@@ -345,13 +768,14 @@ function ClientSuccess() {
         {/* footer CTA */}
         <div className="mt-20 flex justify-center">
           <button className="rounded-full border border-neutral-300 bg-white px-6 py-3 text-sm font-medium hover:bg-neutral-100">
-            View Other Brands →
+            View All Confidential Work →
           </button>
         </div>
       </Container>
     </section>
   );
 }
+
 
 function GrowthProof() {
   return (
