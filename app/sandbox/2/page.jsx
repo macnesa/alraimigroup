@@ -72,94 +72,84 @@ function Hero() {
   };
 
   const item = {
-    hidden: { y: 40, opacity: 0 },
+    hidden: { y: 50, opacity: 0 },
     show: {
       y: 0,
       opacity: 1,
       transition: {
-        duration: 0.7,
+        duration: 0.75,
         ease: [0.16, 1, 0.3, 1],
       },
     },
   };
 
   return (
-    <section className="relative bg-[#0f1115] text-white overflow-hidden">
-   
-      
-         {/* subtle industrial noise */}
-         <div className="pointer-events-none absolute inset-0 opacity-[0.035] mix-blend-overlay bg-[url('/images/noise.png')]" />
-
-{/* subtle blue structural glow (NOT SaaS glow) */}
-<div className="absolute top-0 left-1/2 h-[400px] w-[600px] -translate-x-1/2 bg-blue-600/10 blur-[140px] pointer-events-none" />
-
+    <section className="relative overflow-hidden bg-[#070b14] text-white">
+      {/* ATMOSPHERE */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_25%,rgba(59,130,246,0.25),transparent_40%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_85%_75%,rgba(99,102,241,0.2),transparent_40%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:60px_60px]" />
+      </div>
 
       <motion.div
         variants={container}
         initial="hidden"
         animate="show"
-        className="relative mx-auto max-w-7xl px-6 pt-10 pb-32"
+        className="mx-auto max-w-7xl px-6 pt-8 pb-32"
       >
         {/* HEADER */}
         <motion.header
           variants={item}
-          className="flex items-center justify-between border-b border-white/10 pb-6"
+          className="flex items-center justify-between"
         >
-          <Link href="/">
+          <Link href="/" className="flex items-center">
             <Image
               src="/images/alraimi-logo-white-1.png"
-              alt="Logo"
-              width={44}
-              height={38}
+              alt="Alraimi Logo"
+              width={48}
+              height={40}
               priority
             />
           </Link>
 
-          <nav className="hidden md:flex items-center gap-10 text-sm text-neutral-400">
-            <Link href="/" className="hover:text-white transition">
-              Home
-            </Link>
-            <Link
-              href="/fashion-manufacturing"
-              className="hover:text-white transition"
-            >
+          <nav className="hidden items-center gap-10 text-sm text-neutral-400 md:flex">
+            <Link href="/">Home</Link>
+            <Link href="/fashion-manufacturing">
               Fashion Manufacturing
             </Link>
-            <Link
-              href="/luxury-packaging"
-              className="hover:text-white transition"
-            >
+            <Link href="/luxury-packaging">
               Luxury Packaging
             </Link>
-            <Link href="#contact" className="hover:text-white transition">
-              Contact
-            </Link>
+            <Link href="#contact">Contact</Link>
           </nav>
 
-          <button className="hidden md:block border border-white/30 px-6 py-2 text-sm font-medium hover:bg-white hover:text-black transition">
+          <button className="hidden md:block rounded-full bg-white px-6 py-2 text-sm font-medium text-black hover:bg-neutral-200 transition">
             Get Your PI →
           </button>
         </motion.header>
 
-        {/* HERO GRID */}
-        <div className="mt-24 grid gap-16 lg:grid-cols-[1.05fr_0.95fr] items-center">
+        {/* HEADLINE ZONE */}
+        <div className="mt-28 grid gap-20 lg:grid-cols-[1.1fr_0.9fr]">
           {/* LEFT */}
           <div>
             <motion.div
               variants={item}
-              className="inline-flex items-center gap-3 text-xs tracking-wide uppercase text-neutral-400"
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1 text-xs text-neutral-300 backdrop-blur"
             >
-              <span className="h-1.5 w-1.5 rounded-full bg-blue-500" />
-              China-Based Factory Operator
+              <span className="rounded-full bg-blue-600 px-2 py-0.5 text-[11px] font-medium">
+                China
+              </span>
+              End-to-End Factory Operator
             </motion.div>
 
             <motion.h1
               variants={item}
-              className="mt-8 text-6xl md:text-7xl font-semibold leading-[1.05] tracking-tight"
+              className="mt-8 text-6xl font-semibold leading-[1.05] tracking-tight md:text-7xl"
             >
               Build Products.
               <br />
-              <span className="text-blue-500">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">
                 Remove the Risk.
               </span>
             </motion.h1>
@@ -168,77 +158,91 @@ function Hero() {
               variants={item}
               className="mt-8 max-w-xl text-lg text-neutral-400 leading-relaxed"
             >
-              We manage sampling, production, AQL inspection,
-              and global shipping under one accountable structure.
+              We translate your brand into factory-ready execution —
+              managing sampling, production, AQL inspection, and global
+              shipping under one accountable structure.
             </motion.p>
 
-            <motion.div variants={item} className="mt-12 flex gap-6">
-              {/* Primary CTA (ONLY strong blue element) */}
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 text-sm font-medium transition">
+            <motion.div variants={item} className="mt-12 flex gap-5">
+              <button className="rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-3 text-sm font-medium hover:opacity-90 transition">
                 Start Production Inquiry →
               </button>
 
-              <button className="border border-white/20 px-8 py-3 text-sm text-neutral-300 hover:border-white hover:text-white transition">
+              <button className="rounded-full border border-white/20 px-8 py-3 text-sm text-neutral-300 hover:border-white hover:text-white transition">
                 View Process
               </button>
             </motion.div>
           </div>
 
-          {/* RIGHT IMAGE BLOCK */}
+          {/* RIGHT */}
           <motion.div variants={item} className="relative">
-            <div className="relative overflow-hidden border border-white/10">
-              <div className="relative aspect-[4/3]">
+            {/* MAIN IMAGE */}
+            <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-4 shadow-[0_40px_120px_rgba(0,0,0,0.6)]">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
                 <Image
                   src="https://i.pinimg.com/736x/de/ef/39/deef39f72f889cdf21b163bcf66c3498.jpg"
-                  alt="Factory production"
+                  alt="Factory floor"
                   fill
-                  className="object-cover grayscale contrast-110"
+                  className="object-cover"
                 />
               </div>
             </div>
 
-            {/* Industrial info strip — neutral only */}
-            <div className="absolute -bottom-10 left-0 right-0 mx-auto w-[92%] bg-[#14161b] border border-white/10 px-6 py-6">
-              <div className="grid grid-cols-3 text-sm">
-                <div>
-                  <p className="text-neutral-500">Quality</p>
-                  <p className="mt-1 font-medium">
-                    AQL Inspection
-                  </p>
+            {/* FLOATING QC PANEL */}
+            <motion.div
+              variants={item}
+              className="absolute -left-10 top-10 hidden w-60 rounded-2xl border border-white/10 backdrop-blur-xl shadow-xl md:block overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-white/10" />
+              <div className="absolute inset-0 bg-black/45" />
+              <div className="relative p-5">
+                <p className="text-xs text-neutral-200">Quality Control</p>
+                <p className="mt-2 text-xl font-semibold text-white">
+                  AQL Inspection
+                </p>
+                <div className="mt-3 h-2 w-full rounded-full bg-white/20">
+                  <div className="h-2 w-[82%] rounded-full bg-green-400" />
                 </div>
-                <div>
-                  <p className="text-neutral-500">Logistics</p>
-                  <p className="mt-1 font-medium">
-                    DDP / FOB Shipping
-                  </p>
-                </div>
-                <div>
-                  <p className="text-neutral-500">Coverage</p>
-                  <p className="mt-1 font-medium">
-                    Global Delivery
-                  </p>
-                </div>
+                <p className="mt-2 text-xs text-neutral-200">
+                  Pre-shipment verification completed
+                </p>
               </div>
-            </div>
+            </motion.div>
+
+            {/* FLOATING LOGISTICS PANEL */}
+            <motion.div
+              variants={item}
+              className="absolute -bottom-10 right-0 hidden w-64 rounded-2xl border border-white/10 backdrop-blur-xl shadow-xl md:block overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-white/10" />
+              <div className="absolute inset-0 bg-black/45" />
+              <div className="relative p-5">
+                <p className="text-xs text-neutral-200">Logistics</p>
+                <p className="mt-2 text-xl font-semibold text-white">
+                  DDP / FOB Shipping
+                </p>
+                <p className="mt-2 text-xs text-neutral-200">
+                  Customs, freight, and delivery managed globally
+                </p>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
 
-        {/* METRICS (neutral, no blue spam) */}
+        {/* METRICS */}
         <motion.div
           variants={item}
-          className="mt-40 grid grid-cols-1 gap-12 border-t border-white/10 pt-16 md:grid-cols-4"
+          className="mt-32 grid grid-cols-1 gap-12 border-t border-white/10 pt-16 md:grid-cols-4"
         >
           {[
             { title: "20+", desc: "Verified Factory Partners" },
-            { title: "AQL", desc: "Inspection Standard" },
-            { title: "DDP", desc: "Door-to-Door Delivery" },
-            { title: "End-to-End", desc: "Sampling to Shipment" },
+            { title: "AQL", desc: "Standardized Inspection Protocol" },
+            { title: "DDP", desc: "Door-to-Door International Delivery" },
+            { title: "End-to-End", desc: "Sampling to Final Shipment" },
           ].map((metric, i) => (
             <div key={i}>
-              <p className="text-3xl font-semibold">
-                {metric.title}
-              </p>
-              <p className="mt-2 text-sm text-neutral-500">
+              <p className="text-3xl font-semibold">{metric.title}</p>
+              <p className="mt-2 text-sm text-neutral-400">
                 {metric.desc}
               </p>
             </div>
@@ -247,14 +251,14 @@ function Hero() {
 
         {/* TRUST LOGOS */}
         <motion.div variants={item} className="mt-20 text-center">
-          <p className="mb-10 text-xs tracking-widest text-neutral-600 uppercase">
-            Trusted by global brands
+          <p className="mb-10 text-sm text-neutral-500">
+            Trusted by global brands & procurement teams
           </p>
 
-          <div className="flex flex-wrap justify-center gap-14 text-3xl text-white/30">
+          <div className="flex flex-wrap justify-center gap-12 text-3xl text-white/40">
             {brandIcons.map((Icon, index) => (
               <motion.div key={index} variants={item}>
-                <Icon className="hover:text-white transition duration-300" />
+                <Icon className="transition duration-300 hover:text-white" />
               </motion.div>
             ))}
           </div>
