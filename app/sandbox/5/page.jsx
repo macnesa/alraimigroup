@@ -44,7 +44,7 @@ export default function Page() {
       {/* <Team /> */}
       {/* <Events /> */}
       {/* <FAQ/> */}
-      <FinalCTA />
+      <Footer />
     </main>
   );
 }
@@ -306,7 +306,7 @@ function Achievements() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
           {/* CARD 1 — DARK PRIMARY */}
-          <div className="relative bg-black text-white rounded-3xl p-10 min-h-[420px] overflow-hidden flex flex-col justify-between">
+          <div className="relative bg-black text-white rounded-xl p-10 min-h-[420px] overflow-hidden flex flex-col justify-between">
 
             {/* Decorative ring */}
             <div className="absolute top-6 right-6 w-28 h-28 border border-white/10 rounded-full" />
@@ -340,7 +340,7 @@ function Achievements() {
 
 
           {/* CARD 2 — IMAGE / VISUAL CARD */}
-          <div className="relative rounded-3xl overflow-hidden min-h-[420px]">
+          <div className="relative rounded-xl overflow-hidden min-h-[420px]">
 
             <img
               src="https://i.pinimg.com/736x/54/f4/2e/54f42ecca183ef520ac99eb2e0a9292a.jpg"
@@ -376,7 +376,7 @@ function Achievements() {
 
 
           {/* CARD 3 — LIGHT STRUCTURED */}
-          <div className="bg-neutral-100 rounded-3xl p-10 min-h-[420px] flex flex-col justify-between">
+          <div className="bg-neutral-100 rounded-xl p-10 min-h-[420px] flex flex-col justify-between">
 
             <div>
               <div className="text-xs uppercase tracking-widest text-neutral-400 mb-6">
@@ -414,94 +414,157 @@ function Achievements() {
   );
 }
 
-
-
- 
-function FinalCTA() {
+function Footer() {
   return (
-    <section className="bg-neutral-950 py-32">
-      <Container>
-        <div className="relative overflow-hidden rounded-[36px] bg-[radial-gradient(120%_120%_at_50%_120%,rgba(255,255,255,0.15)_0%,rgba(255,255,255,0.05)_30%,rgba(0,0,0,0)_60%),linear-gradient(135deg,#1e40ff_0%,#2563eb_45%,#3b82f6_100%)] px-10 py-28 text-white md:px-20">
+    <div className="bg-white pt-24 overflow-hidden">
+      {/* =====================================================
+          CTA SECTION
+      ===================================================== */}
+      <div className="max-w-7xl mx-auto px-6 mb-28">
+        <div className="relative rounded-3xl overflow-hidden min-h-[550px] flex items-end">
+          
+          {/* Image */}
+          <img
+            src="https://images.unsplash.com/photo-1742281694367-30557c03d0a1?q=80&w=2340&auto=format&fit=crop"
+            alt="Factory production"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
 
-          {/* subtle top dark fade */}
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black/30 to-transparent" />
+          {/* Gradient */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/45 to-black/20" />
 
-          {/* grain texture */}
-          <div className="pointer-events-none absolute inset-0 bg-[url('/noise.png')] opacity-[0.18] mix-blend-overlay" />
-
-          {/* floating stat — SALES */}
-          <div className="absolute left-6 top-6 hidden -rotate-6 rounded-2xl bg-white px-5 py-4 text-neutral-900 shadow-[0_20px_40px_rgba(0,0,0,0.25)] md:block">
-            <p className="text-[11px] font-medium text-neutral-500">Sales</p>
-            <p className="mt-0.5 text-xl font-semibold tracking-tight">
-              £21.49M
-            </p>
-            <p className="mt-1 text-[11px] font-medium text-blue-600">
-              Report →
-            </p>
-          </div>
-
-          {/* floating stat — SPEND */}
-          <div className="absolute bottom-8 right-8 hidden rotate-6 rounded-2xl bg-white px-5 py-4 text-neutral-900 shadow-[0_20px_40px_rgba(0,0,0,0.25)] md:block">
-            <p className="text-[11px] font-medium text-neutral-500">Spend</p>
-            <p className="mt-0.5 text-xl font-semibold tracking-tight">
-              £9.52M
-            </p>
-            <p className="mt-1 text-[11px] font-medium text-blue-600">
-              Report →
-            </p>
-          </div>
-
-          {/* CONTENT */}
-          <div className="relative z-10 mx-auto max-w-[720px] text-center">
-
-            {/* pill */}
-            <div className="inline-flex items-center gap-2 rounded-full bg-black/30 px-4 py-1.5 text-xs font-medium backdrop-blur">
-              <span className="flex h-4 w-4 items-center justify-center rounded-full bg-white/20">
-                📅
-              </span>
-              Book a Call
+          {/* Content */}
+          <div className="relative z-10 w-full px-12 pb-20 pt-32 md:px-20 grid md:grid-cols-[1.3fr_1fr] items-end">
+            
+            {/* Left */}
+            <div className="max-w-3xl text-white">
+              <h2 className="text-5xl md:text-6xl font-normal leading-tight tracking-tight">
+                Ready to Move at Global Scale?
+              </h2>
             </div>
 
-            {/* heading */}
-            <h2 className="mt-10 text-[42px] font-medium tracking-tight md:text-[52px]">
-              Ready To Scale?
-            </h2>
+            {/* Right */}
+            <div className="md:ml-auto max-w-sm text-white/90 mt-10 md:mt-0">
+              <p className="mb-6 text-base leading-relaxed">
+              End-to-end execution inside China covering production, inspection, and international delivery.
+              </p>
 
-            {/* description */}
-            <p className="mx-auto mt-6 max-w-[560px] text-[15px] leading-relaxed text-white/80">
-              Schedule in your <strong className="text-white">FREE</strong> growth
-              guide audit with our team. We will learn everything we can about you
-              and offer you our recommendations on which direction you should go!
-            </p>
-
-            {/* CTA ROW */}
-            <div className="mt-12 flex flex-col items-center justify-center gap-5 sm:flex-row">
-
-              {/* primary button */}
-              <button className="group inline-flex items-center gap-2 rounded-full bg-neutral-900 px-8 py-3 text-sm font-medium text-white shadow-[0_10px_30px_rgba(0,0,0,0.35)] transition hover:bg-neutral-800">
-                Schedule a free call
-                <span className="transition group-hover:translate-x-0.5">
+              <button className="group flex items-center gap-3 bg-white text-black px-8 py-3 rounded-lg font-medium transition hover:bg-gray-200">
+                Get Started
+                <span className="w-7 h-7 flex items-center justify-center rounded-full bg-black text-white text-sm transition group-hover:translate-x-1">
                   →
                 </span>
               </button>
-
-              {/* trust */}
-              <div className="flex items-center gap-3 text-sm text-white/90">
-                <div className="flex gap-0.5 text-white">
-                  ★★★★★
-                </div>
-                <span>
-                  Trusted by <strong className="text-white">235+ brands</strong>
-                </span>
-              </div>
-
             </div>
+
           </div>
         </div>
-      </Container>
-    </section>
+      </div>
+
+      {/* =====================================================
+          FOOTER SECTION
+      ===================================================== */}
+      <footer className="relative max-w-7xl mx-auto px-6 pb-20">
+         
+        {/* Main Grid */}
+        <div className="relative grid md:grid-cols-4 gap-16 border-b border-gray-200 pb-16">
+          
+          {/* Brand */}
+          <div>
+            <h3 className="font-semibold text-lg text-black mb-6">
+              Al-Raimi Group
+            </h3>
+
+            <div className="flex gap-4">
+              {[
+                "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg",
+                "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/x.svg",
+                "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg",
+              ].map((icon, i) => (
+                <div
+                  key={i}
+                  className="group w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center transition hover:bg-black hover:border-black cursor-pointer"
+                >
+                  <img
+                    src={icon}
+                    alt="social"
+                    className="w-4 h-4 opacity-70 transition group-hover:invert group-hover:opacity-100"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Company */}
+          <div>
+            <h4 className="text-xs font-semibold tracking-wider text-black uppercase mb-5">
+              Company
+            </h4>
+            <ul className="space-y-3 text-gray-500 text-sm">
+              <li className="hover:text-black transition cursor-pointer">About Us</li>
+              <li className="hover:text-black transition cursor-pointer">Careers</li>
+              <li className="hover:text-black transition cursor-pointer">Blog</li>
+              <li className="hover:text-black transition cursor-pointer">News & Updates</li>
+              <li className="hover:text-black transition cursor-pointer">Partners</li>
+            </ul>
+          </div>
+
+          {/* Resources */}
+          <div>
+            <h4 className="text-xs font-semibold tracking-wider text-black uppercase mb-5">
+              Resources
+            </h4>
+            <ul className="space-y-3 text-gray-500 text-sm">
+              <li className="hover:text-black transition cursor-pointer">Help Center</li>
+              <li className="hover:text-black transition cursor-pointer">FAQs</li>
+              <li className="hover:text-black transition cursor-pointer">Shipping Calculator</li>
+              <li className="hover:text-black transition cursor-pointer">Terms & Conditions</li>
+              <li className="hover:text-black transition cursor-pointer">Privacy Policy</li>
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h4 className="text-xs font-semibold tracking-wider text-black uppercase mb-5">
+              Contact
+            </h4>
+            <ul className="space-y-4 text-gray-500 text-sm leading-relaxed">
+              <li>
+                Room C169, 1501, No. 207–213, West Dongfeng Road, Yuexiu District,
+                Guangzhou, China
+              </li>
+              <li>+8619924111300</li>
+              <li>
+                Jl. Batumejan 5D Padang Linjong, Desa/Kelurahan Canggu,
+                Kec. Kuta Utara, Kab. Badung, Provinsi Bali
+              </li>
+              <li>hello@alraimigroup.com</li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6 mt-10 text-sm text-gray-400">
+          <p>© {new Date().getFullYear()} All Right Reserved</p>
+
+          <div className="flex gap-8">
+            <span className="hover:text-black transition cursor-pointer">
+              Terms of Use
+            </span>
+            <span className="hover:text-black transition cursor-pointer">
+              Privacy Policy
+            </span>
+          </div>
+        </div>
+      </footer>
+    </div>
   );
 }
+
+
+
+
+
 
 
 
