@@ -30,6 +30,8 @@ export default function Page() {
       <ClientsMarquee/>
       <About/>
       <Achievements/>
+      <Services/>
+      <Testimonials/>
       {/* <SocialProof/> */}
       {/* <HowWeWork/> */}
       {/* <TrustWith /> */}
@@ -59,9 +61,9 @@ export default function Page() {
 ========================= */
 function Hero() {
   return (
-    <section className="bg-white px-6 pt-6 pb-14">
+    <section className="bg-white px-6 pt-6 pb-20">
 
-      <div className="relative w-full max-w-[1650px] mx-auto h-[92vh] overflow-hidden rounded-[20px]">
+      <div className="relative w-full max-w-[1600px] mx-auto h-[92vh] overflow-hidden rounded-2xl">
 
         {/* VIDEO */}
         <video
@@ -69,13 +71,13 @@ function Hero() {
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-cover brightness-[0.82] contrast-[1.05]"
-          src="https://www.pexels.com/id-id/download/video/5488780/"
+          className="absolute inset-0 w-full h-full object-cover brightness-[0.8] contrast-[1.05]"
+          src="/videos/hero-bg.mp4"
         />
 
         {/* HEADER */}
-        <div className="relative z-20 px-14 xl:px-20">
-          <header className="flex items-center justify-between py-6 text-white">
+        <div className="relative z-20 px-10 xl:px-16">
+          <header className="flex items-center justify-between py-8 text-white">
 
             <Link href="/" className="flex items-center gap-3">
               <Image
@@ -87,7 +89,7 @@ function Hero() {
               />
             </Link>
 
-            <nav className="hidden md:flex items-center gap-14 text-sm text-white/85">
+            <nav className="hidden md:flex items-center gap-12 text-sm text-white/80">
               <Link href="/" className="hover:text-white transition">Home</Link>
               <Link href="/fashion-manufacturing" className="hover:text-white transition">Fashion</Link>
               <Link href="/luxury-packaging" className="hover:text-white transition">Packaging</Link>
@@ -96,7 +98,7 @@ function Hero() {
 
             <Link
               href="#contact"
-              className="hidden md:inline-flex items-center gap-2 bg-white text-black px-5 py-2 rounded-md text-sm font-medium hover:bg-neutral-200 transition"
+              className="hidden md:inline-flex items-center gap-2 bg-white text-black px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-neutral-200 transition"
             >
               Get Your PI
               <FaArrowRight className="text-xs" />
@@ -106,21 +108,21 @@ function Hero() {
         </div>
 
         {/* CONTENT */}
-        <div className="relative z-10 px-14 xl:px-20 pt-16">
+        <div className="relative z-10 px-10 xl:px-16 pt-20">
 
-          <div className="max-w-4xl">
+          <div className="max-w-3xl">
 
-            <div className="inline-flex items-center border border-white/40 bg-white/10 px-4 py-1 rounded-md text-xs text-white mb-10">
+            <div className="inline-flex items-center border border-white/40 bg-white/10 px-4 py-1.5 rounded-md text-xs text-white mb-8 tracking-wide">
               China-Based Factory Partner
             </div>
 
-            <h1 className="text-[44px] md:text-[54px] xl:text-[65px] font-normal leading-[1.06] tracking-[-0.02em] text-white">
+            <h1 className="text-[50px] md:text-[60px] xl:text-[70px] font-normal leading-[1.04] tracking-[-0.02em] text-white mb-8">
               Build Products.
               <br />
               Remove the Risk.
             </h1>
 
-            <p className="mt-7 text-[17px] font-normal text-white/85 leading-relaxed max-w-lg">
+            <p className="text-[18px] text-white/80 leading-relaxed max-w-lg">
               We represent your brand inside China — managing sampling,
               production, inspection, and global delivery under one accountable structure.
             </p>
@@ -129,21 +131,20 @@ function Hero() {
         </div>
 
         {/* CTA BOTTOM LEFT */}
-        <div className="absolute bottom-12 left-14 xl:left-20 z-10">
-          <button className="bg-white text-black px-8 py-3 rounded-md text-sm font-medium hover:bg-neutral-200 transition flex items-center gap-2 shadow-md">
+        <div className="absolute bottom-14 left-10 xl:left-16 z-10">
+          <button className="bg-white text-black px-8 py-3.5 rounded-lg text-sm font-medium hover:bg-neutral-200 transition flex items-center gap-2 shadow-md">
             Start Your Brand
             <FaArrowRight className="text-xs" />
           </button>
         </div>
 
         {/* FLOATING POPUP — FIXED */}
-        <div className="absolute bottom-10 right-14 xl:right-20 z-20 bg-white text-black rounded-[18px] shadow-[0_15px_30px_rgba(0,0,0,0.12)] w-[380px]">
+        <div className="absolute bottom-12 right-10 xl:right-16 z-20 bg-white text-black overflow-hidden rounded-lg shadow-xl w-[380px]">
 
           <div className="flex items-stretch">
 
             {/* LEFT CONTENT */}
-            <div className="flex-1 p-5">
- 
+            <div className="flex-1 p-6">
 
               <h4 className="text-sm font-medium text-neutral-800 mb-4 leading-snug">
                 See how we manage sourcing, inspection and delivery.
@@ -160,10 +161,10 @@ function Hero() {
             <div className="w-[150px] relative">
 
               <Image
-                src="https://images.unsplash.com/photo-1589793463357-5fb813435467?q=80&w=988&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" // Ganti dengan gambar asli lo
+                src="https://images.unsplash.com/photo-1660980041852-230420b8f99f?q=80&w=1480&auto=format&fit=crop"
                 alt="Preview"
                 fill
-                className="object-cover rounded-r-[18px]"
+                className="object-cover"
               />
 
             </div>
@@ -176,6 +177,7 @@ function Hero() {
     </section>
   );
 }
+
 
 function ClientsMarquee() {
   const logos = [
@@ -252,51 +254,48 @@ function ClientsMarquee() {
 function About() {
   return (
     <section className="bg-white">
+      <div className="max-w-[1650px] mx-auto px-14 xl:px-20 py-28">
 
-      <div className="max-w-[1650px] mx-auto px-14 xl:px-20 py-32">
+        <div className="grid grid-cols-1 md:grid-cols-[0.45fr_0.55fr] gap-20 items-start">
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-start">
-
-          {/* LEFT SIDE */}
+          {/* LEFT */}
           <div>
-
-            <div className="inline-flex items-center border border-black/40 px-4 py-1 rounded-md text-xs text-black mb-3">
+            <div className="inline-flex items-center border border-neutral-300 px-5 py-1 rounded-md text-xs text-neutral-700 mb-8">
               About Us
             </div>
 
-            <h2 className="text-[42px] md:text-[50px] xl:text-[56px] font-normal leading-[1.08] tracking-[-0.02em] text-neutral-900 max-w-md">
-              A Reliable Partner
+            <h2 className="text-[32px] md:text-[36px] xl:text-[40px] font-normal leading-[1.15] tracking-[-0.015em] text-neutral-900">
+              Embedded Manufacturing
               <br />
-              Inside China
+              Control Structure
             </h2>
-
           </div>
 
-          {/* RIGHT SIDE */}
-          <div className="flex justify-end">
+          {/* RIGHT */}
+          <div className="max-w-2xl text-[18px] leading-[1.7] text-neutral-600">
 
-            <div className="max-w-lg text-[18px] leading-relaxed text-neutral-700">
+            <p className="mb-6">
+              An operational structure embedded within the production ecosystem,
+              coordinating sourcing, sampling, manufacturing, and inspection
+              under one accountable system.
+            </p>
 
-              <p>
-                Working with factories in China can feel distant and hard to control.
-                We stand in between — on the ground, close to production, and aligned
-                with your expectations. We stay involved from early samples to final shipment,
-                making sure what is agreed is what gets produced. You stay focused on your brand.
-                We stay focused on making it right.
-              </p>
-
-            </div>
+            <p>
+              Factories are supervised directly, quality is controlled through
+              AQL-based inspections, and global logistics are managed from
+              production floor to final delivery.
+            </p>
 
           </div>
 
         </div>
 
       </div>
-
     </section>
   );
 }
 
+ 
 function Achievements() {
   return (
     <section className="bg-white">
@@ -314,7 +313,7 @@ function Achievements() {
 
             <div>
               <div className="text-xs uppercase tracking-widest text-white/40 mb-6">
-                Manufacturing Presence
+               
               </div>
 
               <h3 className="text-[72px] leading-none font-normal mb-4">
@@ -354,7 +353,7 @@ function Achievements() {
 
               <div>
                 <div className="text-xs uppercase tracking-widest text-white/60 mb-6">
-                  Delivery Volume
+                 
                 </div>
 
                 <h3 className="text-[72px] leading-none font-normal mb-4">
@@ -380,7 +379,7 @@ function Achievements() {
 
             <div>
               <div className="text-xs uppercase tracking-widest text-neutral-400 mb-6">
-                Production Output
+                
               </div>
 
               <h3 className="text-[72px] leading-none font-normal mb-4 text-neutral-900">
@@ -414,14 +413,257 @@ function Achievements() {
   );
 }
 
+
+function Services() {
+  return (
+    <section className="bg-white">
+      <div className="max-w-[1600px] mx-auto px-10 xl:px-16 py-32">
+
+        {/* HEADER */}
+        <div className="mb-24 max-w-3xl">
+          <div className="inline-flex items-center border border-neutral-300 px-5 py-1 rounded-md text-xs text-neutral-700 mb-8">
+            Services
+          </div>
+
+          <h2 className="text-[42px] leading-[1.1] tracking-[-0.015em] text-neutral-900">
+            Structured Manufacturing Divisions
+          </h2>
+        </div>
+
+        {/* INDUSTRIAL FRAME */}
+        <div className="relative border border-neutral-200 rounded-2xl overflow-hidden">
+
+          {/* subtle diagonal structural motif */}
+          <div className="absolute inset-0 pointer-events-none opacity-[0.04]">
+            <div className="w-full h-full bg-[repeating-linear-gradient(135deg,#000_0px,#000_1px,transparent_1px,transparent_28px)]" />
+          </div>
+
+          <div className="relative grid grid-cols-1 lg:grid-cols-2">
+
+            {/* LEFT DIVISION */}
+            <div className="p-16 lg:border-r border-neutral-200 flex flex-col justify-between min-h-[480px]">
+
+              <div>
+                <div className="text-xs uppercase tracking-widest text-neutral-400 mb-6">
+                  Division 01
+                </div>
+
+                <h3 className="text-[32px] font-normal text-neutral-900 mb-8">
+                  Fashion Manufacturing
+                </h3>
+
+                <p className="text-[18px] leading-[1.7] text-neutral-600 max-w-xl">
+                  Resortwear, activewear, modest fashion, and capsule collections.
+                  Technical preparation, sampling, production, trims, AQL-based
+                  quality control, and global logistics managed under one
+                  operational structure.
+                </p>
+              </div>
+
+              <div className="mt-16">
+                <a
+                  href="/fashion-manufacturing"
+                  className="inline-flex items-center gap-4 text-sm font-medium text-neutral-900 transition hover:text-black"
+                >
+                  Explore Division
+                  <span className="w-10 h-10 border border-neutral-300 rounded-lg flex items-center justify-center transition hover:bg-black hover:text-white">
+                    →
+                  </span>
+                </a>
+              </div>
+            </div>
+
+            {/* RIGHT DIVISION */}
+            <div className="p-16 flex flex-col justify-between min-h-[480px]">
+
+              <div>
+                <div className="text-xs uppercase tracking-widest text-neutral-400 mb-6">
+                  Division 02
+                </div>
+
+                <h3 className="text-[32px] font-normal text-neutral-900 mb-8">
+                  Luxury Packaging
+                </h3>
+
+                <p className="text-[18px] leading-[1.7] text-neutral-600 max-w-xl">
+                  Rigid boxes, perfume packaging, premium paper structures,
+                  inserts, and advanced finishing including soft-touch lamination,
+                  foil stamping, embossing, and Pantone-controlled production.
+                </p>
+              </div>
+
+              <div className="mt-16">
+                <a
+                  href="/luxury-packaging"
+                  className="inline-flex items-center gap-4 text-sm font-medium text-neutral-900 transition hover:text-black"
+                >
+                  Explore Division
+                  <span className="w-10 h-10 border border-neutral-300 rounded-lg flex items-center justify-center transition hover:bg-black hover:text-white">
+                    →
+                  </span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+  )
+}
+
+
+
+
+
+
+
+function Testimonials() {
+
+  const testimonials = [
+    {
+      name: "Arsalan Khan",
+      role: "E-Commerce Operator",
+      image: "https://alraimigroup.com/wp-content/uploads/2024/11/WhatsApp-Image-2024-11-07-at-2.06.16-PM.jpeg",
+      quote: `Used for over a year now for our brand and is one of the best things we ever did! The Customer service is top not, fast replies at pretty much anytime of day and always fighting on our behalf to get the best rates so that no one else can match or beat us. Really grateful to have the team onboard helping us and fueling the fire for our brands on the backend. Highly recommend using if you want to source and find and sell any product throughout China!`
+    },
+    {
+      name: "Qusai Abuhejleh",
+      role: "Construction Supplier · Qatar",
+      image: "https://alraimigroup.com/wp-content/uploads/2024/11/WhatsApp-Image-2024-11-26-at-4.17.18-PM.jpeg",
+      quote: `"I am extremely pleased with my experience with [Alraimi business group ]. As a businessman in Qatar, sourcing high-quality interior materials can be challenging, but they made the process smooth and efficient. The materials, manufactured in China, are of exceptional quality, allowing me to complete my projects without delays. The customer service was outstanding; the team was always available to answer my questions and provided regular updates. I highly recommend [Alraimi business group ] to anyone in need of reliable materials and excellent support. They truly care about their clients!"`
+    },
+    {
+      name: "Gehad Mayas",
+      role: "Solace Development · Bali",
+      image: "https://alraimigroup.com/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-05-at-5.03.21-PM.jpeg",
+      quote: `"As the owner of a Solace development company in Bali, I can confidently say that Alraimi business group is exceptional. Their interior materials, manufactured in China, are top-notch and always exceed my expectations. What truly impresses me is their outstanding customer service. The team is responsive and attentive, ensuring that every detail is perfect. My orders arrive on time and in great condition, which is vital for my projects. I highly recommend Alraimi business group to anyone seeking reliable suppliers of quality materials."`
+    },
+    {
+      name: "Kamilia",
+      role: "Fashion Brand Owner · Dubai",
+      image: "https://alraimigroup.com/wp-content/uploads/2024/11/WhatsApp-Image-2024-11-07-at-12.31.23-PM.jpeg",
+      quote: `I own a women’s clothing brand in Dubai and we’ve been working with Alraimi Group for the past 2 years. Extremely satisfied with their work as we’ve always had smooth communication, no production issues or delays, samples are always done quickly! They are very good at communication which means nothing is missed out on and it reduces a lot of potential mistakes. These are very important things when it comes to a clothing brand production - and I’m very happy for being able to find such amazing suppliers!`
+    },
+  ]
+
+  const [index, setIndex] = useState(0)
+  const active = testimonials[index]
+
+  const prevSlide = () => {
+    setIndex((prev) =>
+      prev === 0 ? testimonials.length - 1 : prev - 1
+    )
+  }
+
+  const nextSlide = () => {
+    setIndex((prev) =>
+      prev === testimonials.length - 1 ? 0 : prev + 1
+    )
+  }
+
+  return (
+    <section className="bg-white">
+      <div className="max-w-[1600px] mx-auto px-10 xl:px-16 py-32">
+
+        {/* HEADER */}
+<div className="mb-24 max-w-full flex flex-col items-center text-center">
+
+<div className="inline-flex items-center border border-neutral-300 px-5 py-1 rounded-md text-xs tracking-wide text-neutral-600 mb-8">
+  Testimonials
+</div>
+
+<h2 className="text-[42px] leading-[1.1] tracking-[-0.015em] text-neutral-900 max-w-3xl">
+  Trusted By Businesses Worldwide
+</h2>
+
+</div>
+
+
+        {/* MAIN LAYOUT */}
+        <div className="grid grid-cols-1 lg:grid-cols-[0.75fr_1.2fr] gap-20 items-center">
+
+          {/* LEFT — PHOTO */}
+          <div>
+            <div className="rounded-2xl overflow-hidden border border-neutral-200">
+              <img
+                src={active.image}
+                alt={active.name}
+                className="w-full h-[560px] object-cover"
+              />
+            </div>
+          </div>
+
+          {/* RIGHT — QUOTE */}
+          <div className="relative">
+
+            {/* Decorative Quote */}
+            <div className="absolute -top-10 -left-6 text-[160px] text-neutral-100 leading-none select-none">
+              “
+            </div>
+
+            <p className="text-[18px] xl:text-[20px] leading-[1.55] text-neutral-700 relative z-10 whitespace-pre-line">
+              {active.quote}
+            </p>
+
+            {/* Name + Role + Navigation */}
+            <div className="mt-16 border-t border-neutral-200 pt-8 flex items-end justify-between">
+
+              <div>
+                <p className="text-[20px] font-medium text-neutral-900">
+                  {active.name}
+                </p>
+                <p className="text-sm text-neutral-500 mt-1">
+                  {active.role}
+                </p>
+              </div>
+
+              {/* Navigation — moved right bottom */}
+              <div className="flex gap-3">
+                <button
+                  onClick={prevSlide}
+                  className="w-10 h-10 border border-neutral-300 rounded-lg flex items-center justify-center text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 transition"
+                >
+                  ←
+                </button>
+
+                <button
+                  onClick={nextSlide}
+                  className="w-10 h-10 border border-neutral-300 rounded-lg flex items-center justify-center text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 transition"
+                >
+                  →
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  )
+}
+
+
+ 
+
+
+
+
+
+
+
 function Footer() {
   return (
-    <div className="bg-white pt-24 overflow-hidden">
+    <div className="bg-white pt-28 overflow-hidden">
       {/* =====================================================
           CTA SECTION
       ===================================================== */}
-      <div className="max-w-7xl mx-auto px-6 mb-28">
-        <div className="relative rounded-3xl overflow-hidden min-h-[550px] flex items-end">
+      <div className="max-w-[1600px] mx-auto px-10 xl:px-16 mb-32">
+        <div className="relative rounded-2xl overflow-hidden min-h-[560px] flex items-end">
           
           {/* Image */}
           <img
@@ -434,24 +676,24 @@ function Footer() {
           <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/45 to-black/20" />
 
           {/* Content */}
-          <div className="relative z-10 w-full px-12 pb-20 pt-32 md:px-20 grid md:grid-cols-[1.3fr_1fr] items-end">
+          <div className="relative z-10 w-full px-10 xl:px-16 pb-24 pt-32 grid md:grid-cols-[1.3fr_1fr] items-end">
             
             {/* Left */}
             <div className="max-w-3xl text-white">
-              <h2 className="text-5xl md:text-6xl font-normal leading-tight tracking-tight">
+              <h2 className="text-[48px] md:text-[60px] xl:text-[70px] font-normal leading-[1.05] tracking-[-0.02em]">
                 Ready to Move at Global Scale?
               </h2>
             </div>
 
             {/* Right */}
-            <div className="md:ml-auto max-w-sm text-white/90 mt-10 md:mt-0">
-              <p className="mb-6 text-base leading-relaxed">
-              End-to-end execution inside China covering production, inspection, and international delivery.
+            <div className="md:ml-auto max-w-sm text-white/85 mt-10 md:mt-0">
+              <p className="mb-8 text-[18px] leading-relaxed">
+                End-to-end execution covering production, inspection, and international delivery.
               </p>
 
-              <button className="group flex items-center gap-3 bg-white text-black px-8 py-3 rounded-lg font-medium transition hover:bg-gray-200">
+              <button className="flex items-center gap-3 bg-white text-black px-8 py-3.5 rounded-lg text-sm font-medium transition hover:bg-neutral-200">
                 Get Started
-                <span className="w-7 h-7 flex items-center justify-center rounded-full bg-black text-white text-sm transition group-hover:translate-x-1">
+                <span className="w-7 h-7 flex items-center justify-center rounded-full bg-black text-white text-sm">
                   →
                 </span>
               </button>
@@ -464,14 +706,14 @@ function Footer() {
       {/* =====================================================
           FOOTER SECTION
       ===================================================== */}
-      <footer className="relative max-w-7xl mx-auto px-6 pb-20">
+      <footer className="relative max-w-[1600px] mx-auto px-10 xl:px-16 pb-24">
          
         {/* Main Grid */}
-        <div className="relative grid md:grid-cols-4 gap-16 border-b border-gray-200 pb-16">
+        <div className="relative grid md:grid-cols-4 gap-20 border-b border-neutral-200 pb-20">
           
           {/* Brand */}
           <div>
-            <h3 className="font-semibold text-lg text-black mb-6">
+            <h3 className="text-lg font-medium text-neutral-900 mb-8">
               Al-Raimi Group
             </h3>
 
@@ -483,7 +725,7 @@ function Footer() {
               ].map((icon, i) => (
                 <div
                   key={i}
-                  className="group w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center transition hover:bg-black hover:border-black cursor-pointer"
+                  className="group w-10 h-10 rounded-lg border border-neutral-300 flex items-center justify-center transition hover:bg-black hover:border-black cursor-pointer"
                 >
                   <img
                     src={icon}
@@ -497,10 +739,10 @@ function Footer() {
 
           {/* Company */}
           <div>
-            <h4 className="text-xs font-semibold tracking-wider text-black uppercase mb-5">
+            <h4 className="text-xs font-semibold tracking-wider text-neutral-900 uppercase mb-6">
               Company
             </h4>
-            <ul className="space-y-3 text-gray-500 text-sm">
+            <ul className="space-y-4 text-neutral-500 text-sm">
               <li className="hover:text-black transition cursor-pointer">About Us</li>
               <li className="hover:text-black transition cursor-pointer">Careers</li>
               <li className="hover:text-black transition cursor-pointer">Blog</li>
@@ -511,10 +753,10 @@ function Footer() {
 
           {/* Resources */}
           <div>
-            <h4 className="text-xs font-semibold tracking-wider text-black uppercase mb-5">
+            <h4 className="text-xs font-semibold tracking-wider text-neutral-900 uppercase mb-6">
               Resources
             </h4>
-            <ul className="space-y-3 text-gray-500 text-sm">
+            <ul className="space-y-4 text-neutral-500 text-sm">
               <li className="hover:text-black transition cursor-pointer">Help Center</li>
               <li className="hover:text-black transition cursor-pointer">FAQs</li>
               <li className="hover:text-black transition cursor-pointer">Shipping Calculator</li>
@@ -525,10 +767,10 @@ function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="text-xs font-semibold tracking-wider text-black uppercase mb-5">
+            <h4 className="text-xs font-semibold tracking-wider text-neutral-900 uppercase mb-6">
               Contact
             </h4>
-            <ul className="space-y-4 text-gray-500 text-sm leading-relaxed">
+            <ul className="space-y-4 text-neutral-500 text-sm leading-relaxed">
               <li>
                 Room C169, 1501, No. 207–213, West Dongfeng Road, Yuexiu District,
                 Guangzhou, China
@@ -544,8 +786,8 @@ function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6 mt-10 text-sm text-gray-400">
-          <p>© {new Date().getFullYear()} All Right Reserved</p>
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6 mt-12 text-sm text-neutral-400">
+          <p>© {new Date().getFullYear()} Al-Raimi Group. All rights reserved.</p>
 
           <div className="flex gap-8">
             <span className="hover:text-black transition cursor-pointer">
@@ -560,6 +802,7 @@ function Footer() {
     </div>
   );
 }
+
 
 
 
