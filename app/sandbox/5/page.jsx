@@ -3,7 +3,7 @@
 
 import Image from "next/image";
 import Link from 'next/link'
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useCallback } from "react";
 import {
   FaApple,
   FaAmazon,
@@ -13,6 +13,20 @@ import {
   FaShopify,
   FaArrowRight
 } from "react-icons/fa";
+
+import {
+  FileText,
+  DraftingCompass,
+  Package,
+  Factory,
+  Cog,
+  ShieldCheck,
+  Truck,
+  Repeat
+} from "lucide-react"
+
+
+import useEmblaCarousel from "embla-carousel-react"
 
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -30,10 +44,10 @@ export default function Page() {
       <ClientsMarquee/>
       <About/>
       <Achievements/>
-      <Services/>
-      <Testimonials/>
+      <HowWeWork/>
+      {/* <Services/> */}
+      {/* <Testimonials/> */}
       {/* <SocialProof/> */}
-      {/* <HowWeWork/> */}
       {/* <TrustWith /> */}
       {/* <ClientSuccess /> */}
       {/* <Services/>    */}
@@ -45,7 +59,7 @@ export default function Page() {
       {/* <LogoWall /> */}
       {/* <Team /> */}
       {/* <Events /> */}
-      {/* <FAQ/> */}
+      <FAQ/>
       <Footer />
     </main>
   );
@@ -513,7 +527,185 @@ function Services() {
   )
 }
 
+function HowWeWork() {
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    align: "start",
+    loop: false,
+  })
 
+  const [selectedIndex, setSelectedIndex] = useState(0)
+  const [scrollSnaps, setScrollSnaps] = useState([])
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return
+    setSelectedIndex(emblaApi.selectedScrollSnap())
+  }, [emblaApi])
+
+  useEffect(() => {
+    if (!emblaApi) return
+    setScrollSnaps(emblaApi.scrollSnapList())
+    emblaApi.on("select", onSelect)
+    onSelect()
+  }, [emblaApi, onSelect])
+
+  const steps = [
+    {
+      number: "1",
+      icon: FileText,
+      title: "Quick Brief & NDA (24–48h)",
+      desc: "Send style/packaging references, quantity range, target timeline, ship-to country, and brand files.",
+    },
+    {
+      number: "2",
+      icon: DraftingCompass,
+      title: "Design & Technical Prep (2–5 days)",
+      desc: "Finalize tech packs/patterns or dielines and confirm specs and materials.",
+    },
+    {
+      number: "3",
+      icon: Package,
+      title: "Samples & PI (7–21 days)",
+      desc: "Produce samples and share guide pricing. Formal PI issued after review.",
+    },
+    {
+      number: "4",
+      icon: Factory,
+      title: "Production Booking",
+      desc: "Approve golden sample and secure production line.",
+    },
+    {
+      number: "5",
+      icon: Cog,
+      title: "Manufacturing",
+      desc: "Apparel 3–8 wks / Packaging 2–6 wks with in-line QC.",
+    },
+    {
+      number: "6",
+      icon: ShieldCheck,
+      title: "Quality Assurance (AQL)",
+      desc: "Pre-shipment inspection with full report and measurement checks.",
+    },
+    {
+      number: "7",
+      icon: Truck,
+      title: "Logistics (EXW / FOB / DDP)",
+      desc: "Export documentation and global shipping arranged.",
+    },
+    {
+      number: "8",
+      icon: Repeat,
+      title: "Delivery & Aftercare",
+      desc: "Unboxing checks, reorders, and structured improvements.",
+    },
+  ]
+
+  return (
+    <section className="relative overflow-hidden bg-[#1c1c1c] text-white py-32">
+
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <img
+          src="https://images.unsplash.com/photo-1581092335397-9583eb92d232?q=80&w=2000&auto=format&fit=crop"
+          alt=""
+          className="w-full h-full object-cover opacity-20"
+        />
+      </div>
+
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#1c1c1c]/40 via-[#1c1c1c]/80 to-[#1c1c1c]" />
+
+      <div className="relative max-w-[1600px] mx-auto px-10 xl:px-16">
+
+        {/* SECTION PONI */}
+        <div className="">
+          <div className="inline-flex items-center border border-white/20 px-5 py-1 rounded-md text-xs tracking-widest text-white/70">
+            Work Process
+          </div>
+        </div>
+
+        {/* HEADING */}
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-[0.55fr_0.45fr] gap-16 items-start">
+          <h3 className="text-[32px] md:text-[36px] xl:text-[40px] leading-[1.1] tracking-[-0.015em]">
+            How We Work
+          </h3>
+
+          <p className="text-[18px] leading-[1.7] text-neutral-400">
+            Clear production phases. Locked timelines. Structured oversight.
+            Each stage reduces uncertainty and builds execution confidence.
+          </p>
+        </div>
+
+        {/* EMBLA */}
+        <div className="mt-20 overflow-hidden" ref={emblaRef}>
+          <div className="flex">
+
+          {steps.map((step, i) => {
+  const Icon = step.icon
+  return (
+    <div
+      key={i}
+      className="flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_25%] pr-4"
+    >
+      <div className="relative overflow-hidden rounded-2xl border border-neutral-700 bg-neutral-900/70 p-8 h-full transition-colors duration-300 hover:bg-neutral-900">
+
+        {/* BIG OVERFLOW NUMBER (BOTTOM RIGHT) */}
+        <div className="absolute -bottom-18 right-6 text-[160px] leading-none font-semibold text-white/[0.04] pointer-events-none select-none">
+          {step.number}
+        </div>
+
+        {/* ICON */}
+        <div className="mb-10">
+          <div className="w-11 h-11 flex items-center justify-center rounded-lg border border-white/10 bg-white/5">
+            <Icon
+              size={20}
+              strokeWidth={1.5}
+              className="text-white/80"
+            />
+          </div>
+        </div>
+
+        {/* TITLE */}
+        <h4 className="text-[20px] leading-[1.3] font-medium text-white relative z-10">
+          {step.title}
+        </h4>
+
+        {/* DESC */}
+        <p className="mt-4 text-[16px] leading-[1.7] text-neutral-400 relative z-10">
+          {step.desc}
+        </p>
+
+      </div>
+    </div>
+  )
+})}
+
+          </div>
+        </div>
+
+        {/* DOTS */}
+        <div className="mt-10 flex justify-center gap-3">
+          {scrollSnaps.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => emblaApi && emblaApi.scrollTo(index)}
+              className={`w-2 h-2 rounded-full transition ${
+                index === selectedIndex
+                  ? "bg-white"
+                  : "bg-neutral-600 hover:bg-neutral-400"
+              }`}
+            />
+          ))}
+        </div>
+
+      </div>
+    </section>
+  )
+}
+
+
+
+
+ 
 
 
 
@@ -567,73 +759,71 @@ function Testimonials() {
     <section className="bg-white">
       <div className="max-w-[1600px] mx-auto px-10 xl:px-16 py-32">
 
-        {/* HEADER */}
-<div className="mb-24 max-w-full flex flex-col items-center text-center">
-
-<div className="inline-flex items-center border border-neutral-300 px-5 py-1 rounded-md text-xs tracking-wide text-neutral-600 mb-8">
-  Testimonials
-</div>
-
-<h2 className="text-[42px] leading-[1.1] tracking-[-0.015em] text-neutral-900 max-w-3xl">
-  Trusted By Businesses Worldwide
-</h2>
-
-</div>
-
-
-        {/* MAIN LAYOUT */}
-        <div className="grid grid-cols-1 lg:grid-cols-[0.75fr_1.2fr] gap-20 items-center">
-
-          {/* LEFT — PHOTO */}
-          <div>
-            <div className="rounded-2xl overflow-hidden border border-neutral-200">
-              <img
-                src={active.image}
-                alt={active.name}
-                className="w-full h-[560px] object-cover"
-              />
-            </div>
+        {/* HEADER — UNTOUCHED */}
+        <div className="mb-24 max-w-full flex flex-col items-center text-center">
+          <div className="inline-flex items-center border border-neutral-300 px-5 py-1 rounded-md text-xs tracking-wide text-neutral-600 mb-8">
+            Testimonials
           </div>
 
-          {/* RIGHT — QUOTE */}
-          <div className="relative">
+          <h2 className="text-[42px] leading-[1.1] tracking-[-0.015em] text-neutral-900 max-w-3xl">
+            Trusted By Businesses Worldwide
+          </h2>
+        </div>
 
-            {/* Decorative Quote */}
-            <div className="absolute -top-10 -left-6 text-[160px] text-neutral-100 leading-none select-none">
-              “
+        {/* CONTENT FRAME ONLY */}
+        <div className="border border-neutral-300 bg-neutral-100 rounded-2xl p-16">
+
+          <div className="grid grid-cols-1 lg:grid-cols-[0.75fr_1.2fr] gap-20 items-center">
+
+            {/* LEFT — PHOTO 1:1 */}
+            <div>
+              <div className="rounded-2xl overflow-hidden border border-neutral-300 aspect-square">
+                <img
+                  src={active.image}
+                  alt={active.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
             </div>
 
-            <p className="text-[18px] xl:text-[20px] leading-[1.55] text-neutral-700 relative z-10 whitespace-pre-line">
-              {active.quote}
-            </p>
+            {/* RIGHT — QUOTE */}
+            <div className="relative">
 
-            {/* Name + Role + Navigation */}
-            <div className="mt-16 border-t border-neutral-200 pt-8 flex items-end justify-between">
-
-              <div>
-                <p className="text-[20px] font-medium text-neutral-900">
-                  {active.name}
-                </p>
-                <p className="text-sm text-neutral-500 mt-1">
-                  {active.role}
-                </p>
+              <div className="absolute -top-10 -left-6 text-[160px] text-neutral-200 leading-none select-none">
+                “
               </div>
 
-              {/* Navigation — moved right bottom */}
-              <div className="flex gap-3">
-                <button
-                  onClick={prevSlide}
-                  className="w-10 h-10 border border-neutral-300 rounded-lg flex items-center justify-center text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 transition"
-                >
-                  ←
-                </button>
+              <p className="text-[18px] xl:text-[20px] leading-[1.7] text-neutral-600 relative z-10 whitespace-pre-line">
+                {active.quote}
+              </p>
 
-                <button
-                  onClick={nextSlide}
-                  className="w-10 h-10 border border-neutral-300 rounded-lg flex items-center justify-center text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 transition"
-                >
-                  →
-                </button>
+              <div className="mt-16 border-t border-neutral-200 pt-8 flex items-end justify-between">
+
+                <div>
+                  <p className="text-[20px] font-medium text-neutral-900">
+                    {active.name}
+                  </p>
+                  <p className="text-sm text-neutral-600 mt-1">
+                    {active.role}
+                  </p>
+                </div>
+
+                <div className="flex gap-3">
+                  <button
+                    onClick={prevSlide}
+                    className="w-10 h-10 border border-neutral-300 rounded-lg flex items-center justify-center text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 transition"
+                  >
+                    ←
+                  </button>
+
+                  <button
+                    onClick={nextSlide}
+                    className="w-10 h-10 border border-neutral-300 rounded-lg flex items-center justify-center text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 transition"
+                  >
+                    →
+                  </button>
+                </div>
+
               </div>
 
             </div>
@@ -648,10 +838,82 @@ function Testimonials() {
 }
 
 
+
  
 
 
+function FAQ() {
+  const faqs = [
+    {
+      q: "What kind of brands is your service most suitable for?",
+      a: "Our service is suited to a wide-variety of brands in the DTC space. Whether you're investment backed and just started, over $100K or over $500K monthly. We offer different services that can suit your needs.",
+    },
+    {
+      q: "How does your service help to increase my brand's revenue vs someone else?",
+      a: "We don’t just focus on ads. We take ownership of the full growth system — acquisition, creative, infrastructure, and data — ensuring every lever works together to drive profitable revenue.",
+    },
+    {
+      q: "How long does it take for you to onboard a company?",
+      a: "Most brands are fully onboarded within 7–14 days, depending on complexity and existing infrastructure.",
+    },
+  ];
 
+  const [open, setOpen] = React.useState(0);
+
+  return (
+    <section className="bg-white py-32 text-neutral-900">
+      <Container>
+        <div className="mx-auto max-w-2xl text-center">
+          {/* pill */}
+          <span className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-4 py-1 text-xs text-neutral-700">
+            ❓ FAQ
+          </span>
+
+          <h2 className="mt-6 text-4xl font-semibold tracking-tight">
+            Frequently Asked Questions
+          </h2>
+        </div>
+
+        {/* accordion */}
+        <div className="mx-auto mt-20 max-w-3xl space-y-4">
+          {faqs.map((item, i) => {
+            const isOpen = open === i;
+
+            return (
+              <div
+                key={i}
+                className={`rounded-2xl border p-6 transition ${
+                  isOpen
+                    ? "border-blue-600 bg-blue-50"
+                    : "border-neutral-200 bg-white"
+                }`}
+              >
+                <button
+                  onClick={() => setOpen(isOpen ? null : i)}
+                  className="flex w-full items-center justify-between text-left"
+                >
+                  <span className="text-base font-medium">
+                    {item.q}
+                  </span>
+
+                  <span className="ml-4 text-2xl leading-none text-neutral-500">
+                    {isOpen ? "×" : "+"}
+                  </span>
+                </button>
+
+                {isOpen && (
+                  <p className="mt-4 text-sm leading-relaxed text-neutral-600">
+                    {item.a}
+                  </p>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </Container>
+    </section>
+  );
+}
 
 
 
