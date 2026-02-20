@@ -45,8 +45,8 @@ export default function Page() {
       <About/>
       <Achievements/>
       <HowWeWork/>
-      {/* <Services/> */}
-      {/* <Testimonials/> */}
+      <Services/>
+      <Testimonials/>
       {/* <SocialProof/> */}
       {/* <TrustWith /> */}
       {/* <ClientSuccess /> */}
@@ -59,7 +59,7 @@ export default function Page() {
       {/* <LogoWall /> */}
       {/* <Team /> */}
       {/* <Events /> */}
-      <FAQ/>
+      {/* <FAQ/> */}
       <Footer />
     </main>
   );
@@ -75,7 +75,7 @@ export default function Page() {
 ========================= */
 function Hero() {
   return (
-    <section className="bg-white px-6 pt-6 pb-20">
+    <section className="bg-neutral-50 px-6 pt-6 pb-20">
 
       <div className="relative w-full max-w-[1600px] mx-auto h-[92vh] overflow-hidden rounded-2xl">
 
@@ -85,9 +85,10 @@ function Hero() {
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-cover brightness-[0.8] contrast-[1.05]"
+          className="absolute inset-0 w-full h-full object-cover brightness-[0.99] contrast-[1.05]"
           src="/videos/hero-bg.mp4"
         />
+        <div className="absolute inset-y-0 left-0 w-[50%] bg-gradient-to-r from-black/70 via-black/40 to-transparent pointer-events-none z-10" />
 
         {/* HEADER */}
         <div className="relative z-20 px-10 xl:px-16">
@@ -210,35 +211,30 @@ function ClientsMarquee() {
     "/clients/13-removebg-preview.png",
     "/clients/14-removebg-preview.png",
   ];
-
+  
   return (
-    <section className="bg-white overflow-hidden">
+    <section className="bg-neutral-50 py-2">
 
-      {/* <div className="max-w-[1500px] mx-auto text-center mb-5">
-        <h2 className="text-3xl md:text-2xl font-normal text-neutral-800">
-          Partners of world leading companies
-        </h2>
-      </div> */}
-
-      <div className="relative w-full overflow-hidden">
+      {/* CENTERED + NARROW VIEWPORT */}
+      <div className="relative max-w-[850px] mx-auto overflow-hidden">
 
         {/* Edge fade */}
-        <div className="pointer-events-none absolute left-0 top-0 h-full w-40 bg-gradient-to-r from-white to-transparent z-10" />
-        <div className="pointer-events-none absolute right-0 top-0 h-full w-40 bg-gradient-to-l from-white to-transparent z-10" />
+        <div className="pointer-events-none absolute left-0 top-0 h-full w-20 bg-gradient-to-r from-neutral-50 to-transparent z-10" />
+        <div className="pointer-events-none absolute right-0 top-0 h-full w-20 bg-gradient-to-l from-neutral-50 to-transparent z-10" />
 
         <div className="flex min-w-max animate-marquee items-center">
 
           {[...logos, ...logos].map((logo, index) => (
             <div
               key={index}
-              className="flex-shrink-0 mx-16 flex items-center justify-center"
+              className="flex-shrink-0 mx-14 flex items-center justify-center"
             >
               <Image
                 src={logo}
                 alt="Client logo"
-                width={300}
-                height={140}
-                className="object-contain h-28 w-auto invert"
+                width={240}
+                height={120}
+                className="object-contain h-32 w-auto invert opacity-90"
               />
             </div>
           ))}
@@ -257,7 +253,7 @@ function ClientsMarquee() {
         }
 
         .animate-marquee {
-          animation: marquee 60s linear infinite;
+          animation: marquee 85s linear infinite;
         }
       `}</style>
 
@@ -267,38 +263,42 @@ function ClientsMarquee() {
 
 function About() {
   return (
-    <section className="bg-white">
+    <section className="bg-neutral-50">
       <div className="max-w-[1650px] mx-auto px-14 xl:px-20 py-28">
 
-        <div className="grid grid-cols-1 md:grid-cols-[0.45fr_0.55fr] gap-20 items-start">
+        <div className="border bg-neutral-50 border-neutral-300 rounded-2xl">
 
-          {/* LEFT */}
-          <div>
-            <div className="inline-flex items-center border border-neutral-300 px-5 py-1 rounded-md text-xs text-neutral-700 mb-8">
-              About Us
+          <div className="grid grid-cols-1 md:grid-cols-[0.55fr_0.45fr] gap-20 items-start p-16">
+
+            {/* LEFT */}
+            <div>
+              <div className="inline-flex items-center border border-neutral-300 px-5 py-1 rounded-md text-xs text-neutral-700 mb-8">
+                About Us
+              </div>
+
+              <h2 className="text-[32px] md:text-[36px] xl:text-[40px] font-normal leading-[1.15] tracking-[-0.015em] text-neutral-900">
+                Structured Manufacturing
+                <br />
+                <span className="text-neutral-400">With Direct Oversight</span> 
+              </h2>
             </div>
 
-            <h2 className="text-[32px] md:text-[36px] xl:text-[40px] font-normal leading-[1.15] tracking-[-0.015em] text-neutral-900">
-              Embedded Manufacturing
-              <br />
-              Control Structure
-            </h2>
-          </div>
+            {/* RIGHT */}
+            <div className="max-w-2xl text-[18px] leading-[1.7] text-neutral-600">
+              <p className="mb-6">
+                Alraimi Business Group operates as an embedded manufacturing control structure
+                integrated within established production ecosystems. The role is
+                to translate brand requirements into factory-ready specifications
+                and align every production variable under one accountable framework.
+              </p>
 
-          {/* RIGHT */}
-          <div className="max-w-2xl text-[18px] leading-[1.7] text-neutral-600">
-
-            <p className="mb-6">
-              An operational structure embedded within the production ecosystem,
-              coordinating sourcing, sampling, manufacturing, and inspection
-              under one accountable system.
-            </p>
-
-            <p>
-              Factories are supervised directly, quality is controlled through
-              AQL-based inspections, and global logistics are managed from
-              production floor to final delivery.
-            </p>
+              <p>
+                Sampling, mass production, quality inspections under AQL standards,
+                and global logistics coordination are structured within a single
+                operational system — reducing execution gaps, misalignment, and
+                manufacturing uncertainty.
+              </p>
+            </div>
 
           </div>
 
@@ -312,7 +312,7 @@ function About() {
  
 function Achievements() {
   return (
-    <section className="bg-white">
+    <section className="bg-neutral-50">
 
       <div className="max-w-[1650px] mx-auto px-14 xl:px-20 pb-32">
 
@@ -389,7 +389,7 @@ function Achievements() {
 
 
           {/* CARD 3 — LIGHT STRUCTURED */}
-          <div className="bg-neutral-100 rounded-xl p-10 min-h-[420px] flex flex-col justify-between">
+          <div className="bg-white border border-neutral-300 rounded-xl p-10 min-h-[420px] flex flex-col justify-between">
 
             <div>
               <div className="text-xs uppercase tracking-widest text-neutral-400 mb-6">
@@ -430,98 +430,79 @@ function Achievements() {
 
 function Services() {
   return (
-    <section className="bg-white">
-      <div className="max-w-[1600px] mx-auto px-10 xl:px-16 py-32">
+    <section className="bg-neutral-50 py-32">
+      <div className="max-w-[1600px] mx-auto px-10 xl:px-16">
 
         {/* HEADER */}
-        <div className="mb-24 max-w-3xl">
+        <div className="mb-24 text-center max-w-3xl mx-auto">
           <div className="inline-flex items-center border border-neutral-300 px-5 py-1 rounded-md text-xs text-neutral-700 mb-8">
             Services
           </div>
 
-          <h2 className="text-[42px] leading-[1.1] tracking-[-0.015em] text-neutral-900">
-            Structured Manufacturing Divisions
+          <h2 className="text-[52px] leading-[1.1] tracking-[-0.015em] text-neutral-900">
+          How We Support Your Production
           </h2>
         </div>
 
-        {/* INDUSTRIAL FRAME */}
-        <div className="relative border border-neutral-200 rounded-2xl overflow-hidden">
+        {/* MAIN GRID */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
 
-          {/* subtle diagonal structural motif */}
-          <div className="absolute inset-0 pointer-events-none opacity-[0.04]">
-            <div className="w-full h-full bg-[repeating-linear-gradient(135deg,#000_0px,#000_1px,transparent_1px,transparent_28px)]" />
-          </div>
+          {/* LEFT COLUMN */}
+          <div className="grid gap-10">
 
-          <div className="relative grid grid-cols-1 lg:grid-cols-2">
+            {/* FASHION */}
+            <div className="rounded-2xl border border-neutral-200  p-14 min-h-[260px] flex flex-col">
 
-            {/* LEFT DIVISION */}
-            <div className="p-16 lg:border-r border-neutral-200 flex flex-col justify-between min-h-[480px]">
+              <a
+                href="/fashion-manufacturing"
+                className="w-12 h-12 border border-neutral-300 rounded-lg flex items-center justify-center mb-10"
+              >
+                <span className="text-black text-xl">↗</span>
+              </a>
 
-              <div>
-                <div className="text-xs uppercase tracking-widest text-neutral-400 mb-6">
-                  Division 01
-                </div>
+              <h3 className="text-[32px] leading-[1.1] font-medium text-neutral-900">
+                Fashion Manufacturing
+              </h3>
 
-                <h3 className="text-[32px] font-normal text-neutral-900 mb-8">
-                  Fashion Manufacturing
-                </h3>
-
-                <p className="text-[18px] leading-[1.7] text-neutral-600 max-w-xl">
-                  Resortwear, activewear, modest fashion, and capsule collections.
-                  Technical preparation, sampling, production, trims, AQL-based
-                  quality control, and global logistics managed under one
-                  operational structure.
-                </p>
-              </div>
-
-              <div className="mt-16">
-                <a
-                  href="/fashion-manufacturing"
-                  className="inline-flex items-center gap-4 text-sm font-medium text-neutral-900 transition hover:text-black"
-                >
-                  Explore Division
-                  <span className="w-10 h-10 border border-neutral-300 rounded-lg flex items-center justify-center transition hover:bg-black hover:text-white">
-                    →
-                  </span>
-                </a>
-              </div>
             </div>
 
-            {/* RIGHT DIVISION */}
-            <div className="p-16 flex flex-col justify-between min-h-[480px]">
+            {/* PACKAGING */}
+            <div className="rounded-2xl border border-neutral-200  p-14 min-h-[260px] flex flex-col">
 
-              <div>
-                <div className="text-xs uppercase tracking-widest text-neutral-400 mb-6">
-                  Division 02
-                </div>
+              <a
+                href="/luxury-packaging"
+                className="w-12 h-12 border border-neutral-300 rounded-lg flex items-center justify-center mb-10"
+              >
+                <span className="text-black text-xl">↗</span>
+              </a>
 
-                <h3 className="text-[32px] font-normal text-neutral-900 mb-8">
-                  Luxury Packaging
-                </h3>
+              <h3 className="text-[32px] leading-[1.1] font-medium text-neutral-900">
+                Luxury Packaging
+              </h3>
 
-                <p className="text-[18px] leading-[1.7] text-neutral-600 max-w-xl">
-                  Rigid boxes, perfume packaging, premium paper structures,
-                  inserts, and advanced finishing including soft-touch lamination,
-                  foil stamping, embossing, and Pantone-controlled production.
-                </p>
-              </div>
-
-              <div className="mt-16">
-                <a
-                  href="/luxury-packaging"
-                  className="inline-flex items-center gap-4 text-sm font-medium text-neutral-900 transition hover:text-black"
-                >
-                  Explore Division
-                  <span className="w-10 h-10 border border-neutral-300 rounded-lg flex items-center justify-center transition hover:bg-black hover:text-white">
-                    →
-                  </span>
-                </a>
-              </div>
             </div>
 
           </div>
+
+          {/* RIGHT VIDEO BLOCK */}
+          <div className="rounded-2xl overflow-hidden border border-neutral-200 min-h-[640px] relative">
+
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover"
+            >
+              <source
+                src="https://www.pexels.com/id-id/download/video/7680438/"
+                type="video/mp4"
+              />
+            </video> 
+
+          </div>
+
         </div>
-
       </div>
     </section>
   )
@@ -712,31 +693,34 @@ function HowWeWork() {
 
 
 function Testimonials() {
-
   const testimonials = [
     {
       name: "Arsalan Khan",
       role: "E-Commerce Operator",
-      image: "https://alraimigroup.com/wp-content/uploads/2024/11/WhatsApp-Image-2024-11-07-at-2.06.16-PM.jpeg",
-      quote: `Used for over a year now for our brand and is one of the best things we ever did! The Customer service is top not, fast replies at pretty much anytime of day and always fighting on our behalf to get the best rates so that no one else can match or beat us. Really grateful to have the team onboard helping us and fueling the fire for our brands on the backend. Highly recommend using if you want to source and find and sell any product throughout China!`
+      image:
+        "https://alraimigroup.com/wp-content/uploads/2024/11/WhatsApp-Image-2024-11-07-at-2.06.16-PM.jpeg",
+      quote: `Used for over a year now for our brand and is one of the best decisions we made. Communication is fast, structured, and always aligned with our production goals.`,
     },
     {
       name: "Qusai Abuhejleh",
       role: "Construction Supplier · Qatar",
-      image: "https://alraimigroup.com/wp-content/uploads/2024/11/WhatsApp-Image-2024-11-26-at-4.17.18-PM.jpeg",
-      quote: `"I am extremely pleased with my experience with [Alraimi business group ]. As a businessman in Qatar, sourcing high-quality interior materials can be challenging, but they made the process smooth and efficient. The materials, manufactured in China, are of exceptional quality, allowing me to complete my projects without delays. The customer service was outstanding; the team was always available to answer my questions and provided regular updates. I highly recommend [Alraimi business group ] to anyone in need of reliable materials and excellent support. They truly care about their clients!"`
+      image:
+        "https://alraimigroup.com/wp-content/uploads/2024/11/WhatsApp-Image-2024-11-26-at-4.17.18-PM.jpeg",
+      quote: `Sourcing high-quality materials can be challenging, but the process here is structured and reliable. Timelines are respected and quality standards are consistent.`,
     },
     {
       name: "Gehad Mayas",
       role: "Solace Development · Bali",
-      image: "https://alraimigroup.com/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-05-at-5.03.21-PM.jpeg",
-      quote: `"As the owner of a Solace development company in Bali, I can confidently say that Alraimi business group is exceptional. Their interior materials, manufactured in China, are top-notch and always exceed my expectations. What truly impresses me is their outstanding customer service. The team is responsive and attentive, ensuring that every detail is perfect. My orders arrive on time and in great condition, which is vital for my projects. I highly recommend Alraimi business group to anyone seeking reliable suppliers of quality materials."`
+      image:
+        "https://alraimigroup.com/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-05-at-5.03.21-PM.jpeg",
+      quote: `Outstanding operational control. Orders arrive on time and in perfect condition. The execution discipline gives real confidence in scaling projects.`,
     },
     {
       name: "Kamilia",
       role: "Fashion Brand Owner · Dubai",
-      image: "https://alraimigroup.com/wp-content/uploads/2024/11/WhatsApp-Image-2024-11-07-at-12.31.23-PM.jpeg",
-      quote: `I own a women’s clothing brand in Dubai and we’ve been working with Alraimi Group for the past 2 years. Extremely satisfied with their work as we’ve always had smooth communication, no production issues or delays, samples are always done quickly! They are very good at communication which means nothing is missed out on and it reduces a lot of potential mistakes. These are very important things when it comes to a clothing brand production - and I’m very happy for being able to find such amazing suppliers!`
+      image:
+        "https://alraimigroup.com/wp-content/uploads/2024/11/WhatsApp-Image-2024-11-07-at-12.31.23-PM.jpeg",
+      quote: `Two years of smooth production, fast sampling, and zero structural miscommunication. That level of clarity reduces costly mistakes.`,
     },
   ]
 
@@ -756,78 +740,80 @@ function Testimonials() {
   }
 
   return (
-    <section className="bg-white">
+    <section className="bg-neutral-50">
       <div className="max-w-[1600px] mx-auto px-10 xl:px-16 py-32">
 
-        {/* HEADER — UNTOUCHED */}
-        <div className="mb-24 max-w-full flex flex-col items-center text-center">
+        {/* HEADER */}
+        <div className="mb-24 text-center">
           <div className="inline-flex items-center border border-neutral-300 px-5 py-1 rounded-md text-xs tracking-wide text-neutral-600 mb-8">
             Testimonials
           </div>
-
-          <h2 className="text-[42px] leading-[1.1] tracking-[-0.015em] text-neutral-900 max-w-3xl">
-            Trusted By Businesses Worldwide
-          </h2>
+ 
         </div>
 
-        {/* CONTENT FRAME ONLY */}
-        <div className="border border-neutral-300 bg-neutral-100 rounded-2xl p-16">
+        {/* FRAME */}
+        <div className="relative   rounded-2xl  px-16 py-24">
 
-          <div className="grid grid-cols-1 lg:grid-cols-[0.75fr_1.2fr] gap-20 items-center">
+          {/* QUOTE */}
+          <div className="max-w-4xl mx-auto text-center relative">
 
-            {/* LEFT — PHOTO 1:1 */}
-            <div>
-              <div className="rounded-2xl overflow-hidden border border-neutral-300 aspect-square">
+            <div className="absolute -top-8 left-1/2 -translate-x-1/2 text-[120px] text-neutral-200 leading-none select-none">
+              “
+            </div>
+
+            <p className="text-[28px] xl:text-[34px] leading-[1.4] text-neutral-800 relative z-10">
+              {active.quote}
+            </p>
+
+            <div className="mt-12">
+              <p className="text-[18px] font-medium text-neutral-900">
+                {active.name}
+              </p>
+              <p className="text-sm text-neutral-600 mt-1">
+                {active.role}
+              </p>
+            </div>
+
+          </div>
+
+          {/* NAVIGATION BUTTONS */}
+          <div className="absolute inset-y-0 left-6 flex items-center">
+            <button
+              onClick={prevSlide}
+              className="w-10 h-10 border border-neutral-300 rounded-lg flex items-center justify-center text-neutral-600 hover:bg-white transition"
+            >
+              ←
+            </button>
+          </div>
+
+          <div className="absolute inset-y-0 right-6 flex items-center">
+            <button
+              onClick={nextSlide}
+              className="w-10 h-10 border border-neutral-300 rounded-lg flex items-center justify-center text-neutral-600 hover:bg-white transition"
+            >
+              →
+            </button>
+          </div>
+
+          {/* AVATAR SELECTOR */}
+          <div className="mt-20 flex justify-center gap-4">
+            {testimonials.map((t, i) => (
+              <button
+                key={i}
+                onClick={() => setIndex(i)}
+                className={`w-14 h-14 rounded-xl overflow-hidden transition ${
+                  i === index
+                    ? "opacity-100 scale-105"
+                    : "opacity-40"
+                }`}
+              >
                 <img
-                  src={active.image}
-                  alt={active.name}
+                  src={t.image}
+                  alt={t.name}
                   className="w-full h-full object-cover"
                 />
-              </div>
-            </div>
-
-            {/* RIGHT — QUOTE */}
-            <div className="relative">
-
-              <div className="absolute -top-10 -left-6 text-[160px] text-neutral-200 leading-none select-none">
-                “
-              </div>
-
-              <p className="text-[18px] xl:text-[20px] leading-[1.7] text-neutral-600 relative z-10 whitespace-pre-line">
-                {active.quote}
-              </p>
-
-              <div className="mt-16 border-t border-neutral-200 pt-8 flex items-end justify-between">
-
-                <div>
-                  <p className="text-[20px] font-medium text-neutral-900">
-                    {active.name}
-                  </p>
-                  <p className="text-sm text-neutral-600 mt-1">
-                    {active.role}
-                  </p>
-                </div>
-
-                <div className="flex gap-3">
-                  <button
-                    onClick={prevSlide}
-                    className="w-10 h-10 border border-neutral-300 rounded-lg flex items-center justify-center text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 transition"
-                  >
-                    ←
-                  </button>
-
-                  <button
-                    onClick={nextSlide}
-                    className="w-10 h-10 border border-neutral-300 rounded-lg flex items-center justify-center text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 transition"
-                  >
-                    →
-                  </button>
-                </div>
-
-              </div>
-
-            </div>
-
+              </button>
+            ))}
           </div>
 
         </div>
@@ -836,6 +822,7 @@ function Testimonials() {
     </section>
   )
 }
+
 
 
 
@@ -920,7 +907,7 @@ function FAQ() {
 
 function Footer() {
   return (
-    <div className="bg-white pt-28 overflow-hidden">
+    <div className="bg-neutral-50 pt-28 overflow-hidden">
       {/* =====================================================
           CTA SECTION
       ===================================================== */}
