@@ -125,21 +125,20 @@ function Hero() {
         {/* CONTENT */}
         <div className="relative z-10 px-10 xl:px-16 pt-20">
 
-          <div className="max-w-3xl">
+          <div className="max-w-4xl">
 
             <div className="inline-flex items-center border border-white/40 bg-white/10 px-4 py-1.5 rounded-md text-xs text-white mb-8 tracking-wide">
               China-Based Factory Partner
             </div>
 
             <h1 className="text-[50px] md:text-[60px] xl:text-[70px] font-normal leading-[1.04] tracking-[-0.02em] text-white mb-8">
-              Build Products.
+            Build Your Brand
               <br />
-              Remove the Risk.
+              Remove Manufacturing Risk
             </h1>
 
-            <p className="text-[18px] text-white/80 leading-relaxed max-w-lg">
-              We represent your brand inside China — managing sampling,
-              production, inspection, and global delivery under one accountable structure.
+            <p className="text-[18px] max-w-3xl text-white/80 leading-relaxed max-w-lg">
+            Premium fashion manufacturing and luxury paper packaging, one accountable team from sample to shipment
             </p>
 
           </div>
@@ -307,8 +306,7 @@ function About() {
       </div>
     </section>
   );
-}
-
+} 
  
 function Achievements() {
   return (
