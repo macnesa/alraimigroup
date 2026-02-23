@@ -49,6 +49,7 @@ export default function Page() {
       <HowWeWork/>
       <Services/>
       <Projects/>
+      <Leadership/>
       <Testimonials/>
       {/* <SocialProof/> */}
       {/* <TrustWith /> */}
@@ -62,8 +63,10 @@ export default function Page() {
       {/* <LogoWall /> */}
       {/* <Team /> */}
       {/* <Events /> */}
+      
       <FAQ/>
       <Footer />
+      <CookieConsent/>
     </main>
   );
 }
@@ -320,7 +323,7 @@ function Achievements() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
 
           {/* CARD 1 — DARK PRIMARY */}
-          <div className="relative bg-black text-white rounded-xl p-10 min-h-[420px] overflow-hidden flex flex-col justify-between">
+          <div className="relative bg-black text-white rounded-xl p-10 aspect-square overflow-hidden flex flex-col justify-between">
 
             {/* Decorative ring */}
             <div className="absolute top-6 right-6 w-28 h-28 border border-white/10 rounded-full" />
@@ -328,7 +331,6 @@ function Achievements() {
 
             <div>
               <div className="text-xs uppercase tracking-widest text-white/40 mb-6">
-               
               </div>
 
               <h3 className="text-[72px] leading-none font-normal mb-4">
@@ -353,8 +355,8 @@ function Achievements() {
           </div>
 
 
-          {/* CARD 2 — IMAGE / VISUAL CARD */}
-          <div className="relative rounded-xl overflow-hidden min-h-[420px]">
+          {/* CARD 2 — IMAGE CARD */}
+          <div className="relative rounded-xl overflow-hidden aspect-square">
 
             <img
               src="https://i.pinimg.com/736x/54/f4/2e/54f42ecca183ef520ac99eb2e0a9292a.jpg"
@@ -368,7 +370,6 @@ function Achievements() {
 
               <div>
                 <div className="text-xs uppercase tracking-widest text-white/60 mb-6">
-                 
                 </div>
 
                 <h3 className="text-[72px] leading-none font-normal mb-4">
@@ -390,11 +391,10 @@ function Achievements() {
 
 
           {/* CARD 3 — LIGHT STRUCTURED */}
-          <div className="bg-white border border-neutral-300 rounded-xl p-10 min-h-[420px] flex flex-col justify-between">
+          <div className="bg-white border border-neutral-300 rounded-xl p-10 aspect-square flex flex-col justify-between">
 
             <div>
               <div className="text-xs uppercase tracking-widest text-neutral-400 mb-6">
-                
               </div>
 
               <h3 className="text-[72px] leading-none font-normal mb-4 text-neutral-900">
@@ -441,19 +441,18 @@ function Services() {
           </div>
 
           <h2 className="text-[52px] leading-[1.1] tracking-[-0.015em] text-neutral-900">
-          How We Support Your Production
+            How We Support Your Production
           </h2>
         </div>
 
         {/* MAIN GRID */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
 
           {/* LEFT COLUMN */}
           <div className="grid gap-10">
 
             {/* FASHION */}
             <div className="rounded-2xl border border-black/20 bg-white p-14 min-h-[260px] flex flex-col">
-
               <a
                 href="/fashion-manufacturing"
                 className="w-12 h-12 border border-neutral-300 rounded-lg flex items-center justify-center mb-10"
@@ -464,12 +463,10 @@ function Services() {
               <h3 className="text-[32px] leading-[1.1] font-medium text-neutral-900">
                 Fashion Manufacturing
               </h3>
-
             </div>
 
             {/* PACKAGING */}
-            <div className="rounded-2xl border border-black/20 bg-white  p-14 min-h-[260px] flex flex-col">
-
+            <div className="rounded-2xl border border-black/20 bg-white p-14 min-h-[260px] flex flex-col">
               <a
                 href="/luxury-packaging"
                 className="w-12 h-12 border border-neutral-300 rounded-lg flex items-center justify-center mb-10"
@@ -480,13 +477,12 @@ function Services() {
               <h3 className="text-[32px] leading-[1.1] font-medium text-neutral-900">
                 Luxury Packaging
               </h3>
-
             </div>
 
           </div>
 
-          {/* RIGHT VIDEO BLOCK */}
-          <div className="rounded-2xl overflow-hidden border border-neutral-200 min-h-[640px] relative">
+          {/* RIGHT VIDEO BLOCK — NOW SQUARE */}
+          <div className="relative rounded-2xl overflow-hidden border border-neutral-200 aspect-square">
 
             <video
               autoPlay
@@ -499,11 +495,12 @@ function Services() {
                 src="https://www.pexels.com/id-id/download/video/7680438/"
                 type="video/mp4"
               />
-            </video> 
+            </video>
 
           </div>
 
         </div>
+
       </div>
     </section>
   )
@@ -593,13 +590,13 @@ function HowWeWork() {
         />
       </div>
 
-      {/* Dark Overlay */}
+      {/* Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#1c1c1c]/40 via-[#1c1c1c]/80 to-[#1c1c1c]" />
 
       <div className="relative max-w-[1600px] mx-auto px-10 xl:px-16">
 
-        {/* SECTION PONI */}
-        <div className="">
+        {/* PONI */}
+        <div>
           <div className="inline-flex items-center border border-white/20 px-5 py-1 rounded-md text-xs tracking-widest text-white/70">
             Work Process
           </div>
@@ -607,7 +604,7 @@ function HowWeWork() {
 
         {/* HEADING */}
         <div className="mt-16 grid grid-cols-1 md:grid-cols-[0.55fr_0.45fr] gap-16 items-start">
-          <h3 className="text-[32px] md:text-[36px] xl:text-[40px] leading-[1.1] tracking-[-0.015em]">
+          <h3 className="text-[32px] md:text-[36px] xl:text-[45px] leading-[1.1] tracking-[-0.015em]">
             How We Work
           </h3>
 
@@ -621,45 +618,44 @@ function HowWeWork() {
         <div className="mt-20 overflow-hidden" ref={emblaRef}>
           <div className="flex">
 
-          {steps.map((step, i) => {
-  const Icon = step.icon
-  return (
-    <div
-      key={i}
-      className="flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_25%] pr-4"
-    >
-      <div className="relative overflow-hidden rounded-2xl border border-neutral-700 bg-neutral-900/70 p-8 h-full transition-colors duration-300 hover:bg-neutral-900">
+            {steps.map((step, i) => {
+              const Icon = step.icon
+              return (
+                <div
+                  key={i}
+                  className="flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_25%] pr-4"
+                >
+                  {/* SQUARE CARD */}
+                  <div className="relative rounded-2xl border border-neutral-700 bg-neutral-900/70 p-8 aspect-square flex flex-col justify-between transition-colors duration-300 hover:bg-neutral-900">
 
-        {/* BIG OVERFLOW NUMBER (BOTTOM RIGHT) */}
-        <div className="absolute -bottom-18 right-6 text-[160px] leading-none font-semibold text-white/[0.04] pointer-events-none select-none">
-          {step.number}
-        </div>
+                    {/* BIG NUMBER */}
+                    <div className="absolute -bottom-10 right-6 text-[160px] leading-none font-semibold text-white/[0.04] pointer-events-none select-none">
+                      {step.number}
+                    </div>
 
-        {/* ICON */}
-        <div className="mb-10">
-          <div className="w-11 h-11 flex items-center justify-center rounded-lg border border-white/10 bg-white/5">
-            <Icon
-              size={20}
-              strokeWidth={1.5}
-              className="text-white/80"
-            />
-          </div>
-        </div>
+                    {/* CONTENT */}
+                    <div>
+                      <div className="w-11 h-11 flex items-center justify-center rounded-lg border border-white/10 bg-white/5 mb-8">
+                        <Icon
+                          size={20}
+                          strokeWidth={1.5}
+                          className="text-white/80"
+                        />
+                      </div>
 
-        {/* TITLE */}
-        <h4 className="text-[20px] leading-[1.3] font-medium text-white relative z-10">
-          {step.title}
-        </h4>
+                      <h4 className="text-[20px] leading-[1.3] font-medium text-white relative z-10">
+                        {step.title}
+                      </h4>
 
-        {/* DESC */}
-        <p className="mt-4 text-[16px] leading-[1.7] text-neutral-400 relative z-10">
-          {step.desc}
-        </p>
+                      <p className="mt-4 text-[16px] leading-[1.7] text-neutral-400 relative z-10">
+                        {step.desc}
+                      </p>
+                    </div>
 
-      </div>
-    </div>
-  )
-})}
+                  </div>
+                </div>
+              )
+            })}
 
           </div>
         </div>
@@ -779,7 +775,7 @@ function Projects() {
         {/* ================= ROW 1 ================= */}
         <div className="flex gap-8 mb-8">
           {/* DETAIL LEFT */}
-          <div className="w-1/2 h-[420px] rounded-2xl bg-white border border-black/20 p-16">
+          <div className="w-1/2 h-[350px] rounded-2xl bg-white border border-black/20 p-16">
             <h3 className="text-[28px] text-neutral-900 mb-2">
               {topProjects[activeTop].title}
             </h3>
@@ -807,7 +803,7 @@ function Projects() {
                 <div
                   key={i}
                   onClick={() => setActiveTop(i)}
-                  className={`w-1/2 h-[420px] rounded-2xl overflow-hidden relative cursor-pointer transition-all duration-300
+                  className={`w-1/2 h-[350px] rounded-2xl overflow-hidden relative cursor-pointer transition-all duration-300
                   ${
                     isActive
                       ? "scale-[1.02] shadow-xl"
@@ -860,7 +856,7 @@ function Projects() {
                 <div
                   key={i}
                   onClick={() => setActiveBottom(i)}
-                  className={`w-1/2 h-[420px] rounded-2xl overflow-hidden relative cursor-pointer transition-all duration-300
+                  className={`w-1/2 h-[350px] rounded-2xl overflow-hidden relative cursor-pointer transition-all duration-300
                   ${
                     isActive
                       ? "scale-[1.02] shadow-xl"
@@ -902,7 +898,7 @@ function Projects() {
           </div>
 
           {/* DETAIL RIGHT */}
-          <div className="w-1/2 h-[420px] rounded-2xl bg-white border border-neutral-200 p-16">
+          <div className="w-1/2 h-[350px] rounded-2xl bg-white border border-neutral-200 p-16">
             <h3 className="text-[28px] text-neutral-900 mb-2">
               {bottomProjects[activeBottom].title}
             </h3>
@@ -927,13 +923,114 @@ function Projects() {
 }
 
 
+function CookieConsent() {
+  const [visible, setVisible] = useState(false)
 
+  useEffect(() => {
+    const consent = localStorage.getItem("cookie-consent")
+    if (!consent) {
+      setVisible(true)
+    }
+  }, [])
+
+  const handleChoice = (choice) => {
+    localStorage.setItem("cookie-consent", choice)
+    setVisible(false)
+  }
+
+  if (!visible) return null
+
+  return (
+    <div className="fixed bottom-0 left-0 w-full bg-white border-t border-neutral-200 z-50">
+      <div className="max-w-[1600px] mx-auto px-10 xl:px-16 py-6 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+
+        <div className="text-neutral-700 text-[15px] leading-[1.6] max-w-3xl">
+          We use cookies to ensure structured performance monitoring,
+          analytics alignment, and operational reliability across this platform.
+          By continuing, you agree to our use of cookies.
+        </div>
+
+        <div className="flex items-center gap-4 shrink-0">
+          <button
+            onClick={() => handleChoice("declined")}
+            className="px-6 py-2.5 text-sm border border-neutral-300 rounded-lg text-neutral-700 hover:bg-neutral-100 transition"
+          >
+            Decline
+          </button>
+
+          <button
+            onClick={() => handleChoice("accepted")}
+            className="px-6 py-2.5 text-sm bg-neutral-900 text-white rounded-lg hover:bg-neutral-800 transition"
+          >
+            Accept
+          </button>
+        </div>
+
+      </div>
+    </div>
+  )
+}
+
+function Leadership() {
+  return (
+    <section className="bg-[#1c1c1c] py-40">
+      <div className="max-w-[1500px] mx-auto px-10">
+        
+        
+
+        {/* CARD */}
+        <div className="relative rounded-2xl overflow-hidden border border-white/20 bg-[#1c1c1c]">
+
+          {/* subtle noise texture */}
+          <div className="absolute inset-0 opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none" />
+
+          <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] min-h-[560px]">
+
+            {/* LEFT — CONTENT */}
+            <div className="relative px-14 py-24 flex flex-col justify-center">
+ 
+              {/* BIG STATEMENT */}
+              <h2 className="text-neutral-100 text-[40px] leading-[1.3] tracking-[-0.02em] max-w-[720px] mb-12">
+                "Every production decision is executed under direct operational command —
+                enforcing inspection discipline and shipment accountability without exception."
+              </h2>
+
+              {/* DIVIDER */}
+              <div className="w-20 h-[1px] bg-neutral-700 mb-8" />
+
+              {/* NAME */}
+              <div className="text-neutral-100 text-[22px] font-medium">
+                Haitham Al-Raimi
+              </div>
+
+              <div className="text-neutral-400 text-sm mt-1">
+                Managing Director · Alraimi Business Group
+              </div>
+
+            </div>
+
+            {/* RIGHT — PORTRAIT */}
+            <div className="relative h-[420px] lg:h-auto">
+              <img
+                src="/images/haitham.png"
+                alt="Managing Director"
+                className="absolute inset-0 w-full h-full object-cover object-top"
+              />
+ 
+              {/* bottom fade */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+  )
+}
 
 
  
-
-
-
 
 
 function Testimonials() {
@@ -989,28 +1086,28 @@ function Testimonials() {
     <section className="bg-neutral-50 py-32">
       <div className="max-w-[1600px] mx-auto px-10 xl:px-16">
 
-        {/* SECTION PONI */}
-        <div className="mb-16 text-center"> 
+        {/* HEADER — DARK TEXT ON LIGHT BG */}
+        <div className="mb-16 text-center">
           <div className="inline-flex items-center border border-neutral-300 px-5 py-1 rounded-md text-xs text-neutral-700 mb-8">
-          Testimonials
+            Testimonials
           </div>
- 
 
           <h2 className="text-[52px] leading-[1.1] tracking-[-0.015em] text-neutral-900">
             What Our Customers
           </h2>
           <h2 className="text-[52px] leading-[1.1] tracking-[-0.015em] text-neutral-400">
-           Say About Us
+            Say About Us
           </h2>
         </div>
 
-        {/* HEIGHT LOCKED GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-[0.32fr_0.68fr] gap-10 items-stretch min-h-[620px]">
+        {/* GRID */}
+        <div className="grid grid-cols-1 md:grid-cols-[0.24fr_0.76fr] gap-14 items-stretch">
 
-          {/* LEFT */}
+          {/* LEFT COLUMN */}
           <div className="flex flex-col gap-6 h-full">
 
-            <div className="rounded-2xl overflow-hidden bg-neutral-200 h-[420px]">
+            {/* IMAGE */}
+            <div className="rounded-2xl overflow-hidden aspect-square">
               <img
                 src={active.image}
                 alt={active.name}
@@ -1018,31 +1115,32 @@ function Testimonials() {
               />
             </div>
 
-            <div className="rounded-2xl bg-neutral-900 text-white p-8 h-[170px] flex flex-col justify-center">
-              <h3 className="text-[28px] leading-[1.2] tracking-[-0.01em]">
+            {/* NAME CARD — LIGHT MODE */}
+            <div className="rounded-2xl bg-white border border-neutral-200 px-8 py-8 flex flex-col justify-center">
+              <h3 className="text-[28px] leading-[1.2] tracking-[-0.01em] text-neutral-900">
                 {active.name}
               </h3>
-              <p className="text-neutral-400 mt-3 text-[16px] leading-[1.6] line-clamp-2">
+              <p className="text-neutral-600 mt-3 text-[16px] leading-[1.6]">
                 {active.role}
               </p>
             </div>
 
           </div>
 
-          {/* RIGHT */}
-          <div className="rounded-2xl bg-white border border-black/20 p-16 flex flex-col justify-between h-full">
+          {/* RIGHT COLUMN — DARK MODE BLOCK */}
+          <div className="rounded-2xl bg-neutral-900 px-20 py-20 flex flex-col justify-between h-full">
 
-            <div className="h-[260px] overflow-hidden">
-              <p className="text-[28px] leading-[1.5] tracking-[-0.01em] text-neutral-900">
-                {active.quote}
+            <div>
+              <p className="text-[32px] leading-[1.6] tracking-[-0.01em] text-white max-w-[900px]">
+                "{active.quote}"
               </p>
             </div>
 
-            <div className="h-[160px] flex flex-col justify-end">
-              <div className="text-[72px] leading-none text-neutral-900">
+            <div className="mt-20">
+              <div className="text-[72px] leading-none text-white">
                 {active.stat}
               </div>
-              <p className="text-neutral-600 text-[18px] mt-2 line-clamp-2">
+              <p className="text-neutral-400 text-[18px] mt-4">
                 {active.statLabel}
               </p>
             </div>
@@ -1052,23 +1150,21 @@ function Testimonials() {
         </div>
 
         {/* NAVIGATION */}
-        <div className="flex items-center justify-center gap-8 mt-16">
+        <div className="flex items-center justify-center gap-10 mt-20">
 
           <button
             onClick={prev}
-            className="w-12 h-12 border border-neutral-300 rounded-lg flex items-center justify-center text-neutral-700 hover:bg-neutral-50 transition"
+            className="w-12 h-12 border border-neutral-300 rounded-lg flex items-center justify-center text-neutral-700 hover:bg-neutral-100 transition"
           >
             ←
           </button>
 
-          <div className="flex gap-2">
+          <div className="flex gap-3">
             {testimonials.map((_, i) => (
               <div
                 key={i}
-                className={`w-2.5 h-2.5 rounded-full ${
-                  i === index
-                    ? "bg-neutral-900"
-                    : "bg-neutral-300"
+                className={`w-2.5 h-2.5 rounded-full transition ${
+                  i === index ? "bg-neutral-900" : "bg-neutral-300"
                 }`}
               />
             ))}
@@ -1076,7 +1172,7 @@ function Testimonials() {
 
           <button
             onClick={next}
-            className="w-12 h-12 border border-neutral-300 rounded-lg flex items-center justify-center text-neutral-700 hover:bg-neutral-50 transition"
+            className="w-12 h-12 border border-neutral-300 rounded-lg flex items-center justify-center text-neutral-700 hover:bg-neutral-100 transition"
           >
             →
           </button>
@@ -1087,6 +1183,8 @@ function Testimonials() {
     </section>
   )
 }
+
+
 
 
 
@@ -1126,10 +1224,10 @@ function FAQ() {
   const [open, setOpen] = React.useState(null)
 
   return (
-    <section className="bg-neutral-50 py-32">
-      <div className="max-w-[1600px] mx-auto px-10 xl:px-16">
+    <section className="bg-neutral-50 pt-32">
+      <div className="max-w-[1600px] border bor mx-auto px-10 xl:px-16">
 
-        <div className="grid grid-cols-1 md:grid-cols-[0.45fr_0.55fr] gap-20">
+        <div className="grid grid-cols-1  md:grid-cols-[0.45fr_0.55fr] gap-20">
 
           {/* LEFT */}
           <div>
@@ -1137,7 +1235,7 @@ function FAQ() {
               FAQ
             </div>
 
-            <h2 className="text-[36px] xl:text-[45px] leading-[1.1] tracking-[-0.015em] text-neutral-900 mb-6">
+            <h2 className="text-[52px] xl:text-[px] leading-[1.1] tracking-[-0.015em] text-neutral-900 mb-6">
               Frequently Asked
               <br />
               <span className="text-neutral-400">
@@ -1236,7 +1334,7 @@ function Footer() {
               </p>
 
               <button className="flex items-center gap-3 bg-white text-black px-8 py-3.5 rounded-lg text-sm font-medium transition hover:bg-neutral-200">
-                Get Started
+                Contact Us
                 <span className="w-7 h-7 flex items-center justify-center rounded-full bg-black text-white text-sm">
                   →
                 </span>
