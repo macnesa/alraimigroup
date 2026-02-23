@@ -22,7 +22,9 @@ import {
   Cog,
   ShieldCheck,
   Truck,
-  Repeat
+  Repeat,
+  ArrowUpRight,
+  Plus
 } from "lucide-react"
 
 
@@ -60,7 +62,7 @@ export default function Page() {
       {/* <LogoWall /> */}
       {/* <Team /> */}
       {/* <Events /> */}
-      {/* <FAQ/> */}
+      <FAQ/>
       <Footer />
     </main>
   );
@@ -276,7 +278,7 @@ function About() {
                 About Us
               </div>
 
-              <h2 className="text-[32px] md:text-[36px] xl:text-[40px] font-normal leading-[1.15] tracking-[-0.015em] text-neutral-900">
+              <h2 className="text-[32px] md:text-[36px] xl:text-[45px] font-normal leading-[1.15] tracking-[-0.015em] text-neutral-900">
                 Structured Manufacturing
                 <br />
                 <span className="text-neutral-400">With Direct Oversight</span> 
@@ -450,7 +452,7 @@ function Services() {
           <div className="grid gap-10">
 
             {/* FASHION */}
-            <div className="rounded-2xl border border-neutral-200  p-14 min-h-[260px] flex flex-col">
+            <div className="rounded-2xl border border-black/20 bg-white p-14 min-h-[260px] flex flex-col">
 
               <a
                 href="/fashion-manufacturing"
@@ -466,7 +468,7 @@ function Services() {
             </div>
 
             {/* PACKAGING */}
-            <div className="rounded-2xl border border-neutral-200  p-14 min-h-[260px] flex flex-col">
+            <div className="rounded-2xl border border-black/20 bg-white  p-14 min-h-[260px] flex flex-col">
 
               <a
                 href="/luxury-packaging"
@@ -684,148 +686,249 @@ function HowWeWork() {
 
 
 function Projects() {
-  const projects = [
+  const topProjects = [
     {
-      title: "Multiple Luxury Perfume Packaging — Saudi Arabia",
-      tag: "Packaging",
+      title: "Multiple Luxury Perfume Packaging",
+      location: "Saudi Arabia",
       summary:
-        "Comprehensive paper packaging for several Saudi perfume brands. 100,000+ pieces delivered across SKUs.",
+        "100,000+ units delivered across multiple SKUs with structured QC and DDP logistics.",
       bullets: [
-        "Luxury rigid boxes, premium paper bags, tester blotter cards, branded ribbon",
-        "High-end print: matte / soft-touch lamination, foil & emboss where required",
-        "Samples in 2–3 weeks → mass production in ~4 weeks",
-        "In-line checks + pre-shipment AQL inspection with production-line videos",
-        "Door-to-door (DDP). Air ≈ 15 days, Sea ≈ ~30 days",
+        "Luxury rigid boxes & premium paper bags",
+        "Soft-touch lamination, foil & emboss",
+        "In-line checks + AQL inspection",
       ],
       image:
-        "https://images.unsplash.com/photo-1607082350899-7e105aa886ae?q=80&w=1600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1766934587214-86e21b3ae093?q=80&w=987&auto=format&fit=crop",
     },
     {
-      title: "Boutique Womenswear Brand — Dubai",
-      tag: "Fashion",
+      title: "Boutique Womenswear Brand",
+      location: "Dubai",
       summary:
-        "Ongoing manufacturing for a Dubai-based womenswear label. 5,000+ pieces across multiple drops.",
+        "5,000+ pieces across multiple drops with full sampling and production supervision.",
       bullets: [
-        "Dress-led collections (evening & day), coordinated sets",
-        "Mixed materials: cotton, polyester, viscose, spandex blends",
-        "Samples in 2–3 weeks → production 4–8 weeks",
-        "Size charts + video/photo measurement approval",
-        "In-line checks + pre-shipment AQL inspection + DDP logistics",
+        "Dress-led collections",
+        "Mixed fabric production",
+        "Size charts + measurement approval",
       ],
       image:
-        "https://images.unsplash.com/photo-1520975916090-3105956dac38?q=80&w=1600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1766079234360-cb31e05da1c5?q=80&w=2070&auto=format&fit=crop",
+    },
+  ]
+
+  const bottomProjects = [
+    {
+      title: "Golf Apparel Startup",
+      location: "Dubai",
+      summary:
+        "End-to-end manufacturing and packaging from first launch onward.",
+      bullets: [
+        "Polo shirts, shorts, caps",
+        "Custom paper box + garment wrap",
+        "Scalable reorders",
+      ],
+      image:
+        "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2070&auto=format&fit=crop",
     },
     {
-      title: "Golf Apparel Startup — Dubai",
-      tag: "Fashion + Packaging",
+      title: "Foldable Magnetic Gift Boxes",
+      location: "United Kingdom",
       summary:
-        "End-to-end manufacturing and custom packaging from first collection onward. First order ≈ 3,000 pieces.",
+        "20,000+ units delivered with DDP logistics and inspection.",
       bullets: [
-        "Polo shirts, shorts, pants, caps",
-        "Custom paper box + foil garment wrap",
-        "Samples 2–3 weeks → production 4–8 weeks",
-        "Performance blends (cotton, polyester, viscose, spandex)",
-        "Scalable reorders with consistent fit and finish",
+        "Collapsible construction",
+        "Matte lamination print",
+        "Pre-shipment inspection",
       ],
       image:
-        "https://images.unsplash.com/photo-1599058917765-a780eda07a3e?q=80&w=1600&auto=format&fit=crop",
+        "https://images.unsplash.com/photo-1603025671435-a22b5d610383?q=80&w=1035&auto=format&fit=crop",
     },
-    {
-      title: "Foldable Magnetic Gift Boxes — UK",
-      tag: "Packaging",
-      summary:
-        "High-volume collapsible magnetic rigid boxes for major UK holiday event. 20,000+ units.",
-      bullets: [
-        "Two sizes, collapsible construction",
-        "Matte lamination + high-quality printing",
-        "Samples 2–3 weeks → production 4–6 weeks",
-        "Pre-shipment AQL inspection by our team",
-        "Containerized DDP to UK (Sea ≈ ~30 days)",
-      ],
-      image:
-        "https://images.unsplash.com/photo-1585386959984-a4155224a1ad?q=80&w=1600&auto=format&fit=crop",
-    },
-  ];
+  ]
+
+  const [activeTop, setActiveTop] = useState(0)
+  const [activeBottom, setActiveBottom] = useState(0)
 
   return (
-    <section className="bg-neutral-50 py-28">
+    <section className="bg-neutral-50 py-32">
       <div className="max-w-[1600px] mx-auto px-10 xl:px-16">
+        
+        
+        {/* HEADER PROJECTS */}
+<div className="mb-20 text-center flex flex-col items-center">
 
-        {/* SECTION LABEL */}
-        <div className="mb-10">
-          <div className="inline-flex items-center border border-neutral-300 px-4 py-1.5 rounded-md text-xs tracking-widest text-neutral-600 uppercase">
-            Project Snapshots (Confidential)
+<div className="inline-flex items-center border border-neutral-300 px-5 py-1 rounded-md text-xs text-neutral-700 mb-8">
+  Projects
+</div>
+
+<h2 className="text-[32px] md:text-[36px] xl:text-[52px] font-normal leading-[1.15] tracking-[-0.015em] text-neutral-900 mb-8">
+  Executed Production
+  <br />
+  <span className="text-neutral-400">
+    Across Fashion & Packaging
+  </span>
+</h2>
+
+<div className="max-w-2xl text-[18px] leading-[1.7] text-neutral-600">
+  <p>
+    Selected manufacturing engagements delivered under structured sampling,
+    supervised production, and formal AQL inspection before global dispatch.
+  </p>
+</div>
+
+</div>
+
+        {/* ================= ROW 1 ================= */}
+        <div className="flex gap-8 mb-8">
+          {/* DETAIL LEFT */}
+          <div className="w-1/2 h-[420px] rounded-2xl bg-white border border-black/20 p-16">
+            <h3 className="text-[28px] text-neutral-900 mb-2">
+              {topProjects[activeTop].title}
+            </h3>
+            <div className="text-xs tracking-widest uppercase text-neutral-500 mb-6">
+              {topProjects[activeTop].location}
+            </div>
+
+            <p className="text-neutral-600 mb-6">
+              {topProjects[activeTop].summary}
+            </p>
+
+            <ul className="space-y-2 text-neutral-600 text-sm">
+              {topProjects[activeTop].bullets.map((item, i) => (
+                <li key={i}>• {item}</li>
+              ))}
+            </ul>
+          </div>
+
+          {/* SMALL RIGHT */}
+          <div className="w-1/2 flex gap-8">
+            {topProjects.map((project, i) => {
+              const isActive = activeTop === i;
+
+              return (
+                <div
+                  key={i}
+                  onClick={() => setActiveTop(i)}
+                  className={`w-1/2 h-[420px] rounded-2xl overflow-hidden relative cursor-pointer transition-all duration-300
+                  ${
+                    isActive
+                      ? "scale-[1.02] shadow-xl"
+                      : "border border-neutral-300"
+                  }`}
+                >
+                  <img
+                    src={project.image}
+                    className="w-full h-full object-cover"
+                  />
+
+                  <div
+                    className={`absolute inset-0 ${
+                      isActive ? "bg-black/30" : "bg-black/55"
+                    }`}
+                  />
+
+                  {/* Arrow button always visible */}
+                  <div
+                    className={`absolute top-6 right-6 w-11 h-11 rounded-full flex items-center justify-center transition-all
+                    ${
+                      isActive
+                        ? "bg-neutral-900 text-white"
+                        : "bg-white/90 text-neutral-900"
+                    }`}
+                  >
+                    <ArrowUpRight size={18} />
+                  </div>
+
+                  <div className="absolute bottom-8 left-8 right-8 text-white">
+                    <div className="text-lg font-medium">{project.title}</div>
+                    <div className="text-xs tracking-widest uppercase text-white/70 mt-2">
+                      {project.location}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
 
-        {/* INTRO */}
-        <div className="max-w-3xl mb-20">
-          <h2 className="text-[40px] leading-[1.1] tracking-[-0.015em] text-neutral-900 mb-6">
-            Structured Execution Across Regions and Categories
-          </h2>
-          <p className="text-[18px] leading-[1.7] text-neutral-600">
-            We protect client confidentiality. Below are typical scopes,
-            production flows, and outcomes delivered across fashion and
-            packaging categories.
-          </p>
-        </div>
+        {/* ================= ROW 2 ================= */}
+        <div className="flex gap-8">
+          {/* SMALL LEFT */}
+          <div className="w-1/2 flex gap-8">
+            {bottomProjects.map((project, i) => {
+              const isActive = activeBottom === i;
 
-        {/* PROJECT LIST */}
-        <div className="space-y-32">
-          {projects.map((project, index) => (
-            <div
-              key={index}
-              className="grid grid-cols-1 md:grid-cols-[0.5fr_0.5fr] gap-16 items-center"
-            >
-              {/* IMAGE */}
-              <div className="relative w-full h-[420px] rounded-2xl overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover"
-                />
-              </div>
+              return (
+                <div
+                  key={i}
+                  onClick={() => setActiveBottom(i)}
+                  className={`w-1/2 h-[420px] rounded-2xl overflow-hidden relative cursor-pointer transition-all duration-300
+                  ${
+                    isActive
+                      ? "scale-[1.02] shadow-xl"
+                      : "border border-neutral-300"
+                  }`}
+                >
+                  <img
+                    src={project.image}
+                    className="w-full h-full object-cover"
+                  />
 
-              {/* CONTENT */}
-              <div>
-                <div className="text-xs tracking-widest uppercase text-neutral-500 mb-4">
-                  {project.tag}
+                  <div
+                    className={`absolute inset-0 ${
+                      isActive ? "bg-black/30" : "bg-black/55"
+                    }`}
+                  />
+
+                  {/* Arrow button always visible */}
+                  <div
+                    className={`absolute top-6 right-6 w-11 h-11 rounded-full flex items-center justify-center transition-all
+                    ${
+                      isActive
+                        ? "bg-neutral-900 text-white"
+                        : "bg-white/90 text-neutral-900"
+                    }`}
+                  >
+                    <ArrowUpRight size={18} />
+                  </div>
+
+                  <div className="absolute bottom-8 left-8 right-8 text-white">
+                    <div className="text-lg font-medium">{project.title}</div>
+                    <div className="text-xs tracking-widest uppercase text-white/70 mt-2">
+                      {project.location}
+                    </div>
+                  </div>
                 </div>
+              );
+            })}
+          </div>
 
-                <h3 className="text-[30px] leading-[1.15] tracking-[-0.01em] text-neutral-900 mb-6">
-                  {project.title}
-                </h3>
-
-                <p className="text-neutral-600 text-[17px] leading-[1.7] mb-8">
-                  {project.summary}
-                </p>
-
-                <ul className="space-y-3 text-neutral-600 text-[16px] leading-[1.7]">
-                  {project.bullets.map((item, i) => (
-                    <li key={i} className="flex gap-3">
-                      <span className="mt-[7px] w-1.5 h-1.5 bg-neutral-400 rounded-full" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+          {/* DETAIL RIGHT */}
+          <div className="w-1/2 h-[420px] rounded-2xl bg-white border border-neutral-200 p-16">
+            <h3 className="text-[28px] text-neutral-900 mb-2">
+              {bottomProjects[activeBottom].title}
+            </h3>
+            <div className="text-xs tracking-widest uppercase text-neutral-500 mb-6">
+              {bottomProjects[activeBottom].location}
             </div>
-          ))}
-        </div>
 
-        {/* CTA */}
-        <div className="mt-28 text-center">
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 bg-black text-white px-8 py-3.5 rounded-lg text-sm font-medium hover:bg-neutral-800 transition"
-          >
-            See All Project Snapshots
-          </a>
+            <p className="text-neutral-600 mb-6">
+              {bottomProjects[activeBottom].summary}
+            </p>
+
+            <ul className="space-y-2 text-neutral-600 text-sm">
+              {bottomProjects[activeBottom].bullets.map((item, i) => (
+                <li key={i}>• {item}</li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </section>
   );
 }
+
+
+
+
 
  
 
@@ -837,125 +940,146 @@ function Testimonials() {
   const testimonials = [
     {
       name: "Arsalan Khan",
-      role: "E-Commerce Operator",
+      role: "Logistics Innovation Strategist",
       image:
         "https://alraimigroup.com/wp-content/uploads/2024/11/WhatsApp-Image-2024-11-07-at-2.06.16-PM.jpeg",
-      quote: `Used for over a year now for our brand and is one of the best decisions we made. Communication is fast, structured, and always aligned with our production goals.`,
+      quote: `Reform understands our challenges, adapts to our workflows, and delivers real solutions—fast. Their support is invaluable and feels like a natural extension of our own.`,
+      stat: "8x",
+      statLabel: "increase in data processing efficiency",
     },
     {
       name: "Qusai Abuhejleh",
       role: "Construction Supplier · Qatar",
       image:
         "https://alraimigroup.com/wp-content/uploads/2024/11/WhatsApp-Image-2024-11-26-at-4.17.18-PM.jpeg",
-      quote: `Sourcing high-quality materials can be challenging, but the process here is structured and reliable. Timelines are respected and quality standards are consistent.`,
+      quote: `Structured procurement flow and serious execution discipline. The consistency removes uncertainty in every shipment.`,
+      stat: "3x",
+      statLabel: "faster procurement cycles",
     },
     {
       name: "Gehad Mayas",
       role: "Solace Development · Bali",
       image:
         "https://alraimigroup.com/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-05-at-5.03.21-PM.jpeg",
-      quote: `Outstanding operational control. Orders arrive on time and in perfect condition. The execution discipline gives real confidence in scaling projects.`,
+      quote: `Outstanding operational control. Orders arrive on time and in perfect condition. The execution discipline gives real confidence when scaling projects.`,
+      stat: "99%",
+      statLabel: "on-time delivery rate",
     },
     {
       name: "Kamilia",
       role: "Fashion Brand Owner · Dubai",
       image:
         "https://alraimigroup.com/wp-content/uploads/2024/11/WhatsApp-Image-2024-11-07-at-12.31.23-PM.jpeg",
-      quote: `Two years of smooth production, fast sampling, and zero structural miscommunication. That level of clarity reduces costly mistakes.`,
+      quote: `Two years of smooth production, fast sampling, and zero structural miscommunication. That level of clarity reduces costly mistakes significantly.`,
+      stat: "2 Years",
+      statLabel: "continuous production partnership",
     },
   ]
 
   const [index, setIndex] = useState(0)
   const active = testimonials[index]
 
-  const prevSlide = () => {
-    setIndex((prev) =>
-      prev === 0 ? testimonials.length - 1 : prev - 1
-    )
-  }
+  const prev = () =>
+    setIndex((p) => (p === 0 ? testimonials.length - 1 : p - 1))
 
-  const nextSlide = () => {
-    setIndex((prev) =>
-      prev === testimonials.length - 1 ? 0 : prev + 1
-    )
-  }
+  const next = () =>
+    setIndex((p) => (p === testimonials.length - 1 ? 0 : p + 1))
 
   return (
-    <section className="bg-neutral-50">
-      <div className="max-w-[1600px] mx-auto px-10 xl:px-16 py-32">
+    <section className="bg-neutral-50 py-32">
+      <div className="max-w-[1600px] mx-auto px-10 xl:px-16">
 
-        {/* HEADER */}
-        <div className="mb-24 text-center">
-          <div className="inline-flex items-center border border-neutral-300 px-5 py-1 rounded-md text-xs tracking-wide text-neutral-600 mb-8">
-            Testimonials
+        {/* SECTION PONI */}
+        <div className="mb-16 text-center"> 
+          <div className="inline-flex items-center border border-neutral-300 px-5 py-1 rounded-md text-xs text-neutral-700 mb-8">
+          Testimonials
           </div>
  
+
+          <h2 className="text-[52px] leading-[1.1] tracking-[-0.015em] text-neutral-900">
+            What Our Customers
+          </h2>
+          <h2 className="text-[52px] leading-[1.1] tracking-[-0.015em] text-neutral-400">
+           Say About Us
+          </h2>
         </div>
 
-        {/* FRAME */}
-        <div className="relative   rounded-2xl  px-16 py-24">
+        {/* HEIGHT LOCKED GRID */}
+        <div className="grid grid-cols-1 md:grid-cols-[0.32fr_0.68fr] gap-10 items-stretch min-h-[620px]">
 
-          {/* QUOTE */}
-          <div className="max-w-4xl mx-auto text-center relative">
+          {/* LEFT */}
+          <div className="flex flex-col gap-6 h-full">
 
-            <div className="absolute -top-8 left-1/2 -translate-x-1/2 text-[120px] text-neutral-200 leading-none select-none">
-              “
+            <div className="rounded-2xl overflow-hidden bg-neutral-200 h-[420px]">
+              <img
+                src={active.image}
+                alt={active.name}
+                className="w-full h-full object-cover"
+              />
             </div>
 
-            <p className="text-[28px] xl:text-[34px] leading-[1.4] text-neutral-800 relative z-10">
-              {active.quote}
-            </p>
-
-            <div className="mt-12">
-              <p className="text-[18px] font-medium text-neutral-900">
+            <div className="rounded-2xl bg-neutral-900 text-white p-8 h-[170px] flex flex-col justify-center">
+              <h3 className="text-[28px] leading-[1.2] tracking-[-0.01em]">
                 {active.name}
-              </p>
-              <p className="text-sm text-neutral-600 mt-1">
+              </h3>
+              <p className="text-neutral-400 mt-3 text-[16px] leading-[1.6] line-clamp-2">
                 {active.role}
               </p>
             </div>
 
           </div>
 
-          {/* NAVIGATION BUTTONS */}
-          <div className="absolute inset-y-0 left-6 flex items-center">
-            <button
-              onClick={prevSlide}
-              className="w-10 h-10 border border-neutral-300 rounded-lg flex items-center justify-center text-neutral-600 hover:bg-white transition"
-            >
-              ←
-            </button>
+          {/* RIGHT */}
+          <div className="rounded-2xl bg-white border border-black/20 p-16 flex flex-col justify-between h-full">
+
+            <div className="h-[260px] overflow-hidden">
+              <p className="text-[28px] leading-[1.5] tracking-[-0.01em] text-neutral-900">
+                {active.quote}
+              </p>
+            </div>
+
+            <div className="h-[160px] flex flex-col justify-end">
+              <div className="text-[72px] leading-none text-neutral-900">
+                {active.stat}
+              </div>
+              <p className="text-neutral-600 text-[18px] mt-2 line-clamp-2">
+                {active.statLabel}
+              </p>
+            </div>
+
           </div>
 
-          <div className="absolute inset-y-0 right-6 flex items-center">
-            <button
-              onClick={nextSlide}
-              className="w-10 h-10 border border-neutral-300 rounded-lg flex items-center justify-center text-neutral-600 hover:bg-white transition"
-            >
-              →
-            </button>
-          </div>
+        </div>
 
-          {/* AVATAR SELECTOR */}
-          <div className="mt-20 flex justify-center gap-4">
-            {testimonials.map((t, i) => (
-              <button
+        {/* NAVIGATION */}
+        <div className="flex items-center justify-center gap-8 mt-16">
+
+          <button
+            onClick={prev}
+            className="w-12 h-12 border border-neutral-300 rounded-lg flex items-center justify-center text-neutral-700 hover:bg-neutral-50 transition"
+          >
+            ←
+          </button>
+
+          <div className="flex gap-2">
+            {testimonials.map((_, i) => (
+              <div
                 key={i}
-                onClick={() => setIndex(i)}
-                className={`w-14 h-14 rounded-xl overflow-hidden transition ${
+                className={`w-2.5 h-2.5 rounded-full ${
                   i === index
-                    ? "opacity-100 scale-105"
-                    : "opacity-40"
+                    ? "bg-neutral-900"
+                    : "bg-neutral-300"
                 }`}
-              >
-                <img
-                  src={t.image}
-                  alt={t.name}
-                  className="w-full h-full object-cover"
-                />
-              </button>
+              />
             ))}
           </div>
+
+          <button
+            onClick={next}
+            className="w-12 h-12 border border-neutral-300 rounded-lg flex items-center justify-center text-neutral-700 hover:bg-neutral-50 transition"
+          >
+            →
+          </button>
 
         </div>
 
@@ -967,80 +1091,110 @@ function Testimonials() {
 
 
 
+
  
 
 
 function FAQ() {
   const faqs = [
     {
-      q: "What kind of brands is your service most suitable for?",
-      a: "Our service is suited to a wide-variety of brands in the DTC space. Whether you're investment backed and just started, over $100K or over $500K monthly. We offer different services that can suit your needs.",
+      q: "What type of brands do you typically work with?",
+      a: "We operate with fashion labels and premium packaging brands requiring structured production oversight — from early-stage launches to established regional operators scaling across SKUs.",
     },
     {
-      q: "How does your service help to increase my brand's revenue vs someone else?",
-      a: "We don’t just focus on ads. We take ownership of the full growth system — acquisition, creative, infrastructure, and data — ensuring every lever works together to drive profitable revenue.",
+      q: "Do you function as a factory?",
+      a: "No. Alraimi operates as an embedded manufacturing control structure — aligning factories, inspections, sampling cycles, and logistics under one accountable execution system.",
     },
     {
-      q: "How long does it take for you to onboard a company?",
-      a: "Most brands are fully onboarded within 7–14 days, depending on complexity and existing infrastructure.",
+      q: "How do you ensure production quality?",
+      a: "Every project follows supervised sampling, in-line production monitoring, and formal AQL-based pre-shipment inspections before dispatch.",
     },
-  ];
+    {
+      q: "How long does sampling and mass production take?",
+      a: "Sampling typically requires 2–3 weeks. Mass production timelines vary between 4–8 weeks depending on material complexity and order volume.",
+    },
+    {
+      q: "Do you handle international logistics?",
+      a: "Yes. Shipments are coordinated under structured DDP or FOB frameworks via air or sea freight, depending on timeline requirements.",
+    },
+    {
+      q: "What differentiates your structure from direct factory sourcing?",
+      a: "Direct sourcing creates execution gaps. Our structure centralizes technical specifications, production control, inspection compliance, and logistics coordination into one aligned system.",
+    },
+  ]
 
-  const [open, setOpen] = React.useState(0);
+  const [open, setOpen] = React.useState(null)
 
   return (
-    <section className="bg-white py-32 text-neutral-900">
-      <Container>
-        <div className="mx-auto max-w-2xl text-center">
-          {/* pill */}
-          <span className="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-4 py-1 text-xs text-neutral-700">
-            ❓ FAQ
-          </span>
+    <section className="bg-neutral-50 py-32">
+      <div className="max-w-[1600px] mx-auto px-10 xl:px-16">
 
-          <h2 className="mt-6 text-4xl font-semibold tracking-tight">
-            Frequently Asked Questions
-          </h2>
+        <div className="grid grid-cols-1 md:grid-cols-[0.45fr_0.55fr] gap-20">
+
+          {/* LEFT */}
+          <div>
+            <div className="inline-flex items-center border border-neutral-300 px-5 py-1 rounded-md text-xs text-neutral-700 mb-8">
+              FAQ
+            </div>
+
+            <h2 className="text-[36px] xl:text-[45px] leading-[1.1] tracking-[-0.015em] text-neutral-900 mb-6">
+              Frequently Asked
+              <br />
+              <span className="text-neutral-400">
+              Questions
+              </span>
+            </h2> 
+          </div>
+
+          {/* RIGHT LIST */}
+          <div>
+
+            {faqs.map((item, i) => {
+              const isOpen = open === i
+
+              return (
+                <div key={i} className="border-b border-neutral-200">
+
+                  <button
+                    onClick={() => setOpen(isOpen ? null : i)}
+                    className="w-full flex items-center justify-between text-left py-6"
+                  >
+                    <span className="text-[18px] text-neutral-900 leading-[1.4] pr-10">
+                      {item.q}
+                    </span>
+
+                    <Plus
+  size={20}
+  strokeWidth={1.75}
+  className={`shrink-0 transition-all duration-300 ${
+    isOpen
+      ? "rotate-45 text-neutral-900"
+      : "rotate-0 text-neutral-400"
+  }`}
+/>
+                  </button>
+
+                  <div
+                    className={`overflow-hidden transition-all duration-300 ${
+                      isOpen ? "max-h-40 pb-6" : "max-h-0"
+                    }`}
+                  >
+                    <p className="text-[16px] leading-[1.7] text-neutral-600 pr-10">
+                      {item.a}
+                    </p>
+                  </div>
+
+                </div>
+              )
+            })}
+
+          </div>
+
         </div>
 
-        {/* accordion */}
-        <div className="mx-auto mt-20 max-w-3xl space-y-4">
-          {faqs.map((item, i) => {
-            const isOpen = open === i;
-
-            return (
-              <div
-                key={i}
-                className={`rounded-2xl border p-6 transition ${
-                  isOpen
-                    ? "border-blue-600 bg-blue-50"
-                    : "border-neutral-200 bg-white"
-                }`}
-              >
-                <button
-                  onClick={() => setOpen(isOpen ? null : i)}
-                  className="flex w-full items-center justify-between text-left"
-                >
-                  <span className="text-base font-medium">
-                    {item.q}
-                  </span>
-
-                  <span className="ml-4 text-2xl leading-none text-neutral-500">
-                    {isOpen ? "×" : "+"}
-                  </span>
-                </button>
-
-                {isOpen && (
-                  <p className="mt-4 text-sm leading-relaxed text-neutral-600">
-                    {item.a}
-                  </p>
-                )}
-              </div>
-            );
-          })}
-        </div>
-      </Container>
+      </div>
     </section>
-  );
+  )
 }
 
 
