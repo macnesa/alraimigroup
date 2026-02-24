@@ -24,7 +24,8 @@ import {
   Truck,
   Repeat,
   ArrowUpRight,
-  Plus
+  Plus,
+  X
 } from "lucide-react"
 
 
@@ -282,24 +283,26 @@ function About() {
 
           <div className="grid grid-cols-1 md:grid-cols-[0.55fr_0.45fr] gap-20 items-start p-20">
 
-            {/* LEFT */}
-            <div>
+           {/* LEFT */}
+<div>
 
-              <div className="inline-flex items-center border border-[#D6D1C8] px-5 py-1.5 rounded-md text-xs text-neutral-700 mb-8 tracking-wide">
-                ABOUT US
-              </div>
-  
-              <h2 className="text-[36px] md:text-[42px] leading-[1.1] tracking-[-0.015em] text-neutral-900 mb-6">
-              Embedded Manufacturing
-              <br />
-              <span className="text-[#8C7A5B]">
-              With Direct Factory Oversight
-              </span>
-            </h2> 
+{/* PONI */}
+<div className="inline-flex items-center border border-neutral-300 px-5 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium text-neutral-700 mb-8">
+  ABOUT US
+</div>
 
-              <div className="mt-10 h-[1px] w-24 bg-[#D6D1C8]" />
+{/* H2 */}
+<h2 className="text-[42px] leading-[1.1] tracking-[-0.015em] font-medium text-neutral-900 mb-6">
+  Embedded Manufacturing
+  <br />
+  <span className="text-[#8C7A5B]">
+    With Direct Factory Oversight
+  </span>
+</h2>
 
-            </div>
+<div className="mt-10 h-[1px] w-24 bg-[#D6D1C8]" />
+
+</div>
 
             {/* RIGHT */}
             <div className="text-[18px] leading-[1.75] text-neutral-700">
@@ -428,19 +431,23 @@ function Services() {
     <section className="bg-[#F3F2EF] py-32">
       <div className="max-w-[1600px] mx-auto px-16">
 
-        {/* HEADER */}
-        <div className="mb-20 text-center max-w-2xl mx-auto">
-          <div className="inline-flex items-center border border-[#D6D1C8] px-5 py-1.5 rounded-md text-xs text-neutral-700 mb-6 tracking-wide">
-            Services
-          </div>
+     {/* HEADER */}
+<div className="mb-20 text-center max-w-xl mx-auto">
 
-          <h2 className="text-[44px] leading-[1.15] tracking-[-0.015em] text-neutral-900 font-medium">
-            How We Support Your Production
-          </h2>
+{/* PONI */}
+<div className="inline-flex items-center border border-neutral-300 px-5 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium text-neutral-700 mb-8">
+  Services
+</div>
 
-          {/* subtle structural anchor */}
-          <div className="mt-8 h-[2px] w-16 bg-[#D6D1C8] mx-auto" />
-        </div>
+{/* H2 */}
+<h2 className="text-[42px] leading-[1.1] tracking-[-0.015em] font-medium text-neutral-900">
+  How We Support Your Production
+</h2>
+
+{/* STRUCTURAL DIVIDER */}
+<div className="mt-8 h-[1px] w-16 bg-neutral-300 mx-auto" />
+
+</div>
 
         {/* MAIN GRID */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-stretch">
@@ -615,23 +622,25 @@ function HowWeWork() {
       <div className="relative max-w-[1600px] mx-auto px-10 xl:px-16">
 
         {/* PONI */}
-        <div>
-          <div className="inline-flex items-center border border-white/20 px-5 py-1 rounded-md text-xs tracking-widest text-white/70">
-            Work Process
-          </div>
-        </div>
+<div>
+  <div className="inline-flex items-center border border-white/20 px-5 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium text-white/70">
+    Work Process
+  </div>
+</div>
 
-        {/* HEADING */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-[0.55fr_0.45fr] gap-16 items-start">
-          <h3 className="text-[32px] md:text-[36px] xl:text-[45px] leading-[1.1] tracking-[-0.015em]">
-            How We Work
-          </h3>
+{/* HEADING */}
+<div className="mt-16 grid grid-cols-1 md:grid-cols-[0.55fr_0.45fr] gap-16 items-start">
 
-          <p className="text-[18px] leading-[1.7] text-neutral-400">
-            Clear production phases. Locked timelines. Structured oversight.
-            Each stage reduces uncertainty and builds execution confidence.
-          </p>
-        </div>
+  <h2 className="text-[42px] leading-[1.1] tracking-[-0.015em] font-medium text-white">
+    How We Work
+  </h2>
+
+  <p className="text-[18px] leading-[1.7] text-neutral-400">
+    Clear production phases. Locked timelines. Structured oversight.
+    Each stage reduces uncertainty and builds execution confidence.
+  </p>
+
+</div>
 
         {/* EMBLA */}
         <div className="mt-20 overflow-hidden" ref={emblaRef}>
@@ -701,248 +710,133 @@ function HowWeWork() {
 
 
 function Projects() {
-  const topProjects = [
+  const projects = [
     {
       title: "Multiple Luxury Perfume Packaging",
       location: "Saudi Arabia",
-      summary:
-        "100,000+ units delivered across multiple SKUs with structured QC and DDP logistics.",
-      bullets: [
-        "Luxury rigid boxes & premium paper bags",
-        "Soft-touch lamination, foil & emboss",
-        "In-line checks + AQL inspection",
-      ],
       image:
         "https://images.unsplash.com/photo-1766934587214-86e21b3ae093?q=80&w=987&auto=format&fit=crop",
     },
     {
       title: "Boutique Womenswear Brand",
       location: "Dubai",
-      summary:
-        "5,000+ pieces across multiple drops with full sampling and production supervision.",
-      bullets: [
-        "Dress-led collections",
-        "Mixed fabric production",
-        "Size charts + measurement approval",
-      ],
       image:
         "https://images.unsplash.com/photo-1766079234360-cb31e05da1c5?q=80&w=2070&auto=format&fit=crop",
     },
-  ]
-
-  const bottomProjects = [
     {
       title: "Golf Apparel Startup",
       location: "Dubai",
-      summary:
-        "End-to-end manufacturing and packaging from first launch onward.",
-      bullets: [
-        "Polo shirts, shorts, caps",
-        "Custom paper box + garment wrap",
-        "Scalable reorders",
-      ],
       image:
         "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=2070&auto=format&fit=crop",
     },
     {
-      title: "Foldable Magnetic Gift Boxes",
+      title: "Magnetic Gift Boxes",
       location: "United Kingdom",
-      summary:
-        "20,000+ units delivered with DDP logistics and inspection.",
-      bullets: [
-        "Collapsible construction",
-        "Matte lamination print",
-        "Pre-shipment inspection",
-      ],
       image:
         "https://images.unsplash.com/photo-1603025671435-a22b5d610383?q=80&w=1035&auto=format&fit=crop",
     },
   ]
 
-  const [activeTop, setActiveTop] = useState(0)
-  const [activeBottom, setActiveBottom] = useState(0)
-
   return (
-    <section className="bg-[#F3F2EF] py-32">
-      <div className="max-w-[1600px] mx-auto px-10 xl:px-16">
+    <section style={{ backgroundColor: "#F3F2EF" }} className="py-40">
+      <div className="max-w-[1600px] mx-auto px-16">
 
-        {/* HEADER */}
-        <div className="mb-24 text-center">
-          <div className="inline-flex items-center border border-neutral-300 px-5 py-1 rounded-md text-xs text-neutral-700 mb-8">
-            Projects
+      {/* HEADER */}
+<div className="mb-24 text-center">
+
+{/* PONI */}
+<div className="inline-flex items-center border border-neutral-300 px-5 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium text-neutral-700 mb-8">
+  Projects
+</div>
+
+{/* H2 */}
+<h2 className="text-[42px] leading-[1.1] tracking-[-0.015em] font-medium text-neutral-900 mb-8">
+  Executed Production
+  <br />
+  Across Fashion & Packaging
+</h2>
+
+{/* BODY */}
+<p className="max-w-2xl mx-auto text-[18px] leading-[1.7] text-neutral-600">
+  Selected manufacturing engagements delivered under structured sampling,
+  supervised production, and formal AQL inspection before global dispatch.
+</p>
+
+</div>
+
+        {/* GRID */}
+        <div className="grid grid-cols-3 gap-8">
+
+          {/* DOMINANT CASE */}
+          <div className="col-span-2 relative rounded-2xl overflow-hidden group aspect-[16/9]">
+            <img
+              src={projects[0].image}
+              alt=""
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" />
+
+            <div className="absolute bottom-12 left-12 text-white">
+              <div className="text-[28px] font-medium mb-2">
+                {projects[0].title}
+              </div>
+              <div className="text-sm tracking-widest uppercase text-white/70">
+                {projects[0].location}
+              </div>
+            </div>
           </div>
- 
 
-          <h2 className="text-[32px] md:text-[36px] xl:text-[44px] font-medium leading-[1.15] tracking-[-0.02em] text-neutral-900 mb-8">
-            Executed Production
-            <br />
-            <span className="text-neutral-400">
-              Across Fashion & Packaging
-            </span>
-          </h2>
-
-          <p className="max-w-2xl mx-auto text-[18px] leading-[1.75] text-neutral-600">
-            Selected manufacturing engagements delivered under structured sampling,
-            supervised production, and formal AQL inspection before global dispatch.
-          </p>
-        </div>
-
-        {/* ================= ROW 1 ================= */}
-        <div className="flex gap-10 mb-14">
-
-          {/* DETAIL LEFT */}
-          <div className="w-1/2 min-h-[380px] rounded-2xl bg-white border border-neutral-200 p-14 flex flex-col justify-between">
-
+          {/* METRIC PANEL */}
+          <div
+            className="rounded-2xl p-12 flex flex-col justify-between border"
+            style={{
+              backgroundColor: "#191919",
+              borderColor: "#2C2C2C",
+              color: "#FFFFFF",
+            }}
+          >
             <div>
- 
-
-              {/* TITLE */}
-              <h3 className="text-[32px] font-semibold leading-[1.15] text-neutral-900 mb-4">
-                {topProjects[activeTop].title}
-              </h3>
-
-              {/* LOCATION */}
-              <div className="text-[13px]  text-neutral-500 mb-8">
-                {topProjects[activeTop].location}
+              <div className="text-xs tracking-widest uppercase text-white/50 mb-6">
+                Execution Impact
               </div>
 
-              {/* SUMMARY */}
-              <p className="text-neutral-600 leading-[1.8] text-[17px] mb-10 max-w-[90%]">
-                {topProjects[activeTop].summary}
-              </p>
-
-              {/* STRUCTURED DIVIDER */}
-              <div className="flex items-center gap-4 mb-8">
-                <div className="h-[2px] w-10 bg-neutral-900" />
-                <div className="h-[1px] flex-1 bg-neutral-200" />
+              <div className="text-[72px] font-semibold tracking-tight">
+                100K+
               </div>
-
-              {/* BULLETS */}
-              <ul className="space-y-4 text-neutral-700 text-[15px]">
-                {topProjects[activeTop].bullets.map((item, i) => (
-                  <li key={i} className="flex gap-4">
-                    <span className="mt-[6px] w-1.5 h-1.5 bg-neutral-900 rounded-full" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-
             </div>
 
-          </div>
-
-          {/* IMAGES RIGHT */}
-          <div className="w-1/2 flex gap-10">
-            {topProjects.map((project, i) => {
-              const isActive = activeTop === i
-
-              return (
-                <div
-                  key={i}
-                  onClick={() => setActiveTop(i)}
-                  className={`w-1/2 min-h-[380px] rounded-2xl overflow-hidden relative cursor-pointer border transition-colors duration-200 ${
-                    isActive
-                      ? "border-neutral-900"
-                      : "border-neutral-300"
-                  }`}
-                >
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover"
-                  />
-
-                  <div className="absolute inset-0 bg-black/35 transition-opacity duration-300" />
-
-                  <div className="absolute bottom-8 left-8 right-8 text-white">
-                    <div className="text-lg font-medium">
-                      {project.title}
-                    </div>
-                    <div className="text-xs tracking-widest uppercase text-white/70 mt-2">
-                      {project.location}
-                    </div>
-                  </div>
-                </div>
-              )
-            })}
-          </div>
-        </div>
-
-        {/* ================= ROW 2 ================= */}
-        <div className="flex gap-10">
-
-          {/* IMAGES LEFT */}
-          <div className="w-1/2 flex gap-10">
-            {bottomProjects.map((project, i) => {
-              const isActive = activeBottom === i
-
-              return (
-                <div
-                  key={i}
-                  onClick={() => setActiveBottom(i)}
-                  className={`w-1/2 min-h-[380px] rounded-2xl overflow-hidden relative cursor-pointer border transition-colors duration-200 ${
-                    isActive
-                      ? "border-neutral-900"
-                      : "border-neutral-300"
-                  }`}
-                >
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover"
-                  />
-
-                  <div className="absolute inset-0 bg-black/35 transition-opacity duration-300" />
-
-                  <div className="absolute bottom-8 left-8 right-8 text-white">
-                    <div className="text-lg font-medium">
-                      {project.title}
-                    </div>
-                    <div className="text-xs tracking-widest uppercase text-white/70 mt-2">
-                      {project.location}
-                    </div>
-                  </div>
-                </div>
-              )
-            })}
-          </div>
-
-          {/* DETAIL RIGHT */}
-          <div className="w-1/2 min-h-[380px] rounded-2xl bg-white border border-neutral-200 p-14 flex flex-col justify-between">
-
-            <div> 
-
-              <h3 className="text-[32px] font-semibold leading-[1.15] text-neutral-900 mb-4">
-                {bottomProjects[activeBottom].title}
-              </h3>
-
-              <div className="text-[13px] text-neutral-500 mb-8">
-                {bottomProjects[activeBottom].location}
-              </div>
-
-              <p className="text-neutral-600 leading-[1.8] text-[17px] mb-10 max-w-[90%]">
-                {bottomProjects[activeBottom].summary}
-              </p>
-
-              <div className="flex items-center gap-4 mb-8">
-                <div className="h-[2px] w-10 bg-neutral-900" />
-                <div className="h-[1px] flex-1 bg-neutral-200" />
-              </div>
-
-              <ul className="space-y-4 text-neutral-700 text-[15px]">
-                {bottomProjects[activeBottom].bullets.map((item, i) => (
-                  <li key={i} className="flex gap-4">
-                    <span className="mt-[6px] w-1.5 h-1.5 bg-neutral-900 rounded-full" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-
+            <div className="text-white/70 text-sm leading-relaxed">
+              Units delivered under supervised production and AQL inspection
+              frameworks.
             </div>
-
           </div>
-        </div>
 
+          {/* SECONDARY CARDS */}
+          {projects.slice(1).map((project, index) => (
+            <div
+              key={index}
+              className="relative rounded-2xl overflow-hidden group aspect-[4/5]"
+            >
+              <img
+                src={project.image}
+                alt=""
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+              />
+
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" />
+
+              <div className="absolute bottom-8 left-8 text-white">
+                <div className="text-lg font-medium">
+                  {project.title}
+                </div>
+                <div className="text-xs tracking-widest uppercase text-white/70 mt-2">
+                  {project.location}
+                </div>
+              </div>
+            </div>
+          ))}
+
+        </div>
       </div>
     </section>
   )
@@ -999,32 +893,41 @@ function CookieConsent() {
 
 function Leadership() {
   return (
-    <section className="bg-[#1c1c1c] py-40">
+    <section className="bg-[#F3F2EF] py-48">
       <div className="max-w-[1500px] mx-auto px-10">
-        
-        
 
-        {/* CARD */}
-        <div className="relative rounded-2xl overflow-hidden border border-white/20 bg-[#1c1c1c]">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-10 items-stretch">
 
-          {/* subtle noise texture */}
-          <div className="absolute inset-0 opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none" />
+          {/* ================= LEFT CARD ================= */}
+          <div
+            className="relative rounded-2xl overflow-hidden bg-[#1c1c1c] min-h-[620px]"
+            style={{
+              boxShadow:
+                "0 20px 40px rgba(0,0,0,0.18), 0 6px 16px rgba(0,0,0,0.08)",
+              border: "1px solid rgba(0,0,0,0.08)"
+            }}
+          >
 
-          <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] min-h-[560px]">
+            {/* subtle noise */}
+            <div className="absolute inset-0 opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none" />
 
-            {/* LEFT — CONTENT */}
-            <div className="relative px-14 py-24 flex flex-col justify-center">
- 
-              {/* BIG STATEMENT */}
+            <div className="relative px-20 py-28 flex flex-col justify-center h-full">
+
+              <div className="text-white/40 text-xs tracking-[0.2em] mb-8">
+                PRODUCTION OVERSIGHT
+              </div>
+
               <h2 className="text-neutral-100 text-[40px] leading-[1.3] tracking-[-0.02em] max-w-[720px] mb-12">
-                "Every production decision is executed under direct operational command —
-                enforcing inspection discipline and shipment accountability without exception."
+                Sampling approval, inspection discipline, and final shipment release
+                are executed under{" "}
+                <span className="text-white font-medium">
+                  direct operational authority
+                </span>{" "}
+                — eliminating ambiguity at every production stage.
               </h2>
 
-              {/* DIVIDER */}
-              <div className="w-20 h-[1px] bg-neutral-700 mb-8" />
+              <div className="w-24 h-[1px] bg-[#8C7A5B] mb-8" />
 
-              {/* NAME */}
               <div className="text-neutral-100 text-[22px] font-medium">
                 Haitham Al-Raimi
               </div>
@@ -1034,20 +937,28 @@ function Leadership() {
               </div>
 
             </div>
+          </div>
 
-            {/* RIGHT — PORTRAIT */}
-            <div className="relative h-[420px] lg:h-auto">
-              <img
-                src="/images/haitham.png"
-                alt="Managing Director"
-                className="absolute inset-0 w-full h-full object-cover object-top"
-              />
- 
-              {/* bottom fade */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-            </div>
+          {/* ================= RIGHT CARD ================= */}
+          <div
+            className="relative rounded-2xl overflow-hidden min-h-[620px]"
+            style={{
+              backgroundColor: "#22262B",
+              boxShadow:
+                "0 18px 36px rgba(0,0,0,0.15), 0 4px 12px rgba(0,0,0,0.06)",
+            }}
+          >
+
+            <img
+              src="/images/haitham.png"
+              alt="Managing Director"
+              className="absolute inset-0 w-full h-full object-cover object-top"
+            />
+
+            <div className="absolute inset-0 bg-gradient-to-t from-black/45 to-transparent" />
 
           </div>
+
         </div>
 
       </div>
@@ -1099,7 +1010,7 @@ function Testimonials() {
     },
   ]
 
-  const [index, setIndex] = useState(0)
+  const [index, setIndex] = React.useState(0)
   const active = testimonials[index]
 
   const prev = () =>
@@ -1109,22 +1020,33 @@ function Testimonials() {
     setIndex((p) => (p === testimonials.length - 1 ? 0 : p + 1))
 
   return (
-    <section className="bg-[#F3F2EF] py-20">
+    <section
+      className="py-28"
+      style={{
+        background: `
+          radial-gradient(circle at 20% 0%, rgba(44,38,43,0.06) 0%, transparent 50%),
+          #F3F2EF
+        `
+      }}
+    >
       <div className="max-w-[1100px] mx-auto px-8">
-        
+
         {/* HEADER */}
         <div className="mb-20 text-center">
-          <div className="inline-flex items-center border border-[#D6D1C8] px-5 py-1.5 rounded-md text-xs text-neutral-700 mb-6 tracking-wide">
-            Testimonials
-          </div>
 
-          <h2 className="text-[44px] leading-[1.15] tracking-[-0.015em] text-neutral-900 font-medium">
-            What Our Customers
-          </h2>
-          <h2 className="text-[44px] leading-[1.15] tracking-[-0.015em] text-neutral-400">
-            Say About Us
-          </h2>
-        </div>
+  {/* PONI */}
+  <div className="inline-flex items-center border border-neutral-300 px-5 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium text-neutral-700 mb-8">
+    Testimonials
+  </div>
+
+  {/* H2 */}
+  <h2 className="text-[42px] leading-[1.1] tracking-[-0.015em] font-medium text-neutral-900">
+    What Our Customers
+    <br />
+    Say About Us
+  </h2>
+
+</div>
 
         {/* GRID */}
         <div className="grid grid-cols-1 md:grid-cols-[260px_1fr] gap-8 items-stretch">
@@ -1132,7 +1054,6 @@ function Testimonials() {
           {/* LEFT */}
           <div className="flex flex-col gap-6 h-full">
 
-            {/* TRUE SQUARE */}
             <div className="aspect-square rounded-xl overflow-hidden border border-[#D6D1C8]">
               <img
                 src={active.image}
@@ -1141,12 +1062,11 @@ function Testimonials() {
               />
             </div>
 
-            {/* NAME CARD */}
-            <div className="rounded-xl bg-white border border-[#D6D1C8] p-5">
-              <h3 className="text-[16px] font-medium text-neutral-900">
+            <div className="rounded-xl bg-white border border-[#D6D1C8] p-5 shadow-sm">
+              <h3 className="text-[16px] font-medium text-[#191919]">
                 {active.name}
               </h3>
-              <p className="text-neutral-600 mt-1 text-[13px] leading-[1.5]">
+              <p className="text-[#2C2C2C] mt-1 text-[13px] leading-[1.5]">
                 {active.role}
               </p>
             </div>
@@ -1154,17 +1074,17 @@ function Testimonials() {
           </div>
 
           {/* RIGHT */}
-          <div className="h-full rounded-xl bg-white border border-[#D6D1C8] p-8 flex flex-col justify-between">
+          <div className="h-full rounded-xl bg-white border border-[#D6D1C8] p-8 flex flex-col justify-between shadow-sm">
 
-            <p className="text-[25px] leading-[1.4] text-neutral-800">
+            <p className="text-[25px] leading-[1.4] text-[#2C2C2C]">
               "{active.quote}"
             </p>
 
             <div className="mt-6">
-              <div className="text-[22px] font-medium text-neutral-900">
+              <div className="text-[22px] font-medium text-[#191919]">
                 {active.stat}
               </div>
-              <p className="text-neutral-500 text-[13px] mt-1">
+              <p className="text-[#8C7A5B] text-[13px] mt-1">
                 {active.statLabel}
               </p>
             </div>
@@ -1174,22 +1094,22 @@ function Testimonials() {
         </div>
 
         {/* NAV */}
-        <div className="flex items-center justify-center gap-4 mt-8">
+        <div className="flex items-center justify-center gap-4 mt-10">
 
           <button
             onClick={prev}
-            className="w-8 h-8 border border-[#D6D1C8] rounded-md flex items-center justify-center text-neutral-700 text-sm"
+            className="w-9 h-9 border border-[#D6D1C8] rounded-md flex items-center justify-center text-[#191919] text-sm hover:border-[#8C7A5B] transition"
           >
             ←
           </button>
 
-          <div className="flex gap-1.5">
+          <div className="flex gap-2">
             {testimonials.map((_, i) => (
               <button
                 key={i}
                 onClick={() => setIndex(i)}
-                className={`w-1.5 h-1.5 rounded-full ${
-                  i === index ? "bg-[#191919]" : "bg-neutral-300"
+                className={`w-2 h-2 rounded-full transition ${
+                  i === index ? "bg-[#8C7A5B]" : "bg-[#D6D1C8]"
                 }`}
               />
             ))}
@@ -1197,7 +1117,7 @@ function Testimonials() {
 
           <button
             onClick={next}
-            className="w-8 h-8 border border-[#D6D1C8] rounded-md flex items-center justify-center text-neutral-700 text-sm"
+            className="w-9 h-9 border border-[#D6D1C8] rounded-md flex items-center justify-center text-[#191919] text-sm hover:border-[#8C7A5B] transition"
           >
             →
           </button>
@@ -1254,20 +1174,22 @@ function FAQ() {
 
         <div className="grid grid-cols-1  md:grid-cols-[0.45fr_0.55fr] gap-20">
 
-          {/* LEFT */}
-          <div>
-            <div className="inline-flex items-center border border-neutral-300 px-5 py-1 rounded-md text-xs text-neutral-700 mb-8">
-              FAQ
-            </div>
+         {/* LEFT */}
+<div>
 
-            <h2 className="text-[44px] leading-[1.15] tracking-[-0.015em] text-neutral-900 mb-8 font-medium">
-              Frequently Asked
-              <br />
-              <span className="text-neutral-400">
-                Questions
-              </span>
-            </h2>
-          </div>
+{/* PONI */}
+<div className="inline-flex items-center border border-neutral-300 px-5 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium text-neutral-700 mb-8">
+  FAQ
+</div>
+
+{/* H2 */}
+<h2 className="text-[42px] leading-[1.1] tracking-[-0.015em] font-medium text-neutral-900">
+  Frequently Asked
+  <br />
+  Questions
+</h2>
+
+</div>
 
           {/* RIGHT LIST */}
           <div>
