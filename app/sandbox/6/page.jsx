@@ -81,24 +81,19 @@ export default function Page() {
 ========================= */
 function Hero() {
   return (
-    <section className="bg-neutral-50 px-6 pt-6 pb-20">
+    <section className="relative bg-[#F3F2EF] overflow-hidden">
 
-      <div className="relative w-full max-w-[1600px] mx-auto h-[92vh] overflow-hidden rounded-2xl">
-
-        {/* VIDEO */}
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover brightness-[0.99] contrast-[1.05]"
-          src="/videos/hero-bg.mp4"
-        />
-        <div className="absolute inset-y-0 left-0 w-[50%] bg-gradient-to-r from-black/70 via-black/40 to-transparent pointer-events-none z-10" />
+      {/* ===== DARK INDUSTRIAL BLOCK ===== */}
+      <div
+        className="relative text-white pb-[420px]"
+        style={{
+          background: "linear-gradient(135deg, #191919 0%, #2C2C2C 100%)"
+        }}
+      >
 
         {/* HEADER */}
-        <div className="relative z-20 px-10 xl:px-16">
-          <header className="flex items-center justify-between py-8 text-white">
+        <div className="px-16 pt-10 ">
+          <header className="flex items-center justify-between ">
 
             <Link href="/" className="flex items-center gap-3">
               <Image
@@ -110,7 +105,7 @@ function Hero() {
               />
             </Link>
 
-            <nav className="hidden md:flex items-center gap-12 text-sm text-white/80">
+            <nav className="hidden md:flex items-center gap-12 text-sm text-white/70">
               <Link href="/" className="hover:text-white transition">Home</Link>
               <Link href="/fashion-manufacturing" className="hover:text-white transition">Fashion</Link>
               <Link href="/luxury-packaging" className="hover:text-white transition">Packaging</Link>
@@ -119,7 +114,11 @@ function Hero() {
 
             <Link
               href="#contact"
-              className="hidden md:inline-flex items-center gap-2 bg-white text-black px-6 py-2.5 rounded-lg text-sm font-medium hover:bg-neutral-200 transition"
+              className="hidden md:inline-flex items-center gap-2 px-6 py-2.5 rounded-lg text-sm font-medium transition"
+              style={{
+                backgroundColor: "#FFFFFF",
+                color: "#191919"
+              }}
             >
               Get Your PI
               <FaArrowRight className="text-xs" />
@@ -128,64 +127,52 @@ function Hero() {
           </header>
         </div>
 
-        {/* CONTENT */}
-        <div className="relative z-10 px-10 xl:px-16 pt-20">
+        {/* HERO CONTENT */}
+        <div className="px-16 pt-24">
 
-          <div className="max-w-4xl">
+          <div className="grid grid-cols-[1.3fr_0.7fr] gap-28 items-start">
 
-            <div className="inline-flex items-center border border-white/40 bg-white/10 px-4 py-1.5 rounded-md text-xs text-white mb-8 tracking-wide">
-              China-Based Factory Partner
+            {/* LEFT SIDE */}
+            <div>
+
+              {/* PONI */}
+              <div
+                className="inline-flex items-center px-4 py-1.5 rounded-md text-xs mb-8 tracking-wide"
+                style={{
+                  border: "1px solid rgba(255,255,255,0.25)",
+                  backgroundColor: "rgba(255,255,255,0.06)"
+                }}
+              >
+                China-Based Factory Partner
+              </div>
+
+              {/* HEADLINE */}
+              <h1
+                className="leading-[1.05] tracking-[-0.02em] font-light"
+                style={{ fontSize: "clamp(52px, 5vw, 88px)" }}
+              >
+                Build Your Brand
+                <br />
+                <span style={{ color: "#8C7A5B" }}>
+                  Remove Manufacturing Risk
+                </span>
+              </h1>
+
             </div>
 
-            <h1 className="text-[50px] md:text-[60px] xl:text-[70px] font-normal leading-[1.04] tracking-[-0.02em] text-white mb-8">
-            Build Your Brand
-              <br />
-              Remove Manufacturing Risk
-            </h1>
+            {/* RIGHT SIDE */}
+            <div className="pt-16">
 
-            <p className="text-[18px] max-w-3xl text-white/80 leading-relaxed max-w-lg">
-            Premium fashion manufacturing and luxury paper packaging, one accountable team from sample to shipment
-            </p>
+              <p className="text-[20px] text-white/70 leading-relaxed mb-12 max-w-md">
+                Premium fashion manufacturing and luxury paper packaging,
+                one accountable team from sample to shipment.
+              </p>
 
-          </div>
-        </div>
-
-        {/* CTA BOTTOM LEFT */}
-        <div className="absolute bottom-14 left-10 xl:left-16 z-10">
-          <button className="bg-white text-black px-8 py-3.5 rounded-lg text-sm font-medium hover:bg-neutral-200 transition flex items-center gap-2 shadow-md">
-            Start Your Brand
-            <FaArrowRight className="text-xs" />
-          </button>
-        </div>
-
-        {/* FLOATING POPUP — FIXED */}
-        <div className="absolute bottom-12 right-10 xl:right-16 z-20 bg-white text-black overflow-hidden rounded-lg shadow-xl w-[380px]">
-
-          <div className="flex items-stretch">
-
-            {/* LEFT CONTENT */}
-            <div className="flex-1 p-6">
-
-              <h4 className="text-sm font-medium text-neutral-800 mb-4 leading-snug">
-                See how we manage sourcing, inspection and delivery.
-              </h4>
-
-              <button className="inline-flex items-center gap-2 bg-black text-white px-4 py-2 rounded-md text-sm hover:bg-neutral-800 transition">
-                Watch Video
+              {/* PRIMARY CTA (unchanged structure) */}
+              <button className="bg-white text-black px-8 py-3.5 rounded-lg text-sm font-medium hover:bg-[#D6D1C8] transition flex items-center gap-2 shadow-md">
+                Start Your Brand
                 <FaArrowRight className="text-xs" />
               </button>
-
-            </div>
-
-            {/* RIGHT IMAGE */}
-            <div className="w-[150px] relative">
-
-              <Image
-                src="https://images.unsplash.com/photo-1660980041852-230420b8f99f?q=80&w=1480&auto=format&fit=crop"
-                alt="Preview"
-                fill
-                className="object-cover"
-              />
 
             </div>
 
@@ -194,6 +181,25 @@ function Hero() {
         </div>
 
       </div>
+
+      {/* ===== VIDEO BLOCK (50% OVERLAP) ===== */}
+      <div className="relative px-16 -mt-[310px]">
+
+        <div className="rounded-[28px] overflow-hidden">
+
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-[620px] object-cover"
+            src="/videos/hero-bg.mp4"
+          />
+
+        </div>
+
+      </div>
+
     </section>
   );
 }
@@ -218,14 +224,14 @@ function ClientsMarquee() {
   ];
   
   return (
-    <section className="bg-neutral-50 py-2">
+    <section className="bg-[#F3F2EF] py-20">
 
       {/* CENTERED + NARROW VIEWPORT */}
-      <div className="relative max-w-[850px] mx-auto overflow-hidden">
+      <div className="relative max-w-[1050px] mx-auto overflow-hidden">
 
         {/* Edge fade */}
-        <div className="pointer-events-none absolute left-0 top-0 h-full w-20 bg-gradient-to-r from-neutral-50 to-transparent z-10" />
-        <div className="pointer-events-none absolute right-0 top-0 h-full w-20 bg-gradient-to-l from-neutral-50 to-transparent z-10" />
+        <div className="pointer-events-none absolute left-0 top-0 h-full w-20 bg-gradient-to-r from-[#F3F2EF] to-transparent z-10" />
+        <div className="pointer-events-none absolute right-0 top-0 h-full w-20 bg-gradient-to-l from-[#F3F2EF] to-transparent z-10" />
 
         <div className="flex min-w-max animate-marquee items-center">
 
@@ -268,41 +274,55 @@ function ClientsMarquee() {
 
 function About() {
   return (
-    <section className="bg-neutral-50">
-      <div className="max-w-[1650px] mx-auto px-14 xl:px-20 py-28">
+    <section className="bg-[#F3F2EF]">
 
-        <div className="border bg-neutral-50 border-neutral-300 rounded-2xl">
+      <div className="max-w-[1600px] mx-auto px-16 pb-28">
 
-          <div className="grid grid-cols-1 md:grid-cols-[0.55fr_0.45fr] gap-20 items-start p-16">
+        <div className="bg-white border border-[#D6D1C8] rounded-2xl">
+
+          <div className="grid grid-cols-1 md:grid-cols-[0.55fr_0.45fr] gap-20 items-start p-20">
 
             {/* LEFT */}
             <div>
-              <div className="inline-flex items-center border border-neutral-300 px-5 py-1 rounded-md text-xs text-neutral-700 mb-8">
-                About Us
-              </div>
 
-              <h2 className="text-[32px] md:text-[36px] xl:text-[45px] font-normal leading-[1.15] tracking-[-0.015em] text-neutral-900">
-                Structured Manufacturing
-                <br />
-                <span className="text-neutral-400">With Direct Oversight</span> 
-              </h2>
+              <div className="inline-flex items-center border border-[#D6D1C8] px-5 py-1.5 rounded-md text-xs text-neutral-700 mb-8 tracking-wide">
+                ABOUT US
+              </div>
+  
+              <h2 className="text-[36px] md:text-[42px] leading-[1.1] tracking-[-0.015em] text-neutral-900 mb-6">
+              Embedded Manufacturing
+              <br />
+              <span className="text-[#8C7A5B]">
+              With Direct Factory Oversight
+              </span>
+            </h2> 
+
+              <div className="mt-10 h-[1px] w-24 bg-[#D6D1C8]" />
+
             </div>
 
             {/* RIGHT */}
-            <div className="max-w-2xl text-[18px] leading-[1.7] text-neutral-600">
+            <div className="text-[18px] leading-[1.75] text-neutral-700">
+
               <p className="mb-6">
-                Alraimi Business Group operates as an embedded manufacturing control structure
-                integrated within established production ecosystems. The role is
-                to translate brand requirements into factory-ready specifications
-                and align every production variable under one accountable framework.
+                Alraimi operates as an embedded control structure inside
+                established factory ecosystems across China. Brand
+                specifications are translated into production-ready technical
+                frameworks, eliminating interpretation gaps at the factory level.
               </p>
 
               <p>
-                Sampling, mass production, quality inspections under AQL standards,
-                and global logistics coordination are structured within a single
-                operational system — reducing execution gaps, misalignment, and
-                manufacturing uncertainty.
+                Sampling, mass production, AQL-based inspections, and global
+                logistics are managed within a unified operational command —
+                reducing execution risk, misalignment, and manufacturing
+                uncertainty.
               </p>
+
+              {/* Micro structural note */}
+              <div className="mt-10 text-sm text-neutral-500">
+                On-ground coordination · AQL 2.5 inspection protocol · DDP logistics alignment
+              </div>
+
             </div>
 
           </div>
@@ -310,53 +330,41 @@ function About() {
         </div>
 
       </div>
+
     </section>
   );
-} 
+}
  
 function Achievements() {
   return (
-    <section className="bg-neutral-50">
+    <section className="bg-[#F3F2EF]">
 
-      <div className="max-w-[1650px] mx-auto px-14 xl:px-20 pb-32">
+      <div className="max-w-[1600px] mx-auto px-16 pb-32">
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
 
-          {/* CARD 1 — DARK PRIMARY */}
-          <div className="relative bg-black text-white rounded-xl p-10 aspect-square overflow-hidden flex flex-col justify-between">
-
-            {/* Decorative ring */}
-            <div className="absolute top-6 right-6 w-28 h-28 border border-white/10 rounded-full" />
-            <div className="absolute top-10 right-10 w-20 h-20 border border-white/5 rounded-full" />
+          {/* CARD 1 — DARK */}
+          <div className="bg-[#191919] text-white rounded-2xl p-12 aspect-square flex flex-col justify-between">
 
             <div>
-              <div className="text-xs uppercase tracking-widest text-white/40 mb-6">
-              </div>
-
-              <h3 className="text-[72px] leading-none font-normal mb-4">
+              <h3 className="text-[72px] leading-none font-normal mb-6">
                 15+
               </h3>
 
               <p className="text-white/70 text-[16px] max-w-xs leading-relaxed">
-                Years operating directly inside China’s factory network.
+                Years operating directly inside China’s factory production network.
               </p>
             </div>
 
-            <div className="flex items-center justify-between">
-              <span className="text-white/40 text-sm">
-                On-Ground Coordination
-              </span>
-
-              <div className="w-10 h-10 rounded-full bg-white text-black flex items-center justify-center text-lg">
-                →
-              </div>
+            <div className="text-sm text-white/40">
+              On-Ground Coordination
             </div>
 
           </div>
 
 
-          {/* CARD 2 — IMAGE CARD */}
-          <div className="relative rounded-xl overflow-hidden aspect-square">
+          {/* CARD 2 — IMAGE */}
+          <div className="relative rounded-2xl overflow-hidden aspect-square">
 
             <img
               src="https://i.pinimg.com/736x/54/f4/2e/54f42ecca183ef520ac99eb2e0a9292a.jpg"
@@ -364,24 +372,21 @@ function Achievements() {
               className="absolute inset-0 w-full h-full object-cover"
             />
 
-            <div className="absolute inset-0 bg-black/40" />
+            <div className="absolute inset-0 bg-black/50" />
 
-            <div className="relative z-10 p-10 h-full flex flex-col justify-between text-white">
+            <div className="relative z-10 p-12 h-full flex flex-col justify-between text-white">
 
               <div>
-                <div className="text-xs uppercase tracking-widest text-white/60 mb-6">
-                </div>
-
-                <h3 className="text-[72px] leading-none font-normal mb-4">
+                <h3 className="text-[72px] leading-none font-normal mb-6">
                   500K+
                 </h3>
 
-                <p className="text-white/80 text-[16px] max-w-xs">
-                  Luxury packaging units delivered globally.
+                <p className="text-white/80 text-[16px] max-w-xs leading-relaxed">
+                  Luxury packaging units delivered across international markets.
                 </p>
               </div>
 
-              <div className="text-sm text-white/60">
+              <div className="text-sm text-white/50">
                 Factory → Port → Destination
               </div>
 
@@ -390,32 +395,21 @@ function Achievements() {
           </div>
 
 
-          {/* CARD 3 — LIGHT STRUCTURED */}
-          <div className="bg-white border border-neutral-300 rounded-xl p-10 aspect-square flex flex-col justify-between">
+          {/* CARD 3 — LIGHT */}
+          <div className="bg-white border border-[#D6D1C8] rounded-2xl p-12 aspect-square flex flex-col justify-between">
 
             <div>
-              <div className="text-xs uppercase tracking-widest text-neutral-400 mb-6">
-              </div>
-
-              <h3 className="text-[72px] leading-none font-normal mb-4 text-neutral-900">
+              <h3 className="text-[72px] leading-none font-normal mb-6 text-neutral-900">
                 100K+
               </h3>
 
               <p className="text-neutral-600 text-[16px] max-w-xs leading-relaxed">
-                Apparel pieces produced and shipped under structured QC.
+                Apparel pieces produced and shipped under structured quality control.
               </p>
             </div>
 
-            <div className="flex items-center justify-between">
-
-              <div className="h-[6px] w-2/3 bg-neutral-200 rounded-full overflow-hidden">
-                <div className="h-full w-[85%] bg-black" />
-              </div>
-
-              <span className="text-neutral-500 text-sm">
-                DDP Available
-              </span>
-
+            <div className="text-sm text-neutral-500">
+              AQL-Based Inspection
             </div>
 
           </div>
@@ -431,58 +425,77 @@ function Achievements() {
 
 function Services() {
   return (
-    <section className="bg-neutral-50 py-32">
-      <div className="max-w-[1600px] mx-auto px-10 xl:px-16">
+    <section className="bg-[#F3F2EF] py-32">
+      <div className="max-w-[1600px] mx-auto px-16">
 
         {/* HEADER */}
-        <div className="mb-24 text-center max-w-3xl mx-auto">
-          <div className="inline-flex items-center border border-neutral-300 px-5 py-1 rounded-md text-xs text-neutral-700 mb-8">
+        <div className="mb-20 text-center max-w-2xl mx-auto">
+          <div className="inline-flex items-center border border-[#D6D1C8] px-5 py-1.5 rounded-md text-xs text-neutral-700 mb-6 tracking-wide">
             Services
           </div>
 
-          <h2 className="text-[52px] leading-[1.1] tracking-[-0.015em] text-neutral-900">
+          <h2 className="text-[44px] leading-[1.15] tracking-[-0.015em] text-neutral-900 font-medium">
             How We Support Your Production
           </h2>
+
+          {/* subtle structural anchor */}
+          <div className="mt-8 h-[2px] w-16 bg-[#D6D1C8] mx-auto" />
         </div>
 
         {/* MAIN GRID */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-stretch">
 
           {/* LEFT COLUMN */}
-          <div className="grid gap-10">
+          <div className="grid gap-12">
 
             {/* FASHION */}
-            <div className="rounded-2xl border border-black/20 bg-white p-14 min-h-[260px] flex flex-col">
-              <a
-                href="/fashion-manufacturing"
-                className="w-12 h-12 border border-neutral-300 rounded-lg flex items-center justify-center mb-10"
-              >
-                <span className="text-black text-xl">↗</span>
-              </a>
+            <a
+              href="/fashion-manufacturing"
+              className="group rounded-2xl border border-[#D6D1C8] bg-white p-16 min-h-[280px] flex flex-col justify-between transition-colors duration-300 hover:bg-[#F8F7F5]"
+            >
+              <div className="flex items-start justify-between">
 
-              <h3 className="text-[32px] leading-[1.1] font-medium text-neutral-900">
-                Fashion Manufacturing
-              </h3>
-            </div>
+                <h3 className="text-[36px] leading-[1.1] font-medium text-neutral-900">
+                  Fashion Manufacturing
+                </h3>
+
+                <div className="w-12 h-12 rounded-lg border border-[#D6D1C8] flex items-center justify-center text-neutral-900 transition-colors duration-300 group-hover:bg-[#191919] group-hover:text-white">
+                  ↗
+                </div>
+
+              </div>
+
+              {/* structural divider */}
+              <div className="mt-12 h-[1px] w-full bg-[#E5E1DA]" />
+
+            </a>
 
             {/* PACKAGING */}
-            <div className="rounded-2xl border border-black/20 bg-white p-14 min-h-[260px] flex flex-col">
-              <a
-                href="/luxury-packaging"
-                className="w-12 h-12 border border-neutral-300 rounded-lg flex items-center justify-center mb-10"
-              >
-                <span className="text-black text-xl">↗</span>
-              </a>
+            <a
+              href="/luxury-packaging"
+              className="group rounded-2xl border border-[#D6D1C8] bg-white p-16 min-h-[280px] flex flex-col justify-between transition-colors duration-300 hover:bg-[#F8F7F5]"
+            >
+              <div className="flex items-start justify-between">
 
-              <h3 className="text-[32px] leading-[1.1] font-medium text-neutral-900">
-                Luxury Packaging
-              </h3>
-            </div>
+                <h3 className="text-[36px] leading-[1.1] font-medium text-neutral-900">
+                  Luxury Packaging
+                </h3>
+
+                <div className="w-12 h-12 rounded-lg border border-[#D6D1C8] flex items-center justify-center text-neutral-900 transition-colors duration-300 group-hover:bg-[#191919] group-hover:text-white">
+                  ↗
+                </div>
+
+              </div>
+
+              {/* structural divider */}
+              <div className="mt-12 h-[1px] w-full bg-[#E5E1DA]" />
+
+            </a>
 
           </div>
 
-          {/* RIGHT VIDEO BLOCK — NOW SQUARE */}
-          <div className="relative rounded-2xl overflow-hidden border border-neutral-200 aspect-square">
+          {/* RIGHT VIDEO BLOCK */}
+          <div className="relative rounded-2xl overflow-hidden border border-[#D6D1C8] aspect-square bg-[#191919]">
 
             <video
               autoPlay
@@ -496,6 +509,12 @@ function Services() {
                 type="video/mp4"
               />
             </video>
+
+            {/* overlay for authority */}
+            <div className="absolute inset-0 bg-black/40" />
+
+            {/* subtle inner frame */}
+            <div className="absolute inset-6 border border-white/10 rounded-xl pointer-events-none" />
 
           </div>
 
@@ -744,182 +763,189 @@ function Projects() {
   const [activeBottom, setActiveBottom] = useState(0)
 
   return (
-    <section className="bg-neutral-50 py-32">
+    <section className="bg-[#F3F2EF] py-32">
       <div className="max-w-[1600px] mx-auto px-10 xl:px-16">
-        
-        
-        {/* HEADER PROJECTS */}
-<div className="mb-20 text-center flex flex-col items-center">
 
-<div className="inline-flex items-center border border-neutral-300 px-5 py-1 rounded-md text-xs text-neutral-700 mb-8">
-  Projects
-</div>
+        {/* HEADER */}
+        <div className="mb-24 text-center">
+          <div className="inline-flex items-center border border-neutral-300 px-5 py-1 rounded-md text-xs text-neutral-700 mb-8">
+            Projects
+          </div>
+ 
 
-<h2 className="text-[32px] md:text-[36px] xl:text-[52px] font-normal leading-[1.15] tracking-[-0.015em] text-neutral-900 mb-8">
-  Executed Production
-  <br />
-  <span className="text-neutral-400">
-    Across Fashion & Packaging
-  </span>
-</h2>
+          <h2 className="text-[32px] md:text-[36px] xl:text-[44px] font-medium leading-[1.15] tracking-[-0.02em] text-neutral-900 mb-8">
+            Executed Production
+            <br />
+            <span className="text-neutral-400">
+              Across Fashion & Packaging
+            </span>
+          </h2>
 
-<div className="max-w-2xl text-[18px] leading-[1.7] text-neutral-600">
-  <p>
-    Selected manufacturing engagements delivered under structured sampling,
-    supervised production, and formal AQL inspection before global dispatch.
-  </p>
-</div>
-
-</div>
+          <p className="max-w-2xl mx-auto text-[18px] leading-[1.75] text-neutral-600">
+            Selected manufacturing engagements delivered under structured sampling,
+            supervised production, and formal AQL inspection before global dispatch.
+          </p>
+        </div>
 
         {/* ================= ROW 1 ================= */}
-        <div className="flex gap-8 mb-8">
+        <div className="flex gap-10 mb-14">
+
           {/* DETAIL LEFT */}
-          <div className="w-1/2 h-[350px] rounded-2xl bg-white border border-black/20 p-16">
-            <h3 className="text-[28px] text-neutral-900 mb-2">
-              {topProjects[activeTop].title}
-            </h3>
-            <div className="text-xs tracking-widest uppercase text-neutral-500 mb-6">
-              {topProjects[activeTop].location}
+          <div className="w-1/2 min-h-[380px] rounded-2xl bg-white border border-neutral-200 p-14 flex flex-col justify-between">
+
+            <div>
+ 
+
+              {/* TITLE */}
+              <h3 className="text-[32px] font-semibold leading-[1.15] text-neutral-900 mb-4">
+                {topProjects[activeTop].title}
+              </h3>
+
+              {/* LOCATION */}
+              <div className="text-[13px]  text-neutral-500 mb-8">
+                {topProjects[activeTop].location}
+              </div>
+
+              {/* SUMMARY */}
+              <p className="text-neutral-600 leading-[1.8] text-[17px] mb-10 max-w-[90%]">
+                {topProjects[activeTop].summary}
+              </p>
+
+              {/* STRUCTURED DIVIDER */}
+              <div className="flex items-center gap-4 mb-8">
+                <div className="h-[2px] w-10 bg-neutral-900" />
+                <div className="h-[1px] flex-1 bg-neutral-200" />
+              </div>
+
+              {/* BULLETS */}
+              <ul className="space-y-4 text-neutral-700 text-[15px]">
+                {topProjects[activeTop].bullets.map((item, i) => (
+                  <li key={i} className="flex gap-4">
+                    <span className="mt-[6px] w-1.5 h-1.5 bg-neutral-900 rounded-full" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+
             </div>
 
-            <p className="text-neutral-600 mb-6">
-              {topProjects[activeTop].summary}
-            </p>
-
-            <ul className="space-y-2 text-neutral-600 text-sm">
-              {topProjects[activeTop].bullets.map((item, i) => (
-                <li key={i}>• {item}</li>
-              ))}
-            </ul>
           </div>
 
-          {/* SMALL RIGHT */}
-          <div className="w-1/2 flex gap-8">
+          {/* IMAGES RIGHT */}
+          <div className="w-1/2 flex gap-10">
             {topProjects.map((project, i) => {
-              const isActive = activeTop === i;
+              const isActive = activeTop === i
 
               return (
                 <div
                   key={i}
                   onClick={() => setActiveTop(i)}
-                  className={`w-1/2 h-[350px] rounded-2xl overflow-hidden relative cursor-pointer transition-all duration-300
-                  ${
+                  className={`w-1/2 min-h-[380px] rounded-2xl overflow-hidden relative cursor-pointer border transition-colors duration-200 ${
                     isActive
-                      ? "scale-[1.02] shadow-xl"
-                      : "border border-neutral-300"
+                      ? "border-neutral-900"
+                      : "border-neutral-300"
                   }`}
                 >
                   <img
                     src={project.image}
+                    alt={project.title}
                     className="w-full h-full object-cover"
                   />
 
-                  <div
-                    className={`absolute inset-0 ${
-                      isActive ? "bg-black/30" : "bg-black/55"
-                    }`}
-                  />
-
-                  {/* Arrow button always visible */}
-                  <div
-                    className={`absolute top-6 right-6 w-11 h-11 rounded-full flex items-center justify-center transition-all
-                    ${
-                      isActive
-                        ? "bg-neutral-900 text-white"
-                        : "bg-white/90 text-neutral-900"
-                    }`}
-                  >
-                    <ArrowUpRight size={18} />
-                  </div>
+                  <div className="absolute inset-0 bg-black/35 transition-opacity duration-300" />
 
                   <div className="absolute bottom-8 left-8 right-8 text-white">
-                    <div className="text-lg font-medium">{project.title}</div>
+                    <div className="text-lg font-medium">
+                      {project.title}
+                    </div>
                     <div className="text-xs tracking-widest uppercase text-white/70 mt-2">
                       {project.location}
                     </div>
                   </div>
                 </div>
-              );
+              )
             })}
           </div>
         </div>
 
         {/* ================= ROW 2 ================= */}
-        <div className="flex gap-8">
-          {/* SMALL LEFT */}
-          <div className="w-1/2 flex gap-8">
+        <div className="flex gap-10">
+
+          {/* IMAGES LEFT */}
+          <div className="w-1/2 flex gap-10">
             {bottomProjects.map((project, i) => {
-              const isActive = activeBottom === i;
+              const isActive = activeBottom === i
 
               return (
                 <div
                   key={i}
                   onClick={() => setActiveBottom(i)}
-                  className={`w-1/2 h-[350px] rounded-2xl overflow-hidden relative cursor-pointer transition-all duration-300
-                  ${
+                  className={`w-1/2 min-h-[380px] rounded-2xl overflow-hidden relative cursor-pointer border transition-colors duration-200 ${
                     isActive
-                      ? "scale-[1.02] shadow-xl"
-                      : "border border-neutral-300"
+                      ? "border-neutral-900"
+                      : "border-neutral-300"
                   }`}
                 >
                   <img
                     src={project.image}
+                    alt={project.title}
                     className="w-full h-full object-cover"
                   />
 
-                  <div
-                    className={`absolute inset-0 ${
-                      isActive ? "bg-black/30" : "bg-black/55"
-                    }`}
-                  />
-
-                  {/* Arrow button always visible */}
-                  <div
-                    className={`absolute top-6 right-6 w-11 h-11 rounded-full flex items-center justify-center transition-all
-                    ${
-                      isActive
-                        ? "bg-neutral-900 text-white"
-                        : "bg-white/90 text-neutral-900"
-                    }`}
-                  >
-                    <ArrowUpRight size={18} />
-                  </div>
+                  <div className="absolute inset-0 bg-black/35 transition-opacity duration-300" />
 
                   <div className="absolute bottom-8 left-8 right-8 text-white">
-                    <div className="text-lg font-medium">{project.title}</div>
+                    <div className="text-lg font-medium">
+                      {project.title}
+                    </div>
                     <div className="text-xs tracking-widest uppercase text-white/70 mt-2">
                       {project.location}
                     </div>
                   </div>
                 </div>
-              );
+              )
             })}
           </div>
 
           {/* DETAIL RIGHT */}
-          <div className="w-1/2 h-[350px] rounded-2xl bg-white border border-neutral-200 p-16">
-            <h3 className="text-[28px] text-neutral-900 mb-2">
-              {bottomProjects[activeBottom].title}
-            </h3>
-            <div className="text-xs tracking-widest uppercase text-neutral-500 mb-6">
-              {bottomProjects[activeBottom].location}
+          <div className="w-1/2 min-h-[380px] rounded-2xl bg-white border border-neutral-200 p-14 flex flex-col justify-between">
+
+            <div> 
+
+              <h3 className="text-[32px] font-semibold leading-[1.15] text-neutral-900 mb-4">
+                {bottomProjects[activeBottom].title}
+              </h3>
+
+              <div className="text-[13px] text-neutral-500 mb-8">
+                {bottomProjects[activeBottom].location}
+              </div>
+
+              <p className="text-neutral-600 leading-[1.8] text-[17px] mb-10 max-w-[90%]">
+                {bottomProjects[activeBottom].summary}
+              </p>
+
+              <div className="flex items-center gap-4 mb-8">
+                <div className="h-[2px] w-10 bg-neutral-900" />
+                <div className="h-[1px] flex-1 bg-neutral-200" />
+              </div>
+
+              <ul className="space-y-4 text-neutral-700 text-[15px]">
+                {bottomProjects[activeBottom].bullets.map((item, i) => (
+                  <li key={i} className="flex gap-4">
+                    <span className="mt-[6px] w-1.5 h-1.5 bg-neutral-900 rounded-full" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+
             </div>
 
-            <p className="text-neutral-600 mb-6">
-              {bottomProjects[activeBottom].summary}
-            </p>
-
-            <ul className="space-y-2 text-neutral-600 text-sm">
-              {bottomProjects[activeBottom].bullets.map((item, i) => (
-                <li key={i}>• {item}</li>
-              ))}
-            </ul>
           </div>
         </div>
+
       </div>
     </section>
-  );
+  )
 }
 
 
@@ -1040,9 +1066,9 @@ function Testimonials() {
       role: "Logistics Innovation Strategist",
       image:
         "https://alraimigroup.com/wp-content/uploads/2024/11/WhatsApp-Image-2024-11-07-at-2.06.16-PM.jpeg",
-      quote: `Reform understands our challenges, adapts to our workflows, and delivers real solutions—fast. Their support is invaluable and feels like a natural extension of our own.`,
+      quote: `Alraimi understands our operational challenges, adapts to our workflows, and delivers real execution discipline. Their oversight feels like a structured extension of our internal team.`,
       stat: "8x",
-      statLabel: "increase in data processing efficiency",
+      statLabel: "increase in operational efficiency",
     },
     {
       name: "Qusai Abuhejleh",
@@ -1083,31 +1109,31 @@ function Testimonials() {
     setIndex((p) => (p === testimonials.length - 1 ? 0 : p + 1))
 
   return (
-    <section className="bg-neutral-50 py-32">
-      <div className="max-w-[1600px] mx-auto px-10 xl:px-16">
-
-        {/* HEADER — DARK TEXT ON LIGHT BG */}
-        <div className="mb-16 text-center">
-          <div className="inline-flex items-center border border-neutral-300 px-5 py-1 rounded-md text-xs text-neutral-700 mb-8">
+    <section className="bg-[#F3F2EF] py-20">
+      <div className="max-w-[1100px] mx-auto px-8">
+        
+        {/* HEADER */}
+        <div className="mb-20 text-center">
+          <div className="inline-flex items-center border border-[#D6D1C8] px-5 py-1.5 rounded-md text-xs text-neutral-700 mb-6 tracking-wide">
             Testimonials
           </div>
 
-          <h2 className="text-[52px] leading-[1.1] tracking-[-0.015em] text-neutral-900">
+          <h2 className="text-[44px] leading-[1.15] tracking-[-0.015em] text-neutral-900 font-medium">
             What Our Customers
           </h2>
-          <h2 className="text-[52px] leading-[1.1] tracking-[-0.015em] text-neutral-400">
+          <h2 className="text-[44px] leading-[1.15] tracking-[-0.015em] text-neutral-400">
             Say About Us
           </h2>
         </div>
 
         {/* GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-[0.24fr_0.76fr] gap-14 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-[260px_1fr] gap-8 items-stretch">
 
-          {/* LEFT COLUMN */}
+          {/* LEFT */}
           <div className="flex flex-col gap-6 h-full">
 
-            {/* IMAGE */}
-            <div className="rounded-2xl overflow-hidden aspect-square">
+            {/* TRUE SQUARE */}
+            <div className="aspect-square rounded-xl overflow-hidden border border-[#D6D1C8]">
               <img
                 src={active.image}
                 alt={active.name}
@@ -1115,32 +1141,30 @@ function Testimonials() {
               />
             </div>
 
-            {/* NAME CARD — LIGHT MODE */}
-            <div className="rounded-2xl bg-white border border-neutral-200 px-8 py-8 flex flex-col justify-center">
-              <h3 className="text-[28px] leading-[1.2] tracking-[-0.01em] text-neutral-900">
+            {/* NAME CARD */}
+            <div className="rounded-xl bg-white border border-[#D6D1C8] p-5">
+              <h3 className="text-[16px] font-medium text-neutral-900">
                 {active.name}
               </h3>
-              <p className="text-neutral-600 mt-3 text-[16px] leading-[1.6]">
+              <p className="text-neutral-600 mt-1 text-[13px] leading-[1.5]">
                 {active.role}
               </p>
             </div>
 
           </div>
 
-          {/* RIGHT COLUMN — DARK MODE BLOCK */}
-          <div className="rounded-2xl bg-neutral-900 px-20 py-20 flex flex-col justify-between h-full">
+          {/* RIGHT */}
+          <div className="h-full rounded-xl bg-white border border-[#D6D1C8] p-8 flex flex-col justify-between">
 
-            <div>
-              <p className="text-[32px] leading-[1.6] tracking-[-0.01em] text-white max-w-[900px]">
-                "{active.quote}"
-              </p>
-            </div>
+            <p className="text-[25px] leading-[1.4] text-neutral-800">
+              "{active.quote}"
+            </p>
 
-            <div className="mt-20">
-              <div className="text-[72px] leading-none text-white">
+            <div className="mt-6">
+              <div className="text-[22px] font-medium text-neutral-900">
                 {active.stat}
               </div>
-              <p className="text-neutral-400 text-[18px] mt-4">
+              <p className="text-neutral-500 text-[13px] mt-1">
                 {active.statLabel}
               </p>
             </div>
@@ -1149,22 +1173,23 @@ function Testimonials() {
 
         </div>
 
-        {/* NAVIGATION */}
-        <div className="flex items-center justify-center gap-10 mt-20">
+        {/* NAV */}
+        <div className="flex items-center justify-center gap-4 mt-8">
 
           <button
             onClick={prev}
-            className="w-12 h-12 border border-neutral-300 rounded-lg flex items-center justify-center text-neutral-700 hover:bg-neutral-100 transition"
+            className="w-8 h-8 border border-[#D6D1C8] rounded-md flex items-center justify-center text-neutral-700 text-sm"
           >
             ←
           </button>
 
-          <div className="flex gap-3">
+          <div className="flex gap-1.5">
             {testimonials.map((_, i) => (
-              <div
+              <button
                 key={i}
-                className={`w-2.5 h-2.5 rounded-full transition ${
-                  i === index ? "bg-neutral-900" : "bg-neutral-300"
+                onClick={() => setIndex(i)}
+                className={`w-1.5 h-1.5 rounded-full ${
+                  i === index ? "bg-[#191919]" : "bg-neutral-300"
                 }`}
               />
             ))}
@@ -1172,7 +1197,7 @@ function Testimonials() {
 
           <button
             onClick={next}
-            className="w-12 h-12 border border-neutral-300 rounded-lg flex items-center justify-center text-neutral-700 hover:bg-neutral-100 transition"
+            className="w-8 h-8 border border-[#D6D1C8] rounded-md flex items-center justify-center text-neutral-700 text-sm"
           >
             →
           </button>
@@ -1224,7 +1249,7 @@ function FAQ() {
   const [open, setOpen] = React.useState(null)
 
   return (
-    <section className="bg-neutral-50 pt-32">
+    <section className="bg-[#F3F2EF] pt-32">
       <div className="max-w-[1600px] border bor mx-auto px-10 xl:px-16">
 
         <div className="grid grid-cols-1  md:grid-cols-[0.45fr_0.55fr] gap-20">
@@ -1235,13 +1260,13 @@ function FAQ() {
               FAQ
             </div>
 
-            <h2 className="text-[52px] xl:text-[px] leading-[1.1] tracking-[-0.015em] text-neutral-900 mb-6">
+            <h2 className="text-[44px] leading-[1.15] tracking-[-0.015em] text-neutral-900 mb-8 font-medium">
               Frequently Asked
               <br />
               <span className="text-neutral-400">
-              Questions
+                Questions
               </span>
-            </h2> 
+            </h2>
           </div>
 
           {/* RIGHT LIST */}
@@ -1300,7 +1325,7 @@ function FAQ() {
 
 function Footer() {
   return (
-    <div className="bg-neutral-50 pt-28 overflow-hidden">
+    <div className="bg-[#F3F2EF] pt-28 overflow-hidden">
       {/* =====================================================
           CTA SECTION
       ===================================================== */}
