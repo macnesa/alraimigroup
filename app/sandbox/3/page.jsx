@@ -1398,7 +1398,9 @@ function Footer() {
           CTA SECTION
       ===================================================== */}
       <div className="max-w-[1600px] mx-auto px-10 xl:px-16">
-        <div className="relative z-20 rounded-2xl overflow-hidden min-h-[560px] flex items-end">
+        <div
+          className="relative z-20 rounded-2xl overflow-hidden min-h-[560px] flex items-end shadow-[0_30px_80px_rgba(0,0,0,0.35),0_10px_25px_rgba(0,0,0,0.2)]"
+        >
           
           {/* Image */}
           <img
@@ -1413,12 +1415,14 @@ function Footer() {
           {/* Content */}
           <div className="relative z-10 w-full px-10 xl:px-16 pb-24 pt-32 grid md:grid-cols-[1.3fr_1fr] items-end">
             
+            {/* Left */}
             <div className="max-w-3xl text-white">
               <h2 className="text-[48px] md:text-[60px] xl:text-[70px] font-normal leading-[1.05] tracking-[-0.02em]">
                 Ready to Move at Global Scale?
               </h2>
             </div>
 
+            {/* Right */}
             <div className="md:ml-auto max-w-sm text-white/85 mt-10 md:mt-0">
               <p className="mb-8 text-[18px] leading-relaxed">
                 End-to-end execution covering production, inspection, and international delivery.
@@ -1439,7 +1443,7 @@ function Footer() {
       {/* =====================================================
           FOOTER OVERLAP WRAPPER
       ===================================================== */}
-      <div className="relative -mt-[280px] pt-[340px] z-10">
+       <div className="relative -mt-[168px] pt-[228px] z-10">
 
         {/* DARK GRADIENT BACKGROUND */}
         <div
@@ -1528,6 +1532,7 @@ function Footer() {
                 <li>hello@alraimigroup.com</li>
               </ul>
             </div>
+
           </div>
 
           {/* Bottom Bar */}
