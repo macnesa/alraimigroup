@@ -144,18 +144,20 @@ function Hero() {
                   backgroundColor: "rgba(255,255,255,0.06)"
                 }}
               >
-                China-Based Factory Partner
+                Global Manufacturing Partner
               </div>
 
               {/* HEADLINE */}
               <h1
                 className="leading-[1.05] tracking-[-0.02em] font-light"
-                style={{ fontSize: "clamp(52px, 5vw, 88px)" }}
+                style={{ fontSize: "clamp(52px, 4vw, 88px)" }}
               >
                 Build Your Brand
                 <br />
+                Remove Manufacturing Risk
+                <br/>
                 <span style={{ color: "#8C7A5B" }}>
-                  Remove Manufacturing Risk
+                Delivered Worldwide
                 </span>
               </h1>
 
@@ -165,8 +167,7 @@ function Hero() {
             <div className="pt-16">
 
               <p className="text-[20px] text-white/70 leading-relaxed mb-12 max-w-md">
-                Premium fashion manufacturing and luxury paper packaging,
-                one accountable team from sample to shipment.
+              Premium fashion manufacturing and luxury paper packaging — one accountable team from sample to door-to-door shipment
               </p>
 
               {/* PRIMARY CTA (unchanged structure) */}
@@ -209,19 +210,20 @@ function Hero() {
 function ClientsMarquee() {
   const logos = [
     "/clients/1-1-removebg-preview.png",
-    "/clients/2-removebg-preview.png",
     "/clients/3-removebg-preview.png",
+    "/clients/12-removebg-preview.png",
+    "/clients/7-removebg-preview.png",
+    "/clients/11-removebg-preview.png",
+    "/clients/2-removebg-preview.png",
     "/clients/4-removebg-preview.png",
     "/clients/5-removebg-preview.png",
     "/clients/6-removebg-preview.png",
-    "/clients/7-removebg-preview.png",
     "/clients/8-removebg-preview.png",
     "/clients/9-removebg-preview.png",
     "/clients/10-removebg-preview.png",
-    "/clients/11-removebg-preview.png",
-    "/clients/12-removebg-preview.png",
     "/clients/13-removebg-preview.png",
     "/clients/14-removebg-preview.png",
+    "/clients/VHD-white.png",
   ];
   
   return (
@@ -283,47 +285,45 @@ function About() {
 
           <div className="grid grid-cols-1 md:grid-cols-[0.55fr_0.45fr] gap-20 items-start p-20">
 
-           {/* LEFT */}
-<div>
+            {/* LEFT */}
+            <div>
 
-{/* PONI */}
-<div className="inline-flex items-center border border-neutral-300 px-5 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium text-neutral-700 mb-8">
-  ABOUT US
-</div>
+              {/* PONI */}
+              <div className="inline-flex items-center border border-neutral-300 px-5 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium text-neutral-700 mb-8">
+                ABOUT US
+              </div>
 
-{/* H2 */}
-<h2 className="text-[42px] leading-[1.1] tracking-[-0.015em] font-medium text-neutral-900 mb-6">
-  Embedded Manufacturing
-  <br />
-  <span className="text-[#8C7A5B]">
-    With Direct Factory Oversight
-  </span>
-</h2>
+              {/* H2 */}
+              <h2 className="text-[42px] leading-[1.1] tracking-[-0.015em] font-medium text-neutral-900 mb-6">
+                From Concept to Production
+                <br />
+                <span className="text-[#8C7A5B]">
+                Fully Managed Execution
+                </span>
+              </h2>
 
-<div className="mt-10 h-[1px] w-24 bg-[#D6D1C8]" />
+              <div className="mt-10 h-[1px] w-24 bg-[#D6D1C8]" />
 
-</div>
+            </div>
 
             {/* RIGHT */}
             <div className="text-[18px] leading-[1.75] text-neutral-700">
 
               <p className="mb-6">
-                Alraimi operates as an embedded control structure inside
-                established factory ecosystems across China. Brand
-                specifications are translated into production-ready technical
-                frameworks, eliminating interpretation gaps at the factory level.
+                We help fashion brands and luxury packaging buyers produce in China with clarity and structure.
+                Our team works directly with factories to convert designs into production-ready specifications,
+                manage sample development, and coordinate bulk manufacturing.
               </p>
 
               <p>
-                Sampling, mass production, AQL-based inspections, and global
-                logistics are managed within a unified operational command —
-                reducing execution risk, misalignment, and manufacturing
-                uncertainty.
+                Quality inspections, production supervision, and international shipping are handled as one
+                continuous process — so brands are not left navigating suppliers, timelines, or factory
+                communication alone.
               </p>
 
               {/* Micro structural note */}
               <div className="mt-10 text-sm text-neutral-500">
-                On-ground coordination · AQL 2.5 inspection protocol · DDP logistics alignment
+                Technical specification alignment · AQL 2.5 inspections · EXW / FOB / DDP coordination
               </div>
 
             </div>
