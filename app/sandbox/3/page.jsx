@@ -24,6 +24,7 @@ import {
   Truck,
   Repeat,
   ArrowUpRight,
+  ArrowRight,
   Plus,
   X,
   Download
@@ -52,9 +53,10 @@ export default function Page() {
       <HowWeWork/>
       <Projects/>
       <Catalogs/>
+      <Leadership/>
       <Gallery/>
-      {/* <Leadership/> */}
       <Testimonials/>
+
       {/* <SocialProof/> */}
       {/* <TrustWith /> */}
       {/* <ClientSuccess /> */}
@@ -69,6 +71,7 @@ export default function Page() {
       {/* <Events /> */}
       
       <FAQ/>
+      
       <Footer />
       <CookieConsent/>
     </main>
@@ -217,45 +220,45 @@ function ClientsMarquee() {
     "/clients/14-removebg-preview.png",
     "/clients/VHD-white.png",
   ];
-  
+
   return (
-    <section className="bg-[#F3F2EF] py-20">
+    <section className="bg-[#F3F2EF] py-20 md:py-24">
 
-      {/* CENTERED + NARROW VIEWPORT */}
-      <div className="relative max-w-[1050px] mx-auto overflow-hidden">
+      <div className="max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16 text-center">
 
-        {/* Edge fade */}
-        <div className="pointer-events-none absolute left-0 top-0 h-full w-20 bg-gradient-to-r from-[#F3F2EF] to-transparent z-10" />
-        <div className="pointer-events-none absolute right-0 top-0 h-full w-20 bg-gradient-to-l from-[#F3F2EF] to-transparent z-10" />
-
-        <div className="flex min-w-max animate-marquee items-center">
-
-          {[...logos, ...logos].map((logo, index) => (
-            <div
-              key={index}
-              className="flex-shrink-0 mx-14 flex items-center justify-center"
-            >
-              <Image
-                src={logo}
-                alt="Client logo"
-                width={240}
-                height={120}
-                className="object-contain h-32 w-auto invert opacity-90"
-              />
-            </div>
-          ))}
-
+        <div className="text-xs tracking-[0.18em] uppercase text-neutral-600 mb-12">
+          Trusted by
         </div>
+
+        <div className="relative max-w-[1050px] mx-auto overflow-hidden">
+
+          <div className="pointer-events-none absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-[#F3F2EF] to-transparent z-10" />
+          <div className="pointer-events-none absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-[#F3F2EF] to-transparent z-10" />
+
+          <div className="flex min-w-max animate-marquee items-center">
+            {[...logos, ...logos].map((logo, index) => (
+              <div
+                key={index}
+                className="flex-shrink-0 mx-14 flex items-center justify-center"
+              >
+                <Image
+                  src={logo}
+                  alt="Client logo"
+                  width={240}
+                  height={120}
+                  className="object-contain h-28 w-auto invert opacity-80"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
       </div>
 
       <style jsx>{`
         @keyframes marquee {
-          from {
-            transform: translateX(0);
-          }
-          to {
-            transform: translateX(-50%);
-          }
+          from { transform: translateX(0); }
+          to { transform: translateX(-50%); }
         }
 
         .animate-marquee {
@@ -267,54 +270,49 @@ function ClientsMarquee() {
   );
 }
 
+
 function About() {
   return (
-    <section className="bg-[#F3F2EF]">
+    <section className="bg-[#F3F2EF] py-24 md:py-28">
 
-      <div className="max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16 pb-20 md:pb-28">
+      <div className="max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16">
 
-        <div className="border border-black/20 md:bg-white rounded-2xl">
+        <div className="grid grid-cols-1 md:grid-cols-[0.45fr_0.55fr] gap-12 md:gap-20 items-start">
 
-          <div className="grid grid-cols-1 md:grid-cols-[0.45fr_0.55fr] gap-10 md:gap-20 items-start py-14 md:py-20 px-6 sm:px-10 xl:px-16">
+          {/* LEFT */}
+          <div className="text-center md:text-left">
 
-            {/* LEFT */}
-            <div className="text-center md:text-left">
-
-              <div className="inline-flex items-center border border-neutral-300 px-4 py-1 rounded-md text-[11px] sm:text-xs tracking-[0.18em] uppercase font-medium text-neutral-700 mb-6 md:mb-8">
-                ABOUT
-              </div>
-
-              <h2 className="text-[30px] sm:text-[34px] md:text-[42px] leading-[1.1] tracking-[-0.015em] font-medium text-neutral-900 mb-6">
-                From Concept to Production
-                <br />
-                <span className="text-[#8C7A5B]">
-                  Fully Managed Execution
-                </span>
-              </h2>
-
-              <div className="mt-8 md:mt-10 h-[1px] w-20 md:w-24 bg-[#D6D1C8] mx-auto md:mx-0" />
-
+            <div className="inline-flex items-center border border-neutral-300 px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium text-neutral-700 mb-8">
+              About
             </div>
 
-            {/* RIGHT */}
-            <div className="text-[16px] sm:text-[17px] md:text-[18px] leading-[1.75] text-neutral-700">
+            <h2 className="text-[32px] sm:text-[36px] md:text-[42px] leading-[1.1] tracking-[-0.015em] font-medium text-neutral-900 mb-8">
+              Concept to Production
+              <br />
+              Managed End to End
+            </h2>
 
-              <p className="mb-6">
-                Alraimi is an operational manufacturing partner embedded in China’s production network.
-                We represent brands on the factory side and translate designs into production ready
-                specifications while supervising execution from sampling to shipment.
-              </p>
+            <div className="h-[1px] w-24 bg-neutral-300 mx-auto md:mx-0" />
 
-              <p>
-                Quality control, bulk production, and international logistics are managed as one
-                continuous process so brands are not left navigating factories, timelines,
-                or supplier communication alone.
-              </p>
+          </div>
 
-              <div className="mt-8 md:mt-10 text-sm text-neutral-500">
-                Technical specification alignment · AQL 2.5 inspections · EXW / FOB / DDP coordination
-              </div>
+          {/* RIGHT */}
+          <div className="text-[17px] md:text-[18px] leading-[1.75] text-neutral-700">
 
+            <p className="mb-8">
+              Alraimi is an operational manufacturing partner embedded in China’s production network.
+              We represent brands on the factory side and translate designs into production-ready
+              specifications while supervising execution from sampling to shipment.
+            </p>
+
+            <p className="mb-10">
+              Quality control, bulk production, and international logistics are managed as one
+              continuous process so brands are not left navigating factories, timelines,
+              or supplier communication alone.
+            </p>
+
+            <div className="text-sm text-neutral-500">
+              Technical specification alignment · AQL 2.5 inspections · EXW / FOB / DDP coordination
             </div>
 
           </div>
@@ -326,12 +324,14 @@ function About() {
     </section>
   );
 }
+
  
 function Achievements() {
   return (
-    <section className="bg-[#F3F2EF]">
-      <div className="max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16 py-16 sm:py-20">
+    <section className="bg-[#F3F2EF] py-28 md:py-32">
+      <div className="max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10">
+
           {/* CARD 1 — DARK */}
           <div className="bg-[#191919] text-white rounded-2xl p-8 sm:p-10 lg:p-12 aspect-auto lg:aspect-square flex flex-col justify-between">
             <div>
@@ -377,40 +377,32 @@ function Achievements() {
             </div>
           </div>
 
- {/* CARD 3 — LIGHT IMAGE MODE */}
-<div className="relative rounded-2xl overflow-hidden aspect-auto lg:aspect-square border border-[#D6D1C8]">
+          {/* CARD 3 — LIGHT IMAGE MODE */}
+          <div className="relative rounded-2xl overflow-hidden aspect-auto lg:aspect-square border border-[#D6D1C8]">
+            <img
+              src="https://res.cloudinary.com/djgu1bhef/image/upload/v1772379360/clothes_s6ivam.png"
+              alt="Apparel production"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
 
-{/* IMAGE */}
-<img
-  src="https://res.cloudinary.com/djgu1bhef/image/upload/v1772379360/clothes_s6ivam.png"
-  alt="Apparel production"
-  className="absolute inset-0 w-full h-full object-cover"
-/>
- 
+            <div className="relative z-10 p-8 sm:p-10 lg:p-12 h-full flex flex-col justify-between">
+              <div>
+                <h3 className="text-[48px] sm:text-[60px] lg:text-[72px] leading-none font-normal mb-4 sm:mb-6 text-neutral-900">
+                  100K+
+                </h3>
 
-{/* CONTENT */}
-<div className="relative z-10 p-8 sm:p-10 lg:p-12 h-full flex flex-col justify-between">
+                <p className="text-neutral-600 text-[15px] sm:text-[16px] max-w-xs leading-relaxed">
+                  Apparel units manufactured across structured production runs
+                  with controlled inspection checkpoints.
+                </p>
+              </div>
 
-  <div>
-    <h3 className="text-[48px] sm:text-[60px] lg:text-[72px] leading-none font-normal mb-4 sm:mb-6 text-neutral-900">
-      100K+
-    </h3>
+              <div className="text-sm text-neutral-500 mt-6">
+                Fit Control · Inline QC · AQL 2.5
+              </div>
+            </div>
+          </div>
 
-    <p className="text-neutral-600 text-[15px] sm:text-[16px] max-w-xs leading-relaxed">
-      Apparel units manufactured across structured production runs
-      with controlled inspection checkpoints.
-    </p>
-  </div>
-
-  <div className="text-sm text-neutral-500 mt-6">
-    Fit Control · Inline QC · AQL 2.5
-  </div>
-
-</div>
-</div>
-
-        
-          
         </div>
       </div>
     </section>
@@ -418,13 +410,14 @@ function Achievements() {
 }
 
 
+
 function Services() {
   return (
-    <section className="bg-[#F3F2EF] py-20 sm:py-24 lg:py-32">
+    <section className="bg-[#F3F2EF] pt-24 pb-36 md:pt-24 md:pb-48">
       <div className="max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16">
 
-        {/* ================= HEADER ================= */}
-        <div className="mb-16 sm:mb-20 lg:mb-24 text-center max-w-xl mx-auto">
+        {/* HEADER */}
+        <div className="mb-14 md:mb-16 text-center max-w-xl mx-auto">
 
           <div className="inline-flex items-center border border-neutral-300 px-5 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium text-neutral-700 mb-6">
             Services
@@ -438,26 +431,25 @@ function Services() {
             Built to Support Your Brand’s Growth with Reliable Production
           </p>
 
-          <div className="mt-8 h-[1px] w-16 bg-neutral-300 mx-auto" />
+          {/* GOLD ACCENT LINE */}
+          <div className="mt-8 h-[1px] w-16 bg-[#8C7A5B] mx-auto" />
         </div>
 
-        {/* ================= STRUCTURE ================= */}
-        <div className="relative flex flex-col lg:flex-row items-center justify-center gap-14 sm:gap-16 lg:gap-40">
+        {/* STRUCTURE */}
+        <div className="relative flex flex-col lg:flex-row items-center justify-center gap-14 sm:gap-16 lg:gap-40 pb-6 md:pb-8">
 
-          {/* ================= LEFT SERVICE ================= */}
+          {/* LEFT */}
           <a
             href="/fashion-manufacturing"
             className="group relative max-w-md text-center lg:text-right transition"
           >
+            <div className="hidden lg:block absolute top-1/2 right-[-160px] w-[140px] h-[1px] bg-neutral-300 transition group-hover:bg-[#8C7A5B]" />
 
-            {/* Desktop Horizontal Line */}
-            <div className="hidden lg:block absolute top-1/2 right-[-160px] w-[140px] h-[1px] bg-neutral-300 transition group-hover:bg-neutral-900" />
-
-            <h3 className="text-[28px] sm:text-[32px] lg:text-[34px] leading-[1.1] font-medium text-[#8C7A5B] transition-all duration-300 group-hover:translate-x-1">
+            <h3 className="text-[28px] sm:text-[32px] lg:text-[34px] leading-[1.1] font-medium text-neutral-800 transition-all duration-300 group-hover:text-[#8C7A5B] group-hover:translate-x-1">
               Fashion Manufacturing
             </h3>
 
-            <p className="mt-4 sm:mt-5 text-neutral-600 text-[16px] leading-[1.7] transition-colors duration-300 group-hover:text-neutral-700">
+            <p className="mt-4 sm:mt-5 text-neutral-600 text-[16px] leading-[1.7]">
               Apparel production from sampling to bulk execution,
               with structured fit control and AQL inspection.
             </p>
@@ -466,15 +458,12 @@ function Services() {
               View Service →
             </span>
 
-            {/* Mobile Vertical Line */}
-            <div className="lg:hidden mx-auto mt-10 w-[1px] h-12 bg-neutral-300 transition group-hover:bg-neutral-900" />
+            <div className="lg:hidden mx-auto mt-10 w-[1px] h-12 bg-neutral-300 transition group-hover:bg-[#8C7A5B]" />
           </a>
 
-          {/* ================= CENTER HUB ================= */}
+          {/* CENTER HUB */}
           <div className="relative flex flex-col items-center justify-center">
-
             <div className="w-[160px] h-[160px] sm:w-[200px] sm:h-[200px] lg:w-[220px] lg:h-[220px] rounded-full border border-neutral-300 flex items-center justify-center bg-white">
-
               <div className="w-[120px] h-[120px] sm:w-[150px] sm:h-[150px] lg:w-[170px] lg:h-[170px] rounded-full bg-[#191919] flex items-center justify-center">
                 <img
                   src="/images/alraimi-logo-white-1.png"
@@ -482,28 +471,23 @@ function Services() {
                   className="w-10 sm:w-12 lg:w-14 opacity-90"
                 />
               </div>
-
             </div>
-
           </div>
 
-          {/* ================= RIGHT SERVICE ================= */}
+          {/* RIGHT */}
           <a
             href="/luxury-packaging"
             className="group relative max-w-md text-center lg:text-left transition"
           >
+            <div className="hidden lg:block absolute top-1/2 left-[-160px] w-[140px] h-[1px] bg-neutral-300 transition group-hover:bg-[#8C7A5B]" />
 
-            {/* Desktop Horizontal Line */}
-            <div className="hidden lg:block absolute top-1/2 left-[-160px] w-[140px] h-[1px] bg-neutral-300 transition group-hover:bg-neutral-900" />
+            <div className="lg:hidden mx-auto mb-10 w-[1px] h-12 bg-neutral-300 transition group-hover:bg-[#8C7A5B]" />
 
-            {/* Mobile Vertical Line (Above) */}
-            <div className="lg:hidden mx-auto mb-10 w-[1px] h-12 bg-neutral-300 transition group-hover:bg-neutral-900" />
-
-            <h3 className="text-[28px] sm:text-[32px] lg:text-[34px] leading-[1.1] font-medium text-[#8C7A5B] transition-all duration-300 group-hover:-translate-x-1">
+            <h3 className="text-[28px] sm:text-[32px] lg:text-[34px] leading-[1.1] font-medium text-neutral-800 transition-all duration-300 group-hover:text-[#8C7A5B] group-hover:-translate-x-1">
               Luxury Packaging
             </h3>
 
-            <p className="mt-4 sm:mt-5 text-neutral-600 text-[16px] leading-[1.7] transition-colors duration-300 group-hover:text-neutral-700">
+            <p className="mt-4 sm:mt-5 text-neutral-600 text-[16px] leading-[1.7]">
               Premium rigid boxes, structural design,
               finishing precision, and export-ready systems.
             </p>
@@ -511,14 +495,13 @@ function Services() {
             <span className="inline-block mt-6 sm:mt-8 text-sm text-neutral-700 transition-all duration-300 group-hover:-translate-x-1">
               View Service →
             </span>
-
           </a>
 
         </div>
 
       </div>
     </section>
-  );
+  )
 }
 
 
@@ -545,127 +528,66 @@ function HowWeWork() {
   }, [emblaApi, onSelect])
 
   const steps = [
-    {
-      number: "1",
-      icon: FileText,
-      title: "Quick Brief & NDA (24–48h)",
-      desc: "Send style/packaging references, quantity range, target timeline, ship-to country, and brand files.",
-    },
-    {
-      number: "2",
-      icon: DraftingCompass,
-      title: "Design & Technical Prep (2–5 days)",
-      desc: "Finalize tech packs/patterns or dielines and confirm specs and materials.",
-    },
-    {
-      number: "3",
-      icon: Package,
-      title: "Samples & PI (7–21 days)",
-      desc: "Produce samples and share guide pricing. Formal PI issued after review.",
-    },
-    {
-      number: "4",
-      icon: Factory,
-      title: "Production Booking",
-      desc: "Approve golden sample and secure production line.",
-    },
-    {
-      number: "5",
-      icon: Cog,
-      title: "Manufacturing",
-      desc: "Apparel 3–8 wks / Packaging 2–6 wks with in-line QC.",
-    },
-    {
-      number: "6",
-      icon: ShieldCheck,
-      title: "Quality Assurance (AQL)",
-      desc: "Pre-shipment inspection with full report and measurement checks.",
-    },
-    {
-      number: "7",
-      icon: Truck,
-      title: "Logistics (EXW / FOB / DDP)",
-      desc: "Export documentation and global shipping arranged.",
-    },
-    {
-      number: "8",
-      icon: Repeat,
-      title: "Delivery & Aftercare",
-      desc: "Unboxing checks, reorders, and structured improvements.",
-    },
+    { icon: FileText, title: "Quick Brief & NDA", desc: "Send style/packaging references, quantity range, target timeline, ship-to country, and brand files." },
+    { icon: DraftingCompass, title: "Design & Technical Prep", desc: "Finalize tech packs/patterns or dielines and confirm specs and materials." },
+    { icon: Package, title: "Samples & PI", desc: "Produce samples and share guide pricing. Formal PI issued after review." },
+    { icon: Factory, title: "Production Booking", desc: "Approve golden sample and secure production line." },
+    { icon: Cog, title: "Manufacturing", desc: "Apparel 3–8 wks / Packaging 2–6 wks with in-line QC." },
+    { icon: ShieldCheck, title: "Quality Assurance (AQL)", desc: "Pre-shipment inspection with full report and measurement checks." },
+    { icon: Truck, title: "Logistics (EXW / FOB / DDP)", desc: "Export documentation and global shipping arranged." },
+    { icon: Repeat, title: "Delivery & Aftercare", desc: "Unboxing checks, reorders, and structured improvements." },
   ]
 
   return (
-    <section className="relative overflow-hidden bg-[#1c1c1c] text-white py-32">
+    <section className="bg-[#1c1c1c] text-white py-28">
 
-      {/* Background Image */}
-      <div className="absolute inset-0">
-        <img
-          src="https://images.unsplash.com/photo-1581092335397-9583eb92d232?q=80&w=2000&auto=format&fit=crop"
-          alt=""
-          className="w-full h-full object-cover opacity-20"
-        />
-      </div>
-
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#1c1c1c]/40 via-[#1c1c1c]/80 to-[#1c1c1c]" />
-
-      <div className="relative max-w-[1600px] mx-auto px-10 xl:px-16">
+      <div className="max-w-[1600px] mx-auto px-10 xl:px-16">
 
         {/* PONI */}
-<div>
-  <div className="inline-flex items-center border border-white/20 px-5 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium text-white/70">
-    Process
-  </div>
-</div>
+        <div>
+          <div className="inline-flex items-center border border-white/15 px-6 py-2 rounded-md text-xs tracking-[0.18em] uppercase font-medium text-white/60">
+            Process
+          </div>
+        </div>
 
-{/* HEADING */}
-<div className="mt-16 grid grid-cols-1 md:grid-cols-[0.55fr_0.45fr] gap-16 items-start">
-
-  <h2 className="text-[42px] leading-[1.1] tracking-[-0.015em] font-medium text-white">
-    How We Work
-  </h2>
-
-  <p className="text-[18px] leading-[1.7] text-neutral-400">
-  A clear process, realistic timelines, and close supervision keep production steady from start to delivery
-  </p>
-
-</div>
+        {/* HEADING */}
+        <div className="mt-20 grid grid-cols-1 md:grid-cols-[0.55fr_0.45fr] gap-20 items-start">
+          <h2 className="text-[48px] leading-[1.08] tracking-[-0.02em] font-medium text-white">
+            How We Work
+          </h2>
+          <p className="text-[20px] leading-[1.8] text-white/65">
+            A clear process, realistic timelines, and close supervision keep production steady from start to delivery.
+          </p>
+        </div>
 
         {/* EMBLA */}
-        <div className="mt-20 overflow-hidden" ref={emblaRef}>
+        <div className="mt-28 overflow-hidden" ref={emblaRef}>
           <div className="flex">
-
             {steps.map((step, i) => {
               const Icon = step.icon
               return (
                 <div
                   key={i}
-                  className="flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_25%] pr-4"
+                  className="flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.333%] pr-8"
                 >
-                  {/* SQUARE CARD */}
-                  <div className="relative rounded-2xl border border-neutral-700 bg-neutral-900/70 p-8 aspect-square flex flex-col justify-between transition-colors duration-300 hover:bg-neutral-900">
+                  <div className="group rounded-2xl border border-white/10 bg-[#242424] p-12 min-h-[420px] flex flex-col transition-colors duration-300 hover:border-[#8C7A5B]/40">
 
-                    {/* BIG NUMBER */}
-                    <div className="absolute -bottom-10 right-6 text-[160px] leading-none font-semibold text-white/[0.04] pointer-events-none select-none">
-                      {step.number}
+                    {/* ICON */}
+                    <div className="w-12 h-12 flex items-center justify-center rounded-lg border border-white/10 bg-[#2a2a2a]">
+                      <Icon
+                        size={22}
+                        strokeWidth={1.5}
+                        className="text-[#8C7A5B]"
+                      />
                     </div>
 
-                    {/* CONTENT */}
-                    <div>
-                      <div className="w-11 h-11 flex items-center justify-center rounded-lg border border-white/10 bg-white/5 mb-8">
-                        <Icon
-                          size={20}
-                          strokeWidth={1.5}
-                          className="text-white/80"
-                        />
-                      </div>
-
-                      <h4 className="text-[20px] leading-[1.3] font-medium text-white relative z-10">
+                    {/* TEXT */}
+                    <div className="mt-auto">
+                      <h4 className="text-[26px] leading-[1.25] font-medium text-white transition-colors duration-300 group-hover:text-[#8C7A5B]">
                         {step.title}
                       </h4>
 
-                      <p className="mt-4 text-[16px] leading-[1.7] text-neutral-400 relative z-10">
+                      <p className="mt-6 text-[18px] leading-[1.8] text-white/60">
                         {step.desc}
                       </p>
                     </div>
@@ -674,20 +596,19 @@ function HowWeWork() {
                 </div>
               )
             })}
-
           </div>
         </div>
 
         {/* DOTS */}
-        <div className="mt-10 flex justify-center gap-3">
+        <div className="mt-16 flex justify-center gap-4">
           {scrollSnaps.map((_, index) => (
             <button
               key={index}
               onClick={() => emblaApi && emblaApi.scrollTo(index)}
-              className={`w-2 h-2 rounded-full transition ${
+              className={`w-2.5 h-2.5 rounded-full transition ${
                 index === selectedIndex
-                  ? "bg-white"
-                  : "bg-neutral-600 hover:bg-neutral-400"
+                  ? "bg-[#8C7A5B]"
+                  : "bg-white/30 hover:bg-white/60"
               }`}
             />
           ))}
@@ -697,6 +618,7 @@ function HowWeWork() {
     </section>
   )
 }
+
 
 
 function Projects() {
@@ -726,108 +648,166 @@ function Projects() {
     },
   ]
 
+  const Ghost = () => (
+    <div className="w-[420px] h-[250px] rounded-2xl border border-black/30 z-0" />
+  )
+
+  const Card = ({ project }) => (
+    <div
+      className="
+        relative
+        w-full
+        md:w-[28vw]
+        max-w-[520px] md:max-w-[420px]
+        aspect-[4/5]
+        rounded-[28px] md:rounded-2xl
+        overflow-hidden
+        bg-neutral-100
+        shadow-[0_8px_30px_rgba(0,0,0,0.06)]
+        md:shadow-none
+        z-10
+      "
+    >
+      <img
+        src={project.image}
+        alt={project.title}
+        className="w-full h-full object-cover"
+      />
+
+      <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/15 to-transparent" />
+
+      <div
+        className="absolute text-white"
+        style={{
+          bottom: "clamp(16px, 3vw, 28px)",
+          left: "clamp(16px, 3vw, 28px)",
+          right: "clamp(16px, 3vw, 28px)",
+        }}
+      >
+        <div
+          className="font-medium leading-[1.25] tracking-[-0.01em]"
+          style={{
+            fontSize: "clamp(16px, 2.2vw, 24px)",
+          }}
+        >
+          {project.title}
+        </div>
+
+        <div
+          className="uppercase text-white/70 mt-[clamp(8px,1.5vw,14px)]"
+          style={{
+            fontSize: "clamp(9px, 1.2vw, 11px)",
+            letterSpacing: "0.22em",
+          }}
+        >
+          {project.location}
+        </div>
+      </div>
+    </div>
+  )
+
   return (
     <section
-      style={{ backgroundColor: "#F3F2EF" }}
-      className="py-16 md:py-28"
+      className="bg-[#F3F2EF] py-[clamp(60px,8vw,96px)]"
+      style={{
+        "--card-w": "min(28vw, 420px)",
+        "--card-h": "calc(var(--card-w) * 1.25)",
+        "--gap": "80px",
+      }}
     >
-      <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16">
+      <div className="max-w-[1600px] mx-auto px-[clamp(20px,4vw,40px)]">
 
-        {/* ================= HEADER ================= */}
-        <div className="mb-16 md:mb-24 text-center">
+{/* HEADER */}
+<div className="mb-[clamp(40px,6vw,64px)] text-center">
+  <div
+    className="
+      inline-flex
+      items-center
+      border border-neutral-300
+      px-[clamp(14px,2.5vw,18px)]
+      py-[clamp(4px,0.8vw,6px)]
+      rounded-md
+      uppercase
+      font-medium
+      text-neutral-700
+      mb-[clamp(16px,3vw,24px)]
+    "
+    style={{
+      fontSize: "clamp(10px, 1.2vw, 12px)",
+      letterSpacing: "0.18em",
+    }}
+  >
+    Projects
+  </div>
 
-          {/* PONI */}
-          <div className="inline-flex items-center border border-neutral-300 px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium text-neutral-700 mb-6">
-            Projects
+  <h2
+    className="font-medium text-neutral-900 leading-[1.08] tracking-[-0.02em]"
+    style={{
+      fontSize: "clamp(26px, 4.5vw, 48px)",
+    }}
+  >
+    Project Snapshot
+  </h2>
+
+  <p
+    className="mx-auto text-neutral-600 leading-[1.7] mt-[clamp(16px,2.5vw,24px)] max-w-[720px]"
+    style={{
+      fontSize: "clamp(16px, 2vw, 18px)",
+    }}
+  >
+    A selection of completed fashion and packaging work managed from
+    development through delivery. Below are typical scopes and outcomes.
+  </p>
+</div>
+
+        {/* DESKTOP / TABLET */}
+        <div
+          className="relative hidden md:block"
+          style={{
+            height: "calc(var(--card-h) * 2 + var(--gap))",
+          }}
+        >
+
+          
+
+          {/* TOP */}
+          <div className="absolute left-1/2 -translate-x-1/2 z-10" style={{ top: "0" }}>
+            <Card project={projects[1]} />
           </div>
 
-          {/* H2 */}
-          <h2 className="text-[28px] md:text-[42px] leading-[1.1] tracking-[-0.015em] font-medium text-neutral-900 mb-6">
-            Project Snapshot
-          </h2>
-
-          {/* BODY */}
-          <p className="max-w-2xl mx-auto text-[16px] md:text-[18px] leading-[1.7] text-neutral-600">
-            A selection of completed fashion and packaging work managed from
-            development through delivery. Below are typical scopes and outcomes.
-          </p>
-        </div>
-
-        {/* ================= GRID ================= */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
-
-          {/* ================= DOMINANT CASE ================= */}
-          <div className="col-span-1 md:col-span-2 relative rounded-2xl overflow-hidden group aspect-square md:aspect-[16/9]">
-
-            <img
-              src={projects[0].image}
-              alt={projects[0].title}
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-            />
-
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent" />
-
-            <div className="absolute bottom-6 left-6 md:bottom-12 md:left-12 text-white max-w-[80%]">
-              <div className="text-[20px] md:text-[28px] font-medium mb-2 leading-tight">
-                {projects[0].title}
-              </div>
-              <div className="text-[11px] md:text-sm tracking-widest uppercase text-white/70">
-                {projects[0].location}
-              </div>
-            </div>
-          </div>
-
-          {/* ================= METRIC PANEL (HIDDEN MOBILE) ================= */}
+          {/* BOTTOM */}
           <div
-            className="hidden md:flex rounded-2xl p-12 flex-col justify-between border"
-            style={{
-              backgroundColor: "#191919",
-              borderColor: "#2C2C2C",
-              color: "#FFFFFF",
-            }}
+            className="absolute left-1/2 -translate-x-1/2 z-10"
+            style={{ top: "calc(var(--card-h) + var(--gap))" }}
           >
-            <div>
-              <div className="text-xs tracking-widest uppercase text-white/50 mb-6">
-                Execution Impact
-              </div>
-
-              <div className="text-[72px] leading-none font-semibold tracking-tight">
-                100K+
-              </div>
-            </div>
-
-            <div className="text-white/70 text-sm leading-relaxed">
-              Units delivered under supervised production and AQL inspection
-              frameworks.
-            </div>
+            <Card project={projects[2]} />
           </div>
 
-          {/* ================= SECONDARY CARDS ================= */}
-          {projects.slice(1).map((project, index) => (
-            <div
-              key={index}
-              className="relative rounded-2xl overflow-hidden group aspect-square md:aspect-[4/5]"
-            >
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-              />
+          {/* LEFT */}
+          <div
+            className="absolute left-0 z-10"
+            style={{ top: "calc(var(--card-h) / 2 + var(--gap) / 2)" }}
+          >
+            <Card project={projects[0]} />
+          </div>
 
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent" />
-
-              <div className="absolute bottom-5 left-5 md:bottom-8 md:left-8 text-white max-w-[85%]">
-                <div className="text-[16px] md:text-lg font-medium leading-tight">
-                  {project.title}
-                </div>
-                <div className="text-[10px] md:text-xs tracking-widest uppercase text-white/70 mt-2">
-                  {project.location}
-                </div>
-              </div>
-            </div>
-          ))}
+          {/* RIGHT */}
+          <div
+            className="absolute right-0 z-10"
+            style={{ top: "calc(var(--card-h) / 2 + var(--gap) / 2)" }}
+          >
+            <Card project={projects[3]} />
+          </div>
 
         </div>
+
+        {/* MOBILE */}
+        <div className="md:hidden flex flex-col gap-[clamp(32px,6vw,48px)] max-w-[520px] mx-auto">
+          {projects.map((project, i) => (
+            <Card key={i} project={project} />
+          ))}
+        </div>
+
       </div>
     </section>
   )
@@ -884,70 +864,32 @@ function CookieConsent() {
 
 function Leadership() {
   return (
-    <section className="bg-[#F3F2EF] py-48">
-      <div className="max-w-[1500px] mx-auto px-10">
+    <section className="bg-gradient-to-r from-[#F3F2EF] via-[#F3F2EF] to-[#ECEAE6] py-16 md:py-24 xl:py-28">
+      <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16">
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-10 items-stretch">
+        <div className="rounded-2xl bg-white border border-neutral-200 px-6 py-10 sm:px-10 sm:py-14 md:px-16 md:py-16 xl:px-20 xl:py-20 shadow-[0_10px_30px_rgba(0,0,0,0.03),0_30px_80px_rgba(0,0,0,0.04)]">
 
-          {/* ================= LEFT CARD ================= */}
-          <div
-            className="relative rounded-2xl overflow-hidden bg-[#1c1c1c] min-h-[620px]"
-            style={{
-              boxShadow:
-                "0 20px 40px rgba(0,0,0,0.18), 0 6px 16px rgba(0,0,0,0.08)",
-              border: "1px solid rgba(0,0,0,0.08)"
-            }}
-          >
-
-            {/* subtle noise */}
-            <div className="absolute inset-0 opacity-[0.03] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none" />
-
-            <div className="relative px-20 py-28 flex flex-col justify-center h-full">
-
-              <div className="text-white/40 text-xs tracking-[0.2em] mb-8">
-                PRODUCTION OVERSIGHT
-              </div>
-
-              <h2 className="text-neutral-100 text-[40px] leading-[1.3] tracking-[-0.02em] max-w-[720px] mb-12">
-                Sampling approval, inspection discipline, and final shipment release
-                are executed under{" "}
-                <span className="text-white font-medium">
-                  direct operational authority
-                </span>{" "}
-                — eliminating ambiguity at every production stage.
-              </h2>
-
-              <div className="w-24 h-[1px] bg-[#8C7A5B] mb-8" />
-
-              <div className="text-neutral-100 text-[22px] font-medium">
-                Haitham Al-Raimi
-              </div>
-
-              <div className="text-neutral-400 text-sm mt-1">
-                Managing Director · Alraimi Business Group
-              </div>
-
-            </div>
+          <div className="inline-flex items-center border border-neutral-300 px-4 py-2 rounded-md text-[10px] sm:text-xs tracking-[0.18em] uppercase font-medium text-neutral-500 mb-8 md:mb-10">
+            Managing Director
           </div>
 
-          {/* ================= RIGHT CARD ================= */}
-          <div
-            className="relative rounded-2xl overflow-hidden min-h-[620px]"
-            style={{
-              backgroundColor: "#22262B",
-              boxShadow:
-                "0 18px 36px rgba(0,0,0,0.15), 0 4px 12px rgba(0,0,0,0.06)",
-            }}
-          >
+          <h2 className="text-neutral-900 text-[22px] sm:text-[26px] md:text-[32px] xl:text-[36px] leading-[1.6] md:leading-[1.4] tracking-[-0.01em] max-w-full md:max-w-[880px]">
+            “If something leaves our factory, it carries our name. I review final production and shipment release myself. If it’s not right, it doesn’t ship.”
+          </h2>
 
-            <img
-              src="/images/haitham.png"
-              alt="Managing Director"
-              className="absolute inset-0 w-full h-full object-cover object-top"
-            />
+          <div className="mt-10 md:mt-14 xl:mt-16 flex items-center gap-4 sm:gap-6">
+            <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 rounded-2xl overflow-hidden border border-neutral-200">
+              <img src="/images/haitham.png" alt="Haitham Al-Raimi" className="w-full h-full object-cover object-top" />
+            </div>
 
-            <div className="absolute inset-0 bg-gradient-to-t from-black/45 to-transparent" />
-
+            <div>
+              <div className="text-neutral-900 font-medium text-base sm:text-lg">
+                Haitham Al-Raimi
+              </div>
+              <div className="text-neutral-500 text-xs sm:text-sm mt-1">
+                Managing Director · Alraimi Business Group
+              </div>
+            </div>
           </div>
 
         </div>
@@ -1041,19 +983,19 @@ function Catalogs() {
 function Gallery() {
   const images = [
     {
-      src: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1600&q=80",
+      src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772465807/b2e3ada0b524a37a568cfc2625814946e76c8c4e_ozgzym.png",
       alt: "Container port logistics",
       span: "md:col-span-8",
       height: "md:h-[420px]"
     },
     {
-      src: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=1200&q=80",
+      src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772465806/1da1117433e3b5c7395049766335a31856132f8f_u3cqev.png",
       alt: "Warehouse pallet storage",
       span: "md:col-span-4",
       height: "md:h-[420px]"
     },
     {
-      src: "https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=1200&q=80",
+      src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772465805/def4681423e3409d32eed217ed901e044f62fada_rsujvm.png",
       alt: "Cargo loading truck",
       span: "md:col-span-5",
       height: "md:h-[380px]"
@@ -1065,7 +1007,7 @@ function Gallery() {
       height: "md:h-[380px]"
     },
     {
-      src: "https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?auto=format&fit=crop&w=1200&q=80",
+      src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772465807/b2570bd6484e6c3e6e1a75cbc0aec0fe5898e824_ra1eje.png",
       alt: "Quality inspection process",
       span: "md:col-span-3",
       height: "md:h-[340px]"
@@ -1077,7 +1019,7 @@ function Gallery() {
       height: "md:h-[340px]"
     },
     {
-      src: "https://images.unsplash.com/photo-1590496793929-36417d3117de?auto=format&fit=crop&w=1200&q=80",
+      src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772465806/c9b2b9000b185f19e45ec1c468d74a3277c30736_qjels5.jpg",
       alt: "Warehouse distribution center",
       span: "md:col-span-3",
       height: "md:h-[340px]"
@@ -1487,7 +1429,7 @@ function Footer() {
           
           {/* Image */}
           <img
-            src="https://images.unsplash.com/photo-1742281694367-30557c03d0a1?q=80&w=2340&auto=format&fit=crop"
+            src="https://res.cloudinary.com/djgu1bhef/image/upload/v1772465064/ChatGPT_Image_Mar_2_2026_10_23_41_PM_zazc5j.png"
             alt="Factory production"
             className="absolute inset-0 w-full h-full object-cover"
           />
@@ -1496,7 +1438,7 @@ function Footer() {
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/60 to-black/80 md:hidden" />
 
           {/* Desktop gradient (horizontal) */}
-          <div className="absolute inset-0 hidden md:block bg-gradient-to-r from-black/75 via-black/45 to-black/20" />
+          <div className="absolute inset-0 hidden md:block bg-gradient-to-r from-black/75 via-black/15 to-black/20" />
 
           {/* Content */}
           <div className="relative z-10 w-full px-6 sm:px-10 xl:px-16 pb-16 md:pb-24 pt-20 md:pt-32 grid gap-12 md:gap-0 md:grid-cols-[1.3fr_1fr] items-end">
