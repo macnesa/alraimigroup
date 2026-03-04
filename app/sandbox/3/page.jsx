@@ -1949,16 +1949,12 @@ function Footer() {
           
           {/* Image */}
           <img
-            src="https://res.cloudinary.com/djgu1bhef/image/upload/v1772465064/ChatGPT_Image_Mar_2_2026_10_23_41_PM_zazc5j.png"
+            src="https://images.unsplash.com/photo-1742281694367-30557c03d0a1?q=80&w=2340&auto=format&fit=crop"
             alt="Factory production"
             className="absolute inset-0 w-full h-full object-cover"
           />
 
-          {/* Mobile gradient (vertical) */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/60 to-black/80 md:hidden" />
-
-          {/* Desktop gradient (horizontal) */}
-          <div className="absolute inset-0 hidden md:block bg-gradient-to-r from-black/75 via-black/15 to-black/20" />
+<div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/45 to-black/20" />
 
           {/* Content */}
           <div className="relative z-10 w-full px-6 sm:px-10 xl:px-16 pb-16 md:pb-24 pt-20 md:pt-32 grid gap-12 md:gap-0 md:grid-cols-[1.3fr_1fr] items-end">

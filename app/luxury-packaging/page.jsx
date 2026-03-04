@@ -99,93 +99,191 @@ export default function Page() {
    SECTIONS
 ========================= */
 function Hero() {
-  const heroRef = useRef(null);
+
+  const heroRef = useRef(null)
 
   useEffect(() => {
+
     const ctx = gsap.context(() => {
 
       gsap.from(".fade-up", {
         opacity: 0,
         y: 24,
-        duration: 0.5,
+        duration: 0.45,
         ease: "power2.out",
-        stagger: 0.08
-      });
+        stagger: 0.07
+      })
 
-    }, heroRef);
+    }, heroRef)
 
-    return () => ctx.revert();
-  }, []);
+    return () => ctx.revert()
+
+  }, [])
+
 
   return (
+
     <section
       ref={heroRef}
       className="relative bg-[#F3F2EF] overflow-hidden"
     >
+
       <div
         className="relative text-white"
         style={{
           background: "linear-gradient(135deg, #191919 0%, #2C2C2C 100%)"
         }}
       >
+
+
         {/* HEADER */}
-        <div className="max-w-[1600px] mx-auto px-10 xl:px-16 pt-10">
+
+        <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 pt-8 md:pt-10">
+
           <header className="fade-up flex items-center justify-between">
 
+            {/* LOGO */}
+
             <Link href="/" className="flex items-center gap-3">
+
               <Image
                 src="/images/alraimi-logo-white-1.png"
-                alt="Logo"
+                alt="Alraimi Logo"
                 width={42}
                 height={38}
                 priority
               />
+
             </Link>
 
-            <nav className="hidden md:flex items-center gap-12 text-sm text-white/70">
-              <Link href="/" className="hover:text-white transition">Home</Link>
-              <Link href="/fashion-manufacturing" className="hover:text-white transition">Fashion</Link>
-              <Link href="/luxury-packaging" className="text-white transition">Packaging</Link>
-              <Link href="#contact" className="hover:text-white transition">Contact</Link>
+
+            {/* NAV */}
+
+            <nav className="hidden md:flex items-center gap-10 lg:gap-12 text-sm text-white/70">
+
+              <Link href="/" className="hover:text-white transition">
+                Home
+              </Link>
+
+              <Link
+                href="/fashion-manufacturing"
+                className="hover:text-white transition"
+              >
+                Fashion
+              </Link>
+
+              <Link
+                href="/luxury-packaging"
+                className="text-white transition"
+              >
+                Packaging
+              </Link>
+
+              <Link href="#contact" className="hover:text-white transition">
+                Contact
+              </Link>
+
             </nav>
+
+
+            {/* DESKTOP CTA */}
 
             <Link
               href="#contact"
-              className="hidden md:inline-flex items-center px-6 py-2.5 rounded-lg text-sm font-medium bg-white text-[#191919]"
+              className="hidden md:inline-flex items-center bg-white text-black px-7 lg:px-8 py-3 rounded-lg text-sm font-medium transition hover:bg-neutral-200"
             >
               Get Your PI
             </Link>
 
+
+            {/* MOBILE CTA */}
+
+            <Link
+              href="#contact"
+              className="md:hidden inline-flex items-center bg-white text-black px-5 py-2.5 rounded-lg text-sm font-medium transition hover:bg-neutral-200"
+            >
+              Get PI
+            </Link>
+
           </header>
+
         </div>
 
+
+
         {/* HERO CONTENT */}
-        <div className="max-w-[1600px] mx-auto px-10 xl:px-16 py-28">
+
+        <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 py-24 sm:py-28 md:py-32 lg:py-36 xl:py-40">
+
+
+          {/* LABEL */}
 
           <div className="fade-up mb-6">
-            <span className="text-xs tracking-widest text-white/50">
+
+            <span className="text-xs tracking-[0.2em] text-white/50">
               LUXURY PACKAGING
             </span>
+
           </div>
 
+
+
+          {/* TITLE */}
+
           <h1
-            className="fade-up leading-[1.05] tracking-[-0.02em] font-light max-w-[1000px]"
-            style={{ fontSize: "clamp(50px, 3.5vw, 72px)" }}
+            className="
+            fade-up
+            font-light
+            leading-[1.05]
+            tracking-[-0.02em]
+            max-w-[980px]
+
+            text-[36px]
+            sm:text-[44px]
+            md:text-[56px]
+            lg:text-[64px]
+            xl:text-[72px]
+            "
           >
+
             Luxury Paper Packaging —
             <br />
-            <span style={{ color: "#8C7A5B" }}>
+
+            <span className="text-[#8C7A5B]">
               Precision Made in China.
             </span>
+
           </h1>
 
-          <p className="fade-up mt-8 text-[18px] leading-[1.7] text-white/70 max-w-[720px]">
-            Dielines, sampling, production control, AQL inspection, and door-to-door delivery —
-            managed by our factory team.
+
+
+          {/* DESCRIPTION */}
+
+          <p
+            className="
+            fade-up
+            mt-7 md:mt-8
+            text-[15px]
+            md:text-[17px]
+            lg:text-[18px]
+            leading-[1.7]
+            text-white/70
+            max-w-[720px]
+            "
+          >
+
+            Dielines, sampling, production control, AQL inspection,
+            and door-to-door delivery — managed by our factory team.
+
           </p>
 
-          <div className="fade-up mt-10 flex items-center gap-8">
-            <button className="bg-white text-black px-8 py-3.5 rounded-lg text-sm font-medium hover:bg-neutral-200 transition">
+
+
+          {/* CTA */}
+
+          <div className="fade-up mt-9 md:mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-4 md:gap-8">
+
+            <button className="bg-white text-black px-7 md:px-8 py-3 md:py-3.5 rounded-lg text-sm font-medium transition hover:bg-neutral-200">
               Get Your PI
             </button>
 
@@ -195,12 +293,15 @@ function Hero() {
             >
               Start Your Brand
             </Link>
+
           </div>
 
         </div>
+
       </div>
+
     </section>
-  );
+  )
 }
 
 
