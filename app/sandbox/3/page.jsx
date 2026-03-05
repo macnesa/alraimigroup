@@ -250,13 +250,7 @@ function Hero() {
                 Start Your Brand
                 <FaArrowRight className="text-xs" />
               </Link>
-
-              <Link
-                href="#process"
-                className="inline-flex items-center justify-center text-white/70 hover:text-white text-sm font-medium transition"
-              >
-                View Process
-              </Link>
+ 
             </div>
 
           </div>

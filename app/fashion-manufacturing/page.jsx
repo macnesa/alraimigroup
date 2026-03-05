@@ -51,15 +51,34 @@ export default function Page() {
       <MaterialsTrims/>
       <FitSizing/>
       <MOQsTimelines/>
-      <div
-      className="relative text-white py-32"
+      <section
+  className="bg-[#F3F2EF] pt-[8px]"
+>
+
+  <div className="px-[8px]">
+
+    <div
+      className="relative text-white rounded-2xl overflow-hidden"
       style={{
         background: "linear-gradient(135deg, #191919 0%, #2C2C2C 100%)",
       }}
     >
-      <QualityControl />
-      <LogisticsShipping />
+
+      <div className="py-20 md:py-24 xl:py-28">
+
+        <QualityControl />
+
+        <div className="h-[8px]" />
+
+        <LogisticsShipping />
+
+      </div>
+
     </div>
+
+  </div>
+
+</section>
       {/* <Achievements/> */}
       {/* <Services/> */}
       {/* <HowWeWork/> */}
@@ -148,161 +167,169 @@ function Hero() {
 
     <section
       ref={heroRef}
-      className="relative bg-[#F3F2EF] overflow-hidden"
+      className="bg-[#F3F2EF] pt-[8px]"
     >
 
-      {/* ===== DARK INDUSTRIAL BLOCK ===== */}
+      <div className="px-[8px]">
 
-      <div
-        className="relative text-white"
-        style={{
-          background: "linear-gradient(135deg, #191919 0%, #2C2C2C 100%)",
-        }}
-      >
+        {/* HERO SURFACE */}
 
-        {/* HEADER */}
+        <div
+          className="relative text-white rounded-2xl border border-neutral-200 overflow-hidden"
+          style={{
+            background: "linear-gradient(135deg, #191919 0%, #2C2C2C 100%)",
+          }}
+        >
 
-        <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 pt-8 md:pt-10">
+          {/* HEADER */}
 
-          <header className="hero-nav flex items-center justify-between">
+          <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 pt-8 md:pt-10">
 
-            <Link href="/" className="flex items-center gap-3">
-              <Image
-                src="/images/alraimi-logo-white-1.png"
-                alt="Alraimi Logo"
-                width={42}
-                height={38}
-                priority
-              />
-            </Link>
+            <header className="hero-nav flex items-center justify-between">
 
-            {/* Desktop Nav */}
-
-            <nav className="hidden md:flex items-center gap-10 lg:gap-12 text-sm text-white/70">
-
-              <Link href="/" className="hover:text-white transition">
-                Home
+              <Link href="/" className="flex items-center gap-3">
+                <Image
+                  src="/images/alraimi-logo-white-1.png"
+                  alt="Alraimi Logo"
+                  width={42}
+                  height={38}
+                  priority
+                />
               </Link>
+
+
+              {/* Desktop Nav */}
+
+              <nav className="hidden md:flex items-center gap-10 lg:gap-12 text-sm text-white/70">
+
+                <Link href="/" className="hover:text-white transition">
+                  Home
+                </Link>
+
+                <Link
+                  href="/fashion-manufacturing"
+                  className="text-white"
+                >
+                  Fashion
+                </Link>
+
+                <Link
+                  href="/luxury-packaging"
+                  className="hover:text-white transition"
+                >
+                  Packaging
+                </Link>
+
+                <Link href="#contact" className="hover:text-white transition">
+                  Contact
+                </Link>
+
+              </nav>
+
+
+              {/* Desktop CTA */}
 
               <Link
-                href="/fashion-manufacturing"
-                className="text-white"
+                href="#contact"
+                className="hidden md:inline-flex items-center bg-white text-black px-7 lg:px-8 py-3 rounded-lg text-sm font-medium transition hover:bg-neutral-200"
               >
-                Fashion
+                Get Your PI
               </Link>
+
+
+              {/* Mobile CTA */}
 
               <Link
-                href="/luxury-packaging"
-                className="hover:text-white transition"
+                href="#contact"
+                className="md:hidden inline-flex items-center bg-white text-black px-5 py-2.5 rounded-lg text-sm font-medium transition hover:bg-neutral-200"
               >
-                Packaging
+                Get PI
               </Link>
 
-              <Link href="#contact" className="hover:text-white transition">
-                Contact
-              </Link>
-
-            </nav>
-
-            {/* Desktop CTA */}
-
-            <Link
-              href="#contact"
-              className="hidden md:inline-flex items-center bg-white text-black px-7 lg:px-8 py-3 rounded-lg text-sm font-medium transition hover:bg-neutral-200"
-            >
-              Get Your PI
-            </Link>
-
-            {/* Mobile CTA */}
-
-            <Link
-              href="#contact"
-              className="md:hidden inline-flex items-center bg-white text-black px-5 py-2.5 rounded-lg text-sm font-medium transition hover:bg-neutral-200"
-            >
-              Get PI
-            </Link>
-
-          </header>
-
-        </div>
-
-
-        {/* HERO CONTENT */}
-
-        <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 py-24 sm:py-28 md:py-32 lg:py-36 xl:py-40">
-
-          {/* LABEL */}
-
-          <div className="hero-label mb-6">
-
-            <span className="text-xs tracking-[0.2em] text-white/50">
-              FASHION MANUFACTURING
-            </span>
+            </header>
 
           </div>
 
 
-          {/* HEADLINE */}
 
-          <h1
-            className="
-            hero-title
-            font-light
-            leading-[1.05]
-            tracking-[-0.02em]
-            max-w-[980px]
+          {/* HERO CONTENT */}
 
-            text-[36px]
-            sm:text-[44px]
-            md:text-[56px]
-            lg:text-[64px]
-            xl:text-[72px]
-            "
-          >
+          <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 py-24 sm:py-28 md:py-32 lg:py-36 xl:py-40">
 
-            <span className="block">
-              From Tech Pack to Shipment.
-            </span>
+            {/* LABEL */}
 
-            <span className="block text-[#8C7A5B]">
-              Controlled Fit. Structured Production.
-            </span>
+            <div className="hero-label mb-6">
 
-          </h1>
+              <span className="text-xs tracking-[0.2em] text-white/50">
+                FASHION MANUFACTURING
+              </span>
+
+            </div>
 
 
-          {/* DESCRIPTION */}
+            {/* HEADLINE */}
 
-          <p
-            className="
-            hero-desc
-            mt-7 md:mt-8
-            text-[15px]
-            md:text-[17px]
-            lg:text-[18px]
-            leading-[1.7]
-            text-white/70
-            max-w-[720px]
-            "
-          >
+            <h1
+              className="
+              hero-title
+              font-light
+              leading-[1.05]
+              tracking-[-0.02em]
+              max-w-[980px]
 
-            Womenswear, resortwear, and activewear manufactured through
-            structured sampling, measured production control, AQL inspection,
-            and coordinated global delivery from our factory network in China.
-
-          </p>
-
-
-          {/* CTA */}
-
-          <div className="hero-cta mt-9 md:mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-
-            <Link
-              href="#start"
-              className="bg-white text-black px-7 md:px-8 py-3 md:py-3.5 rounded-lg text-sm font-medium transition hover:bg-neutral-200"
+              text-[36px]
+              sm:text-[44px]
+              md:text-[56px]
+              lg:text-[64px]
+              xl:text-[72px]
+              "
             >
-              Start Your Brand
-            </Link>
+
+              <span className="block">
+                From Tech Pack to Shipment.
+              </span>
+
+              <span className="block text-[#8C7A5B]">
+                Controlled Fit. Structured Production.
+              </span>
+
+            </h1>
+
+
+            {/* DESCRIPTION */}
+
+            <p
+              className="
+              hero-desc
+              mt-7 md:mt-8
+              text-[15px]
+              md:text-[17px]
+              lg:text-[18px]
+              leading-[1.7]
+              text-white/70
+              max-w-[720px]
+              "
+            >
+
+              Womenswear, resortwear, and activewear manufactured through
+              structured sampling, measured production control, AQL inspection,
+              and coordinated global delivery from our factory network in China.
+
+            </p>
+
+
+            {/* CTA */}
+
+            <div className="hero-cta mt-9 md:mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+
+              <Link
+                href="#start"
+                className="bg-white text-black px-7 md:px-8 py-3 md:py-3.5 rounded-lg text-sm font-medium transition hover:bg-neutral-200"
+              >
+                Start Your Brand
+              </Link>
+
+            </div>
 
           </div>
 
@@ -311,100 +338,30 @@ function Hero() {
       </div>
 
     </section>
+
   )
 }
 
-
-
-function ClientsMarquee() {
-  const logos = [
-    "/clients/1-1-removebg-preview.png",
-    "/clients/3-removebg-preview.png",
-    "/clients/12-removebg-preview.png",
-    "/clients/7-removebg-preview.png",
-    "/clients/11-removebg-preview.png",
-    "/clients/2-removebg-preview.png",
-    "/clients/4-removebg-preview.png",
-    "/clients/5-removebg-preview.png",
-    "/clients/6-removebg-preview.png",
-    "/clients/8-removebg-preview.png",
-    "/clients/9-removebg-preview.png",
-    "/clients/10-removebg-preview.png",
-    "/clients/13-removebg-preview.png",
-    "/clients/14-removebg-preview.png",
-    "/clients/VHD-white.png",
-  ];
-  
-  return (
-    <section className="bg-[#F3F2EF] py-20">
-
-      {/* CENTERED + NARROW VIEWPORT */}
-      <div className="relative max-w-[1050px] mx-auto overflow-hidden">
-
-        {/* Edge fade */}
-        <div className="pointer-events-none absolute left-0 top-0 h-full w-20 bg-gradient-to-r from-[#F3F2EF] to-transparent z-10" />
-        <div className="pointer-events-none absolute right-0 top-0 h-full w-20 bg-gradient-to-l from-[#F3F2EF] to-transparent z-10" />
-
-        <div className="flex min-w-max animate-marquee items-center">
-
-          {[...logos, ...logos].map((logo, index) => (
-            <div
-              key={index}
-              className="flex-shrink-0 mx-14 flex items-center justify-center"
-            >
-              <Image
-                src={logo}
-                alt="Client logo"
-                width={240}
-                height={120}
-                className="object-contain h-32 w-auto invert opacity-90"
-              />
-            </div>
-          ))}
-
-        </div>
-      </div>
-
-      <style jsx>{`
-        @keyframes marquee {
-          from {
-            transform: translateX(0);
-          }
-          to {
-            transform: translateX(-50%);
-          }
-        }
-
-        .animate-marquee {
-          animation: marquee 85s linear infinite;
-        }
-      `}</style>
-
-    </section>
-  );
-}
-
+ 
 function About() {
   return (
-    <section className="bg-[#F3F2EF]">
+    <section className="bg-[#F3F2EF]  pt-10 pb-[8px]">
 
-      <div className="max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16 py-16 md:py-20 xl:py-24">
+        <div className="max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16">
 
-        <div className="bg-white border border-[#DDD7CE] rounded-2xl">
+          <div className="grid grid-cols-1 md:grid-cols-[0.55fr_0.45fr] gap-[8px]">
 
-          <div className="grid grid-cols-1 md:grid-cols-[0.55fr_0.45fr] gap-12 md:gap-20 items-start px-8 sm:px-12 md:px-16 xl:px-20 py-14 md:py-16 xl:py-20">
+            {/* LEFT CARD */}
+            <div className="bg-white border border-[#DDD7CE] rounded-2xl px-8 sm:px-12 md:px-16 xl:px-20 py-14 md:py-16 xl:py-20 text-center md:text-left">
 
-            {/* LEFT */}
-            <div className="text-center md:text-left">
-
-              <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium  mb-8">
+              <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-8">
                 OVERVIEW
               </div>
 
               <h2 className="text-[32px] sm:text-[36px] md:text-[42px] leading-[1.1] tracking-[-0.015em] font-medium text-neutral-900 mb-6">
                 Production
                 <br />
-                <span  >
+                <span>
                   From Idea to Delivery
                 </span>
               </h2>
@@ -413,23 +370,26 @@ function About() {
 
             </div>
 
-            {/* RIGHT */}
-            <div className="text-[16px] md:text-[18px] leading-[1.75] text-neutral-700">
 
-              <p>
-                We produce dress-led womenswear, resort sets, modest fashion,
-                golfwear, and capsule collections — from first idea to global
-                delivery. You work directly with our China factory team on tech
-                packs, sampling, in-line quality control, and pre-shipment inspection.
-              </p>
+            {/* RIGHT CARD */}
+            <div className="bg-white border border-[#DDD7CE] rounded-2xl px-8 sm:px-12 md:px-16 xl:px-20 py-14 md:py-16 xl:py-20 flex items-center">
+
+              <div className="text-[16px] md:text-[18px] leading-[1.75] text-neutral-700">
+
+                <p>
+                  We produce dress-led womenswear, resort sets, modest fashion,
+                  golfwear, and capsule collections — from first idea to global
+                  delivery. You work directly with our China factory team on tech
+                  packs, sampling, in-line quality control, and pre-shipment inspection.
+                </p>
+
+              </div>
 
             </div>
 
           </div>
 
         </div>
-
-      </div>
 
     </section>
   );
@@ -437,177 +397,113 @@ function About() {
 
 function ProductCategories() {
 
-  const sectionRef = useRef(null)
-
   const categories = [
     {
       title: "Womenswear",
-      image:
-        "https://res.cloudinary.com/djgu1bhef/image/upload/v1772602454/ChatGPT_Image_Mar_4_2026_12_33_53_PM_nkppls.png",
-      items: [
-        "Evening Dresses",
-        "Day Dresses",
-        "Coordinated Sets",
-        "Blouses",
-        "Skirts",
-      ],
+      image: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772602454/ChatGPT_Image_Mar_4_2026_12_33_53_PM_nkppls.png",
+      items: ["Evening Dresses","Day Dresses","Coordinated Sets","Blouses","Skirts"],
     },
     {
       title: "Resort & Modest",
-      image:
-        "https://res.cloudinary.com/djgu1bhef/image/upload/v1772602454/ChatGPT_Image_Mar_4_2026_12_30_47_PM_oyn4tt.png",
-      items: ["Kaftans", "Abayas", "Flowy Sets"],
+      image: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772602454/ChatGPT_Image_Mar_4_2026_12_30_47_PM_oyn4tt.png",
+      items: ["Kaftans","Abayas","Flowy Sets"],
     },
     {
       title: "Active & Golf",
-      image:
-        "https://res.cloudinary.com/djgu1bhef/image/upload/v1772602454/ChatGPT_Image_Mar_4_2026_12_28_48_PM_mnolg2.png",
+      image: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772602454/ChatGPT_Image_Mar_4_2026_12_28_48_PM_mnolg2.png",
+      items: ["Polos","Shorts","Pants","Caps","Performance Layers"],
+    },
+    {
+      title: "Active Sportswear",
+      image: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772697205/ChatGPT_Image_Mar_5_2026_02_52_33_PM_sliigg.png",
       items: [
-        "Polos",
-        "Shorts",
-        "Pants",
-        "Caps",
-        "Performance Layers",
+        "Performance Tops",
+        "Compression Leggings",
+        "Training Shorts",
+        "Sports Bras",
+        "Technical Layers",
       ],
     },
     {
       title: "Capsule Collections",
-      image:
-        "https://res.cloudinary.com/djgu1bhef/image/upload/v1772602064/ChatGPT_Image_Mar_4_2026_12_27_04_PM_ukiamf.png",
-      items: [
-        "Multi-Style Drops",
-        "Trims",
-        "Labels",
-        "Retail-Ready Packing",
-      ],
+      image: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772602064/ChatGPT_Image_Mar_4_2026_12_27_04_PM_ukiamf.png",
+      items: ["Multi-Style Drops","Trims","Labels","Retail-Ready Packing"],
     },
   ]
 
-  useEffect(() => {
-
-    gsap.registerPlugin(ScrollTrigger)
-
-    const ctx = gsap.context(() => {
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 85%",
-          toggleActions: "play none none none",
-        }
-      })
-
-      tl.from(".pc-label", {
-        opacity: 0,
-        y: 16,
-        duration: 0.4,
-        ease: "power2.out"
-      })
-
-      .from(".pc-row", {
-        opacity: 0,
-        y: 30,
-        stagger: 0.08,
-        duration: 0.45,
-        ease: "power2.out"
-      }, "-=0.2")
-
-      .from(".pc-cta", {
-        opacity: 0,
-        y: 20,
-        duration: 0.4,
-        ease: "power2.out"
-      }, "-=0.2")
-
-    }, sectionRef)
-
-    return () => ctx.revert()
-
-  }, [])
-
 
   return (
-    <section ref={sectionRef} className="bg-[#F3F2EF]">
 
-      <div className="max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16 pb-16 md:pb-24 xl:pb-28">
+    <section className="bg-[#F3F2EF]   pt-[8px]">
+
+      <div className="max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16">
 
         <div className="bg-white border border-[#D6D1C8] rounded-2xl">
 
           <div className="px-8 sm:px-12 md:px-16 xl:px-20 py-14 md:py-16 xl:py-20">
 
-
             {/* LABEL */}
 
-            <div className="pc-label inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium   mb-12 md:mb-16">
-              PRODUCT CATEGORIES
+            <div className="flex justify-center mb-14">
+
+              <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium">
+                PRODUCT CATEGORIES
+              </div>
+
             </div>
 
 
+            {/* GRID */}
 
-            {/* LIST */}
+            <div className="grid grid-cols-1 md:grid-cols-6 gap-10">
 
-            <div className="space-y-10 md:space-y-14">
+              {categories.map((category, i) => {
 
-              {categories.map((category, index) => (
-                <div
-                  key={category.title}
-                  className={`pc-row grid grid-cols-1 md:grid-cols-[200px_1fr] gap-6 md:gap-10 items-center ${
-                    index !== categories.length - 1
-                      ? "pb-8 md:pb-10 border-b border-neutral-200"
-                      : ""
-                  }`}
-                >
+                let position = "md:col-span-2"
 
-                  {/* IMAGE */}
+                if (i === 3) position += " md:col-start-2"
+                if (i === 4) position += " md:col-start-4"
 
-                  <div
-                    className="
-                    relative w-full
-                    aspect-[1/1]
-                    md:aspect-auto md:h-[180px]
-                    lg:h-[120px]
-                    rounded-lg overflow-hidden
-                    border border-neutral-200
-                    "
-                  >
+                return (
 
-                    <Image
-                      src={category.image}
-                      alt={category.title}
-                      fill
-                      className="object-cover"
-                    />
+                  <div key={category.title} className={position}>
 
-                  </div>
+                    <div className="relative w-full aspect-[4/5] rounded-xl overflow-hidden border border-neutral-200 mb-5">
 
+                      <Image
+                        src={category.image}
+                        alt={category.title}
+                        fill
+                        className="object-cover"
+                      />
 
-                  {/* CONTENT */}
+                    </div>
 
-                  <div>
-
-                    <div className="text-[22px] md:text-[26px] leading-[1.2] font-medium text-neutral-900 mb-3">
+                    <div className="text-[22px] font-medium text-neutral-900 mb-2">
                       {category.title}
                     </div>
 
-                    <div className="text-[16px] md:text-[18px] leading-[1.8] text-neutral-600">
+                    <div className="text-[16px] leading-[1.7] text-neutral-600">
                       {category.items.join(", ")}
                     </div>
 
                   </div>
 
-                </div>
-              ))}
+                )
+
+              })}
 
             </div>
 
 
-
             {/* CTA */}
 
-            <div className="pc-cta mt-16 md:mt-20">
+            <div className="flex justify-center mt-16 md:mt-20">
+
               <button className="bg-white text-black px-8 py-3.5 rounded-lg text-sm font-medium border border-neutral-300 hover:bg-neutral-100 transition">
                 Start Your Brand
               </button>
+
             </div>
 
 
@@ -618,14 +514,18 @@ function ProductCategories() {
       </div>
 
     </section>
+
   )
 }
 
 
 function MaterialsTrims() {
+
   const data = [
     {
       title: "Fabrics",
+      image: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772705132/ChatGPT_Image_Mar_5_2026_05_03_50_PM_nns9zv.png",
+      fade: "w-[58%]",
       items: [
         "Cotton",
         "Linen",
@@ -638,6 +538,8 @@ function MaterialsTrims() {
     },
     {
       title: "Trims & Labels",
+      image: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772705134/ChatGPT_Image_Mar_5_2026_05_03_25_PM_pfdojt.png",
+      fade: "w-[52%]",
       items: [
         "Woven Labels",
         "Heat Transfer",
@@ -650,6 +552,8 @@ function MaterialsTrims() {
     },
     {
       title: "Packing Options",
+      image: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772705131/ChatGPT_Image_Mar_5_2026_05_05_00_PM_nvpo8l.png",
+      fade: "w-[60%]",
       items: [
         "Retail Poly",
         "Eco-Friendly Garment Bags",
@@ -659,80 +563,127 @@ function MaterialsTrims() {
     },
     {
       title: "Color Control",
+      image: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772705133/ChatGPT_Image_Mar_5_2026_05_02_04_PM_wqntnm.png",
+      fade: "w-[55%]",
       items: [
         "Client Swatch",
         "Reference Samples",
         "Pantone Matching",
       ],
     },
-  ];
+  ]
+
 
   return (
-    <section className="bg-[#F3F2EF]">
-      <div className="max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16 py-16 sm:py-20 md:py-24 xl:py-28">
 
-        {/* HEADER */}
-        <div className="mb-12 md:mb-16 xl:mb-20">
- 
-          
-          <div className="pc-label inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium   mb-12 ">
-          MATERIALS & TRIMS
-            </div>
+    <section className="bg-[#F3F2EF] pt-[8px]">
 
-          <h2 className="
-            text-[32px]
-            sm:text-[36px]
-            md:text-[40px]
-            lg:text-[42px]
-            leading-[1.1]
-            tracking-[-0.015em]
-            font-medium
-            text-neutral-900
-            max-w-[720px]
-          ">
-            Fabric Selection, Trim Development,
-            <br />
-            and Packing Control
-          </h2>
+      <div className="px-[8px]">
 
-        </div>
+        <div className="border border-neutral-200 rounded-2xl">
 
+          <div className="px-10 md:px-14 xl:px-20 pt-16 md:pt-20 xl:pt-24">
 
-        {/* GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10 lg:gap-12">
+            <div className="max-w-[1600px] mx-auto">
 
-          {data.map((block) => (
-            <div
-              key={block.title}
-              className="bg-white border border-neutral-300 p-6 sm:p-8 md:p-10 rounded-xl"
-            >
+              {/* HEADER */}
 
-              <div className="text-[18px] md:text-[20px] font-medium text-neutral-900 mb-5 md:mb-6">
-                {block.title}
+              <div className="mb-12 md:mb-16 xl:mb-20">
+
+                <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-12">
+                  MATERIALS & TRIMS
+                </div>
+
+                <h2 className="
+                  text-[32px]
+                  sm:text-[36px]
+                  md:text-[40px]
+                  lg:text-[42px]
+                  leading-[1.1]
+                  tracking-[-0.015em]
+                  font-medium
+                  text-neutral-900
+                  max-w-[720px]
+                ">
+                  Fabric Selection, Trim Development,
+                  <br />
+                  and Packing Control
+                </h2>
+
               </div>
 
-              <div className="flex flex-wrap gap-2 md:gap-3">
 
-                {block.items.map((item) => (
-                  <span
-                    key={item}
-                    className="px-3 md:px-4 py-1.5 md:py-2 text-[13px] md:text-[14px] border border-neutral-300 rounded-md text-neutral-700"
+              {/* GRID */}
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-10 pb-14 md:pb-16 xl:pb-20">
+
+                {data.map((block) => (
+                  <div
+                    key={block.title}
+                    className="relative bg-white border border-neutral-300 rounded-2xl overflow-hidden min-h-[220px] flex items-center"
                   >
-                    {item}
-                  </span>
+
+                    {/* IMAGE RIGHT */}
+
+                    <div className={`absolute inset-y-0 right-0 ${block.fade} pointer-events-none`}>
+
+                      <img
+                        src={block.image}
+                        alt={block.title}
+                        className="w-full h-full object-cover"
+                      />
+
+                      {/* FADE */}
+
+                      <div className="absolute inset-0 bg-gradient-to-l from-transparent via-white/60 to-white" />
+
+                    </div>
+
+
+                    {/* CONTENT */}
+
+                    <div className="relative z-10 px-6 md:px-8 py-8 max-w-[65%]">
+
+                      <div className="text-[18px] md:text-[19px] font-medium text-neutral-900 mb-4">
+                        {block.title}
+                      </div>
+
+                      <div className="flex flex-wrap gap-2">
+
+                        {block.items.map((item) => (
+                          <span
+                            key={item}
+                            className="px-3 py-1.5 text-[12.5px] border border-neutral-300 rounded-md text-neutral-700"
+                          >
+                            {item}
+                          </span>
+                        ))}
+
+                      </div>
+
+                    </div>
+
+                  </div>
                 ))}
 
               </div>
 
+
             </div>
-          ))}
+
+          </div>
 
         </div>
 
       </div>
+
     </section>
-  );
+
+  )
 }
+
+
+
 
 
 function FitSizing() {
@@ -813,79 +764,103 @@ function FitSizing() {
 
 
   return (
-    <section ref={sectionRef} className="bg-[#F3F2EF]">
 
-      <div className="max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16 py-20 sm:py-24 md:py-28 xl:py-32">
+    <section
+      ref={sectionRef}
+      className="relative bg-[#F3F2EF] pt-[8px] overflow-hidden"
+    >
 
-        <div className="grid grid-cols-1 md:grid-cols-[0.45fr_0.55fr] gap-14 md:gap-20 xl:gap-24">
+      {/* LEFT TEXTURE */}
 
+      <div
+        className="absolute left-0 top-0 h-full w-[35%] pointer-events-none opacity-[1]"
+        style={{
+          backgroundImage:
+            "url(https://res.cloudinary.com/djgu1bhef/image/upload/v1772706209/ChatGPT_Image_Mar_5_2026_05_23_08_PM_s6kvvj.png)",
+          backgroundSize: "900px",
+          backgroundRepeat: "repeat",
+          backgroundPosition: "left center",
+          WebkitMaskImage:
+            "linear-gradient(to right, black 0%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
+          WebkitMaskComposite: "destination-in",
+          maskImage:
+            "linear-gradient(to right, black 0%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
+          maskComposite: "intersect",
+        }}
+      />
 
-          {/* LEFT SIDE */}
+      {/* RIGHT TEXTURE */}
 
-          <div> 
-            <div className="pc-label inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium  mb-5 md:mb-6 ">
-            FIT & SIZING
-            </div>
-
-
-            <h2
-              className="
-              fit-title
-              text-[34px]
-              sm:text-[38px]
-              md:text-[42px]
-              lg:text-[44px]
-              leading-[1.1]
-              tracking-[-0.015em]
-              font-medium
-              text-neutral-900
-              "
-            >
-              We Set Your Fit Once —
-              <br />
-              Then Protect It Every Reorder
-            </h2>
-
-
-            <div
-              className="
-              fit-desc
-              mt-8 md:mt-10
-              text-neutral-700
-              text-[16px]
-              md:text-[17px]
-              lg:text-[18px]
-              leading-[1.8]
-              max-w-[420px]
-              "
-            >
-              Fit consistency is controlled through documentation,
-              approvals, and locked references before production.
-            </div>
-
-          </div>
+      <div
+        className="absolute right-0 top-0 h-full w-[35%] pointer-events-none opacity-[0.06]"
+        style={{
+          backgroundImage:
+            "url(https://res.cloudinary.com/djgu1bhef/image/upload/v1772706209/ChatGPT_Image_Mar_5_2026_05_23_08_PM_s6kvvj.png)",
+          backgroundSize: "900px",
+          backgroundRepeat: "repeat",
+          backgroundPosition: "right center",
+          WebkitMaskImage:
+            "linear-gradient(to left, black 0%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
+          WebkitMaskComposite: "destination-in",
+          maskImage:
+            "linear-gradient(to left, black 0%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
+          maskComposite: "intersect",
+        }}
+      />
 
 
+      {/* CONTENT */}
 
-          {/* RIGHT SIDE */}
+      <div className="relative px-[8px]">
 
-          <div className="space-y-10 md:space-y-12">
+        <div className="max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16 py-20 sm:py-24 md:py-28 xl:py-32">
 
-            {controls.map((item) => (
-              <div key={item.title} className="fit-item">
+          <div className="grid grid-cols-1 md:grid-cols-[0.45fr_0.55fr] gap-14 md:gap-20 xl:gap-24">
 
-                <div className="text-[20px] md:text-[22px] font-medium text-neutral-900 mb-3">
-                  {item.title}
-                </div>
 
-                <div className="text-neutral-700 text-[16px] md:text-[17px] leading-[1.8]">
-                  {item.description}
-                </div>
+            {/* LEFT */}
 
-                <div className="mt-6 h-[1px] bg-neutral-300" />
+            <div>
 
+              <div className="fit-label inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-5 md:mb-6">
+                FIT & SIZING
               </div>
-            ))}
+
+              <h2 className="fit-title text-[34px] sm:text-[38px] md:text-[42px] lg:text-[44px] leading-[1.1] tracking-[-0.015em] font-medium text-neutral-900">
+                We Set Your Fit Once —
+                <br />
+                Then Protect It Every Reorder
+              </h2>
+
+              <div className="fit-desc mt-8 md:mt-10 text-neutral-700 text-[16px] md:text-[17px] lg:text-[18px] leading-[1.8] max-w-[420px]">
+                Fit consistency is controlled through documentation,
+                approvals, and locked references before production.
+              </div>
+
+            </div>
+
+
+            {/* RIGHT */}
+
+            <div className="space-y-10 md:space-y-12">
+
+              {controls.map((item) => (
+                <div key={item.title} className="fit-item">
+
+                  <div className="text-[20px] md:text-[22px] font-medium text-neutral-900 mb-3">
+                    {item.title}
+                  </div>
+
+                  <div className="text-neutral-700 text-[16px] md:text-[17px] leading-[1.8]">
+                    {item.description}
+                  </div>
+
+                  <div className="mt-6 h-[1px] bg-neutral-300" />
+
+                </div>
+              ))}
+
+            </div>
 
           </div>
 
@@ -894,6 +869,7 @@ function FitSizing() {
       </div>
 
     </section>
+
   )
 }
 
@@ -922,59 +898,67 @@ function MOQsTimelines() {
   ];
 
   return (
-    <section className="bg-[#F3F2EF] py-20 md:py-28 xl:py-32">
-      <div className="max-w-[1600px] mx-auto px-6 md:px-16">
+    <section className="bg-[#F3F2EF]  pt-[8px]">
 
-        {/* Header */}
-        <div className="mb-16 md:mb-24 text-center">
-          
-          <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
-          MOQs & Timelines
+      <div className="px-[8px]">
+
+        <div className="max-w-[1600px] mx-auto px-6 md:px-16 py-20  ">
+
+          {/* Header */}
+          <div className="mb-16 md:mb-24 text-center">
+            
+            <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
+              MOQs & Timelines
             </div>
 
-          <h2 className="text-[32px] sm:text-[36px] md:text-[40px] xl:text-[42px] leading-[1.1] tracking-[-0.015em] font-medium text-neutral-900">
-            Production Quantities and Lead Times
-          </h2>
-        </div>
-
-        {/* Card Wrapper */}
-        <div className="bg-white border border-[#D6D1C8] rounded-2xl px-8 sm:px-12 md:px-16 xl:px-20 py-12 md:py-16 xl:py-20">
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-y-12 md:gap-y-16 md:gap-x-16 xl:gap-x-20">
-
-            {items.map((item, index) => (
-              <div key={item.title} className="flex gap-6 md:gap-8 items-start">
-
-                <div className="text-[22px] md:text-[26px] xl:text-[28px] font-medium text-neutral-300 leading-none shrink-0">
-                  {String(index + 1).padStart(2, "0")}
-                </div>
-
-                <div>
-                  <div className="text-[18px] md:text-[20px] font-medium text-neutral-900 mb-3">
-                    {item.title}
-                  </div>
-
-                  <div className="text-neutral-700 text-[16px] md:text-[17px] leading-[1.8]">
-                    {item.content}
-                  </div>
-                </div>
-
-              </div>
-            ))}
+            <h2 className="text-[32px] sm:text-[36px] md:text-[40px] xl:text-[42px] leading-[1.1] tracking-[-0.015em] font-medium text-neutral-900">
+              Production Quantities and Lead Times
+            </h2>
 
           </div>
 
-          <div className="mt-14 md:mt-20 pt-6 md:pt-8 border-t border-neutral-200 text-neutral-500 text-[14px] md:text-[15px] leading-[1.8] max-w-[800px]">
-            Final MOQs and production timelines are confirmed in your PI based on structure,
-            materials, finishes, and logistics requirements.
+          {/* Card Wrapper */}
+          <div className="bg-white border border-[#D6D1C8] rounded-2xl px-8 sm:px-12 md:px-16 xl:px-20 py-12 md:py-16 xl:py-20">
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-y-12 md:gap-y-16 md:gap-x-16 xl:gap-x-20">
+
+              {items.map((item, index) => (
+                <div key={item.title} className="flex gap-6 md:gap-8 items-start">
+
+                  <div className="text-[22px] md:text-[26px] xl:text-[28px] font-medium text-neutral-300 leading-none shrink-0">
+                    {String(index + 1).padStart(2, "0")}
+                  </div>
+
+                  <div>
+                    <div className="text-[18px] md:text-[20px] font-medium text-neutral-900 mb-3">
+                      {item.title}
+                    </div>
+
+                    <div className="text-neutral-700 text-[16px] md:text-[17px] leading-[1.8]">
+                      {item.content}
+                    </div>
+                  </div>
+
+                </div>
+              ))}
+
+            </div>
+
+            <div className="mt-14 md:mt-20 pt-6 md:pt-8 border-t border-neutral-200 text-neutral-500 text-[14px] md:text-[15px] leading-[1.8] max-w-[800px]">
+              Final MOQs and production timelines are confirmed in your PI based on structure,
+              materials, finishes, and logistics requirements.
+            </div>
+
           </div>
 
         </div>
 
       </div>
+
     </section>
   );
 }
+
 
 function QualityControl() {
 
@@ -1623,14 +1607,15 @@ function HowWeWork() {
 }
  
 function Projects() {
-  const sectionRef = useRef(null);
+
+  const sectionRef = useRef(null)
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.registerPlugin(ScrollTrigger)
 
     const ctx = gsap.context(() => {
 
-      // Header
       gsap.from(".projects-header", {
         opacity: 0,
         y: 30,
@@ -1641,37 +1626,39 @@ function Projects() {
           start: "top 80%",
           once: true,
         },
-      });
+      })
 
-      // Each project block
       gsap.utils.toArray(".project-block").forEach((block) => {
+
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: block,
             start: "top 85%",
             once: true,
           }
-        });
+        })
 
         tl.from(block.querySelector(".project-image"), {
           opacity: 0,
           scale: 1.05,
           duration: 0.8,
           ease: "power2.out",
-        });
+        })
 
         tl.from(block.querySelector(".project-text"), {
           opacity: 0,
           y: 40,
           duration: 0.6,
           ease: "power2.out",
-        }, "-=0.6");
-      });
+        }, "-=0.6")
 
-    }, sectionRef);
+      })
 
-    return () => ctx.revert();
-  }, []);
+    }, sectionRef)
+
+    return () => ctx.revert()
+
+  }, [])
 
   const projects = [
     {
@@ -1693,91 +1680,119 @@ function Projects() {
   ]
 
   return (
+
     <section
       ref={sectionRef}
-      className="bg-[#F3F2EF] py-24 md:py-28"
+      className="bg-[#F3F2EF] pt-[8px]"
     >
-      <div className="max-w-[1600px] mx-auto px-6 md:px-16">
 
-        {/* HEADER */}
-        <div className="projects-header mb-16 md:mb-28 text-center">
+      <div className="px-[8px]">
 
-          <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
-            Projects
-          </div>
+        <div className="border border-[#D6D1C8] rounded-2xl  ">
 
-          <h2 className="text-[32px] sm:text-[36px] md:text-[42px] leading-[1.1] tracking-[-0.015em] font-medium text-neutral-900">
-            Selected Packaging Production
-          </h2>
+          <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 py-24 md:py-28">
 
-        </div>
+            {/* HEADER */}
 
-        <div className="space-y-16 md:space-y-12">
+            <div className="projects-header mb-20 md:mb-28 text-center">
 
-          {projects.map((project, index) => (
-            <div
-              key={project.title}
-              className="project-block grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-stretch"
-            >
-
-              {/* IMAGE */}
-              <div
-                className={`project-image md:col-span-4 ${
-                  index % 2 === 0 ? "md:order-2" : ""
-                }`}
-              >
-                <div className="bg-white border border-[#D6D1C8] rounded-2xl overflow-hidden h-full">
-                  <div className="aspect-[4/3] md:aspect-[3/4] overflow-hidden">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                </div>
+              <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
+                Projects
               </div>
 
-              {/* TEXT */}
-              <div
-                className={`project-text md:col-span-8 ${
-                  index % 2 === 0 ? "md:order-1" : ""
-                }`}
-              >
-                <div className="bg-white border border-[#D6D1C8] rounded-2xl h-full flex items-center">
-                  <div className="px-8 sm:px-12 md:px-16 xl:px-20 py-12 md:py-16 max-w-[640px]">
-
-                    <div className="inline-flex items-center border border-neutral-300 px-4 py-1.5 rounded-full text-xs tracking-widest uppercase font-medium text-neutral-600 mb-6 md:mb-10">
-                      {String(index + 1).padStart(2, "0")}
-                    </div>
-
-                    <div className="text-sm text-neutral-500 mb-4">
-                      {project.meta}
-                    </div>
-
-                    <h3 className="text-[28px] sm:text-[32px] md:text-[36px] xl:text-[40px] leading-[1.05] font-medium tracking-[-0.015em] text-neutral-900 mb-6">
-                      {project.title}
-                    </h3>
-
-                    <p className="text-[16px] md:text-[18px] leading-[1.8] text-neutral-600 mb-8 md:mb-10">
-                      {project.description}
-                    </p>
-
-                    <button className="inline-flex items-center gap-2 border border-neutral-300 px-6 md:px-8 py-2.5 md:py-3 rounded-full text-sm font-medium text-neutral-800 hover:bg-neutral-100 transition">
-                      View Case Study →
-                    </button>
-
-                  </div>
-                </div>
-              </div>
+              <h2 className="text-[32px] sm:text-[36px] md:text-[42px] leading-[1.1] tracking-[-0.015em] font-medium text-neutral-900">
+                Selected Packaging Production
+              </h2>
 
             </div>
-          ))}
+
+            <div className="space-y-[8px]">
+
+              {projects.map((project, index) => (
+
+                <div
+                  key={project.title}
+                  className="project-block grid grid-cols-1 md:grid-cols-12 gap-[8px] items-stretch"
+                >
+
+                  {/* IMAGE */}
+
+                  <div
+                    className={`project-image md:col-span-4 ${
+                      index % 2 === 0 ? "md:order-2" : ""
+                    }`}
+                  >
+
+                    <div className="border border-[#D6D1C8] rounded-2xl overflow-hidden h-full bg-white">
+
+                      <div className="aspect-[4/3] md:aspect-[3/4] overflow-hidden">
+
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          className="w-full h-full object-cover"
+                        />
+
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                  {/* TEXT */}
+
+                  <div
+                    className={`project-text md:col-span-8 ${
+                      index % 2 === 0 ? "md:order-1" : ""
+                    }`}
+                  >
+
+                    <div className="border border-[#D6D1C8] rounded-2xl h-full flex items-center bg-white">
+
+                      <div className="px-8 sm:px-12 md:px-16 xl:px-20 py-12 md:py-16 max-w-[640px]">
+
+                        <div className="inline-flex items-center border border-neutral-300 px-4 py-1.5 rounded-full text-xs tracking-widest uppercase font-medium text-neutral-600 mb-6 md:mb-10">
+                          {String(index + 1).padStart(2, "0")}
+                        </div>
+
+                        <div className="text-sm text-neutral-500 mb-4">
+                          {project.meta}
+                        </div>
+
+                        <h3 className="text-[28px] sm:text-[32px] md:text-[36px] xl:text-[40px] leading-[1.05] font-medium tracking-[-0.015em] text-neutral-900 mb-6">
+                          {project.title}
+                        </h3>
+
+                        <p className="text-[16px] md:text-[18px] leading-[1.8] text-neutral-600 mb-8 md:mb-10">
+                          {project.description}
+                        </p>
+
+                        <button className="inline-flex items-center gap-2 border border-neutral-300 px-6 md:px-8 py-2.5 md:py-3 rounded-full text-sm font-medium text-neutral-800 hover:bg-neutral-100 transition">
+                          View Case Study →
+                        </button>
+
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              ))}
+
+            </div>
+
+          </div>
 
         </div>
 
       </div>
+
     </section>
-  );
+
+  )
+
 }
 
 
