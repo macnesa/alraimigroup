@@ -1,1570 +1,210 @@
-"use client"
-/* app/page.jsx */
+import PackagingPage from "./PackagingPage";
 
-import Image from "next/image";
-import Link from 'next/link'
-import React, { useRef, useEffect, useState, useCallback } from "react";
-import {
-  FaApple,
-  FaAmazon,
-  FaGoogle,
-  FaMicrosoft,
-  FaFacebook,
-  FaShopify,
-  FaArrowRight
-} from "react-icons/fa";
+export const metadata = {
+  title:
+    "Luxury Packaging Manufacturer in China | Rigid Boxes, Paper Bags & Perfume Packaging | Alraimi Group",
 
-import {
-  FileText,
-  DraftingCompass,
-  Package,
-  Factory,
-  Cog,
-  ShieldCheck,
-  Truck,
-  Repeat,
-  ArrowUpRight,
-  Plus,
-  X,
-  Download
-} from "lucide-react"
+  description:
+    "Luxury paper packaging manufacturer in China for perfume, cosmetics, and fashion brands. Rigid boxes, folding cartons, paper bags, inserts, and premium finishes with QC and worldwide shipping.",
 
+  keywords: [
+    "luxury packaging manufacturer",
+    "rigid box manufacturer China",
+    "perfume packaging manufacturer",
+    "cosmetic packaging manufacturer",
+    "custom rigid boxes China",
+    "magnetic box manufacturer",
+    "paper packaging manufacturer",
+    "luxury paper packaging China"
+  ],
 
-import useEmblaCarousel from "embla-carousel-react"
+  alternates: {
+    canonical: "https://alraimigroup.com/luxury-packaging"
+  },
 
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { SplitText } from "gsap/SplitText";
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1
+    }
+  },
 
-gsap.registerPlugin(ScrollTrigger, SplitText);
+  openGraph: {
+    title:
+      "Luxury Packaging Manufacturer | Rigid Boxes, Perfume & Fashion Packaging",
 
-import { motion, useScroll, useTransform } from "framer-motion";
+    description:
+      "Premium rigid boxes, folding cartons, paper bags, and branded packaging produced in China with precision finishing and QC.",
 
-import QualityControl from '../../components/organisms/QualityControl'
-import LogisticsShipping from '../../components/organisms/LogisticsShipping'
-import MOQsTimelines from '../../components/organisms/MOQsTimelines'
-import Footer from '../../components/organisms/Footer'
+    url: "https://alraimigroup.com/luxury-packaging",
 
+    siteName: "Alraimi Group",
 
+    images: [
+      {
+        url: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772376971/image_2026-02-27_13-50-18_kzqkhy.png",
+        width: 1200,
+        height: 630,
+        alt: "Luxury rigid box packaging production"
+      }
+    ],
+
+    locale: "en_US",
+    type: "website"
+  },
+
+  twitter: {
+    card: "summary_large_image",
+
+    title:
+      "Luxury Packaging Manufacturer | Rigid Boxes & Perfume Packaging",
+
+    description:
+      "Rigid boxes, folding cartons, paper bags, and premium finishes produced by our China factory with global shipping.",
+
+    images: [
+      "https://res.cloudinary.com/djgu1bhef/image/upload/v1772376971/image_2026-02-27_13-50-18_kzqkhy.png"
+    ]
+  }
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+
+  name: "Luxury Packaging Manufacturing",
+
+  provider: {
+    "@type": "Organization",
+    name: "Alraimi Group",
+    url: "https://alraimigroup.com"
+  },
+
+  serviceType: "Luxury Paper Packaging Manufacturing",
+
+  areaServed: "Worldwide",
+
+  description:
+    "Manufacturing of luxury rigid boxes, folding cartons, paper bags, and branded packaging for perfume, cosmetics, and fashion brands.",
+
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "Luxury Packaging Types",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Rigid Box Manufacturing"
+        }
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Folding Carton Manufacturing"
+        }
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Luxury Paper Bag Manufacturing"
+        }
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Perfume Packaging Manufacturing"
+        }
+      }
+    ]
+  }
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Are you the manufacturer?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text:
+          "Yes. Your order is produced on our manufacturing lines in China under our PI, quality control process, and production warranty."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "What MOQs do you work with?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text:
+          "Standard production runs start from 5,000 units. Some projects may begin from 1,000 units depending on box size, materials, and finishing complexity."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "How fast are samples and production?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text:
+          "Samples typically take 1–3 weeks after dieline and specification approval. Production usually takes 3–6 weeks depending on finishes and complexity."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "Can you match brand colors?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text:
+          "Yes. We match colors using Pantone references, client physical swatches, or approved master samples to ensure consistency across reorders."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "Do you offer sustainable packaging options?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text:
+          "Yes. We offer FSC-certified papers, recycled materials, soy-based inks, and plastic-free insert solutions for brands seeking sustainable packaging."
+      }
+    },
+    {
+      "@type": "Question",
+      name: "Can you ship door-to-door?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text:
+          "Yes. We offer DDP shipping with customs clearance, as well as EXW and FOB options depending on your logistics preference."
+      }
+    }
+  ]
+};
 
 export default function Page() {
-  return (
-    <main className="bg-white text-neutral-100">
-      <Hero />
-      <About />
-      <ProductCategories />
-      <FinishesSystem />
-      <FactoryCapabilities />
-      <Inserts />
-      <MOQsTimelines />
-      <section className="bg-[#F3F2EF] pt-[8px]">
-        <div className="px-[8px]">
-          <div
-            className="relative text-white rounded-2xl overflow-hidden"
-            style={{
-              background: "linear-gradient(135deg, #191919 0%, #2C2C2C 100%)",
-            }}
-          >
-            <div className="py-20 md:py-24 xl:py-28">
-              <QualityControl />
-
-              <div className="h-[8px]" />
-
-              <LogisticsShipping />
-            </div>
-          </div>
-        </div>
-      </section>
-      <Projects />
-      <Gallery />
-      <FAQ />
-      <Footer />
-      <CookieConsent />
-    </main>
-  );
-}
-
-
-
-
-
-
-/* =========================
-   SECTIONS
-========================= */
-function Hero() {
-
-  const heroRef = useRef(null)
-
-  useEffect(() => {
-
-    const ctx = gsap.context(() => {
-
-      gsap.from(".fade-up", {
-        opacity: 0,
-        y: 24,
-        duration: 0.45,
-        ease: "power2.out",
-        stagger: 0.07
-      })
-
-    }, heroRef)
-
-    return () => ctx.revert()
-
-  }, [])
-
-  return (
-
-    <section ref={heroRef} className="bg-[#F3F2EF] pt-[8px]">
-
-      <div className="px-[8px]">
-
-        <div
-          className="border border-neutral-200 rounded-2xl overflow-hidden text-white"
-          style={{ background: "linear-gradient(135deg, #191919 0%, #2C2C2C 100%)" }}
-        >
-
-          {/* HEADER */}
-
-          <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 pt-8 md:pt-10">
-
-            <header className="fade-up flex items-center justify-between">
-
-
-              {/* LOGO */}
-
-              <Link href="/" className="flex items-center gap-3">
-
-                <Image
-                  src="/images/alraimi-logo-white-1.png"
-                  alt="Alraimi Logo"
-                  width={42}
-                  height={38}
-                  priority
-                />
-
-              </Link>
-
-
-              {/* NAV */}
-
-              <nav className="hidden md:flex items-center gap-10 lg:gap-12 text-sm text-white/70">
-
-                <Link href="/" className="hover:text-white transition">
-                  Home
-                </Link>
-
-                <Link href="/fashion-manufacturing" className="hover:text-white transition">
-                  Fashion
-                </Link>
-
-                <Link href="/luxury-packaging" className="text-white">
-                  Packaging
-                </Link>
-
-                <Link href="/contact" className="hover:text-white transition">
-                  Contact
-                </Link>
-
-              </nav>
-
-
-              {/* NAV CTA */}
-
-              <Link
-                href="/contact#get-pi"
-                className="hidden md:inline-flex items-center bg-[#8C7A5B] text-white px-8 py-3.5 rounded-lg text-sm font-medium transition hover:bg-[#76674C]"
-              >
-                Get Your PI
-              </Link>
-
-
-              {/* MOBILE CTA */}
-
-              <Link
-                href="/contact#get-pi"
-                className="md:hidden inline-flex items-center bg-[#8C7A5B] text-white px-5 py-2.5 rounded-lg text-sm font-medium transition hover:bg-[#76674C]"
-              >
-                Get PI
-              </Link>
-
-            </header>
-
-          </div>
-
-
-          {/* HERO CONTENT */}
-
-          <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 py-20 md:py-24 lg:py-28">
-
-            <div className="grid lg:grid-cols-[0.55fr_0.45fr] gap-14 items-center">
-
-
-              {/* TEXT */}
-
-              <div>
-
-
-                {/* LABEL */}
-
-                <div className="fade-up mb-6">
-
-                  <span className="text-xs tracking-[0.18em] uppercase text-white/50">
-                    Luxury Packaging
-                  </span>
-
-                </div>
-
-
-                {/* TITLE */}
-
-                <h1 className="fade-up font-light leading-[1.05] tracking-[-0.02em] max-w-[720px] text-[34px] sm:text-[40px] md:text-[46px] lg:text-[50px]">
-
-                  Luxury Paper Packaging —
-                  <br />
-
-                  <span className="text-[#8C7A5B]">
-                    Precision Made in China.
-                  </span>
-
-                </h1>
-
-
-                {/* DESCRIPTION */}
-
-                <p className="fade-up mt-7 md:mt-8 text-[16px] md:text-[18px] leading-[1.7] text-white/70 max-w-[620px]">
-
-                  Dielines, sampling, production control, AQL inspection, and
-                  door-to-door delivery — managed by our factory team.
-
-                </p>
-
-
-                {/* CTA */}
-
-                <div className="fade-up mt-9 md:mt-10 flex items-center gap-8">
-
-
-                  {/* HERO PRIMARY CTA */}
-
-                  <Link
-                    href="/contact#get-pi"
-                    className="inline-flex items-center bg-white text-black px-8 py-3.5 rounded-lg text-sm font-medium transition hover:bg-neutral-200"
-                  >
-                    Get Your PI
-                  </Link>
-
-
-                  {/* SECONDARY */}
-
-                  <Link
-                    href="/contact#start-your-brand"
-                    className="text-white/70 hover:text-white text-sm font-medium transition"
-                  >
-                    Start Your Brand
-                  </Link>
-
-                </div>
-
-              </div>
-
-
-              {/* IMAGE */}
-
-              <div className="fade-up">
-
-                <div className="relative rounded-2xl overflow-hidden border border-white/10 aspect-[4/3]">
-
-                  <Image
-                    src="https://res.cloudinary.com/djgu1bhef/image/upload/v1772772673/ChatGPT_Image_Mar_6_2026_11_50_57_AM_i7qlfo.png"
-                    alt="Luxury packaging production"
-                    fill
-                    className="object-cover"
-                  />
-
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-  )
-
-}
-
-
-function About() {
-
-  return (
-
-    <section className="bg-[#F3F2EF] pt-10 pb-[8px]">
-
-      <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16">
-
-        <div className="grid grid-cols-1 md:grid-cols-[0.55fr_0.45fr] gap-[8px]">
-
-          {/* LEFT CARD */}
-
-          <div className="bg-white border border-[#DDD7CE] rounded-2xl px-8 sm:px-12 md:px-16 xl:px-20 py-14 md:py-16 xl:py-20 text-center md:text-left">
-
-            <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-8">
-              OVERVIEW
-            </div>
-
-            <h2 className="text-[34px] sm:text-[36px] md:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900">
-              Precision Packaging
-              <br />
-              <span>Built for Consistency</span>
-            </h2>
-
-            <div className="mt-8 h-[1px] w-24 bg-[#DDD7CE] mx-auto md:mx-0"></div>
-
-          </div>
-
-
-          {/* RIGHT CARD */}
-
-          <div className="bg-white border border-[#DDD7CE] rounded-2xl px-8 sm:px-12 md:px-16 xl:px-20 py-14 md:py-16 xl:py-20 flex items-center">
-
-            <div className="text-[16px] sm:text-[17px] md:text-[18px] leading-[1.7] text-neutral-600">
-
-              <p>
-                We produce premium paper packaging for perfume, cosmetics,
-                fashion, and luxury retail brands — from dieline development
-                to finished packaging. Expect accurate color matching,
-                structurally precise builds, reliable production timelines,
-                and consistent quality across every reorder.
-              </p>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-  )
-
-}
-
-
-function ProductCategories() {
-
-  const sectionRef = useRef(null)
-
-  const categories = [
-    {
-      title: "Rigid Boxes",
-      image: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772546078/image_2026-03-03_20-44-30_mwgtvl.png",
-      items: ["Magnetic Lid","Shoulder / Neck","Drawer / Sleeve","Clamshell","Book-Style","Collapsible"],
-    },
-    {
-      title: "Folding Cartons",
-      image: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772545503/image_2026-03-03_20-41-34_z05dx8.png",
-      items: ["Tuck-End","Crash-Lock Bottom","Sleeves"],
-    },
-    {
-      title: "Paper Bags",
-      image: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772545503/image_2026-03-03_20-42-03_ebbpyv.png",
-      items: ["Rope Handles","PP Handles","Cotton Handles","Turn-Top Reinforcement","Luxury Board Bottoms"],
-    },
-    {
-      title: "Cards & Tags",
-      image: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772545503/image_2026-03-03_20-42-36_ukr9rd.png",
-      items: ["Tester Blotter Cards","Swing Tags","Care Cards","Thank-You Cards"],
-    },
-    {
-      title: "Branded Extras",
-      image: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772546719/ChatGPT_Image_Mar_3_2026_09_04_58_PM_rznjwx.png",
-      items: ["Ribbon","Tissue Paper","Stickers / Seals","Certificate Cards"],
-    },
-  ]
-
-  useEffect(() => {
-
-    gsap.registerPlugin(ScrollTrigger)
-
-    const ctx = gsap.context(() => {
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 75%",
-        }
-      })
-
-      /* SECTION LABEL */
-
-      tl.from(".categories-label", {
-        opacity: 0,
-        y: 16,
-        duration: 0.6,
-        ease: "power2.out"
-      })
-
-      /* CARDS STAGGER */
-
-      tl.from(".category-card", {
-        opacity: 0,
-        y: 28,
-        duration: 0.7,
-        stagger: 0.12,
-        ease: "power2.out"
-      }, "-=0.2")
-
-      /* IMAGE MICRO ZOOM */
-
-      gsap.from(".category-image", {
-        scale: 1.06,
-        duration: 1.2,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: ".category-image",
-          start: "top 85%",
-        }
-      })
-
-      /* TAG MICRO STAGGER */
-
-      gsap.utils.toArray(".category-card").forEach((card) => {
-
-        const tags = card.querySelectorAll(".tag-item")
-
-        gsap.from(tags, {
-          opacity: 0,
-          y: 6,
-          stagger: 0.05,
-          duration: 0.4,
-          ease: "power1.out",
-          scrollTrigger: {
-            trigger: card,
-            start: "top 85%",
-          }
-        })
-
-      })
-
-      /* CTA */
-
-      gsap.from(".categories-cta", {
-        opacity: 0,
-        y: 20,
-        duration: 0.6,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: ".categories-cta",
-          start: "top 85%"
-        }
-      })
-
-    }, sectionRef)
-
-    return () => ctx.revert()
-
-  }, [])
-
-
-  return (
-
-    <section ref={sectionRef} className="bg-[#F3F2EF] pt-[8px]">
-
-      <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16">
-
-        <div className="bg-white border border-[#D6D1C8] rounded-2xl">
-
-          <div className="px-8 sm:px-12 md:px-16 xl:px-20 py-14 md:py-16 xl:py-20">
-
-            {/* LABEL */}
-
-            <div className="flex justify-center mb-14 categories-label">
-
-              <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium">
-                PACKAGING TYPES
-              </div>
-
-            </div>
-
-
-            {/* GRID */}
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 justify-items-center">
-
-              {categories.map((category) => (
-
-                <div key={category.title} className="category-card w-full max-w-[420px] bg-white border border-[#D6D1C8]/70 rounded-2xl p-6">
-
-                  <div className="relative w-full aspect-[16/10] rounded-lg overflow-hidden mb-6 border border-neutral-200">
-
-                    <Image
-                      src={category.image}
-                      alt={category.title}
-                      fill
-                      className="object-cover category-image"
-                    />
-
-                  </div>
-
-                  <div className="text-[18px] font-medium text-neutral-900 mb-4">
-                    {category.title}
-                  </div>
-
-                  <div className="flex flex-wrap gap-2">
-
-                    {category.items.map((item) => (
-                      <span key={item} className="tag-item text-[13px] px-3 py-1 rounded-md bg-neutral-100 border border-neutral-200 text-neutral-600">
-                        {item}
-                      </span>
-                    ))}
-
-                  </div>
-
-                </div>
-
-              ))}
-
-            </div>
-
-
-            {/* CTA */}
-
-            <div className="categories-cta mt-16 md:mt-20 flex justify-center">
-
-              <button className="bg-white text-black px-8 py-3.5 rounded-lg text-sm font-medium border border-neutral-300 hover:bg-neutral-100 transition">
-                Get Your PI
-              </button>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-  )
-
-}
-
-
-function FinishesSystem() {
-
-  const sectionRef = useRef(null)
-
-  const finishes = [
-    {
-      title: "Lamination",
-      image: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772547724/image_2026-03-03_21-16-10_y9xlvs.png",
-      items: ["Matte", "Gloss", "Soft-Touch"],
-    },
-    {
-      title: "Foil Stamping",
-      image: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772547723/image_2026-03-03_21-16-19_qbiljy.png",
-      items: ["Gold", "Silver", "Rose Gold", "Custom Colors"],
-    },
-    {
-      title: "Emboss & Sculpt",
-      image: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772547725/image_2026-03-03_21-16-27_nnvsow.png",
-      items: ["Emboss", "Deboss", "3D Sculpt"],
-    },
-    {
-      title: "Surface Effects",
-      image: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772547724/image_2026-03-03_21-16-37_nezu5x.png",
-      items: ["Spot UV", "Full UV", "Varnish"],
-    },
-    {
-      title: "Special Papers",
-      image: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772547723/image_2026-03-03_21-17-24_fynbmu.png",
-      items: ["Textured", "Linen", "Leatherette", "Pearlescent", "Colored Wraps"],
-    },
-    {
-      title: "Print",
-      image: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772547735/ChatGPT_Image_Mar_3_2026_09_20_19_PM_l2xj5t.png",
-      items: ["CMYK", "Pantone Spot Colors", "Screen Print for Solids"],
-    },
-    {
-      title: "Hardware & Details",
-      image: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772547724/image_2026-03-03_21-17-43_i42uos.png",
-      items: ["Hidden Magnets", "Ribbon Pulls", "Die-Cut Windows", "Inserts", "Satin Linings"],
-    },
-  ]
-
-  useEffect(() => {
-
-    gsap.registerPlugin(ScrollTrigger)
-
-    const ctx = gsap.context(() => {
-
-      /* HEADER */
-
-      const headerTL = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".finishes-header",
-          start: "top 80%"
-        }
-      })
-
-      headerTL
-        .from(".finishes-label", {
-          opacity: 0,
-          y: 16,
-          duration: 0.6,
-          ease: "power2.out"
-        })
-        .from(".finishes-title", {
-          opacity: 0,
-          y: 18,
-          duration: 0.7,
-          ease: "power2.out"
-        }, "-=0.3")
-        .from(".finishes-desc", {
-          opacity: 0,
-          y: 18,
-          duration: 0.7,
-          ease: "power2.out"
-        }, "-=0.4")
-
-
-      /* CARDS */
-
-      gsap.from(".finish-card", {
-        opacity: 0,
-        y: 30,
-        duration: 0.7,
-        stagger: 0.12,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: ".finishes-grid",
-          start: "top 80%"
-        }
-      })
-
-
-      /* IMAGE MICRO ZOOM */
-
-      gsap.from(".finish-image", {
-        scale: 1.05,
-        duration: 1.2,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: ".finishes-grid",
-          start: "top 85%"
-        }
-      })
-
-
-      /* TAG MICRO STAGGER */
-
-      gsap.utils.toArray(".finish-card").forEach((card) => {
-
-        const tags = card.querySelectorAll(".finish-tag")
-
-        gsap.from(tags, {
-          opacity: 0,
-          y: 6,
-          duration: 0.35,
-          stagger: 0.05,
-          ease: "power1.out",
-          scrollTrigger: {
-            trigger: card,
-            start: "top 85%"
-          }
-        })
-
-      })
-
-    }, sectionRef)
-
-    return () => ctx.revert()
-
-  }, [])
-
-
-  return (
-
-    <section ref={sectionRef} className="bg-[#F3F2EF] pt-[8px]">
-
-      <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16">
-
-        <div className="bg-white border border-[#D6D1C8] rounded-2xl">
-
-          <div className="px-8 sm:px-12 md:px-16 xl:px-20 py-14 md:py-16 xl:py-20">
-
-            {/* HEADER */}
-
-            <div className="finishes-header grid grid-cols-1 md:grid-cols-[1fr_420px] gap-10 md:gap-16 items-start mb-16 md:mb-20">
-
-              <div>
-
-                <div className="finishes-label inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
-                  Finishes
-                </div>
-
-                <h2 className="finishes-title text-[30px] sm:text-[34px] md:text-[38px] lg:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900 max-w-[720px]">
-                  Luxury Finishes
-                  <br />
-                  <span>Mix & Match Control</span>
-                </h2>
-
-              </div>
-
-              <div className="finishes-desc text-[16px] md:text-[17px] leading-[1.7] text-neutral-600 max-w-[420px]">
-
-                Our production system allows brands to mix finishes precisely — ensuring consistency across packaging, inserts, and supporting materials while maintaining strict color and material control.
-
-              </div>
-
-            </div>
-
-
-            {/* GRID */}
-
-            <div className="finishes-grid grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
-
-              {finishes.map((finish) => (
-
-                <div key={finish.title} className="finish-card bg-white border border-[#D6D1C8]/70 rounded-2xl p-6">
-
-                  <div className="grid grid-cols-1 sm:grid-cols-[220px_1fr] gap-6 items-start">
-
-                    <div className="relative w-full h-[140px] sm:h-[110px] rounded-lg overflow-hidden border border-neutral-200">
-
-                      <Image
-                        src={finish.image}
-                        alt={finish.title}
-                        fill
-                        className="object-cover finish-image"
-                      />
-
-                    </div>
-
-                    <div>
-
-                      <div className="text-[20px] font-medium text-neutral-900 mb-4">
-                        {finish.title}
-                      </div>
-
-                      <div className="flex flex-wrap gap-2">
-
-                        {finish.items.map((item) => (
-                          <span key={item} className="finish-tag text-[13px] px-3 py-1 rounded-md bg-neutral-100 border border-neutral-200 text-neutral-600">
-                            {item}
-                          </span>
-                        ))}
-
-                      </div>
-
-                    </div>
-
-                  </div>
-
-                </div>
-
-              ))}
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-  )
-
-}
-
-
-function Inserts() {
-
-  const sectionRef = useRef(null)
-
-  useEffect(() => {
-
-    gsap.registerPlugin(ScrollTrigger)
-
-    const ctx = gsap.context(() => {
-
-      const tl = gsap.timeline({
-        scrollTrigger: { trigger: sectionRef.current, start: "top 75%", toggleActions: "play none none none" },
-        defaults: { ease: "power2.out" }
-      })
-
-      tl.from(".inserts-left", { opacity: 0, x: -40, duration: 0.6 })
-        .from(".inserts-line", { scaleY: 0, transformOrigin: "top center", duration: 0.7 }, "-=0.4")
-        .from(".insert-item", { opacity: 0, y: 30, duration: 0.5, stagger: 0.08 }, "-=0.5")
-
-    }, sectionRef)
-
-    return () => ctx.revert()
-
-  }, [])
-
-
-  return (
-
-    <section ref={sectionRef} className="bg-[#F3F2EF] py-20 md:py-24 xl:py-28">
-
-      <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16">
-
-        <div className="grid md:grid-cols-12 gap-14 md:gap-20 items-start relative">
-
-
-          {/* LEFT */}
-
-          <div className="inserts-left md:col-span-4">
-
-            <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
-              Inserts
-            </div>
-
-            <h2 className="text-[30px] sm:text-[34px] md:text-[38px] lg:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900">
-              Interior Protection
-              <br />
-              Architecture
-            </h2>
-
-          </div>
-
-
-          {/* RIGHT */}
-
-          <div className="md:col-span-8 relative">
-
-            <div className="inserts-line absolute left-0 top-0 bottom-0 w-[1px] bg-neutral-300/70"></div>
-
-            <div className="pl-10 md:pl-14 space-y-12 md:space-y-14">
-
-              {[
-                {
-                  title: "EVA / Foam",
-                  desc: "Precision-cut inserts with optional velvet wrapping.",
-                },
-                {
-                  title: "Paperboard / Cardboard",
-                  desc: "Multi-layer precision structures for rigid support.",
-                },
-                {
-                  title: "Molded Pulp",
-                  desc: "Recyclable interior solutions in natural or colored finishes.",
-                },
-                {
-                  title: "Fabric / Satin",
-                  desc: "Soft cushions and trays for elevated presentation.",
-                },
-                {
-                  title: "Thermoformed Trays",
-                  desc: "Engineered trays when compliance requires exact fit.",
-                },
-              ].map((item) => (
-
-                <div key={item.title} className="insert-item">
-
-                  <div className="text-[22px] md:text-[24px] font-medium text-neutral-900 mb-3">
-                    {item.title}
-                  </div>
-
-                  <div className="text-neutral-600 text-[16px] md:text-[17px] leading-[1.7] max-w-[720px]">
-                    {item.desc}
-                  </div>
-
-                </div>
-
-              ))}
-
-            </div>
-
-          </div>
-
-
-        </div>
-
-      </div>
-
-    </section>
-
-  )
-
-} 
-
-
-function FactoryCapabilities() {
-
-  const sectionRef = useRef(null)
-
-  useEffect(() => {
-
-    gsap.registerPlugin(ScrollTrigger)
-
-    const ctx = gsap.context(() => {
-
-      const tl = gsap.timeline({
-        scrollTrigger: { trigger: sectionRef.current, start: "top 80%", once: true }
-      })
-
-      tl.from(".factory-header", { opacity: 0, y: 30, duration: 0.5, ease: "power2.out" })
-
-      tl.from(".factory-band", { opacity: 0, y: 30, duration: 0.5, ease: "power2.out", stagger: 0.12 }, "-=0.2")
-
-    }, sectionRef)
-
-    return () => ctx.revert()
-
-  }, [])
-
-
-  return (
-
-    <section ref={sectionRef} className="bg-[#F3F2EF] pt-[8px]">
-
-      <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16">
-
-        <div className="bg-gradient-to-b from-[#1E1E1E] to-[#151515] border border-white/10 rounded-2xl overflow-hidden">
-
-
-          {/* HEADER */}
-
-          <div className="factory-header relative px-8 sm:px-12 md:px-16 xl:px-20 py-10 md:py-12 xl:py-14 border-b border-white/10 text-white overflow-hidden">
-
-            <Image
-              src="https://images.unsplash.com/photo-1476683874822-744764a2438f?q=80&w=3270&auto=format&fit=crop"
-              alt="Factory background"
-              fill
-              className="object-cover opacity-30"
-            />
-
-            <div className="absolute inset-0 bg-black/40"></div>
-
-            <div className="relative z-10">
-
-              <div className="inline-flex items-center border border-white/30 text-white px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
-                Factory Capacity
-              </div>
-
-              <h2 className="text-[30px] sm:text-[34px] md:text-[38px] lg:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal max-w-[760px]">
-                Controlled Production
-                <br />
-                Infrastructure in China
-              </h2>
-
-            </div>
-
-          </div>
-
-
-
-          {/* CAPABILITIES */}
-
-          <div className="relative">
-
-            {/* vertical guide line */}
-
-            <div className="absolute left-[44px] top-0 bottom-0 w-[1px] bg-white/10 hidden md:block"></div>
-
-
-            {/* BAND 1 */}
-
-            <div className="factory-band px-8 sm:px-12 md:px-16 xl:px-20 py-10 md:py-12 xl:py-14 border-b border-white/10">
-
-              <div className="flex gap-6 items-start">
-
-                <div className="w-[56px] h-[56px] rounded-lg bg-gradient-to-b from-[#2A2A2A] to-[#1F1F1F] border border-neutral-700 flex items-center justify-center flex-shrink-0 relative z-10">
-                  <Factory size={24} className="text-neutral-300" />
-                </div>
-
-                <div>
-
-                  <div className="text-[20px] md:text-[22px] font-medium text-white mb-3">
-                    Automated Production Lines
-                  </div>
-
-                  <div className="text-neutral-400 text-[16px] md:text-[17px] leading-[1.7] max-w-[760px]">
-                    Dedicated lines for die-cutting, lamination, foil stamping, UV coating,
-                    folding and gluing, magnet setting, and final packing.
-                  </div>
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-
-            {/* BAND 2 */}
-
-            <div className="factory-band px-8 sm:px-12 md:px-16 xl:px-20 py-10 md:py-12 xl:py-14 border-b border-white/10">
-
-              <div className="flex gap-6 items-start">
-
-                <div className="w-[56px] h-[56px] rounded-lg bg-gradient-to-b from-[#2A2A2A] to-[#1F1F1F] border border-neutral-700 flex items-center justify-center flex-shrink-0 relative z-10">
-                  <DraftingCompass size={24} className="text-neutral-300" />
-                </div>
-
-                <div>
-
-                  <div className="text-[20px] md:text-[22px] font-medium text-white mb-3">
-                    Pre-Press & Structural Engineering
-                  </div>
-
-                  <div className="text-neutral-400 text-[16px] md:text-[17px] leading-[1.7] max-w-[760px]">
-                    In-house pre-press control and structural engineering for custom dielines,
-                    collapsible builds, complex shoulder boxes, and precision tolerances.
-                  </div>
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-
-            {/* BAND 3 */}
-
-            <div className="factory-band px-8 sm:px-12 md:px-16 xl:px-20 py-10 md:py-12 xl:py-14">
-
-              <div className="flex gap-6 items-start">
-
-                <div className="w-[56px] h-[56px] rounded-lg bg-gradient-to-b from-[#2A2A2A] to-[#1F1F1F] border border-neutral-700 flex items-center justify-center flex-shrink-0 relative z-10">
-                  <ShieldCheck size={24} className="text-neutral-300" />
-                </div>
-
-                <div>
-
-                  <div className="text-[20px] md:text-[22px] font-medium text-white mb-3">
-                    Stage-Based QC Cells
-                  </div>
-
-                  <div className="text-neutral-400 text-[16px] md:text-[17px] leading-[1.7] max-w-[760px]">
-                    Quality control integrated at printing, finishing, assembly,
-                    and pre-shipment inspection stages.
-                  </div>
-
-                </div>
-
-              </div>
-
-            </div>
-
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-  )
-
-}
-  
-
-function Projects() {
-
-  const sectionRef = useRef(null)
-
-  useEffect(() => {
-
-    gsap.registerPlugin(ScrollTrigger)
-
-    const ctx = gsap.context(() => {
-
-      gsap.from(".projects-header", {
-        opacity: 0,
-        y: 30,
-        duration: 0.6,
-        ease: "power2.out",
-        scrollTrigger: { trigger: sectionRef.current, start: "top 80%", once: true }
-      })
-
-      gsap.utils.toArray(".project-block").forEach((block) => {
-
-        const tl = gsap.timeline({
-          scrollTrigger: { trigger: block, start: "top 85%", once: true }
-        })
-
-        tl.from(block.querySelector(".project-image"), {
-          opacity: 0,
-          scale: 1.04,
-          duration: 0.8,
-          ease: "power2.out"
-        })
-
-        tl.from(block.querySelector(".project-text"), {
-          opacity: 0,
-          y: 40,
-          duration: 0.6,
-          ease: "power2.out"
-        }, "-=0.6")
-
-      })
-
-    }, sectionRef)
-
-    return () => ctx.revert()
-
-  }, [])
-
-
-  const projects = [
-    {
-      title: "Multiple Luxury Perfume Packaging",
-      meta: "2025 • Luxury Packaging • Perfume",
-      image: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772376971/image_2026-02-27_13-49-35_oikaga.png",
-      description: "Rigid boxes, premium paper bags, tester cards, and branded ribbon produced across multiple SKUs. Full process from sampling to AQL inspection and DDP delivery.",
-    },
-    {
-      title: "Foldable Magnetic Gift Boxes",
-      meta: "2025 • Luxury Packaging • Rigid Boxes",
-      image: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772376971/image_2026-02-27_13-50-18_kzqkhy.png",
-      description: "Two collapsible magnetic rigid box sizes with matte lamination. Structural prototyping, color control, in-line QC and coordinated export delivery.",
-    },
-  ]
-
-
-  return (
-
-    <section ref={sectionRef} className="bg-[#F3F2EF] py-20 md:py-24 xl:py-28">
-
-      <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16">
-
-
-        {/* HEADER */}
-
-        <div className="projects-header mb-14 md:mb-20 text-center">
-
-          <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
-            Projects
-          </div>
-
-          <h2 className="text-[30px] sm:text-[34px] md:text-[38px] lg:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900">
-            Selected Packaging Production
-          </h2>
-
-        </div>
-
-
-        <div className="space-y-16 md:space-y-20">
-
-          {projects.map((project, index) => (
-
-            <div key={project.title} className="project-block grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10 items-stretch">
-
-
-              {/* IMAGE */}
-
-              <div className={`project-image md:col-span-8 ${index % 2 === 0 ? "md:order-2" : ""}`}>
-
-                <div className="bg-white border border-[#D6D1C8] rounded-2xl overflow-hidden h-full">
-
-                  <div className="aspect-[16/10] overflow-hidden">
-
-                    <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
-
-                  </div>
-
-                </div>
-
-              </div>
-
-
-              {/* TEXT */}
-
-              <div className={`project-text md:col-span-4 ${index % 2 === 0 ? "md:order-1" : ""}`}>
-
-                <div className="bg-white border border-[#D6D1C8] rounded-2xl h-full flex items-center">
-
-                  <div className="px-8 sm:px-10 md:px-12 py-10 md:py-12 max-w-[420px]">
-
-                    <div className="text-xs tracking-[0.18em] uppercase text-neutral-400 mb-4">
-                      {String(index + 1).padStart(2, "0")}
-                    </div>
-
-                    <h3 className="text-[22px] md:text-[24px] leading-[1.25] font-medium tracking-[-0.015em] text-neutral-900 mb-4">
-                      {project.title}
-                    </h3>
-
-                    <p className="text-[15px] leading-[1.7] text-neutral-600 mb-6">
-                      {project.description}
-                    </p>
-
-                    <div className="text-[13px] tracking-wide text-neutral-500">
-                      {project.meta}
-                    </div>
-
-                  </div>
-
-                </div>
-
-              </div>
-
-
-            </div>
-
-          ))}
-
-        </div>
-
-      </div>
-
-    </section>
-
-  )
-
-}
-
-
-function CookieConsent() {
-  const [visible, setVisible] = useState(false)
-
-  useEffect(() => {
-    const consent = localStorage.getItem("cookie-consent")
-    if (!consent) {
-      setVisible(true)
-    }
-  }, [])
-
-  const handleChoice = (choice) => {
-    localStorage.setItem("cookie-consent", choice)
-    setVisible(false)
-  }
-
-  if (!visible) return null
-
-  return (
-    <div className="fixed bottom-0 left-0 w-full bg-white border-t border-neutral-200 z-50">
-      <div className="max-w-[1600px] mx-auto px-10 xl:px-16 py-6 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-
-        <div className="text-neutral-700 text-[15px] leading-[1.6] max-w-3xl">
-          We use cookies to ensure structured performance monitoring,
-          analytics alignment, and operational reliability across this platform.
-          By continuing, you agree to our use of cookies.
-        </div>
-
-        <div className="flex items-center gap-4 shrink-0">
-          <button
-            onClick={() => handleChoice("declined")}
-            className="px-6 py-2.5 text-sm border border-neutral-300 rounded-lg text-neutral-700 hover:bg-neutral-100 transition"
-          >
-            Decline
-          </button>
-
-          <button
-            onClick={() => handleChoice("accepted")}
-            className="px-6 py-2.5 text-sm bg-neutral-900 text-white rounded-lg hover:bg-neutral-800 transition"
-          >
-            Accept
-          </button>
-        </div>
-
-      </div>
-    </div>
-  )
-}
-
-
-function Gallery() {
-  const sectionRef = useRef(null);
-
-  const media = [
-    {
-      src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772708330/ChatGPT_Image_Mar_5_2026_05_51_04_PM_hd7ngs.png",
-      alt: "Container port logistics",
-      type: "image",
-      span: "md:col-span-8",
-      height: "md:h-[420px]"
-    },
-    {
-      src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772708330/ChatGPT_Image_Mar_5_2026_05_52_41_PM_frxpql.png",
-      alt: "Factory walkthrough",
-      type: "image",
-      span: "md:col-span-4",
-      height: "md:h-[420px]"
-    },
-    {
-      src: "https://www.pexels.com/download/video/15459710/",
-      alt: "Cargo loading truck",
-      type: "video",
-      span: "md:col-span-5",
-      height: "md:h-[380px]"
-    },
-    {
-      src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772708330/ChatGPT_Image_Mar_5_2026_05_56_24_PM_j9lanu.png",
-      alt: "Factory production line",
-      type: "image",
-      span: "md:col-span-7",
-      height: "md:h-[380px]"
-    },
-    {
-      src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772708455/ChatGPT_Image_Mar_5_2026_06_00_33_PM_qrwpp5.png",
-      alt: "Quality inspection process",
-      type: "image",
-      span: "md:col-span-3",
-      height: "md:h-[340px]"
-    },
-    {
-      src: "https://www.pexels.com/download/video/4620565/",
-      alt: "Shipping container yard",
-      type: "video",
-      span: "md:col-span-6",
-      height: "md:h-[340px]"
-    },
-    {
-      src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772715474/ChatGPT_Image_Mar_5_2026_07_56_30_PM_srsur2.png",
-      alt: "Warehouse distribution center",
-      type: "image",
-      span: "md:col-span-3",
-      height: "md:h-[340px]"
-    }
-  ];
-
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-        },
-        defaults: { ease: "power2.out" }
-      });
-
-      tl.from(".gallery-header", {
-        opacity: 0,
-        y: 20,
-        duration: 0.7,
-      });
-
-      tl.from(".gallery-item", {
-        opacity: 0,
-        y: 30,
-        stagger: 0.08,
-        duration: 0.8,
-      }, "-=0.3");
-
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
-  return (
-    <section
-      ref={sectionRef}
-      className="bg-[#F3F2EF] pt-[8px] overflow-hidden"
-    >
-
-      <div className="px-[8px]">
-
-        {/* DARK SURFACE */}
-        <div className="    rounded-2xl">
-
-          <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 py-20 md:py-24">
-
-            {/* HEADER */}
-            <div className="gallery-header flex justify-center mb-16 md:mb-20">
-              <div className="inline-flex items-center border border-[#8C7A5B]/40 px-5 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium text-[#8C7A5B]">
-                Gallery
-              </div>
-            </div>
-
-
-
-            {/* GRID */}
-            <div className="grid grid-cols-2 md:grid-cols-12 gap-4 md:gap-6">
-
-              {media.map((item, index) => {
-
-                let mobileSpan = "col-span-1";
-                let mobileHeight = "h-[190px]";
-
-                if (index === 0) {
-                  mobileSpan = "col-span-2";
-                  mobileHeight = "h-[240px]";
-                }
-
-                if (index === 3) {
-                  mobileSpan = "col-span-2";
-                  mobileHeight = "h-[220px]";
-                }
-
-                return (
-                  <div key={index} className={`gallery-item ${mobileSpan} ${item.span}`}>
-                    <div className="rounded-2xl overflow-hidden border border-white/10">
-
-                      {item.type === "video" ? (
-                        <video
-                          src={item.src}
-                          className={`w-full ${mobileHeight} ${item.height} object-cover`}
-                          autoPlay
-                          muted
-                          loop
-                          playsInline
-                          controls={false}
-                        />
-                      ) : (
-                        <img
-                          src={item.src}
-                          alt={item.alt}
-                          className={`w-full ${mobileHeight} ${item.height} object-cover`}
-                          loading="lazy"
-                        />
-                      )}
-
-                    </div>
-                  </div>
-                );
-              })}
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-  );
-}
-
-
-function FAQ() {
-  const faqs = [
-    {
-      q: "Are you the manufacturer?",
-      a: "Yes. Your order is produced on our lines in China under our PI, QC control, and production warranty.",
-    },
-    {
-      q: "What MOQs do you work with?",
-      a: "Standard runs start from 5,000+ units. Some projects can begin from 1,000+ depending on size, materials, and finishes. Final MOQs are confirmed in your PI.",
-    },
-    {
-      q: "How fast are samples and production?",
-      a: "Samples typically take 1–3 weeks from dieline or specification sign-off. Production usually runs 3–6 weeks after sample approval.",
-    },
-    {
-      q: "Can you handle color matching?",
-      a: "Yes — to Pantone references, client swatches, or approved master standards. We retain master samples to ensure consistent reorders.",
-    },
-    {
-      q: "What inserts do you recommend?",
-      a: "EVA or foam for precision protection, paperboard for plastic-free builds, molded pulp for sustainable solutions, and fabric or satin for premium interiors.",
-    },
-    {
-      q: "Can you help with structure and dielines?",
-      a: "Absolutely. Our structural team develops dielines and prototypes complex formats including foldable, collapsible, shoulder, and drawer constructions.",
-    },
-    {
-      q: "Do you offer sustainable options?",
-      a: "Yes — FSC-certified papers, recycled content, soy-based inks, and plastic-free insert solutions are available.",
-    },
-    {
-      q: "How do you ensure quality at scale?",
-      a: "We conduct in-line QC at each production stage and perform pre-shipment AQL inspections with functional tests (magnet strength, closure alignment, drop testing). Reports and visuals are provided.",
-    },
-    {
-      q: "Can you ship door-to-door (DDP)?",
-      a: "Yes. We offer DDP with customs clearance, or EXW / FOB if you prefer to use your own forwarder.",
-    },
-    {
-      q: "What are your payment terms?",
-      a: "Standard terms are 50% deposit and 50% pre-shipment (adjustable). Final terms and lead times are confirmed in your PI.",
-    },
-    {
-      q: "Can I tour the factory?",
-      a: "Yes. China factory tours are available by appointment, and live video inspections can be arranged anytime.",
-    },
-  ]
-
-  const [openIndex, setOpenIndex] = useState(null)
-
-  const toggle = (index) => {
-    setOpenIndex(openIndex === index ? null : index)
-  }
-
-  return (
-    <section className="bg-[#F3F2EF] py-20 md:py-28">
-      <div className="max-w-[1600px] mx-auto px-6 sm:px-8 xl:px-16">
-
-        <div className="grid grid-cols-1 md:grid-cols-[0.45fr_0.55fr] gap-12 md:gap-20">
-
-          {/* LEFT */}
-          <div>
-            <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
-              FAQ
-            </div>
-
-            <h2 className="text-[32px] sm:text-[36px] md:text-[42px] leading-[1.1] tracking-[-0.015em] font-medium text-neutral-900">
-              Frequently Asked
-              <br />
-              Questions
-            </h2>
-          </div>
-
-          {/* RIGHT */}
-          <div>
-            {faqs.map((item, index) => {
-              const isOpen = openIndex === index
-
-              return (
-                <div key={index} className="border-b border-neutral-200">
-
-                  <button
-                    onClick={() => toggle(index)}
-                    className="w-full flex items-start justify-between text-left py-5 md:py-6"
-                  >
-                    <span className="text-[17px] md:text-[18px] text-neutral-900 leading-[1.45] pr-6 md:pr-10">
-                      {item.q}
-                    </span>
-
-                    <Plus
-                      size={18}
-                      strokeWidth={1.75}
-                      className={`shrink-0 transition-all duration-300 ${
-                        isOpen
-                          ? "rotate-45 text-neutral-900"
-                          : "rotate-0 text-neutral-400"
-                      }`}
-                    />
-                  </button>
-
-                  <div
-                    className={`overflow-hidden transition-all duration-300 ${
-                      isOpen
-                        ? "max-h-[500px] pb-6 opacity-100"
-                        : "max-h-0 opacity-0"
-                    }`}
-                  >
-                    <p className="text-[15px] md:text-[16px] leading-[1.75] text-neutral-600 pr-6 md:pr-10">
-                      {item.a}
-                    </p>
-                  </div>
-
-                </div>
-              )
-            })}
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-  )
+  return <>
+   <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(serviceSchema)
+        }}
+      />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqSchema)
+        }}
+      />
+       <PackagingPage />
+  </>;
 }
