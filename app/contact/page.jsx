@@ -301,6 +301,82 @@ function Hero() {
 /* ---------------- FORM ---------------- */
 
 function InquiryForm() {
+
+  const [formData, setFormData] = useState({
+    projectType: [],
+    quantity: "",
+    timeline: "",
+    budget: "",
+    brandStage: "",
+    name: "",
+    email: "",
+    whatsapp: "",
+    company_website: ""
+  })
+
+  const [loading, setLoading] = useState(false)
+
+
+  const handleChange = (e) => {
+
+    const { name, value } = e.target
+
+    setFormData({
+      ...formData,
+      [name]: value
+    })
+
+  }
+
+
+  const handleCheckbox = (value) => {
+
+    let updated = [...formData.projectType]
+
+    if (updated.includes(value)) {
+      updated = updated.filter(item => item !== value)
+    } else {
+      updated.push(value)
+    }
+
+    setFormData({
+      ...formData,
+      projectType: updated
+    })
+
+  }
+
+
+  const handleSubmit = async (e) => {
+
+    e.preventDefault()
+
+    setLoading(true)
+
+    try {
+
+      await fetch("/api/inquiry", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+      })
+
+      window.location.href = "/inquiry-received"
+
+    } catch (error) {
+
+      console.error(error)
+      alert("Something went wrong")
+
+    }
+
+    setLoading(false)
+
+  }
+
+
   return (
     <section id="start" className="bg-[#F3F2EF] pt-[8px]">
 
@@ -316,13 +392,9 @@ function InquiryForm() {
 
               <div>
 
-                {/* PONI */}
-
                 <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-8">
                   START YOUR BRAND
                 </div>
-
-                {/* TITLE */}
 
                 <h2 className="text-[40px] leading-[1.1] tracking-[-0.015em] mb-6 text-neutral-900">
                   Production Inquiry
@@ -333,8 +405,6 @@ function InquiryForm() {
                   team will review feasibility, sampling needs, and production
                   timelines with our factory partners in China.
                 </p>
-
-                {/* PROCESS */}
 
                 <div className="space-y-5 text-[16px] text-neutral-700">
 
@@ -367,7 +437,18 @@ function InquiryForm() {
 
               <div className="border border-neutral-200 rounded-2xl p-10 bg-white">
 
-                <form className="space-y-10">
+                <form onSubmit={handleSubmit} className="space-y-10">
+
+   {/* HONEYPOT (ANTI SPAM) */}
+
+   <input
+                  type="text"
+                  name="company_website"
+                  value={formData.company_website}
+                  onChange={handleChange}
+                  style={{ display: "none" }}
+                  autoComplete="off"
+                />
 
                   {/* PROJECT TYPE */}
 
@@ -380,17 +461,26 @@ function InquiryForm() {
                     <div className="flex flex-wrap gap-6 text-sm">
 
                       <label className="flex items-center gap-2">
-                        <input type="checkbox" />
+                        <input
+                          type="checkbox"
+                          onChange={() => handleCheckbox("Fashion")}
+                        />
                         Fashion
                       </label>
 
                       <label className="flex items-center gap-2">
-                        <input type="checkbox" />
+                        <input
+                          type="checkbox"
+                          onChange={() => handleCheckbox("Packaging")}
+                        />
                         Packaging
                       </label>
 
                       <label className="flex items-center gap-2">
-                        <input type="checkbox" />
+                        <input
+                          type="checkbox"
+                          onChange={() => handleCheckbox("Both")}
+                        />
                         Both
                       </label>
 
@@ -410,25 +500,39 @@ function InquiryForm() {
                     <div className="grid md:grid-cols-2 gap-4">
 
                       <input
+                        name="quantity"
+                        value={formData.quantity}
+                        onChange={handleChange}
                         className="w-full border border-neutral-300 rounded-lg px-4 py-3 text-sm"
                         placeholder="Quantity Range"
                       />
 
                       <input
+                        name="timeline"
+                        value={formData.timeline}
+                        onChange={handleChange}
                         className="w-full border border-neutral-300 rounded-lg px-4 py-3 text-sm"
                         placeholder="Target Timeline"
                       />
 
                       <input
+                        name="budget"
+                        value={formData.budget}
+                        onChange={handleChange}
                         className="w-full border border-neutral-300 rounded-lg px-4 py-3 text-sm"
                         placeholder="Budget (optional)"
                       />
 
-                      <select className="w-full border border-neutral-300 rounded-lg px-4 py-3 text-sm">
+                      <select
+                        name="brandStage"
+                        value={formData.brandStage}
+                        onChange={handleChange}
+                        className="w-full border border-neutral-300 rounded-lg px-4 py-3 text-sm"
+                      >
 
-                        <option>Brand Stage</option>
-                        <option>Startup</option>
-                        <option>Established</option>
+                        <option value="">Brand Stage</option>
+                        <option value="Startup">Startup</option>
+                        <option value="Established">Established</option>
 
                       </select>
 
@@ -448,16 +552,25 @@ function InquiryForm() {
                     <div className="grid md:grid-cols-2 gap-4">
 
                       <input
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
                         placeholder="Name"
                         className="border border-neutral-300 rounded-lg px-4 py-3 text-sm"
                       />
 
                       <input
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
                         placeholder="Email"
                         className="border border-neutral-300 rounded-lg px-4 py-3 text-sm"
                       />
 
                       <input
+                        name="whatsapp"
+                        value={formData.whatsapp}
+                        onChange={handleChange}
                         placeholder="WhatsApp"
                         className="border border-neutral-300 rounded-lg px-4 py-3 text-sm md:col-span-2"
                       />
@@ -469,8 +582,14 @@ function InquiryForm() {
 
                   {/* CTA */}
 
-                  <button className="w-full bg-black text-white rounded-lg py-4 text-sm font-medium hover:bg-neutral-800 transition">
-                    Get Your PI
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="w-full bg-black text-white rounded-lg py-4 text-sm font-medium hover:bg-neutral-800 transition"
+                  >
+
+                    {loading ? "Submitting..." : "Submit Inquiry"}
+
                   </button>
 
                 </form>
@@ -490,6 +609,83 @@ function InquiryForm() {
 }
 
 function GetYourPI() {
+
+  const [formData, setFormData] = useState({
+    category: [],
+    quantity: "",
+    country: "",
+    timeline: "",
+    boxType: "",
+    finishes: "",
+    name: "",
+    email: "",
+    whatsapp: "",
+    company_website: "" // honeypot
+  })
+
+  const [loading, setLoading] = useState(false)
+
+
+  const handleChange = (e) => {
+
+    const { name, value } = e.target
+
+    setFormData({
+      ...formData,
+      [name]: value
+    })
+
+  }
+
+
+  const handleCheckbox = (value) => {
+
+    let updated = [...formData.category]
+
+    if (updated.includes(value)) {
+      updated = updated.filter(item => item !== value)
+    } else {
+      updated.push(value)
+    }
+
+    setFormData({
+      ...formData,
+      category: updated
+    })
+
+  }
+
+
+  const handleSubmit = async (e) => {
+
+    e.preventDefault()
+
+    setLoading(true)
+
+    try {
+
+      await fetch("/api/pi-request", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+      })
+
+      window.location.href = "/inquiry-received"
+
+    } catch (error) {
+
+      console.error(error)
+      alert("Something went wrong")
+
+    }
+
+    setLoading(false)
+
+  }
+
+
   return (
     <section id="get-pi" className="bg-[#F3F2EF] pt-[8px]">
 
@@ -522,11 +718,22 @@ function GetYourPI() {
             </div>
 
 
-            {/* FORM CARD */}
+            {/* FORM */}
 
             <div className="max-w-[880px] mx-auto border border-neutral-200 rounded-2xl p-10 bg-white">
 
-              <form className="space-y-10">
+              <form onSubmit={handleSubmit} className="space-y-10">
+
+                {/* HONEYPOT (ANTI SPAM) */}
+
+                <input
+                  type="text"
+                  name="company_website"
+                  value={formData.company_website}
+                  onChange={handleChange}
+                  style={{ display: "none" }}
+                  autoComplete="off"
+                />
 
                 {/* CATEGORY */}
 
@@ -539,17 +746,26 @@ function GetYourPI() {
                   <div className="flex flex-wrap gap-6 text-sm">
 
                     <label className="flex items-center gap-2">
-                      <input type="checkbox" />
+                      <input
+                        type="checkbox"
+                        onChange={() => handleCheckbox("Perfume / Cosmetics")}
+                      />
                       Perfume / Cosmetics
                     </label>
 
                     <label className="flex items-center gap-2">
-                      <input type="checkbox" />
+                      <input
+                        type="checkbox"
+                        onChange={() => handleCheckbox("Apparel / Gifting")}
+                      />
                       Apparel / Gifting
                     </label>
 
                     <label className="flex items-center gap-2">
-                      <input type="checkbox" />
+                      <input
+                        type="checkbox"
+                        onChange={() => handleCheckbox("Other")}
+                      />
                       Other
                     </label>
 
@@ -569,26 +785,41 @@ function GetYourPI() {
                   <div className="grid md:grid-cols-2 gap-4">
 
                     <input
+                      name="quantity"
+                      value={formData.quantity}
+                      onChange={handleChange}
                       placeholder="Quantity Range"
                       className="border border-neutral-300 rounded-lg px-4 py-3 text-sm"
                     />
 
                     <input
+                      name="country"
+                      value={formData.country}
+                      onChange={handleChange}
                       placeholder="Target Ship-To Country"
                       className="border border-neutral-300 rounded-lg px-4 py-3 text-sm"
                     />
 
                     <input
+                      name="timeline"
+                      value={formData.timeline}
+                      onChange={handleChange}
                       placeholder="Target Timeline"
                       className="border border-neutral-300 rounded-lg px-4 py-3 text-sm"
                     />
 
                     <input
+                      name="boxType"
+                      value={formData.boxType}
+                      onChange={handleChange}
                       placeholder="Box / Bag Type (if known)"
                       className="border border-neutral-300 rounded-lg px-4 py-3 text-sm"
                     />
 
                     <input
+                      name="finishes"
+                      value={formData.finishes}
+                      onChange={handleChange}
                       placeholder="Finishes (Foil, Emboss, Lamination, etc)"
                       className="border border-neutral-300 rounded-lg px-4 py-3 text-sm md:col-span-2"
                     />
@@ -609,16 +840,25 @@ function GetYourPI() {
                   <div className="grid md:grid-cols-2 gap-4">
 
                     <input
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
                       placeholder="Name"
                       className="border border-neutral-300 rounded-lg px-4 py-3 text-sm"
                     />
 
                     <input
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
                       placeholder="Email"
                       className="border border-neutral-300 rounded-lg px-4 py-3 text-sm"
                     />
 
                     <input
+                      name="whatsapp"
+                      value={formData.whatsapp}
+                      onChange={handleChange}
                       placeholder="WhatsApp"
                       className="border border-neutral-300 rounded-lg px-4 py-3 text-sm md:col-span-2"
                     />
@@ -631,10 +871,12 @@ function GetYourPI() {
                 {/* CTA */}
 
                 <button
+                  type="submit"
+                  disabled={loading}
                   className="w-full text-white rounded-lg py-4 text-sm font-medium transition hover:opacity-90"
                   style={{ backgroundColor: "black" }}
                 >
-                  Get Your PI
+                  {loading ? "Submitting..." : "Request Quotation"}
                 </button>
 
               </form>
@@ -752,6 +994,15 @@ function Step({ number, title, text }) {
 /* ---------------- WHATSAPP ---------------- */
 
 function DirectWhatsApp() {
+
+  const phone = "8619924111300"
+
+  const message = encodeURIComponent(
+    "Hello, I would like to discuss my production inquiry."
+  )
+
+  const whatsappLink = `https://wa.me/${phone}?text=${message}`
+
   return (
     <section className="bg-[#F3F2EF] pt-[8px]">
 
@@ -788,8 +1039,10 @@ function DirectWhatsApp() {
             {/* CTA */}
 
             <a
-              href="#"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-lg text-sm font-medium text-white transition"
+              href={whatsappLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-lg text-sm font-medium text-white transition hover:opacity-90"
               style={{ backgroundColor: "#8C7A5B" }}
             >
               Chat on WhatsApp
@@ -799,7 +1052,8 @@ function DirectWhatsApp() {
             {/* RESPONSE NOTE */}
 
             <div className="mt-6 text-sm text-neutral-500">
-              Typical response time: <span className="text-neutral-900">within a few hours</span>
+              Typical response time:{" "}
+              <span className="text-neutral-900">within a few hours</span>
             </div>
 
           </div>
