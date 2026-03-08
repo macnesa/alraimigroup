@@ -101,46 +101,47 @@ function Hero() {
 
       gsap.fromTo(
         ".hero-bg",
-        { scale: 1.08, y: 40 },
-        { scale: 1, y: 0, duration: 1.4 }
+        { scale: 1.05 },
+        { scale: 1, duration: 1.4, ease: "power3.out" }
       )
 
       gsap.fromTo(
         ".hero-overlay",
-        { opacity: 0.7 },
-        { opacity: 1, duration: 1 }
+        { opacity: 0.8 },
+        { opacity: 1, duration: 0.8 }
       )
 
       tl.to(".hero-header",
         { opacity: 1, y: 0, duration: 0.45 }
       )
 
+      // NAV ITEMS FADE ONLY (NO TRANSLATE)
       tl.to(".hero-nav-item",
-        { opacity: 1, y: 0, stagger: 0.06, duration: 0.35 },
+        { opacity: 1, stagger: 0.08, duration: 0.45 },
         "-=0.25"
       )
 
       tl.fromTo(".hero-poni",
         { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.4 },
-        "-=0.2"
+        { opacity: 1, y: 0, duration: 0.45 },
+        "-=0.15"
       )
 
       tl.fromTo(".hero-title-line",
         { yPercent: 100 },
-        { yPercent: 0, stagger: 0.12, duration: 0.6 },
-        "-=0.15"
+        { yPercent: 0, stagger: 0.12, duration: 0.7 },
+        "+=0.1"
       )
 
       tl.fromTo(".hero-sub",
         { opacity: 0, y: 16 },
-        { opacity: 1, y: 0, duration: 0.4 },
-        "-=0.25"
+        { opacity: 1, y: 0, duration: 0.45 },
+        "-=0.3"
       )
 
       tl.fromTo(".hero-cta",
         { opacity: 0, y: 16 },
-        { opacity: 1, y: 0, duration: 0.35 },
+        { opacity: 1, y: 0, duration: 0.45 },
         "-=0.25"
       )
 
@@ -194,28 +195,39 @@ function Hero() {
 
             <nav className="flex items-center gap-6 md:gap-10 text-sm text-neutral-700">
 
-              <Link href="/" className="hero-nav-item opacity-0 -translate-y-[10px] hover:text-black transition">
+              <Link
+                href="/"
+                className="hero-nav-item opacity-0 hover:text-black transition-colors duration-300"
+              >
                 Home
               </Link>
 
-              <Link href="/fashion-manufacturing" className="hero-nav-item opacity-0 -translate-y-[10px] hover:text-black transition">
+              <Link
+                href="/fashion-manufacturing"
+                className="hero-nav-item opacity-0 hover:text-black transition-colors duration-300"
+              >
                 Fashion
               </Link>
 
-              <Link href="/luxury-packaging" className="hero-nav-item opacity-0 -translate-y-[10px] hover:text-black transition">
+              <Link
+                href="/luxury-packaging"
+                className="hero-nav-item opacity-0 hover:text-black transition-colors duration-300"
+              >
                 Packaging
               </Link>
 
-              <Link href="/contact" className="hero-nav-item opacity-0 -translate-y-[10px] hover:text-black transition">
+              <Link
+                href="/contact"
+                className="hero-nav-item opacity-0 hover:text-black transition-colors duration-300"
+              >
                 Contact
               </Link>
 
             </nav>
 
             <Link
-              href="#contact"
-              className="hidden md:inline-flex items-center gap-2 px-7 py-3 rounded-lg text-sm font-medium bg-black text-white hover:bg-neutral-800 transition"
-            >
+              href="/contact#get-pi"
+              className="hidden md:inline-flex items-center gap-2 px-7 py-3 rounded-lg text-sm font-medium bg-[#8C7A5B] text-white hover:bg-[#7A6A4E] transition"            >
               Get Your PI
               <FaArrowRight className="text-xs" />
             </Link>
@@ -230,11 +242,11 @@ function Hero() {
 
         <div className="px-[8px] pt-[8px]">
 
-          <div className="rounded-2xl overflow-hidden min-h-[110svh] relative">
+          <div className="rounded-2xl overflow-hidden min-h-[96svh] relative">
 
             {/* BACKGROUND */}
 
-            <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute inset-0">
 
               <Image
                 src="/images/hero-bgg.png"
@@ -243,11 +255,12 @@ function Hero() {
                 priority
                 sizes="100vw"
                 className="object-cover hero-bg"
+                style={{ objectPosition: "70% center" }}
               />
 
-              <div className="absolute inset-0 bg-black/50 hero-overlay" />
+              <div className="absolute inset-0 bg-black/35 hero-overlay" />
 
-              <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/35 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/25 to-transparent" />
 
             </div>
 
@@ -255,11 +268,11 @@ function Hero() {
 
             {/* CONTENT */}
 
-            <div className="relative z-10 flex flex-col min-h-[110svh] max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16">
+            <div className="relative z-10 flex flex-col min-h-[96svh] max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16">
 
               <div className="flex-1 flex items-center pb-12 md:pb-0">
 
-                <div className="w-full -mt-12">
+                <div className="w-full">
 
                   <div className="hero-poni inline-flex items-center px-4 py-1.5 rounded-md text-[11px] sm:text-xs tracking-[0.18em] mb-6 sm:mb-8 border border-white/30 bg-white/10 uppercase">
                     Global Manufacturing Partner
@@ -299,7 +312,7 @@ function Hero() {
                   <div className="hero-cta flex flex-col sm:flex-row gap-4 sm:gap-8">
 
                     <Link
-                      href="#contact"
+                      href="/contact#start-brand"
                       className="inline-flex items-center justify-center gap-2 bg-white text-black px-8 py-3.5 rounded-lg text-sm font-medium hover:bg-neutral-200 transition"
                     >
 
@@ -850,49 +863,15 @@ function Services() {
         {/* HEADER */}
         <div className="services-header mb-14 md:mb-16 text-center max-w-xl mx-auto">
 
-          {/* LABEL */}
-          <div
-            className="
-            inline-flex items-center
-            border border-[#8C7A5B]/40
-            text-[#8C7A5B]
-            px-4 py-1
-            rounded-md
-            text-xs
-            tracking-[0.18em]
-            uppercase
-            font-medium
-            mb-6
-          "
-          >
+          <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
             Services
           </div>
 
-          {/* SECTION TITLE */}
-          <h2
-            className="
-            text-[34px]
-            sm:text-[36px]
-            md:text-[40px]
-            leading-[1.1]
-            tracking-[-0.015em]
-            font-normal
-            text-neutral-900
-            mb-5
-          "
-          >
+          <h2 className="text-[34px] sm:text-[36px] md:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900 mb-5">
             Services Overview
           </h2>
 
-          {/* BODY LARGE */}
-          <p
-            className="
-            text-[16px]
-            sm:text-[18px]
-            leading-[1.7]
-            text-neutral-600
-          "
-          >
+          <p className="text-[16px] sm:text-[18px] leading-[1.7] text-neutral-600">
             Built to support your brand’s growth with reliable production,
             structured quality control, and global delivery systems.
           </p>
@@ -906,51 +885,26 @@ function Services() {
           {/* LEFT */}
           <a
             href="/fashion-manufacturing"
-            className="service-left flex-1 max-w-md group relative text-center lg:text-right"
+            className="service-left flex-1 max-w-md group text-center lg:text-right transition-transform duration-300 hover:-translate-y-[4px]"
           >
 
-            <div className="hidden lg:block absolute top-1/2 -translate-y-1/2 right-[-160px] w-[140px] h-[1px] bg-neutral-300" />
-
-            {/* SERVICE TITLE */}
-            <h3
-              className="
-              text-[26px]
-              sm:text-[28px]
-              md:text-[30px]
-              leading-[1.1]
-              tracking-[-0.015em]
-              font-normal
-              text-neutral-900
-            "
-            >
+            <h3 className="text-[26px] sm:text-[28px] md:text-[30px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900 transition-colors duration-300 group-hover:text-black">
               Fashion Manufacturing
             </h3>
 
-            {/* BODY */}
-            <p
-              className="
-              mt-4
-              text-[16px]
-              leading-[1.7]
-              text-neutral-600
-            "
-            >
+            <p className="mt-4 text-[16px] leading-[1.7] text-neutral-600">
               Apparel production from sampling to bulk execution, with
               structured fit control, technical packs, and AQL inspection.
             </p>
 
-            {/* UI TEXT */}
-            <span
-              className="
-              inline-block
-              mt-6
-              text-sm
-              text-neutral-700
-              group-hover:text-black
-              transition-colors
-            "
-            >
-              View Service →
+            <span className="inline-flex items-center gap-2 mt-6 text-sm text-neutral-700 group-hover:text-black transition-colors">
+
+              View Service
+
+              <span className="transition-transform duration-300 group-hover:translate-x-[6px]">
+                →
+              </span>
+
             </span>
 
           </a>
@@ -958,26 +912,10 @@ function Services() {
           {/* HUB */}
           <div className="service-hub flex-shrink-0 relative flex flex-col items-center justify-center">
 
-            <div
-              className="
-              w-[150px] h-[150px]
-              sm:w-[180px] sm:h-[180px]
-              lg:w-[220px] lg:h-[220px]
-              rounded-full
-              border border-neutral-300
-              flex items-center justify-center
-              bg-white
-            "
-            >
+            <div className="w-[150px] h-[150px] sm:w-[180px] sm:h-[180px] lg:w-[220px] lg:h-[220px] rounded-full border border-neutral-300 flex items-center justify-center bg-white">
 
               <div
-                className="
-                w-[110px] h-[110px]
-                sm:w-[130px] sm:h-[130px]
-                lg:w-[170px] lg:h-[170px]
-                rounded-full
-                flex items-center justify-center
-              "
+                className="w-[110px] h-[110px] sm:w-[130px] sm:h-[130px] lg:w-[170px] lg:h-[170px] rounded-full flex items-center justify-center transition-transform duration-500 hover:scale-[1.04]"
                 style={{
                   background: `
                     radial-gradient(circle at 30% 30%,
@@ -1001,51 +939,26 @@ function Services() {
           {/* RIGHT */}
           <a
             href="/luxury-packaging"
-            className="service-right flex-1 max-w-md group relative text-center lg:text-left"
+            className="service-right flex-1 max-w-md group text-center lg:text-left transition-transform duration-300 hover:-translate-y-[4px]"
           >
 
-            <div className="hidden lg:block absolute top-1/2 -translate-y-1/2 left-[-160px] w-[140px] h-[1px] bg-neutral-300" />
-
-            {/* SERVICE TITLE */}
-            <h3
-              className="
-              text-[26px]
-              sm:text-[28px]
-              md:text-[30px]
-              leading-[1.1]
-              tracking-[-0.015em]
-              font-normal
-              text-neutral-900
-            "
-            >
+            <h3 className="text-[26px] sm:text-[28px] md:text-[30px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900 transition-colors duration-300 group-hover:text-black">
               Luxury Packaging
             </h3>
 
-            {/* BODY */}
-            <p
-              className="
-              mt-4
-              text-[16px]
-              leading-[1.7]
-              text-neutral-600
-            "
-            >
+            <p className="mt-4 text-[16px] leading-[1.7] text-neutral-600">
               Premium rigid boxes, structural engineering, finishing
               precision, and export-ready packaging systems.
             </p>
 
-            {/* UI TEXT */}
-            <span
-              className="
-              inline-block
-              mt-6
-              text-sm
-              text-neutral-700
-              group-hover:text-black
-              transition-colors
-            "
-            >
-              View Service →
+            <span className="inline-flex items-center gap-2 mt-6 text-sm text-neutral-700 group-hover:text-black transition-colors">
+
+              View Service
+
+              <span className="transition-transform duration-300 group-hover:translate-x-[6px]">
+                →
+              </span>
+
             </span>
 
           </a>
@@ -1195,32 +1108,47 @@ function Projects() {
       title: "Magnetic Gift Boxes",
       location: "United Kingdom",
       image: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772376971/image_2026-02-27_13-50-18_kzqkhy.png",
+      description:
+        "High-volume collapsible magnetic rigid boxes produced for a major UK holiday event. Over 20,000 boxes delivered with matte lamination and premium printing."
     },
     {
       title: "Multiple Luxury Perfume Packaging",
       location: "Saudi Arabia",
       image: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772376971/image_2026-02-27_13-49-35_oikaga.png",
+      description:
+        "Comprehensive paper packaging program for several Saudi perfume brands including rigid boxes, paper bags, tester blotters, and branded ribbon."
     },
     {
       title: "Boutique Womenswear Brand",
       location: "Dubai",
       image: "/images/projects/womenswear.png",
+      description:
+        "Ongoing apparel manufacturing for a Dubai womenswear label producing dress collections, coordinated sets, and seasonal capsule drops."
     },
     {
       title: "Golf Apparel Startup",
       location: "Dubai",
       image: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772707102/VHD_Golf_Shoot-1284_1_m9lktl.png",
+      description:
+        "End-to-end manufacturing including polos, shorts, pants and caps alongside custom packaging built for launch-ready retail presentation."
     },
   ]
 
   const Card = ({ project }) => (
-    <div className="project-card relative w-full md:w-[28vw] max-w-[520px] md:max-w-[420px] aspect-[4/5] rounded-2xl overflow-hidden bg-neutral-100 shadow-[0_8px_30px_rgba(0,0,0,0.06)] md:shadow-none z-10">
+    <div className="project-card group relative w-full md:w-[28vw] max-w-[520px] md:max-w-[420px] aspect-[4/5] rounded-2xl overflow-hidden bg-neutral-100 shadow-[0_8px_30px_rgba(0,0,0,0.06)] md:shadow-none z-10">
 
-      <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+      {/* IMAGE */}
+      <img
+        src={project.image}
+        alt={project.title}
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(.22,.61,.36,1)] group-hover:scale-[1.05]"
+      />
 
-      <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/15 to-transparent" />
+      {/* DARK OVERLAY */}
+      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/75 transition-colors duration-500" />
 
-      <div className="absolute text-white bottom-6 left-6 right-6">
+      {/* NORMAL CONTENT */}
+      <div className="absolute bottom-6 left-6 right-6 text-white transition-opacity duration-300 group-hover:opacity-0">
 
         <div className="text-[18px] sm:text-[20px] leading-[1.25] tracking-[-0.01em] font-medium">
           {project.title}
@@ -1228,6 +1156,27 @@ function Projects() {
 
         <div className="text-xs tracking-[0.18em] uppercase text-white/70 mt-2">
           {project.location}
+        </div>
+
+      </div>
+
+      {/* HOVER CONTENT */}
+      <div className="absolute inset-0 flex items-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+
+        <div className="px-8 text-white">
+
+          <div className="text-[20px] font-medium mb-3">
+            {project.title}
+          </div>
+
+          <div className="text-xs tracking-[0.18em] uppercase text-white/60 mb-5">
+            {project.location}
+          </div>
+
+          <p className="text-[15px] leading-[1.6] text-white/80">
+            {project.description}
+          </p>
+
         </div>
 
       </div>
@@ -1246,7 +1195,12 @@ function Projects() {
 
       tl.from(".projects-header", { opacity: 0, y: 20, duration: 0.7 })
 
-      tl.from(".project-card", { opacity: 0, y: 30, stagger: 0.1, duration: 0.8 }, "-=0.3")
+      tl.from(".project-card", {
+        opacity: 0,
+        y: 30,
+        stagger: 0.1,
+        duration: 0.8
+      }, "-=0.3")
 
     }, sectionRef)
 
@@ -1255,6 +1209,7 @@ function Projects() {
   }, [])
 
   return (
+
     <section ref={sectionRef} className="bg-[#F3F2EF] pt-[8px] overflow-hidden">
 
       <div className="px-[8px]">
@@ -1284,7 +1239,14 @@ function Projects() {
 
 
             {/* DESKTOP GRID */}
-            <div className="hidden md:grid" style={{ gridTemplateColumns: "1fr auto 1fr", gridTemplateRows: "auto 48px auto", alignItems: "center" }}>
+            <div
+              className="hidden md:grid"
+              style={{
+                gridTemplateColumns: "1fr auto 1fr",
+                gridTemplateRows: "auto 48px auto",
+                alignItems: "center"
+              }}
+            >
 
               <div style={{ gridColumn: 2, gridRow: 1, alignSelf: "end" }}>
                 <Card project={projects[1]} />
@@ -1307,7 +1269,9 @@ function Projects() {
 
             {/* MOBILE */}
             <div className="md:hidden flex flex-col gap-10 max-w-[520px] mx-auto">
-              {projects.map((project, i) => <Card key={i} project={project} />)}
+              {projects.map((project, i) => (
+                <Card key={i} project={project} />
+              ))}
             </div>
 
           </div>
@@ -1317,7 +1281,9 @@ function Projects() {
       </div>
 
     </section>
+
   )
+
 }
 
 
@@ -1490,7 +1456,6 @@ function Catalogs() {
           </div>
 
 
-
           {/* RIGHT CARD */}
           <div className="border border-neutral-200 rounded-2xl bg-white">
 
@@ -1501,16 +1466,22 @@ function Catalogs() {
                 <div className="bg-white rounded-2xl overflow-hidden">
 
                   {/* BUTTON 1 */}
-                  <button type="button" className="w-full flex items-center justify-between px-6 sm:px-8 md:px-10 py-6 md:py-8 text-sm font-medium text-neutral-900 transition-colors duration-200 hover:bg-neutral-100 border-b border-neutral-300">
+                  <a
+                    href="https://github.com/boson-collective/alraimi-downloads/releases/download/catalog-2026/alraimi-fashion-manufacturing-catalog-2026.zip"
+                    className="w-full flex items-center justify-between px-6 sm:px-8 md:px-10 py-6 md:py-8 text-sm font-medium text-neutral-900 transition-colors duration-200 hover:bg-neutral-100 border-b border-neutral-300"
+                  >
                     <span>Get Fashion Catalog</span>
                     <Download size={18} strokeWidth={1.5} className="opacity-60" />
-                  </button>
+                  </a>
 
                   {/* BUTTON 2 */}
-                  <button type="button" className="w-full flex items-center justify-between px-6 sm:px-8 md:px-10 py-6 md:py-8 text-sm font-medium text-neutral-900 transition-colors duration-200 hover:bg-neutral-100">
+                  <a
+                    href="https://github.com/boson-collective/alraimi-downloads/releases/download/catalog-2026/alraimi-luxury-packaging-catalog-2026.zip"
+                    className="w-full flex items-center justify-between px-6 sm:px-8 md:px-10 py-6 md:py-8 text-sm font-medium text-neutral-900 transition-colors duration-200 hover:bg-neutral-100"
+                  >
                     <span>Get Packaging Catalog</span>
                     <Download size={18} strokeWidth={1.5} className="opacity-60" />
-                  </button>
+                  </a>
 
                 </div>
 
@@ -1708,7 +1679,7 @@ function Testimonials() {
     {
       name: "Arsalan Khan",
       role: "Logistics Innovation Strategist",
-      image: "https://alraimigroup.com/wp-content/uploads/2024/11/WhatsApp-Image-2024-11-07-at-2.06.16-PM.jpeg",
+      image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800&auto=format&fit=crop",
       quote: `Alraimi understands our operational challenges, adapts to our workflows, and delivers real execution discipline. Their oversight feels like a structured extension of our internal team.`,
       stat: "8x",
       statLabel: "increase in operational efficiency",
@@ -1716,7 +1687,7 @@ function Testimonials() {
     {
       name: "Qusai Abuhejleh",
       role: "Construction Supplier · Qatar",
-      image: "https://alraimigroup.com/wp-content/uploads/2024/11/WhatsApp-Image-2024-11-26-at-4.17.18-PM.jpeg",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop",
       quote: `Structured procurement flow and serious execution discipline. The consistency removes uncertainty in every shipment.`,
       stat: "3x",
       statLabel: "faster procurement cycles",
@@ -1724,7 +1695,7 @@ function Testimonials() {
     {
       name: "Gehad Mayas",
       role: "Solace Development · Bali",
-      image: "https://alraimigroup.com/wp-content/uploads/2024/12/WhatsApp-Image-2024-12-05-at-5.03.21-PM.jpeg",
+      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop",
       quote: `Outstanding operational control. Orders arrive on time and in perfect condition. The execution discipline gives real confidence when scaling projects.`,
       stat: "99%",
       statLabel: "on-time delivery rate",
@@ -1732,7 +1703,7 @@ function Testimonials() {
     {
       name: "Kamilia",
       role: "Fashion Brand Owner · Dubai",
-      image: "https://alraimigroup.com/wp-content/uploads/2024/11/WhatsApp-Image-2024-11-07-at-12.31.23-PM.jpeg",
+      image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop",
       quote: `Two years of smooth production, fast sampling, and zero structural miscommunication. That level of clarity reduces costly mistakes significantly.`,
       stat: "2 Years",
       statLabel: "continuous production partnership",
@@ -2030,12 +2001,15 @@ function Footer() {
                 End-to-end execution covering production, inspection, and international delivery.
               </p>
 
-              <button className="flex items-center gap-3 bg-white text-black px-7 py-3 rounded-lg text-sm font-medium transition hover:bg-neutral-200">
-                Contact Us
+              <Link
+                href="/contact#start-brand"
+                className="inline-flex items-center gap-3 bg-white text-black px-7 py-3 rounded-lg text-sm font-medium transition hover:bg-neutral-200"
+              >
+                Start Your Brand
                 <span className="w-7 h-7 flex items-center justify-center rounded-full bg-black text-white text-sm">
                   →
                 </span>
-              </button>
+              </Link>
             </div>
 
           </div>

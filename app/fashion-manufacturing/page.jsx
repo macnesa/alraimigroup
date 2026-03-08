@@ -176,7 +176,7 @@ function Hero() {
       className="bg-[#F3F2EF] pt-[8px]"
     >
 
-      {/* NAV OUTSIDE CARD */}
+      {/* NAV */}
 
       <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16">
 
@@ -231,7 +231,7 @@ function Hero() {
 
 
           <Link
-            href="#contact"
+            href="/contact#get-pi"
             className="md:hidden inline-flex items-center bg-black text-white px-5 py-2.5 rounded-lg text-sm font-medium transition hover:bg-neutral-800"
           >
             Get PI
@@ -242,15 +242,15 @@ function Hero() {
       </div>
 
 
-      {/* HERO SURFACE */}
+      {/* HERO */}
 
       <div className="px-[8px]">
 
-        <div className="  overflow-hidden">
+        <div className="overflow-hidden">
 
           <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 py-20 md:py-24 lg:py-28">
 
-            <div className="grid lg:grid-cols-[0.54fr_0.46fr] gap-14 items-center">
+            <div className="grid lg:grid-cols-[0.54fr_0.46fr] gap-10 md:gap-14 items-center">
 
               {/* TEXT */}
 
@@ -315,8 +315,8 @@ function Hero() {
                 <div className="hero-cta mt-8">
 
                   <Link
-                    href="#start"
-                    className="inline-flex bg-black text-white px-8 py-3.5 rounded-lg text-sm font-medium transition hover:bg-neutral-800"
+                    href="/contact#start-brand"
+                    className="inline-flex bg-black text-white px-7 py-3 rounded-lg text-sm font-medium transition hover:bg-neutral-800"
                   >
                     Start Your Brand
                   </Link>
@@ -326,18 +326,17 @@ function Hero() {
               </div>
 
 
-
               {/* IMAGE */}
 
               <div className="hero-image">
 
-                <div className="rounded-2xl overflow-hidden border border-neutral-200 aspect-[4/3]">
+                <div className="relative rounded-2xl overflow-hidden border border-neutral-200 aspect-[4/3]">
 
                   <Image
                     src="https://res.cloudinary.com/djgu1bhef/image/upload/v1772771351/ChatGPT_Image_Mar_6_2026_11_28_31_AM_dyz5pq.png"
                     alt="Garment inspection"
                     fill
-                    className="object-cover rounded-2xl"
+                    className="object-cover"
                   />
 
                 </div>
@@ -406,6 +405,8 @@ function About() {
 
 function ProductCategories() {
 
+  const sectionRef = useRef(null)
+
   const categories = [
     {
       title: "Womenswear",
@@ -434,9 +435,87 @@ function ProductCategories() {
     },
   ]
 
+  useEffect(() => {
+
+    const ctx = gsap.context(() => {
+
+      /* LABEL */
+
+      gsap.from(".pc-label", {
+        opacity: 0,
+        y: 12,
+        duration: 0.45,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 85%",
+        }
+      })
+
+      /* HEADING */
+
+      gsap.from(".pc-heading", {
+        opacity: 0,
+        y: 16,
+        duration: 0.55,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+        }
+      })
+
+      /* CARDS */
+
+      gsap.from(".pc-card", {
+        opacity: 0,
+        y: 30,
+        duration: 0.7,
+        stagger: 0.12,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 75%",
+        }
+      })
+
+      /* IMAGE SUBTLE REVEAL */
+
+      gsap.from(".pc-image", {
+        scale: 1.05,
+        duration: 1.1,
+        ease: "power2.out",
+        stagger: 0.1,
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 75%",
+        }
+      })
+
+      /* CTA (SEPARATE TRIGGER) */
+
+      gsap.from(".pc-cta", {
+        opacity: 0,
+        y: 20,
+        duration: 0.6,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".pc-cta",
+          start: "top 90%",
+        }
+      })
+
+    }, sectionRef)
+
+    ScrollTrigger.refresh()
+
+    return () => ctx.revert()
+
+  }, [])
+
   return (
 
-    <section className="bg-[#F3F2EF] pt-[8px]">
+    <section ref={sectionRef} className="bg-[#F3F2EF] pt-[8px]">
 
       <div className="max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16">
 
@@ -449,18 +528,18 @@ function ProductCategories() {
 
             <div className="flex justify-center mb-6">
 
-              <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium">
+              <div className="pc-label inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium">
                 Product Categories
               </div>
 
             </div>
 
 
-            {/* BIG HEADING */}
+            {/* HEADING */}
 
             <div className="text-center mb-14">
 
-              <h2 className="text-[30px] sm:text-[34px] md:text-[38px] lg:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900 max-w-[820px] mx-auto">
+              <h2 className="pc-heading text-[30px] sm:text-[34px] md:text-[38px] lg:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900 max-w-[820px] mx-auto">
                 Fashion Production Categories
               </h2>
 
@@ -480,9 +559,7 @@ function ProductCategories() {
 
                 return (
 
-                  <div key={category.title} className={position}>
-
-                    {/* IMAGE */}
+                  <div key={category.title} className={`pc-card ${position}`}>
 
                     <div className="relative w-full aspect-square rounded-xl overflow-hidden border border-neutral-200 mb-5">
 
@@ -490,20 +567,14 @@ function ProductCategories() {
                         src={category.image}
                         alt={category.title}
                         fill
-                        className="object-cover"
+                        className="pc-image object-cover transition-transform duration-[1400ms] ease-out hover:scale-[1.04]"
                       />
 
                     </div>
 
-
-                    {/* TITLE */}
-
                     <div className="text-[20px] font-medium text-neutral-900 mb-2">
                       {category.title}
                     </div>
-
-
-                    {/* ITEMS */}
 
                     <div className="text-[16px] leading-[1.7] text-neutral-600">
                       {category.items.join(", ")}
@@ -522,12 +593,14 @@ function ProductCategories() {
 
             <div className="flex justify-center mt-16 md:mt-20">
 
-              <button className="bg-white text-black px-8 py-3.5 rounded-lg text-sm font-medium border border-neutral-300 hover:bg-neutral-100 transition">
-                Start Your Brand
-              </button>
+            <Link
+  href="/contact#start-brand"
+  className="pc-cta bg-white text-black px-8 py-3.5 rounded-lg text-sm font-medium border border-neutral-300 hover:bg-neutral-100 transition"
+>
+  Start Your Brand
+</Link>
 
             </div>
-
 
           </div>
 
@@ -543,6 +616,8 @@ function ProductCategories() {
 
 
 function MaterialsTrims() {
+
+  const sectionRef = useRef(null)
 
   const data = [
     {
@@ -571,9 +646,88 @@ function MaterialsTrims() {
     },
   ]
 
+  useEffect(() => {
+
+    const ctx = gsap.context(() => {
+
+      /* LABEL */
+
+      gsap.from(".mt-label", {
+        opacity: 0,
+        y: 12,
+        duration: 0.45,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 85%"
+        }
+      })
+
+      /* HEADING */
+
+      gsap.from(".mt-heading", {
+        opacity: 0,
+        y: 18,
+        duration: 0.55,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%"
+        }
+      })
+
+      /* CARD STAGGER */
+
+      gsap.from(".mt-card", {
+        opacity: 0,
+        y: 40,
+        duration: 0.7,
+        stagger: 0.14,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".mt-grid",
+          start: "top 80%"
+        }
+      })
+
+      /* IMAGE SUBTLE REVEAL */
+
+      gsap.from(".mt-image", {
+        scale: 1.05,
+        duration: 1.2,
+        ease: "power2.out",
+        stagger: 0.12,
+        scrollTrigger: {
+          trigger: ".mt-grid",
+          start: "top 80%"
+        }
+      })
+
+      /* TAG MICRO STAGGER */
+
+      gsap.from(".mt-tag", {
+        opacity: 0,
+        y: 10,
+        duration: 0.35,
+        stagger: 0.05,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".mt-grid",
+          start: "top 78%"
+        }
+      })
+
+    }, sectionRef)
+
+    ScrollTrigger.refresh()
+
+    return () => ctx.revert()
+
+  }, [])
+
   return (
 
-    <section className="bg-[#F3F2EF] pt-[8px]">
+    <section ref={sectionRef} className="bg-[#F3F2EF] pt-[8px]">
 
       <div className="px-[8px]">
 
@@ -581,15 +735,16 @@ function MaterialsTrims() {
 
           <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 pt-16 md:pt-20 xl:pt-24">
 
+
             {/* HEADER */}
 
             <div className="mb-12 md:mb-16 xl:mb-20">
 
-              <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-10">
+              <div className="mt-label inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-10">
                 MATERIALS & TRIMS
               </div>
 
-              <h2 className="text-[34px] sm:text-[36px] md:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900 max-w-[720px]">
+              <h2 className="mt-heading text-[34px] sm:text-[36px] md:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900 max-w-[720px]">
                 Fabric Selection, Trim Development,<br/>and Packing Control
               </h2>
 
@@ -598,16 +753,21 @@ function MaterialsTrims() {
 
             {/* GRID */}
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-[8px] pb-14 md:pb-16 xl:pb-20">
+            <div className="mt-grid grid grid-cols-1 md:grid-cols-2 gap-[8px] pb-14 md:pb-16 xl:pb-20">
 
               {data.map((block) => (
-                <div key={block.title} className="relative bg-white border border-neutral-300 rounded-2xl overflow-hidden min-h-[220px] flex items-center">
+
+                <div key={block.title} className="mt-card relative bg-white border border-neutral-300 rounded-2xl overflow-hidden min-h-[220px] flex items-center">
 
                   {/* IMAGE */}
 
-                  <div className={`absolute inset-y-0 right-0 ${block.fade} pointer-events-none`}>
+                  <div className={`mt-image absolute inset-y-0 right-0 ${block.fade} pointer-events-none`}>
 
-                    <img src={block.image} alt={block.title} className="w-full h-full object-cover"/>
+                    <img
+                      src={block.image}
+                      alt={block.title}
+                      className="w-full h-full object-cover"
+                    />
 
                     <div className="absolute inset-0 bg-gradient-to-l from-transparent via-white/60 to-white"/>
 
@@ -625,7 +785,10 @@ function MaterialsTrims() {
                     <div className="flex flex-wrap gap-2">
 
                       {block.items.map((item) => (
-                        <span key={item} className="px-3 py-1.5 text-sm border border-neutral-300 rounded-md text-neutral-700">
+                        <span
+                          key={item}
+                          className="mt-tag px-3 py-1.5 text-sm border border-neutral-300 rounded-md text-neutral-700"
+                        >
                           {item}
                         </span>
                       ))}
@@ -635,6 +798,7 @@ function MaterialsTrims() {
                   </div>
 
                 </div>
+
               ))}
 
             </div>

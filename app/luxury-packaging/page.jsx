@@ -80,7 +80,7 @@ export default function Page() {
 
   </div>
 
-</section>
+      </section>
       {/* <Achievements/> */}
       {/* <Services/> */}
       {/* <HowWeWork/> */}
@@ -145,7 +145,10 @@ function Hero() {
 
       <div className="px-[8px]">
 
-        <div className="border border-neutral-200 rounded-2xl overflow-hidden text-white" style={{ background: "linear-gradient(135deg, #191919 0%, #2C2C2C 100%)" }}>
+        <div
+          className="border border-neutral-200 rounded-2xl overflow-hidden text-white"
+          style={{ background: "linear-gradient(135deg, #191919 0%, #2C2C2C 100%)" }}
+        >
 
           {/* HEADER */}
 
@@ -153,37 +156,61 @@ function Hero() {
 
             <header className="fade-up flex items-center justify-between">
 
+
               {/* LOGO */}
 
               <Link href="/" className="flex items-center gap-3">
 
-                <Image src="/images/alraimi-logo-white-1.png" alt="Alraimi Logo" width={42} height={38} priority />
+                <Image
+                  src="/images/alraimi-logo-white-1.png"
+                  alt="Alraimi Logo"
+                  width={42}
+                  height={38}
+                  priority
+                />
 
               </Link>
+
 
               {/* NAV */}
 
               <nav className="hidden md:flex items-center gap-10 lg:gap-12 text-sm text-white/70">
 
-                <Link href="/" className="hover:text-white transition">Home</Link>
+                <Link href="/" className="hover:text-white transition">
+                  Home
+                </Link>
 
-                <Link href="/fashion-manufacturing" className="hover:text-white transition">Fashion</Link>
+                <Link href="/fashion-manufacturing" className="hover:text-white transition">
+                  Fashion
+                </Link>
 
-                <Link href="/luxury-packaging" className="text-white transition">Packaging</Link>
+                <Link href="/luxury-packaging" className="text-white">
+                  Packaging
+                </Link>
 
-                <Link href="#contact" className="hover:text-white transition">Contact</Link>
+                <Link href="/contact" className="hover:text-white transition">
+                  Contact
+                </Link>
 
               </nav>
 
-              {/* DESKTOP CTA */}
 
-              <Link href="#contact" className="hidden md:inline-flex items-center bg-white text-black px-8 py-3.5 rounded-lg text-sm font-medium transition hover:bg-neutral-200">
+              {/* NAV CTA */}
+
+              <Link
+                href="/contact#get-pi"
+                className="hidden md:inline-flex items-center bg-[#8C7A5B] text-white px-8 py-3.5 rounded-lg text-sm font-medium transition hover:bg-[#76674C]"
+              >
                 Get Your PI
               </Link>
 
+
               {/* MOBILE CTA */}
 
-              <Link href="#contact" className="md:hidden inline-flex items-center bg-white text-black px-5 py-2.5 rounded-lg text-sm font-medium transition hover:bg-neutral-200">
+              <Link
+                href="/contact#get-pi"
+                className="md:hidden inline-flex items-center bg-[#8C7A5B] text-white px-5 py-2.5 rounded-lg text-sm font-medium transition hover:bg-[#76674C]"
+              >
                 Get PI
               </Link>
 
@@ -191,15 +218,18 @@ function Hero() {
 
           </div>
 
+
           {/* HERO CONTENT */}
 
           <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 py-20 md:py-24 lg:py-28">
 
             <div className="grid lg:grid-cols-[0.55fr_0.45fr] gap-14 items-center">
 
-              {/* TEXT SIDE */}
+
+              {/* TEXT */}
 
               <div>
+
 
                 {/* LABEL */}
 
@@ -210,6 +240,7 @@ function Hero() {
                   </span>
 
                 </div>
+
 
                 {/* TITLE */}
 
@@ -224,23 +255,38 @@ function Hero() {
 
                 </h1>
 
+
                 {/* DESCRIPTION */}
 
                 <p className="fade-up mt-7 md:mt-8 text-[16px] md:text-[18px] leading-[1.7] text-white/70 max-w-[620px]">
 
-                  Dielines, sampling, production control, AQL inspection, and door-to-door delivery — managed by our factory team.
+                  Dielines, sampling, production control, AQL inspection, and
+                  door-to-door delivery — managed by our factory team.
 
                 </p>
 
+
                 {/* CTA */}
 
-                <div className="fade-up mt-9 md:mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-4 md:gap-8">
+                <div className="fade-up mt-9 md:mt-10 flex items-center gap-8">
 
-                  <button className="bg-white text-black px-8 py-3.5 rounded-lg text-sm font-medium transition hover:bg-neutral-200">
+
+                  {/* HERO PRIMARY CTA */}
+
+                  <Link
+                    href="/contact#get-pi"
+                    className="inline-flex items-center bg-white text-black px-8 py-3.5 rounded-lg text-sm font-medium transition hover:bg-neutral-200"
+                  >
                     Get Your PI
-                  </button>
+                  </Link>
 
-                  <Link href="#contact" className="text-white/70 hover:text-white text-sm font-medium transition">
+
+                  {/* SECONDARY */}
+
+                  <Link
+                    href="/contact#start-your-brand"
+                    className="text-white/70 hover:text-white text-sm font-medium transition"
+                  >
                     Start Your Brand
                   </Link>
 
@@ -248,13 +294,19 @@ function Hero() {
 
               </div>
 
-              {/* IMAGE SIDE */}
+
+              {/* IMAGE */}
 
               <div className="fade-up">
 
                 <div className="relative rounded-2xl overflow-hidden border border-white/10 aspect-[4/3]">
 
-                  <Image src="https://res.cloudinary.com/djgu1bhef/image/upload/v1772772673/ChatGPT_Image_Mar_6_2026_11_50_57_AM_i7qlfo.png" alt="Luxury packaging production" fill className="object-cover" />
+                  <Image
+                    src="https://res.cloudinary.com/djgu1bhef/image/upload/v1772772673/ChatGPT_Image_Mar_6_2026_11_50_57_AM_i7qlfo.png"
+                    alt="Luxury packaging production"
+                    fill
+                    className="object-cover"
+                  />
 
                 </div>
 
@@ -271,6 +323,7 @@ function Hero() {
     </section>
 
   )
+
 }
 
 
