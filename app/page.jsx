@@ -63,6 +63,15 @@ function Hero() {
 
   const heroRef = useRef(null)
 
+  const cloudinaryTransform = (url) => {
+    return url.replace(
+      "/upload/",
+      "/upload/f_auto,q_auto,c_fill,w_2000/"
+    )
+  }
+
+  const heroImage = "https://res.cloudinary.com/djgu1bhef/image/upload/v1772983520/hero-bgg_omvkvt.png"
+
   useEffect(() => {
 
     const ctx = gsap.context(() => {
@@ -87,7 +96,6 @@ function Hero() {
         { opacity: 1, y: 0, duration: 0.45 }
       )
 
-      // NAV ITEMS FADE ONLY (NO TRANSLATE)
       tl.to(".hero-nav-item",
         { opacity: 1, stagger: 0.08, duration: 0.45 },
         "-=0.25"
@@ -167,31 +175,19 @@ function Hero() {
 
             <nav className="flex items-center gap-6 md:gap-10 text-sm text-neutral-700">
 
-              <Link
-                href="/"
-                className="hero-nav-item opacity-0 hover:text-black transition-colors duration-300"
-              >
+              <Link href="/" className="hero-nav-item opacity-0 hover:text-black transition-colors duration-300">
                 Home
               </Link>
 
-              <Link
-                href="/fashion-manufacturing"
-                className="hero-nav-item opacity-0 hover:text-black transition-colors duration-300"
-              >
+              <Link href="/fashion-manufacturing" className="hero-nav-item opacity-0 hover:text-black transition-colors duration-300">
                 Fashion
               </Link>
 
-              <Link
-                href="/luxury-packaging"
-                className="hero-nav-item opacity-0 hover:text-black transition-colors duration-300"
-              >
+              <Link href="/luxury-packaging" className="hero-nav-item opacity-0 hover:text-black transition-colors duration-300">
                 Packaging
               </Link>
 
-              <Link
-                href="/contact"
-                className="hero-nav-item opacity-0 hover:text-black transition-colors duration-300"
-              >
+              <Link href="/contact" className="hero-nav-item opacity-0 hover:text-black transition-colors duration-300">
                 Contact
               </Link>
 
@@ -199,7 +195,8 @@ function Hero() {
 
             <Link
               href="/contact#get-pi"
-              className="hidden md:inline-flex items-center gap-2 px-7 py-3 rounded-lg text-sm font-medium bg-[#8C7A5B] text-white hover:bg-[#7A6A4E] transition"            >
+              className="hidden md:inline-flex items-center gap-2 px-7 py-3 rounded-lg text-sm font-medium bg-[#8C7A5B] text-white hover:bg-[#7A6A4E] transition"
+            >
               Get Your PI
               <FaArrowRight className="text-xs" />
             </Link>
@@ -207,7 +204,6 @@ function Hero() {
           </div>
 
         </header>
-
 
 
         {/* HERO */}
@@ -221,7 +217,7 @@ function Hero() {
             <div className="absolute inset-0">
 
               <Image
-                src="/images/hero-bgg.png"
+                src={cloudinaryTransform(heroImage)}
                 alt="Manufacturing oversight in China"
                 fill
                 priority
@@ -231,11 +227,9 @@ function Hero() {
               />
 
               <div className="absolute inset-0 bg-black/35 hero-overlay" />
-
               <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/25 to-transparent" />
 
             </div>
-
 
 
             {/* CONTENT */}
@@ -287,10 +281,8 @@ function Hero() {
                       href="/contact#start-brand"
                       className="inline-flex items-center justify-center gap-2 bg-white text-black px-8 py-3.5 rounded-lg text-sm font-medium hover:bg-neutral-200 transition"
                     >
-
                       Start Your Brand
                       <FaArrowRight className="text-xs" />
-
                     </Link>
 
                   </div>
@@ -311,6 +303,7 @@ function Hero() {
   )
 
 }
+
 
 
 function ClientsMarquee() {
@@ -1838,6 +1831,8 @@ function FAQ() {
     </section>
   )
 }
+
+
 function FAQItem({ item, isOpen, onClick }) {
 
   return (

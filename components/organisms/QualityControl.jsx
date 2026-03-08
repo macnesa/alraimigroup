@@ -3,6 +3,13 @@ import { gsap } from "gsap"
 
 export default function QualityControl() {
 
+  const cloudinaryTransform = (url) => {
+    return url.replace(
+      "/upload/",
+      "/upload/f_auto,q_auto,c_fill,w_1200/"
+    )
+  }
+
   const controls = [
     {
       title: "In-Line Quality Control",
@@ -25,8 +32,14 @@ export default function QualityControl() {
   const imageRef = useRef(null)
 
   useEffect(() => {
-    gsap.fromTo(imageRef.current,{opacity:0},{opacity:1,duration:0.35,ease:"power2.out"})
-  },[activeIndex])
+
+    gsap.fromTo(
+      imageRef.current,
+      { opacity: 0 },
+      { opacity: 1, duration: 0.35, ease: "power2.out" }
+    )
+
+  }, [activeIndex])
 
   return (
 
@@ -61,8 +74,9 @@ export default function QualityControl() {
             <img
               ref={imageRef}
               key={activeIndex}
-              src={controls[activeIndex].image}
-              alt=""
+              src={cloudinaryTransform(controls[activeIndex].image)}
+              alt={controls[activeIndex].title}
+              loading="lazy"
               className="w-full h-full object-cover"
             />
 
@@ -79,13 +93,29 @@ export default function QualityControl() {
 
               return(
 
-                <div key={item.title} onClick={()=>setActiveIndex(index)} className="cursor-pointer pb-8 border-b border-white/10 transition-all duration-300">
+                <div
+                  key={item.title}
+                  onClick={()=>setActiveIndex(index)}
+                  className="cursor-pointer pb-8 border-b border-white/10 transition-all duration-300"
+                >
 
-                  <div className={`text-[18px] sm:text-[19px] md:text-[20px] leading-[1.3] font-medium transition-colors duration-300 ${isActive ? "text-white" : "text-white/40 hover:text-white/70"}`}>
+                  <div
+                    className={`text-[18px] sm:text-[19px] md:text-[20px] leading-[1.3] font-medium transition-colors duration-300 ${
+                      isActive
+                        ? "text-white"
+                        : "text-white/40 hover:text-white/70"
+                    }`}
+                  >
                     {item.title}
                   </div>
 
-                  <div className={`overflow-hidden transition-all duration-300 ${isActive ? "max-h-40 mt-4 opacity-100" : "max-h-0 opacity-0"}`}>
+                  <div
+                    className={`overflow-hidden transition-all duration-300 ${
+                      isActive
+                        ? "max-h-40 mt-4 opacity-100"
+                        : "max-h-0 opacity-0"
+                    }`}
+                  >
 
                     <div className="text-[16px] leading-[1.7] text-white/70 max-w-[520px]">
                       {item.desc}

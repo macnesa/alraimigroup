@@ -97,6 +97,13 @@ function Hero() {
 
   const heroRef = useRef(null)
 
+  const cloudinaryTransform = (url) => {
+    return url.replace(
+      "/upload/",
+      "/upload/f_auto,q_auto,c_fill,w_1400/"
+    )
+  }
+
   useEffect(() => {
 
     const ctx = gsap.context(() => {
@@ -132,7 +139,6 @@ function Hero() {
 
             <header className="fade-up flex items-center justify-between">
 
-
               {/* LOGO */}
 
               <Link href="/" className="flex items-center gap-3">
@@ -146,7 +152,6 @@ function Hero() {
                 />
 
               </Link>
-
 
               {/* NAV */}
 
@@ -170,7 +175,6 @@ function Hero() {
 
               </nav>
 
-
               {/* NAV CTA */}
 
               <Link
@@ -179,7 +183,6 @@ function Hero() {
               >
                 Get Your PI
               </Link>
-
 
               {/* MOBILE CTA */}
 
@@ -205,7 +208,6 @@ function Hero() {
               {/* TEXT */}
 
               <div>
-
 
                 {/* LABEL */}
 
@@ -246,18 +248,12 @@ function Hero() {
 
                 <div className="fade-up mt-9 md:mt-10 flex items-center gap-8">
 
-
-                  {/* HERO PRIMARY CTA */}
-
                   <Link
                     href="/contact#get-pi"
                     className="inline-flex items-center bg-white text-black px-8 py-3.5 rounded-lg text-sm font-medium transition hover:bg-neutral-200"
                   >
                     Get Your PI
                   </Link>
-
-
-                  {/* SECONDARY */}
 
                   <Link
                     href="/contact#start-your-brand"
@@ -278,10 +274,12 @@ function Hero() {
                 <div className="relative rounded-2xl overflow-hidden border border-white/10 aspect-[4/3]">
 
                   <Image
-                    src="https://res.cloudinary.com/djgu1bhef/image/upload/v1772772673/ChatGPT_Image_Mar_6_2026_11_50_57_AM_i7qlfo.png"
+                    src={cloudinaryTransform("https://res.cloudinary.com/djgu1bhef/image/upload/v1772772673/ChatGPT_Image_Mar_6_2026_11_50_57_AM_i7qlfo.png")}
                     alt="Luxury packaging production"
                     fill
+                    sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 700px"
                     className="object-cover"
+                    priority
                   />
 
                 </div>
@@ -365,6 +363,13 @@ function ProductCategories() {
 
   const sectionRef = useRef(null)
 
+  const cloudinaryTransform = (url) => {
+    return url.replace(
+      "/upload/",
+      "/upload/f_auto,q_auto,c_fill,w_1000/"
+    )
+  }
+
   const categories = [
     {
       title: "Rigid Boxes",
@@ -406,16 +411,12 @@ function ProductCategories() {
         }
       })
 
-      /* SECTION LABEL */
-
       tl.from(".categories-label", {
         opacity: 0,
         y: 16,
         duration: 0.6,
         ease: "power2.out"
       })
-
-      /* CARDS STAGGER */
 
       tl.from(".category-card", {
         opacity: 0,
@@ -424,8 +425,6 @@ function ProductCategories() {
         stagger: 0.12,
         ease: "power2.out"
       }, "-=0.2")
-
-      /* IMAGE MICRO ZOOM */
 
       gsap.from(".category-image", {
         scale: 1.06,
@@ -436,8 +435,6 @@ function ProductCategories() {
           start: "top 85%",
         }
       })
-
-      /* TAG MICRO STAGGER */
 
       gsap.utils.toArray(".category-card").forEach((card) => {
 
@@ -457,8 +454,6 @@ function ProductCategories() {
 
       })
 
-      /* CTA */
-
       gsap.from(".categories-cta", {
         opacity: 0,
         y: 20,
@@ -475,7 +470,6 @@ function ProductCategories() {
     return () => ctx.revert()
 
   }, [])
-
 
   return (
 
@@ -509,9 +503,10 @@ function ProductCategories() {
                   <div className="relative w-full aspect-[16/10] rounded-lg overflow-hidden mb-6 border border-neutral-200">
 
                     <Image
-                      src={category.image}
+                      src={cloudinaryTransform(category.image)}
                       alt={category.title}
                       fill
+                      sizes="(max-width:640px) 100vw, (max-width:1280px) 50vw, 420px"
                       className="object-cover category-image"
                     />
 
@@ -565,6 +560,13 @@ function FinishesSystem() {
 
   const sectionRef = useRef(null)
 
+  const cloudinaryTransform = (url) => {
+    return url.replace(
+      "/upload/",
+      "/upload/f_auto,q_auto,c_fill,w_800/"
+    )
+  }
+
   const finishes = [
     {
       title: "Lamination",
@@ -609,8 +611,6 @@ function FinishesSystem() {
 
     const ctx = gsap.context(() => {
 
-      /* HEADER */
-
       const headerTL = gsap.timeline({
         scrollTrigger: {
           trigger: ".finishes-header",
@@ -638,9 +638,6 @@ function FinishesSystem() {
           ease: "power2.out"
         }, "-=0.4")
 
-
-      /* CARDS */
-
       gsap.from(".finish-card", {
         opacity: 0,
         y: 30,
@@ -653,9 +650,6 @@ function FinishesSystem() {
         }
       })
 
-
-      /* IMAGE MICRO ZOOM */
-
       gsap.from(".finish-image", {
         scale: 1.05,
         duration: 1.2,
@@ -665,9 +659,6 @@ function FinishesSystem() {
           start: "top 85%"
         }
       })
-
-
-      /* TAG MICRO STAGGER */
 
       gsap.utils.toArray(".finish-card").forEach((card) => {
 
@@ -693,7 +684,6 @@ function FinishesSystem() {
 
   }, [])
 
-
   return (
 
     <section ref={sectionRef} className="bg-[#F3F2EF] pt-[8px]">
@@ -703,8 +693,6 @@ function FinishesSystem() {
         <div className="bg-white border border-[#D6D1C8] rounded-2xl">
 
           <div className="px-8 sm:px-12 md:px-16 xl:px-20 py-14 md:py-16 xl:py-20">
-
-            {/* HEADER */}
 
             <div className="finishes-header grid grid-cols-1 md:grid-cols-[1fr_420px] gap-10 md:gap-16 items-start mb-16 md:mb-20">
 
@@ -730,9 +718,6 @@ function FinishesSystem() {
 
             </div>
 
-
-            {/* GRID */}
-
             <div className="finishes-grid grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
 
               {finishes.map((finish) => (
@@ -744,9 +729,10 @@ function FinishesSystem() {
                     <div className="relative w-full h-[140px] sm:h-[110px] rounded-lg overflow-hidden border border-neutral-200">
 
                       <Image
-                        src={finish.image}
+                        src={cloudinaryTransform(finish.image)}
                         alt={finish.title}
                         fill
+                        sizes="(max-width:768px) 100vw, 220px"
                         className="object-cover finish-image"
                       />
 

@@ -98,6 +98,13 @@ function Hero() {
 
   const heroRef = useRef(null)
 
+  const cloudinaryTransform = (url) => {
+    return url.replace(
+      "/upload/",
+      "/upload/f_auto,q_auto,c_fill,w_1400/"
+    )
+  }
+
   useEffect(() => {
 
     const ctx = gsap.context(() => {
@@ -150,10 +157,7 @@ function Hero() {
 
   return (
 
-    <section
-      ref={heroRef}
-      className="bg-[#F3F2EF] pt-[8px]"
-    >
+    <section ref={heroRef} className="bg-[#F3F2EF] pt-[8px]">
 
       {/* NAV */}
 
@@ -173,24 +177,17 @@ function Hero() {
 
           </Link>
 
-
           <nav className="hidden md:flex items-center gap-10 lg:gap-12 text-sm text-neutral-600">
 
             <Link href="/" className="hover:text-black transition">
               Home
             </Link>
 
-            <Link
-              href="/fashion-manufacturing"
-              className="text-black"
-            >
+            <Link href="/fashion-manufacturing" className="text-black">
               Fashion
             </Link>
 
-            <Link
-              href="/luxury-packaging"
-              className="hover:text-black transition"
-            >
+            <Link href="/luxury-packaging" className="hover:text-black transition">
               Packaging
             </Link>
 
@@ -200,14 +197,12 @@ function Hero() {
 
           </nav>
 
-
           <Link
             href="#contact"
             className="hidden md:inline-flex items-center bg-black text-white px-7 py-3 rounded-lg text-sm font-medium transition hover:bg-neutral-800"
           >
             Get Your PI
           </Link>
-
 
           <Link
             href="/contact#get-pi"
@@ -230,6 +225,7 @@ function Hero() {
           <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 py-20 md:py-24 lg:py-28">
 
             <div className="grid lg:grid-cols-[0.54fr_0.46fr] gap-10 md:gap-14 items-center">
+
 
               {/* TEXT */}
 
@@ -312,10 +308,12 @@ function Hero() {
                 <div className="relative rounded-2xl overflow-hidden border border-neutral-200 aspect-[4/3]">
 
                   <Image
-                    src="https://res.cloudinary.com/djgu1bhef/image/upload/v1772771351/ChatGPT_Image_Mar_6_2026_11_28_31_AM_dyz5pq.png"
+                    src={cloudinaryTransform("https://res.cloudinary.com/djgu1bhef/image/upload/v1772771351/ChatGPT_Image_Mar_6_2026_11_28_31_AM_dyz5pq.png")}
                     alt="Garment inspection"
                     fill
+                    sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 700px"
                     className="object-cover"
+                    priority
                   />
 
                 </div>
@@ -333,6 +331,7 @@ function Hero() {
     </section>
 
   )
+
 }
 
  
@@ -386,6 +385,13 @@ function ProductCategories() {
 
   const sectionRef = useRef(null)
 
+  const cloudinaryTransform = (url) => {
+    return url.replace(
+      "/upload/",
+      "/upload/f_auto,q_auto,c_fill,w_1000/"
+    )
+  }
+
   const categories = [
     {
       title: "Womenswear",
@@ -416,9 +422,9 @@ function ProductCategories() {
 
   useEffect(() => {
 
-    const ctx = gsap.context(() => {
+    gsap.registerPlugin(ScrollTrigger)
 
-      /* LABEL */
+    const ctx = gsap.context(() => {
 
       gsap.from(".pc-label", {
         opacity: 0,
@@ -431,8 +437,6 @@ function ProductCategories() {
         }
       })
 
-      /* HEADING */
-
       gsap.from(".pc-heading", {
         opacity: 0,
         y: 16,
@@ -443,8 +447,6 @@ function ProductCategories() {
           start: "top 80%",
         }
       })
-
-      /* CARDS */
 
       gsap.from(".pc-card", {
         opacity: 0,
@@ -458,8 +460,6 @@ function ProductCategories() {
         }
       })
 
-      /* IMAGE SUBTLE REVEAL */
-
       gsap.from(".pc-image", {
         scale: 1.05,
         duration: 1.1,
@@ -470,8 +470,6 @@ function ProductCategories() {
           start: "top 75%",
         }
       })
-
-      /* CTA (SEPARATE TRIGGER) */
 
       gsap.from(".pc-cta", {
         opacity: 0,
@@ -543,9 +541,10 @@ function ProductCategories() {
                     <div className="relative w-full aspect-square rounded-xl overflow-hidden border border-neutral-200 mb-5">
 
                       <Image
-                        src={category.image}
+                        src={cloudinaryTransform(category.image)}
                         alt={category.title}
                         fill
+                        sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 300px"
                         className="pc-image object-cover transition-transform duration-[1400ms] ease-out hover:scale-[1.04]"
                       />
 
@@ -572,12 +571,12 @@ function ProductCategories() {
 
             <div className="flex justify-center mt-16 md:mt-20">
 
-            <Link
-  href="/contact#start-brand"
-  className="pc-cta bg-white text-black px-8 py-3.5 rounded-lg text-sm font-medium border border-neutral-300 hover:bg-neutral-100 transition"
->
-  Start Your Brand
-</Link>
+              <Link
+                href="/contact#start-brand"
+                className="pc-cta bg-white text-black px-8 py-3.5 rounded-lg text-sm font-medium border border-neutral-300 hover:bg-neutral-100 transition"
+              >
+                Start Your Brand
+              </Link>
 
             </div>
 
@@ -597,6 +596,13 @@ function ProductCategories() {
 function MaterialsTrims() {
 
   const sectionRef = useRef(null)
+
+  const cloudinaryTransform = (url) => {
+    return url.replace(
+      "/upload/",
+      "/upload/f_auto,q_auto,c_fill,w_1000/"
+    )
+  }
 
   const data = [
     {
@@ -627,9 +633,9 @@ function MaterialsTrims() {
 
   useEffect(() => {
 
-    const ctx = gsap.context(() => {
+    gsap.registerPlugin(ScrollTrigger)
 
-      /* LABEL */
+    const ctx = gsap.context(() => {
 
       gsap.from(".mt-label", {
         opacity: 0,
@@ -642,8 +648,6 @@ function MaterialsTrims() {
         }
       })
 
-      /* HEADING */
-
       gsap.from(".mt-heading", {
         opacity: 0,
         y: 18,
@@ -654,8 +658,6 @@ function MaterialsTrims() {
           start: "top 80%"
         }
       })
-
-      /* CARD STAGGER */
 
       gsap.from(".mt-card", {
         opacity: 0,
@@ -669,8 +671,6 @@ function MaterialsTrims() {
         }
       })
 
-      /* IMAGE SUBTLE REVEAL */
-
       gsap.from(".mt-image", {
         scale: 1.05,
         duration: 1.2,
@@ -681,8 +681,6 @@ function MaterialsTrims() {
           start: "top 80%"
         }
       })
-
-      /* TAG MICRO STAGGER */
 
       gsap.from(".mt-tag", {
         opacity: 0,
@@ -714,7 +712,6 @@ function MaterialsTrims() {
 
           <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 pt-16 md:pt-20 xl:pt-24">
 
-
             {/* HEADER */}
 
             <div className="mb-12 md:mb-16 xl:mb-20">
@@ -729,29 +726,31 @@ function MaterialsTrims() {
 
             </div>
 
-
             {/* GRID */}
 
             <div className="mt-grid grid grid-cols-1 md:grid-cols-2 gap-[8px] pb-14 md:pb-16 xl:pb-20">
 
               {data.map((block) => (
 
-                <div key={block.title} className="mt-card relative bg-white border border-neutral-300 rounded-2xl overflow-hidden min-h-[220px] flex items-center">
+                <div
+                  key={block.title}
+                  className="mt-card relative bg-white border border-neutral-300 rounded-2xl overflow-hidden min-h-[220px] flex items-center"
+                >
 
                   {/* IMAGE */}
 
                   <div className={`mt-image absolute inset-y-0 right-0 ${block.fade} pointer-events-none`}>
 
                     <img
-                      src={block.image}
+                      src={cloudinaryTransform(block.image)}
                       alt={block.title}
+                      loading="lazy"
                       className="w-full h-full object-cover"
                     />
 
                     <div className="absolute inset-0 bg-gradient-to-l from-transparent via-white/60 to-white"/>
 
                   </div>
-
 
                   {/* CONTENT */}
 
@@ -791,6 +790,7 @@ function MaterialsTrims() {
     </section>
 
   )
+
 }
  
 
