@@ -1417,54 +1417,70 @@ function Gallery() {
   const sectionRef = useRef(null);
 
   const media = [
+    // ROW 1 (4 blocks)
     {
-      src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772708330/ChatGPT_Image_Mar_5_2026_05_51_04_PM_hd7ngs.png",
+      src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1773063330/ChatGPT_Image_Mar_9_2026_06_09_04_PM_yi7i50.png",
       alt: "Container port logistics",
       type: "image",
-      span: "md:col-span-8",
-      height: "md:h-[420px]"
+      span: "md:col-span-3"
+    },
+    {
+      src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1773064884/ChatGPT_Image_Mar_9_2026_09_01_08_PM_amfsgu.png",
+      alt: "Factory walkthrough",
+      type: "image",
+      span: "md:col-span-3"
+    },
+    {
+      src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1773063328/ChatGPT_Image_Mar_9_2026_06_16_12_PM_iwzagy.png",
+      alt: "Cargo loading truck",
+      type: "image",
+      span: "md:col-span-3"
+    },
+    {
+      src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1773063321/ChatGPT_Image_Mar_9_2026_08_22_01_PM_eyrgwo.png",
+      alt: "Factory production line",
+      type: "image",
+      span: "md:col-span-3"
+    },
+
+    // ROW 2 (3 blocks)
+    {
+      src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1773044805/ChatGPT_Image_Mar_9_2026_03_16_02_PM_vrmfdg.png",
+      alt: "Quality inspection process",
+      type: "image",
+      span: "md:col-span-6"
+    },
+    {
+      src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1773066154/ChatGPT_Image_Mar_9_2026_09_22_22_PM_vguqzn.png",
+      alt: "Shipping container yard",
+      type: "image",
+      span: "md:col-span-6"
+    }, 
+
+    // ROW 3 (4 blocks)
+    {
+      src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1773065825/ChatGPT_Image_Mar_9_2026_09_16_44_PM_vat8ji.png",
+      alt: "Container loading",
+      type: "image",
+      span: "md:col-span-3"
+    },
+    {
+      src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1773064659/ChatGPT_Image_Mar_9_2026_08_45_28_PM_gv4tbh.png",
+      alt: "Factory inspection",
+      type: "image",
+      span: "md:col-span-3"
+    },
+    {
+      src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1773064659/ChatGPT_Image_Mar_9_2026_08_57_16_PM_dupr5n.png",
+      alt: "Truck loading",
+      type: "image",
+      span: "md:col-span-3"
     },
     {
       src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772708330/ChatGPT_Image_Mar_5_2026_05_52_41_PM_frxpql.png",
-      alt: "Factory walkthrough",
+      alt: "Distribution warehouse",
       type: "image",
-      span: "md:col-span-4",
-      height: "md:h-[420px]"
-    },
-    {
-      src: "https://www.pexels.com/download/video/15459710/",
-      alt: "Cargo loading truck",
-      type: "video",
-      span: "md:col-span-5",
-      height: "md:h-[380px]"
-    },
-    {
-      src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772708330/ChatGPT_Image_Mar_5_2026_05_56_24_PM_j9lanu.png",
-      alt: "Factory production line",
-      type: "image",
-      span: "md:col-span-7",
-      height: "md:h-[380px]"
-    },
-    {
-      src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772708455/ChatGPT_Image_Mar_5_2026_06_00_33_PM_qrwpp5.png",
-      alt: "Quality inspection process",
-      type: "image",
-      span: "md:col-span-3",
-      height: "md:h-[340px]"
-    },
-    {
-      src: "https://www.pexels.com/download/video/4620565/",
-      alt: "Shipping container yard",
-      type: "video",
-      span: "md:col-span-6",
-      height: "md:h-[340px]"
-    },
-    {
-      src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772715474/ChatGPT_Image_Mar_5_2026_07_56_30_PM_srsur2.png",
-      alt: "Warehouse distribution center",
-      type: "image",
-      span: "md:col-span-3",
-      height: "md:h-[340px]"
+      span: "md:col-span-3"
     }
   ];
 
@@ -1474,7 +1490,7 @@ function Gallery() {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 80%",
+          start: "top 80%"
         },
         defaults: { ease: "power2.out" }
       });
@@ -1482,14 +1498,14 @@ function Gallery() {
       tl.from(".gallery-header", {
         opacity: 0,
         y: 20,
-        duration: 0.7,
+        duration: 0.7
       });
 
       tl.from(".gallery-item", {
         opacity: 0,
         y: 30,
         stagger: 0.08,
-        duration: 0.8,
+        duration: 0.8
       }, "-=0.3");
 
     }, sectionRef);
@@ -1502,11 +1518,9 @@ function Gallery() {
       ref={sectionRef}
       className="bg-[#F3F2EF] pt-[8px] overflow-hidden"
     >
-
       <div className="px-[8px]">
 
-        {/* DARK SURFACE */}
-        <div className="    rounded-2xl">
+        <div className="rounded-2xl">
 
           <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 py-20 md:py-24">
 
@@ -1517,53 +1531,38 @@ function Gallery() {
               </div>
             </div>
 
-
-
             {/* GRID */}
             <div className="grid grid-cols-2 md:grid-cols-12 gap-4 md:gap-6">
 
-              {media.map((item, index) => {
+              {media.map((item, index) => (
+                <div
+                  key={index}
+                  className={`gallery-item col-span-1 ${item.span}`}
+                >
+                  <div className="rounded-2xl overflow-hidden border border-white/10">
 
-                let mobileSpan = "col-span-1";
-                let mobileHeight = "h-[190px]";
+                    {item.type === "video" ? (
+                      <video
+                        src={item.src}
+                        className="w-full h-[220px] md:h-[340px] object-cover"
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        controls={false}
+                      />
+                    ) : (
+                      <img
+                        src={item.src}
+                        alt={item.alt}
+                        className="w-full h-[220px] md:h-[340px] object-cover"
+                        loading="lazy"
+                      />
+                    )}
 
-                if (index === 0) {
-                  mobileSpan = "col-span-2";
-                  mobileHeight = "h-[240px]";
-                }
-
-                if (index === 3) {
-                  mobileSpan = "col-span-2";
-                  mobileHeight = "h-[220px]";
-                }
-
-                return (
-                  <div key={index} className={`gallery-item ${mobileSpan} ${item.span}`}>
-                    <div className="rounded-2xl overflow-hidden border border-white/10">
-
-                      {item.type === "video" ? (
-                        <video
-                          src={item.src}
-                          className={`w-full ${mobileHeight} ${item.height} object-cover`}
-                          autoPlay
-                          muted
-                          loop
-                          playsInline
-                          controls={false}
-                        />
-                      ) : (
-                        <img
-                          src={item.src}
-                          alt={item.alt}
-                          className={`w-full ${mobileHeight} ${item.height} object-cover`}
-                          loading="lazy"
-                        />
-                      )}
-
-                    </div>
                   </div>
-                );
-              })}
+                </div>
+              ))}
 
             </div>
 
@@ -1572,7 +1571,6 @@ function Gallery() {
         </div>
 
       </div>
-
     </section>
   );
 }

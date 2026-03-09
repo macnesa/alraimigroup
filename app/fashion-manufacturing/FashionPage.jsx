@@ -1109,53 +1109,68 @@ function CookieConsent() {
  
 
 function Gallery() {
+
+  // CLOUDINARY IMAGE OPTIMIZER
+  function optimizeImage(url) {
+    if (!url.includes("res.cloudinary.com")) return url;
+
+    return url.replace(
+      "/upload/",
+      "/upload/f_auto,q_auto,w_1400/"
+    );
+  }
+
   const images = [
-    // ROW 1 — 8 / 4
     {
-      src: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1600&q=80",
+      src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1773039574/ChatGPT_Image_Mar_9_2026_01_59_13_PM_hve5z9.png",
       alt: "Container port logistics",
-      span: "md:col-span-8",
-      height: "h-[420px]"
+      span: "md:col-span-8 col-span-2",
+      height: "h-[260px] md:h-[420px]",
+      position: "object-top"
     },
     {
-      src: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=1200&q=80",
+      src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1773041127/ChatGPT_Image_Mar_9_2026_12_48_45_PM_d4hx1l.png",
       alt: "Warehouse pallet storage",
-      span: "md:col-span-4",
-      height: "h-[420px]"
+      span: "md:col-span-4 col-span-1",
+      height: "h-[260px] md:h-[420px]",
+      position: "object-bottom"
     },
 
-    // ROW 2 — 5 / 7
     {
-      src: "https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=1200&q=80",
+      src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1773042867/ChatGPT_Image_Mar_9_2026_02_54_05_PM_amonvp.png",
       alt: "Cargo loading truck",
-      span: "md:col-span-5",
-      height: "h-[380px]"
+      span: "md:col-span-5 col-span-1",
+      height: "h-[220px] md:h-[420px]",
+      position: "object-top"
     },
     {
-      src: "https://images.unsplash.com/photo-1700716465891-9e5e9f501d7d?q=80&w=2693&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1773040919/ChatGPT_Image_Mar_9_2026_02_17_06_PM_e3yiqw.png",
       alt: "Factory production line",
-      span: "md:col-span-7",
-      height: "h-[380px]"
+      span: "md:col-span-7 col-span-2",
+      height: "h-[220px] md:h-[420px]",
+      position: "object-top"
     },
 
-    // ROW 3 — 3 / 6 / 3
     {
-      src: "https://images.unsplash.com/photo-1581092334651-ddf26d9a09d0?auto=format&fit=crop&w=1200&q=80",
+      src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1773041431/ChatGPT_Image_Mar_9_2026_02_30_09_PM_kgvfq2.png",
       alt: "Quality inspection process",
-      span: "md:col-span-3",
-      height: "h-[340px]"
+      span: "md:col-span-3 col-span-1",
+      height: "h-[180px] md:h-[340px]",
+      position: "object-center"
     },
     {
-      src: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1600&q=80",
+      src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1773041791/ChatGPT_Image_Mar_9_2026_02_36_12_PM_zbqhpq.png",
       alt: "Shipping container yard",
-      span: "md:col-span-6",
-      height: "h-[340px]"
+      span: "md:col-span-6 col-span-1",
+      height: "h-[180px] md:h-[340px]",
+      position: "object-center"
     },
     {
-      src: "https://images.unsplash.com/photo-1590496793929-36417d3117de?auto=format&fit=crop&w=1200&q=80",
+      src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1773053102/ChatGPT_Image_Mar_9_2026_05_39_45_PM_knu0my.png",
       alt: "Warehouse distribution center",
-      span: "md:col-span-3",
-      height: "h-[340px]"
+      span: "md:col-span-3 col-span-2",
+      height: "h-[180px] md:h-[340px]",
+      position: "object-bottom"
     }
   ];
 
@@ -1163,7 +1178,7 @@ function Gallery() {
     <section className="bg-[#F3F2EF] py-22">
       <div className="max-w-[1600px] mx-auto px-10 xl:px-16">
 
-        {/* HEADER — CENTERED */}
+        {/* HEADER */}
         <div className="flex justify-center mb-24">
           <div className="inline-flex items-center border border-neutral-300 px-5 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium text-neutral-700">
             Gallery
@@ -1171,14 +1186,15 @@ function Gallery() {
         </div>
 
         {/* GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-12 gap-4 md:gap-6">
           {images.map((item, index) => (
             <div key={index} className={item.span}>
               <div className="rounded-2xl overflow-hidden border border-black/20">
                 <img
-                  src={item.src}
+                  src={optimizeImage(item.src)}
                   alt={item.alt}
-                  className={`w-full ${item.height} object-cover`}
+                  loading="lazy"
+                  className={`w-full ${item.height} object-cover ${item.position}`}
                 />
               </div>
             </div>
@@ -1189,6 +1205,7 @@ function Gallery() {
     </section>
   );
 }
+
  
 
 function FAQ() {

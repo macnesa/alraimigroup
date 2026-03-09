@@ -1268,165 +1268,99 @@ function CookieConsent() {
 
 
 function Gallery() {
-  const sectionRef = useRef(null);
 
-  const media = [
+  // CLOUDINARY IMAGE OPTIMIZER
+  function optimizeImage(url) {
+    if (!url.includes("res.cloudinary.com")) return url;
+
+    return url.replace(
+      "/upload/",
+      "/upload/f_auto,q_auto,w_1400/"
+    );
+  }
+
+  const images = [
     {
-      src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772708330/ChatGPT_Image_Mar_5_2026_05_51_04_PM_hd7ngs.png",
+      src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1773051867/ChatGPT_Image_Mar_9_2026_05_24_02_PM_qgizxe.png",
       alt: "Container port logistics",
-      type: "image",
-      span: "md:col-span-8",
-      height: "md:h-[420px]"
+      span: "md:col-span-4 col-span-2",
+      height: "h-[260px] md:h-[420px]",
+      position: "object-top"
     },
     {
-      src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772708330/ChatGPT_Image_Mar_5_2026_05_52_41_PM_frxpql.png",
-      alt: "Factory walkthrough",
-      type: "image",
-      span: "md:col-span-4",
-      height: "md:h-[420px]"
+      src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1773045608/ChatGPT_Image_Mar_9_2026_03_39_36_PM_wjk0nh.png",
+      alt: "Warehouse pallet storage",
+      span: "md:col-span-8 col-span-1",
+      height: "h-[260px] md:h-[420px]",
+      position: "object-center"
     },
+
     {
-      src: "https://www.pexels.com/download/video/15459710/",
+      src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1773051427/ChatGPT_Image_Mar_9_2026_03_44_40_PM_o9as43.png",
       alt: "Cargo loading truck",
-      type: "video",
-      span: "md:col-span-5",
-      height: "md:h-[380px]"
+      span: "md:col-span-5 col-span-1",
+      height: "h-[220px] md:h-[420px]",
+      position: "object-top"
     },
     {
-      src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772708330/ChatGPT_Image_Mar_5_2026_05_56_24_PM_j9lanu.png",
+      src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1773051426/ChatGPT_Image_Mar_9_2026_05_16_37_PM_lxvszq.png",
       alt: "Factory production line",
-      type: "image",
-      span: "md:col-span-7",
-      height: "md:h-[380px]"
+      span: "md:col-span-7 col-span-2",
+      height: "h-[220px] md:h-[420px]",
+      position: "object-center"
     },
+
     {
-      src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772708455/ChatGPT_Image_Mar_5_2026_06_00_33_PM_qrwpp5.png",
+      src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1773052409/ChatGPT_Image_Mar_9_2026_05_33_10_PM_andc8r.png",
       alt: "Quality inspection process",
-      type: "image",
-      span: "md:col-span-3",
-      height: "md:h-[340px]"
+      span: "md:col-span-3 col-span-1",
+      height: "h-[180px] md:h-[380px]",
+      position: "object-center"
     },
     {
-      src: "https://www.pexels.com/download/video/4620565/",
+      src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1773052226/ChatGPT_Image_Mar_9_2026_05_30_04_PM_j74wyr.png",
       alt: "Shipping container yard",
-      type: "video",
-      span: "md:col-span-6",
-      height: "md:h-[340px]"
+      span: "md:col-span-6 col-span-1",
+      height: "h-[180px] md:h-[380px]",
+      position: "object-center"
     },
     {
-      src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772715474/ChatGPT_Image_Mar_5_2026_07_56_30_PM_srsur2.png",
+      src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1773052544/ChatGPT_Image_Mar_9_2026_05_35_27_PM_alfevu.png",
       alt: "Warehouse distribution center",
-      type: "image",
-      span: "md:col-span-3",
-      height: "md:h-[340px]"
+      span: "md:col-span-3 col-span-2",
+      height: "h-[180px] md:h-[380px]",
+      position: "object-bottom"
     }
   ];
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-        },
-        defaults: { ease: "power2.out" }
-      });
-
-      tl.from(".gallery-header", {
-        opacity: 0,
-        y: 20,
-        duration: 0.7,
-      });
-
-      tl.from(".gallery-item", {
-        opacity: 0,
-        y: 30,
-        stagger: 0.08,
-        duration: 0.8,
-      }, "-=0.3");
-
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <section
-      ref={sectionRef}
-      className="bg-[#F3F2EF] pt-[8px] overflow-hidden"
-    >
+    <section className="bg-[#F3F2EF] py-22">
+      <div className="max-w-[1600px] mx-auto px-10 xl:px-16">
 
-      <div className="px-[8px]">
+        {/* HEADER */}
+        <div className="flex justify-center mb-24">
+          <div className="inline-flex items-center border border-neutral-300 px-5 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium text-neutral-700">
+            Gallery
+          </div>
+        </div>
 
-        {/* DARK SURFACE */}
-        <div className="    rounded-2xl">
-
-          <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 py-20 md:py-24">
-
-            {/* HEADER */}
-            <div className="gallery-header flex justify-center mb-16 md:mb-20">
-              <div className="inline-flex items-center border border-[#8C7A5B]/40 px-5 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium text-[#8C7A5B]">
-                Gallery
+        {/* GRID */}
+        <div className="grid grid-cols-2 md:grid-cols-12 gap-4 md:gap-6">
+          {images.map((item, index) => (
+            <div key={index} className={item.span}>
+              <div className="rounded-2xl overflow-hidden border border-black/20">
+                <img
+                  src={optimizeImage(item.src)}
+                  alt={item.alt}
+                  loading="lazy"
+                  className={`w-full ${item.height} object-cover ${item.position}`}
+                />
               </div>
             </div>
-
-
-
-            {/* GRID */}
-            <div className="grid grid-cols-2 md:grid-cols-12 gap-4 md:gap-6">
-
-              {media.map((item, index) => {
-
-                let mobileSpan = "col-span-1";
-                let mobileHeight = "h-[190px]";
-
-                if (index === 0) {
-                  mobileSpan = "col-span-2";
-                  mobileHeight = "h-[240px]";
-                }
-
-                if (index === 3) {
-                  mobileSpan = "col-span-2";
-                  mobileHeight = "h-[220px]";
-                }
-
-                return (
-                  <div key={index} className={`gallery-item ${mobileSpan} ${item.span}`}>
-                    <div className="rounded-2xl overflow-hidden border border-white/10">
-
-                      {item.type === "video" ? (
-                        <video
-                          src={item.src}
-                          className={`w-full ${mobileHeight} ${item.height} object-cover`}
-                          autoPlay
-                          muted
-                          loop
-                          playsInline
-                          controls={false}
-                        />
-                      ) : (
-                        <img
-                          src={item.src}
-                          alt={item.alt}
-                          className={`w-full ${mobileHeight} ${item.height} object-cover`}
-                          loading="lazy"
-                        />
-                      )}
-
-                    </div>
-                  </div>
-                );
-              })}
-
-            </div>
-
-          </div>
-
+          ))}
         </div>
 
       </div>
-
     </section>
   );
 }
