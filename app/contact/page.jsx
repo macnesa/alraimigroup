@@ -39,7 +39,7 @@ import { SplitText } from "gsap/SplitText";
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 import { motion, useScroll, useTransform } from "framer-motion";
-
+import Footer from '../../components/organisms/Footer'
 
 
 
@@ -91,16 +91,16 @@ function Hero() {
 
   return (
 
-    <section
-      ref={heroRef}
-      className="bg-[#F3F2EF] pt-[8px]"
-    >
+    <section ref={heroRef} className="bg-[#F3F2EF] pt-[8px]">
 
-      {/* NAV */}
 
-      <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16">
+      {/* HEADER */}
 
-        <header className="flex items-center justify-between h-[92px]">
+      <header className="mx-[8px]">
+
+        <div className="max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16 py-5 flex items-center justify-between">
+
+          {/* LOGO */}
 
           <Link href="/" className="flex items-center">
 
@@ -114,7 +114,10 @@ function Hero() {
 
           </Link>
 
-          <nav className="hidden md:flex items-center gap-10 text-sm text-neutral-600">
+
+          {/* NAV (VISIBLE MOBILE) */}
+
+          <nav className="flex items-center gap-4 sm:gap-6 md:gap-10 text-sm text-neutral-700">
 
             <Link href="/" className="hover:text-black transition">
               Home
@@ -134,22 +137,26 @@ function Hero() {
 
           </nav>
 
+
+          {/* CTA DESKTOP ONLY */}
+
           <Link
             href="/contact#get-pi"
-            className="hidden md:inline-flex items-center bg-black text-white px-7 py-3 rounded-lg text-sm font-medium hover:bg-neutral-800 transition"
+            className="hidden md:inline-flex items-center gap-2 px-7 py-3 rounded-lg text-sm font-medium bg-black text-white hover:bg-[#7A6A4E] transition"
           >
             Get Your PI
+            <FaArrowRight className="text-xs" />
           </Link>
 
-        </header>
+        </div>
 
-      </div>
+      </header>
 
 
 
       {/* HERO SURFACE */}
 
-      <div className="px-[8px]">
+      <div className="px-[8px] pt-[8px]">
 
         <div
           className="relative rounded-2xl border border-white/10 text-white overflow-hidden"
@@ -158,18 +165,20 @@ function Hero() {
           }}
         >
 
-          {/* IMAGE */}
+
+          {/* BACKGROUND IMAGE */}
 
           <div
             className="absolute inset-0"
             style={{
               backgroundImage:
-                "url(https://images.unsplash.com/photo-1660980041852-230420b8f99f?q=80&w=1760&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)",
+                "url(https://images.unsplash.com/photo-1660980041852-230420b8f99f?q=80&w=1760&auto=format&fit=crop&ixlib=rb-4.1.0)",
               backgroundSize: "cover",
               backgroundPosition: "center",
               opacity: 0.18
             }}
           />
+
 
           {/* LEFT FADE */}
 
@@ -188,6 +197,7 @@ function Hero() {
               )`
             }}
           />
+
 
           {/* RIGHT FADE */}
 
@@ -208,16 +218,16 @@ function Hero() {
           />
 
 
-
           {/* CONTENT */}
 
-          <div className="relative z-10 max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 py-24 md:py-28">
+          <div className="relative z-10 max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16 py-20 md:py-24 lg:py-28">
 
             <div className="max-w-[760px] mx-auto text-center">
 
+
               {/* LABEL */}
 
-              <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-8 hero-item">
+              <div className="hero-item inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1.5 rounded-md text-[11px] sm:text-xs tracking-[0.18em] uppercase font-medium mb-6 sm:mb-8">
                 START YOUR BRAND
               </div>
 
@@ -237,49 +247,39 @@ function Hero() {
                 lg:text-[50px]
                 "
               >
-
                 Submit Your Production Request
-
               </h1>
 
 
-              {/* TEXT */}
+              {/* DESCRIPTION */}
 
               <p
                 className="
                 hero-item
                 mt-6
-                text-[17px]
+                text-[16px]
                 leading-[1.7]
                 text-white/70
                 max-w-[540px]
                 mx-auto
                 "
               >
-
                 Tell us about your production plans. Our team will review your
                 requirements and guide you through the next steps.
-
               </p>
 
 
-              {/* CTA SPLIT */}
+              {/* CTA */}
 
-              <div className="hero-item mt-10 flex flex-col sm:flex-row justify-center gap-4">
+              <div className="hero-item mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8">
 
                 <Link
                   href="/contact#start-brand"
-                  className="inline-flex px-8 py-3.5 rounded-lg text-sm font-medium text-white transition"
+                  className="inline-flex items-center gap-2 px-8 py-3.5 rounded-lg text-sm font-medium text-white transition"
                   style={{ backgroundColor: "#8C7A5B" }}
                 >
                   Start Your Brand
-                </Link>
-
-                <Link
-                  href="/contact#get-pi"
-                  className="inline-flex px-8 py-3.5 rounded-lg text-sm font-medium border border-white/30 text-white hover:bg-white/10 transition"
-                >
-                  Get Your PI
+                  <FaArrowRight className="text-xs" />
                 </Link>
 
               </div>
@@ -1065,212 +1065,4 @@ function DirectWhatsApp() {
     </section>
   )
 }
-
-/* ---------------- FOOTER ---------------- */
-
-function Footer() {
-  return (
-    <div className="relative bg-[#F3F2EF] pt-[8px]">
-
-      {/* =====================================================
-          FOOTER WRAPPER
-      ===================================================== */}
-
-      <div className=" ">
-
-        <div className="  overflow-hidden">
-
-          {/* DARK BACKGROUND */}
-
-          <div
-            className="relative"
-            style={{
-              background: "linear-gradient(135deg, #191919 0%, #2C2C2C 100%)",
-            }}
-          >
-
-            <footer className="max-w-[1600px] mx-auto px-10 xl:px-16 py-24 text-white">
-
-              {/* =====================================================
-                  MAIN GRID
-              ===================================================== */}
-
-              <div className="grid md:grid-cols-4 gap-20 border-b border-white/10 pb-20">
-
-                {/* Brand */}
-
-                <div>
-
-                  <h3 className="text-lg font-medium mb-8">
-                    Al-Raimi Group
-                  </h3>
-
-                  <div className="flex gap-4">
-
-                    {[
-                      "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/facebook.svg",
-                      "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/x.svg",
-                      "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg",
-                    ].map((icon, i) => (
-
-                      <div
-                        key={i}
-                        className="group w-10 h-10 rounded-lg border border-white/20 flex items-center justify-center transition hover:bg-white hover:border-white cursor-pointer"
-                      >
-
-                        <img
-                          src={icon}
-                          alt="social"
-                          className="w-4 h-4 opacity-70 transition group-hover:opacity-100"
-                        />
-
-                      </div>
-
-                    ))}
-
-                  </div>
-
-                </div>
-
-
-                {/* Company */}
-
-                <div>
-
-                  <h4 className="text-xs font-semibold tracking-wider uppercase mb-6 text-white/70">
-                    Company
-                  </h4>
-
-                  <ul className="space-y-4 text-white/60 text-sm">
-
-                    <li className="hover:text-white transition cursor-pointer">
-                      About Us
-                    </li>
-
-                    <li className="hover:text-white transition cursor-pointer">
-                      Careers
-                    </li>
-
-                    <li className="hover:text-white transition cursor-pointer">
-                      Blog
-                    </li>
-
-                    <li className="hover:text-white transition cursor-pointer">
-                      News & Updates
-                    </li>
-
-                    <li className="hover:text-white transition cursor-pointer">
-                      Partners
-                    </li>
-
-                  </ul>
-
-                </div>
-
-
-                {/* Resources */}
-
-                <div>
-
-                  <h4 className="text-xs font-semibold tracking-wider uppercase mb-6 text-white/70">
-                    Resources
-                  </h4>
-
-                  <ul className="space-y-4 text-white/60 text-sm">
-
-                    <li className="hover:text-white transition cursor-pointer">
-                      Help Center
-                    </li>
-
-                    <li className="hover:text-white transition cursor-pointer">
-                      FAQs
-                    </li>
-
-                    <li className="hover:text-white transition cursor-pointer">
-                      Shipping Calculator
-                    </li>
-
-                    <li className="hover:text-white transition cursor-pointer">
-                      Terms & Conditions
-                    </li>
-
-                    <li className="hover:text-white transition cursor-pointer">
-                      Privacy Policy
-                    </li>
-
-                  </ul>
-
-                </div>
-
-
-                {/* Contact */}
-
-                <div>
-
-                  <h4 className="text-xs font-semibold tracking-wider uppercase mb-6 text-white/70">
-                    Contact
-                  </h4>
-
-                  <ul className="space-y-4 text-white/60 text-sm leading-relaxed">
-
-                    <li>
-                      Room C169, 1501, No. 207–213,
-                      West Dongfeng Road, Yuexiu District,
-                      Guangzhou, China
-                    </li>
-
-                    <li>
-                      +8619924111300
-                    </li>
-
-                    <li>
-                      Jl. Batumejan 5D Padang Linjong,
-                      Canggu, Bali
-                    </li>
-
-                    <li>
-                      hello@alraimigroup.com
-                    </li>
-
-                  </ul>
-
-                </div>
-
-              </div>
-
-
-              {/* =====================================================
-                  BOTTOM BAR
-              ===================================================== */}
-
-              <div className="flex flex-col md:flex-row justify-between items-center gap-6 mt-12 text-sm text-white/40">
-
-                <p>
-                  © {new Date().getFullYear()} Al-Raimi Group. All rights reserved.
-                </p>
-
-                <div className="flex gap-8">
-
-                  <span className="hover:text-white transition cursor-pointer">
-                    Terms of Use
-                  </span>
-
-                  <span className="hover:text-white transition cursor-pointer">
-                    Privacy Policy
-                  </span>
-
-                </div>
-
-              </div>
-
-            </footer>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-  )
-}
+ 

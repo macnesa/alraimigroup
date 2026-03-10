@@ -130,21 +130,19 @@ function Hero() {
 
         <div
           className="border border-neutral-200 rounded-2xl overflow-hidden text-white"
-          style={{ background: "linear-gradient(135deg, #191919 0%, #2C2C2C 100%)" }}
+          style={{ background: "linear-gradient(135deg,#191919 0%,#2C2C2C 100%)" }}
         >
 
           {/* HEADER */}
 
-          <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 pt-8 md:pt-10">
+          <div className="max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16 pt-[20px]">
 
             <header className="fade-up flex items-center justify-between">
 
-              {/* LOGO */}
-
-              <Link href="/" className="flex items-center gap-3">
+              <Link href="/" className="flex items-center">
 
                 <Image
-                  src="/images/alraimi-logo-white-1.png"
+                  src="/images/alraimi-logo-white-2.png"
                   alt="Alraimi Logo"
                   width={42}
                   height={38}
@@ -153,9 +151,7 @@ function Hero() {
 
               </Link>
 
-              {/* NAV */}
-
-              <nav className="hidden md:flex items-center gap-10 lg:gap-12 text-sm text-white/70">
+              <nav className="flex items-center gap-4 sm:gap-6 md:gap-10 text-sm text-white/70">
 
                 <Link href="/" className="hover:text-white transition">
                   Home
@@ -175,22 +171,12 @@ function Hero() {
 
               </nav>
 
-              {/* NAV CTA */}
-
               <Link
                 href="/contact#get-pi"
-                className="hidden md:inline-flex items-center bg-[#8C7A5B] text-white px-8 py-3.5 rounded-lg text-sm font-medium transition hover:bg-[#76674C]"
+                className="hidden md:inline-flex items-center gap-2 px-7 py-3 rounded-lg text-sm font-medium bg-[#8C7A5B] text-white hover:bg-[#7A6A4E] transition"
               >
                 Get Your PI
-              </Link>
-
-              {/* MOBILE CTA */}
-
-              <Link
-                href="/contact#get-pi"
-                className="md:hidden inline-flex items-center bg-[#8C7A5B] text-white px-5 py-2.5 rounded-lg text-sm font-medium transition hover:bg-[#76674C]"
-              >
-                Get PI
+                <FaArrowRight className="text-xs" />
               </Link>
 
             </header>
@@ -198,29 +184,22 @@ function Hero() {
           </div>
 
 
-          {/* HERO CONTENT */}
+          {/* HERO */}
 
-          <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 py-20 md:py-24 lg:py-28">
+          <div className="max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16 py-20 md:py-24 lg:py-28">
 
-            <div className="grid lg:grid-cols-[0.55fr_0.45fr] gap-14 items-center">
+            <div className="grid lg:grid-cols-[0.55fr_0.45fr] gap-10 md:gap-14 items-center">
 
 
               {/* TEXT */}
 
               <div>
 
-                {/* LABEL */}
-
-                <div className="fade-up mb-6">
-
+                <div className="fade-up mb-6 sm:mb-8">
                   <span className="text-xs tracking-[0.18em] uppercase text-white/50">
                     Luxury Packaging
                   </span>
-
                 </div>
-
-
-                {/* TITLE */}
 
                 <h1 className="fade-up font-light leading-[1.05] tracking-[-0.02em] max-w-[720px] text-[34px] sm:text-[40px] md:text-[46px] lg:text-[50px]">
 
@@ -233,10 +212,7 @@ function Hero() {
 
                 </h1>
 
-
-                {/* DESCRIPTION */}
-
-                <p className="fade-up mt-7 md:mt-8 text-[16px] md:text-[18px] leading-[1.7] text-white/70 max-w-[620px]">
+                <p className="fade-up mt-6 text-[16px] leading-[1.7] text-white/70 max-w-[620px]">
 
                   Dielines, sampling, production control, AQL inspection, and
                   door-to-door delivery — managed by our factory team.
@@ -246,22 +222,15 @@ function Hero() {
 
                 {/* CTA */}
 
-                <div className="fade-up mt-9 md:mt-10 flex items-center gap-8">
-
-                  <Link
-                    href="/contact#get-pi"
-                    className="inline-flex items-center bg-white text-black px-8 py-3.5 rounded-lg text-sm font-medium transition hover:bg-neutral-200"
-                  >
-                    Get Your PI
-                  </Link>
+                <div className="fade-up mt-8 flex flex-col sm:flex-row items-start gap-4 sm:gap-8">
 
                   <Link
                     href="/contact#start-your-brand"
-                    className="text-white/70 hover:text-white text-sm font-medium transition"
+                    className="inline-flex items-center bg-white text-black px-8 py-3.5 rounded-lg text-sm font-medium transition hover:bg-neutral-200"
                   >
                     Start Your Brand
                   </Link>
-
+ 
                 </div>
 
               </div>
@@ -307,7 +276,7 @@ function About() {
 
     <section className="bg-[#F3F2EF] pt-10 pb-[8px]">
 
-      <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16">
+      <div className="max-w-[1600px] mx-auto px-2 md:px-10 xl:px-16">
 
         <div className="grid grid-cols-1 md:grid-cols-[0.55fr_0.45fr] gap-[8px]">
 
@@ -337,11 +306,8 @@ function About() {
             <div className="text-[16px] sm:text-[17px] md:text-[18px] leading-[1.7] text-neutral-600">
 
               <p>
-                We produce premium paper packaging for perfume, cosmetics,
-                fashion, and luxury retail brands — from dieline development
-                to finished packaging. Expect accurate color matching,
-                structurally precise builds, reliable production timelines,
-                and consistent quality across every reorder.
+              Packaging often becomes the first physical experience a customer has with a brand.  
+              Boxes for perfume, cosmetics, fashion, and retail products are developed from dieline and samples to finished packaging, produced with factory partners in China.
               </p>
 
             </div>
@@ -418,6 +384,13 @@ function ProductCategories() {
         ease: "power2.out"
       })
 
+      tl.from(".categories-header", {
+        opacity: 0,
+        y: 18,
+        duration: 0.7,
+        ease: "power2.out"
+      }, "-=0.2")
+
       tl.from(".category-card", {
         opacity: 0,
         y: 28,
@@ -475,19 +448,36 @@ function ProductCategories() {
 
     <section ref={sectionRef} className="bg-[#F3F2EF] pt-[8px]">
 
-      <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16">
+      <div className="max-w-[1600px] mx-auto px-2 md:px-10 xl:px-16">
 
         <div className="bg-white border border-[#D6D1C8] rounded-2xl">
 
           <div className="px-8 sm:px-12 md:px-16 xl:px-20 py-14 md:py-16 xl:py-20">
 
+
             {/* LABEL */}
 
-            <div className="flex justify-center mb-14 categories-label">
+            <div className="flex justify-center mb-8 categories-label">
 
               <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium">
-                PACKAGING TYPES
+                 Types
               </div>
+
+            </div>
+
+
+            {/* HEADER */}
+
+            <div className="categories-header text-center max-w-[720px] mx-auto mb-16">
+
+              <h2 className="text-[34px] sm:text-[36px] md:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900 mb-6">
+              Packaging Types
+              </h2>
+
+              <p className="text-[16px] sm:text-[18px] leading-[1.7] text-neutral-600">
+                A look at the packaging formats most often produced for perfume,
+                cosmetics, fashion, and retail brands.
+              </p>
 
             </div>
 
@@ -688,7 +678,7 @@ function FinishesSystem() {
 
     <section ref={sectionRef} className="bg-[#F3F2EF] pt-[8px]">
 
-      <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16">
+      <div className="max-w-[1600px] mx-auto px-2 md:px-10 xl:px-16">
 
         <div className="bg-white border border-[#D6D1C8] rounded-2xl">
 
@@ -919,7 +909,7 @@ function FactoryCapabilities() {
 
     <section ref={sectionRef} className="bg-[#F3F2EF] pt-[8px]">
 
-      <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16">
+      <div className="max-w-[1600px] mx-auto px-2 md:px-10 xl:px-16">
 
         <div className="bg-gradient-to-b from-[#1E1E1E] to-[#151515] border border-white/10 rounded-2xl overflow-hidden">
 
@@ -1335,7 +1325,7 @@ function Gallery() {
 
   return (
     <section className="bg-[#F3F2EF] py-22">
-      <div className="max-w-[1600px] mx-auto px-10 xl:px-16">
+      <div className="max-w-[1600px] mx-auto px-6 xl:px-16">
 
         {/* HEADER */}
         <div className="flex justify-center mb-24">

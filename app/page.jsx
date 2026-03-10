@@ -32,7 +32,7 @@ import { SplitText } from "gsap/SplitText";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
-import { motion, useScroll, useTransform, useMotionValue, useAnimationFrame } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform, useMotionValue, useAnimationFrame } from "framer-motion";
 
 
 
@@ -70,7 +70,8 @@ function Hero() {
     )
   }
 
-  const heroImage = "https://res.cloudinary.com/djgu1bhef/image/upload/v1772983520/hero-bgg_omvkvt.png"
+  const heroImage =
+    "https://res.cloudinary.com/djgu1bhef/image/upload/v1773152395/ChatGPT_Image_Mar_10_2026_09_16_01_PM_ssybh8.png"
 
   useEffect(() => {
 
@@ -83,7 +84,7 @@ function Hero() {
       gsap.fromTo(
         ".hero-bg",
         { scale: 1.05 },
-        { scale: 1, duration: 1.4, ease: "power3.out" }
+        { scale: 1, duration: 1.4 }
       )
 
       gsap.fromTo(
@@ -131,7 +132,6 @@ function Hero() {
 
   }, [])
 
-
   return (
 
     <>
@@ -149,17 +149,18 @@ function Hero() {
 }
       `}</style>
 
-
       <section
         ref={heroRef}
         className="hero-section-bg text-white pt-[8px]"
       >
 
-        {/* NAV */}
+        {/* HEADER */}
 
         <header className="hero-header mx-[8px] text-black opacity-0 -translate-y-[20px]">
 
           <div className="max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16 py-5 flex items-center justify-between">
+
+            {/* LOGO */}
 
             <Link href="/" className="flex items-center">
 
@@ -173,25 +174,29 @@ function Hero() {
 
             </Link>
 
-            <nav className="flex items-center gap-6 md:gap-10 text-sm text-neutral-700">
+            {/* NAV */}
 
-              <Link href="/" className="hero-nav-item opacity-0 hover:text-black transition-colors duration-300">
+            <nav className="flex items-center gap-4 sm:gap-6 md:gap-10 text-sm text-neutral-700">
+
+              <Link href="/" className="hero-nav-item opacity-0 hover:text-black transition-colors">
                 Home
               </Link>
 
-              <Link href="/fashion-manufacturing" className="hero-nav-item opacity-0 hover:text-black transition-colors duration-300">
+              <Link href="/fashion-manufacturing" className="hero-nav-item opacity-0 hover:text-black transition-colors">
                 Fashion
               </Link>
 
-              <Link href="/luxury-packaging" className="hero-nav-item opacity-0 hover:text-black transition-colors duration-300">
+              <Link href="/luxury-packaging" className="hero-nav-item opacity-0 hover:text-black transition-colors">
                 Packaging
               </Link>
 
-              <Link href="/contact" className="hero-nav-item opacity-0 hover:text-black transition-colors duration-300">
+              <Link href="/contact" className="hero-nav-item opacity-0 hover:text-black transition-colors">
                 Contact
               </Link>
 
             </nav>
+
+            {/* CTA DESKTOP ONLY */}
 
             <Link
               href="/contact#get-pi"
@@ -275,7 +280,9 @@ function Hero() {
 
                   </p>
 
-                  <div className="hero-cta flex flex-col sm:flex-row gap-4 sm:gap-8">
+                  {/* HERO CTA (ALL DEVICES) */}
+
+                  <div className="hero-cta flex flex-col sm:flex-row items-start gap-4 sm:gap-8">
 
                     <Link
                       href="/contact#start-brand"
@@ -298,10 +305,8 @@ function Hero() {
         </div>
 
       </section>
-
     </>
   )
-
 }
 
 
@@ -517,7 +522,6 @@ function About() {
           </div>
 
 
-
           {/* RIGHT CARD */}
 
           <div className="about-card rounded-2xl border border-neutral-200 shadow-[0_10px_30px_rgba(0,0,0,0.04)] px-10 md:px-14 py-20 md:py-28 bg-white flex flex-col justify-start">
@@ -525,11 +529,11 @@ function About() {
             <div className="max-w-[760px] text-[16px] sm:text-[18px] leading-[1.7] text-neutral-700">
 
               <p className="about-paragraph mb-8">
-                Alraimi Business Group is a China-based manufacturing partner for premium brands. We produce fashion and luxury paper packaging, managing the full workflow from sampling and production to quality control and international shipping.
+                Alraimi Business Group is a <strong className="text-neutral-900 font-medium">China-based manufacturing partner</strong> for  premium brands. We produce fashion and luxury paper packaging, managing the <strong className="text-neutral-900 font-medium">full workflow</strong> from sampling and production to <strong className="text-neutral-900 font-medium">quality control</strong> and <strong className="text-neutral-900 font-medium">international shipping</strong>.
               </p>
 
               <p className="about-paragraph mb-10">
-                Brands work with us because they want one accountable team on the factory side—clear specs, stable quality, and reliable delivery so brands are not left navigating factories, timelines, or supplier communication alone.
+                Brands work with us because they want <strong className="text-neutral-900 font-medium">one accountable team</strong> on the factory side—clear specs, <strong className="text-neutral-900 font-medium">stable quality</strong>, and <strong className="text-neutral-900 font-medium">reliable delivery</strong> so brands are not left navigating factories, timelines, or supplier communication alone.
               </p>
 
               <div className="about-paragraph text-sm text-neutral-500">
@@ -711,7 +715,7 @@ function Achievements() {
               <div className="achievement-card relative rounded-2xl overflow-hidden aspect-auto lg:aspect-square border border-[#D6D1C8]">
 
                 <img
-                  src="https://res.cloudinary.com/djgu1bhef/image/upload/v1772379360/clothes_s6ivam.png"
+                  src="https://res.cloudinary.com/djgu1bhef/image/upload/v1772771351/ChatGPT_Image_Mar_6_2026_11_28_43_AM_soyeo9.png"
                   alt="Apparel production"
                   className="absolute inset-0 w-full h-full object-cover"
                 />
@@ -773,10 +777,19 @@ function Achievements() {
 
 function HowWeWork() {
 
-  const [emblaRef, emblaApi] = useEmblaCarousel({ align: "start", loop: false })
+  const sectionRef = useRef(null)
+  const autoTimer = useRef(null)
+
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    align: "start",
+    loop: false,
+  })
 
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [scrollSnaps, setScrollSnaps] = useState([])
+
+  const [isInView, setIsInView] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   const onSelect = useCallback(() => {
     if (!emblaApi) return
@@ -785,49 +798,120 @@ function HowWeWork() {
 
   useEffect(() => {
     if (!emblaApi) return
+
     setScrollSnaps(emblaApi.scrollSnapList())
     emblaApi.on("select", onSelect)
+
     onSelect()
   }, [emblaApi, onSelect])
 
+  /* -------------------------- */
+  /* MOBILE DETECTION */
+  /* -------------------------- */
+
+  useEffect(() => {
+
+    const check = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+
+    check()
+
+    window.addEventListener("resize", check)
+
+    return () => window.removeEventListener("resize", check)
+
+  }, [])
+
+  /* -------------------------- */
+  /* OBSERVE SECTION CENTER */
+  /* -------------------------- */
+
+  useEffect(() => {
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting)
+      },
+      {
+        threshold: 0.6,
+      }
+    )
+
+    if (sectionRef.current) observer.observe(sectionRef.current)
+
+    return () => observer.disconnect()
+
+  }, [])
+
+  /* -------------------------- */
+  /* AUTO PLAY */
+  /* -------------------------- */
+
+  useEffect(() => {
+
+    if (!emblaApi) return
+    if (isMobile) return
+    if (!isInView) return
+
+    autoTimer.current = setInterval(() => {
+
+      if (!emblaApi) return
+
+      if (emblaApi.canScrollNext()) {
+        emblaApi.scrollNext()
+      } else {
+        clearInterval(autoTimer.current)
+      }
+
+    }, 2600)
+
+    return () => clearInterval(autoTimer.current)
+
+  }, [emblaApi, isInView, isMobile])
+
+  /* -------------------------- */
+  /* DATA */
+  /* -------------------------- */
+
   const steps = [
-    { icon: FileText, title: "Quick Brief & NDA", desc: "Send style/packaging references, quantity range, target timeline, ship-to country, and brand files." },
-    { icon: DraftingCompass, title: "Design & Technical Prep", desc: "Finalize tech packs/patterns or dielines and confirm specs and materials." },
-    { icon: Package, title: "Samples & PI", desc: "Produce samples and share guide pricing. Formal PI issued after review." },
-    { icon: Factory, title: "Production Booking", desc: "Approve golden sample and secure production line." },
-    { icon: Cog, title: "Manufacturing", desc: "Apparel 3–8 wks / Packaging 2–6 wks with in-line QC." },
-    { icon: ShieldCheck, title: "Quality Assurance (AQL)", desc: "Pre-shipment inspection with full report and measurement checks." },
-    { icon: Truck, title: "Logistics (EXW / FOB / DDP)", desc: "Export documentation and global shipping arranged." },
-    { icon: Repeat, title: "Delivery & Aftercare", desc: "Unboxing checks, reorders, and structured improvements." },
+    { icon: FileText, title: "Quick Brief & NDA", desc: "Send style references, quantity range and timeline." },
+    { icon: DraftingCompass, title: "Design & Technical Prep", desc: "Finalize tech packs and materials." },
+    { icon: Package, title: "Samples & PI", desc: "Produce samples and confirm pricing." },
+    { icon: Factory, title: "Production Booking", desc: "Secure the production line." },
+    { icon: Cog, title: "Manufacturing", desc: "Production with inline QC supervision." },
+    { icon: ShieldCheck, title: "Quality Assurance", desc: "Pre-shipment AQL inspection." },
+    { icon: Truck, title: "Logistics", desc: "Export documentation and shipping." },
+    { icon: Repeat, title: "Delivery & Aftercare", desc: "Reorders and production scaling." },
   ]
 
   return (
-    <section className="bg-[#F3F2EF] pt-[8px]">
+    <section ref={sectionRef} className="bg-[#F3F2EF] pt-[8px]">
+
       <div className="px-[8px]">
+
         <div className="bg-[#1b1b1b] rounded-2xl text-white">
+
           <div className="max-w-[1600px] mx-auto px-10 xl:px-16 py-20 md:py-24">
 
-            {/* LABEL */}
-            <div>
-              <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium">
-                Process
-              </div>
-            </div>
-
             {/* HEADER */}
+
             <div className="mt-16 grid grid-cols-1 md:grid-cols-[0.55fr_0.45fr] gap-16 items-start">
 
-              <h2 className="text-[34px] sm:text-[36px] md:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-white">
-                How We Work
-              </h2>
+<h2 className="text-[40px] leading-[1.1] tracking-[-0.015em]">
+  How We Work
+</h2>
 
-              <p className="text-[16px] sm:text-[18px] leading-[1.7] text-white/65">
-                A clear process, realistic timelines, and close supervision keep production steady from start to delivery.
-              </p>
+<p className="text-[18px] leading-[1.7] text-white/65">
+  Manufacturing works best when the process is clear. 
+  From the first brief to final delivery, our team stays close to the factory floor—keeping communication simple and production on track.
+</p>
 
-            </div>
+</div>
+
 
             {/* CAROUSEL */}
+
             <div className="mt-20 overflow-hidden" ref={emblaRef}>
 
               <div className="flex">
@@ -837,31 +921,31 @@ function HowWeWork() {
                   const Icon = step.icon
 
                   return (
-                    <div key={i} className="flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.333%] pr-6">
 
-                      <div className="group relative rounded-2xl border border-white/10 bg-[#232323] p-12 min-h-[420px] flex flex-col transition-all duration-300 hover:border-[#8C7A5B]/40 overflow-hidden shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
+                    <div
+                      key={i}
+                      className="flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.333%] pr-6"
+                    >
 
-                        {/* NUMBER */}
-                        <div className="absolute top-6 right-8 text-[72px] font-semibold text-white/5 transition-colors duration-300 group-hover:text-[#8C7A5B]/20">
+                      <div className="relative rounded-2xl border border-white/10 bg-[#232323] p-12 min-h-[420px] flex flex-col">
+
+                        <div className="absolute top-6 right-8 text-[72px] text-white/5">
                           {String(i + 1).padStart(2, "0")}
                         </div>
 
-                        {/* TEXTURE */}
-                        <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage: "url('https://res.cloudinary.com/djgu1bhef/image/upload/v1772523788/ChatGPT_Image_Mar_3_2026_02_42_56_PM_euyhsb.png')", backgroundSize: "500px", backgroundRepeat: "repeat", opacity: 0.15, filter: "contrast(140%) brightness(115%)" }} />
+                        <div className="w-12 h-12 flex items-center justify-center rounded-lg border border-white/10 bg-[#2a2a2a]">
 
-                        {/* ICON */}
-                        <div className="relative z-10 w-12 h-12 flex items-center justify-center rounded-lg border border-white/10 bg-[#2a2a2a]">
                           <Icon size={22} strokeWidth={1.5} className="text-[#8C7A5B]" />
+
                         </div>
 
-                        {/* TEXT */}
-                        <div className="relative z-10 mt-auto">
+                        <div className="mt-auto">
 
-                          <h4 className="text-[22px] sm:text-[24px] leading-[1.25] font-medium text-white transition-colors duration-300 group-hover:text-[#8C7A5B]">
+                          <h4 className="text-[24px] mt-10">
                             {step.title}
                           </h4>
 
-                          <p className="mt-6 text-[16px] leading-[1.7] text-white/60">
+                          <p className="mt-6 text-white/60">
                             {step.desc}
                           </p>
 
@@ -870,6 +954,7 @@ function HowWeWork() {
                       </div>
 
                     </div>
+
                   )
                 })}
 
@@ -877,20 +962,33 @@ function HowWeWork() {
 
             </div>
 
+
             {/* DOTS */}
+
             <div className="mt-14 flex justify-center gap-4">
 
               {scrollSnaps.map((_, index) => (
 
-                <button key={index} onClick={() => emblaApi && emblaApi.scrollTo(index)} className={`transition ${index === selectedIndex ? "w-3 h-3 bg-[#8C7A5B]" : "w-2.5 h-2.5 bg-white/30 hover:bg-white/60"} rounded-full`} />
+                <button
+                  key={index}
+                  onClick={() => emblaApi && emblaApi.scrollTo(index)}
+                  className={`rounded-full transition ${
+                    index === selectedIndex
+                      ? "w-3 h-3 bg-[#8C7A5B]"
+                      : "w-2.5 h-2.5 bg-white/30"
+                  }`}
+                />
 
               ))}
 
             </div>
 
           </div>
+
         </div>
+
       </div>
+
     </section>
   )
 }
@@ -955,7 +1053,7 @@ function Services() {
           </div>
 
           <h2 className="text-[34px] sm:text-[36px] md:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900 mb-5">
-            Services Overview
+          What We Produce
           </h2>
 
           <p className="text-[16px] sm:text-[18px] leading-[1.7] text-neutral-600">
@@ -1275,7 +1373,7 @@ function Projects() {
               </h2>
 
               <p className="mx-auto text-[16px] sm:text-[18px] leading-[1.7] text-neutral-600 mt-6 max-w-[720px]">
-                A selection of completed fashion and packaging work managed from development through delivery. Below are typical scopes and outcomes.
+              A look at fashion and packaging projects we've produced. From early development and sampling to final delivery.
               </p>
 
             </div>
@@ -1614,14 +1712,34 @@ function Testimonials() {
   ]
 
   const [index, setIndex] = React.useState(0)
+
+  const prev = () =>
+    setIndex((p) => (p === 0 ? testimonials.length - 1 : p - 1))
+
+  const next = () =>
+    setIndex((p) => (p === testimonials.length - 1 ? 0 : p + 1))
+
   const active = testimonials[index]
 
-  const prev = () => setIndex((p) => (p === 0 ? testimonials.length - 1 : p - 1))
-  const next = () => setIndex((p) => (p === testimonials.length - 1 ? 0 : p + 1))
+  const transition = {
+    duration: 0.45,
+    ease: "easeOut",
+  }
+
+  const variants = {
+    enter: { opacity: 0, y: 20 },
+    center: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: -20 },
+  }
 
   return (
-    <section className="py-10" style={{ background: "radial-gradient(circle at 20% 0%, rgba(44,38,43,0.06) 0%, transparent 50%), #F3F2EF" }}>
-
+    <section
+      className="py-10"
+      style={{
+        background:
+          "radial-gradient(circle at 20% 0%, rgba(44,38,43,0.06) 0%, transparent 50%), #F3F2EF",
+      }}
+    >
       <div className="max-w-[1100px] mx-auto px-8">
 
         {/* HEADER */}
@@ -1639,81 +1757,133 @@ function Testimonials() {
 
         </div>
 
-
         {/* MOBILE */}
         <div className="md:hidden">
 
           <div className="rounded-2xl bg-white border border-[#D6D1C8] p-6 shadow-sm flex flex-col min-h-[420px]">
 
-            <div className="flex-1">
-              <p className="text-[18px] sm:text-[20px] leading-[1.6] text-[#2C2C2C] line-clamp-6">
-                "{active.quote}"
-              </p>
-            </div>
+            <AnimatePresence mode="wait">
 
-            <div className="mt-6">
-              <div className="text-[22px] font-medium text-[#191919]">
-                {active.stat}
-              </div>
-              <p className="text-[#8C7A5B] text-sm mt-1">
-                {active.statLabel}
-              </p>
-            </div>
+              <motion.div
+                key={index}
+                variants={variants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={transition}
+                className="flex flex-col flex-1"
+              >
 
-            <div className="flex items-center gap-4 pt-4 mt-6 border-t border-[#D6D1C8]">
-
-              <img src={active.image} alt={active.name} className="w-12 h-12 rounded-full object-cover" />
-
-              <div>
-                <div className="text-sm font-medium text-[#191919]">
-                  {active.name}
+                <div className="flex-1">
+                  <p className="text-[18px] sm:text-[20px] leading-[1.6] text-[#2C2C2C]">
+                    "{active.quote}"
+                  </p>
                 </div>
-                <div className="text-xs text-[#2C2C2C]">
-                  {active.role}
-                </div>
-              </div>
 
-            </div>
+                <div className="mt-6">
+                  <div className="text-[22px] font-medium text-[#191919]">
+                    {active.stat}
+                  </div>
+                  <p className="text-[#8C7A5B] text-sm mt-1">
+                    {active.statLabel}
+                  </p>
+                </div>
+
+                <div className="flex items-center gap-4 pt-4 mt-6 border-t border-[#D6D1C8]">
+
+                  <img
+                    src={active.image}
+                    alt={active.name}
+                    className="w-12 h-12 rounded-full object-cover"
+                  />
+
+                  <div>
+                    <div className="text-sm font-medium text-[#191919]">
+                      {active.name}
+                    </div>
+                    <div className="text-xs text-[#2C2C2C]">
+                      {active.role}
+                    </div>
+                  </div>
+
+                </div>
+
+              </motion.div>
+
+            </AnimatePresence>
 
           </div>
 
         </div>
 
-
         {/* DESKTOP */}
         <div className="hidden md:grid md:grid-cols-[260px_1fr] gap-8 items-stretch">
 
-          <div className="flex flex-col gap-6 h-full">
+          {/* LEFT SIDE */}
+          <AnimatePresence mode="wait">
 
-            <div className="aspect-square rounded-2xl overflow-hidden border border-[#D6D1C8]">
-              <img src={active.image} alt={active.name} className="w-full h-full object-cover" />
-            </div>
+            <motion.div
+              key={active.image}
+              variants={variants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={transition}
+              className="flex flex-col gap-6 h-full"
+            >
 
-            <div className="rounded-2xl bg-white border border-[#D6D1C8] p-5 shadow-sm">
-              <h3 className="text-sm font-medium text-[#191919]">
-                {active.name}
-              </h3>
-              <p className="text-[#2C2C2C] mt-1 text-xs leading-[1.5]">
-                {active.role}
-              </p>
-            </div>
+              <div className="aspect-square rounded-2xl overflow-hidden border border-[#D6D1C8]">
+                <img
+                  src={active.image}
+                  alt={active.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
 
-          </div>
+              <div className="rounded-2xl bg-white border border-[#D6D1C8] p-5 shadow-sm">
+                <h3 className="text-sm font-medium text-[#191919]">
+                  {active.name}
+                </h3>
+                <p className="text-[#2C2C2C] mt-1 text-xs leading-[1.5]">
+                  {active.role}
+                </p>
+              </div>
 
+            </motion.div>
+
+          </AnimatePresence>
+
+
+          {/* RIGHT SIDE */}
           <div className="h-full rounded-2xl bg-white border border-[#D6D1C8] p-8 flex flex-col justify-between shadow-sm">
 
-            <p className="text-[20px] lg:text-[22px] leading-[1.6] text-[#2C2C2C]">
-              "{active.quote}"
-            </p>
+            <AnimatePresence mode="wait">
 
-            <div className="mt-6">
-              <div className="text-[22px] font-medium text-[#191919]">
-                {active.stat}
-              </div>
-              <p className="text-[#8C7A5B] text-sm mt-1">
-                {active.statLabel}
-              </p>
-            </div>
+              <motion.div
+                key={index}
+                variants={variants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={transition}
+              >
+
+                <p className="text-[20px] lg:text-[22px] leading-[1.6] text-[#2C2C2C]">
+                  "{active.quote}"
+                </p>
+
+                <div className="mt-6">
+                  <div className="text-[22px] font-medium text-[#191919]">
+                    {active.stat}
+                  </div>
+                  <p className="text-[#8C7A5B] text-sm mt-1">
+                    {active.statLabel}
+                  </p>
+                </div>
+
+              </motion.div>
+
+            </AnimatePresence>
 
           </div>
 
@@ -1723,24 +1893,37 @@ function Testimonials() {
         {/* NAV */}
         <div className="flex items-center justify-center gap-4 mt-10">
 
-          <button onClick={prev} className="w-9 h-9 border border-[#D6D1C8] rounded-md flex items-center justify-center text-[#191919] text-sm hover:border-[#8C7A5B] transition">
+          <button
+            onClick={prev}
+            className="w-9 h-9 border border-[#D6D1C8] rounded-md flex items-center justify-center text-[#191919] text-sm hover:border-[#8C7A5B] transition"
+          >
             ←
           </button>
 
           <div className="flex gap-2">
+
             {testimonials.map((_, i) => (
-              <button key={i} onClick={() => setIndex(i)} className={`w-2 h-2 rounded-full transition ${i === index ? "bg-[#8C7A5B]" : "bg-[#D6D1C8]"}`} />
+              <button
+                key={i}
+                onClick={() => setIndex(i)}
+                className={`w-2 h-2 rounded-full transition ${
+                  i === index ? "bg-[#8C7A5B]" : "bg-[#D6D1C8]"
+                }`}
+              />
             ))}
+
           </div>
 
-          <button onClick={next} className="w-9 h-9 border border-[#D6D1C8] rounded-md flex items-center justify-center text-[#191919] text-sm hover:border-[#8C7A5B] transition">
+          <button
+            onClick={next}
+            className="w-9 h-9 border border-[#D6D1C8] rounded-md flex items-center justify-center text-[#191919] text-sm hover:border-[#8C7A5B] transition"
+          >
             →
           </button>
 
         </div>
 
       </div>
-
     </section>
   )
 }

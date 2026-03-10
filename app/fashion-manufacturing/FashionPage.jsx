@@ -109,19 +109,15 @@ function Hero() {
 
     const ctx = gsap.context(() => {
 
-      const tl = gsap.timeline({ defaults: { ease: "power2.out" } })
-
-      tl.from(".hero-nav", {
-        y: -18,
-        opacity: 0,
-        duration: 0.35
+      const tl = gsap.timeline({
+        defaults: { ease: "power2.out" }
       })
 
-      .from(".hero-label", {
+      tl.from(".hero-label", {
         opacity: 0,
         y: 10,
         duration: 0.35
-      }, "-=0.2")
+      })
 
       .from(".hero-title span", {
         y: 22,
@@ -154,18 +150,17 @@ function Hero() {
 
   }, [])
 
-
   return (
 
     <section ref={heroRef} className="bg-[#F3F2EF] pt-[8px]">
 
-      {/* NAV */}
+      {/* HEADER */}
 
-      <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16">
+      <header className="mx-[8px]">
 
-        <header className="hero-nav flex items-center justify-between h-[92px]">
+        <div className="max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16 py-5 flex items-center justify-between">
 
-          <Link href="/" className="flex items-center gap-3">
+          <Link href="/" className="flex items-center">
 
             <Image
               src="/images/alraimi-logo-black-1.png"
@@ -177,9 +172,9 @@ function Hero() {
 
           </Link>
 
-          <nav className="hidden md:flex items-center gap-10 lg:gap-12 text-sm text-neutral-600">
+          <nav className="flex items-center gap-4 sm:gap-6 md:gap-10 text-sm text-neutral-700">
 
-            <Link href="/" className="hover:text-black transition">
+            <Link href="/" className="hover:text-black transition-colors">
               Home
             </Link>
 
@@ -187,136 +182,96 @@ function Hero() {
               Fashion
             </Link>
 
-            <Link href="/luxury-packaging" className="hover:text-black transition">
+            <Link href="/luxury-packaging" className="hover:text-black transition-colors">
               Packaging
             </Link>
 
-            <Link href="/contact" className="hover:text-black transition">
+            <Link href="/contact" className="hover:text-black transition-colors">
               Contact
             </Link>
 
           </nav>
 
           <Link
-            href="#contact"
-            className="hidden md:inline-flex items-center bg-black text-white px-7 py-3 rounded-lg text-sm font-medium transition hover:bg-neutral-800"
+            href="/contact#get-pi"
+            className="hidden md:inline-flex items-center gap-2 px-7 py-3 rounded-lg text-sm font-medium bg-[#8C7A5B] text-white hover:bg-[#7A6A4E] transition"
           >
             Get Your PI
+            <FaArrowRight className="text-xs" />
           </Link>
 
-          <Link
-            href="/contact#get-pi"
-            className="md:hidden inline-flex items-center bg-black text-white px-5 py-2.5 rounded-lg text-sm font-medium transition hover:bg-neutral-800"
-          >
-            Get PI
-          </Link>
+        </div>
 
-        </header>
-
-      </div>
+      </header>
 
 
       {/* HERO */}
 
-      <div className="px-[8px]">
+      <div className="px-[8px] pt-[8px]">
 
-        <div className="overflow-hidden">
+        <div className="max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16 py-20 md:py-24 lg:py-28">
 
-          <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 py-20 md:py-24 lg:py-28">
+          <div className="grid lg:grid-cols-[0.54fr_0.46fr] gap-10 md:gap-14 items-center">
 
-            <div className="grid lg:grid-cols-[0.54fr_0.46fr] gap-10 md:gap-14 items-center">
+            {/* TEXT */}
 
+            <div>
 
-              {/* TEXT */}
+              <div className="hero-label mb-6 sm:mb-8">
+                <span className="text-xs tracking-[0.2em] text-neutral-500">
+                  FASHION MANUFACTURING
+                </span>
+              </div>
 
-              <div>
+              <h1 className="hero-title font-light leading-[1.05] tracking-[-0.02em] text-neutral-900 max-w-[700px] text-[32px] sm:text-[36px] md:text-[42px] lg:text-[48px] xl:text-[52px]">
 
-                <div className="hero-label mb-6">
+                <span className="block">
+                  From Tech Pack to Shipment.
+                </span>
 
-                  <span className="text-xs tracking-[0.2em] text-neutral-500">
-                    FASHION MANUFACTURING
-                  </span>
+                <span className="block text-[#8C7A5B]">
+                  Controlled Fit. Structured Production.
+                </span>
 
-                </div>
+              </h1>
 
+              <p className="hero-desc mt-6 text-[16px] leading-[1.7] text-neutral-600 max-w-[620px]">
 
-                <h1
-                  className="
-                  hero-title
-                  font-light
-                  leading-[1.06]
-                  tracking-[-0.02em]
-                  max-w-[700px]
+                Womenswear, resortwear, and activewear manufactured through
+                structured sampling, measured production control, AQL inspection,
+                and coordinated global delivery from our factory network in China.
 
-                  text-[30px]
-                  sm:text-[36px]
-                  md:text-[42px]
-                  lg:text-[48px]
-                  xl:text-[52px]
+              </p>
 
-                  text-neutral-900
-                  "
+              <div className="hero-cta mt-8 flex flex-col sm:flex-row items-start gap-4 sm:gap-8">
+
+                <Link
+                  href="/contact#start-brand"
+                  className="inline-flex items-center gap-2 bg-black text-white px-7 py-3 rounded-lg text-sm font-medium transition hover:bg-neutral-800"
                 >
-
-                  <span className="block">
-                    From Tech Pack to Shipment.
-                  </span>
-
-                  <span className="block text-[#8C7A5B]">
-                    Controlled Fit. Structured Production.
-                  </span>
-
-                </h1>
-
-
-                <p
-                  className="
-                  hero-desc
-                  mt-6
-                  text-[16px]
-                  leading-[1.7]
-                  text-neutral-600
-                  max-w-[620px]
-                  "
-                >
-
-                  Womenswear, resortwear, and activewear manufactured through
-                  structured sampling, measured production control, AQL inspection,
-                  and coordinated global delivery from our factory network in China.
-
-                </p>
-
-
-                <div className="hero-cta mt-8">
-
-                  <Link
-                    href="/contact#start-brand"
-                    className="inline-flex bg-black text-white px-7 py-3 rounded-lg text-sm font-medium transition hover:bg-neutral-800"
-                  >
-                    Start Your Brand
-                  </Link>
-
-                </div>
+                  Start Your Brand
+                  <FaArrowRight className="text-xs" />
+                </Link>
 
               </div>
 
+            </div>
 
-              {/* IMAGE */}
 
-              <div className="hero-image">
+            {/* IMAGE */}
 
-                <div className="relative rounded-2xl overflow-hidden border border-neutral-200 aspect-[4/3]">
+            <div className="hero-image">
 
-                  <Image
-                    src={cloudinaryTransform("https://res.cloudinary.com/djgu1bhef/image/upload/v1772771351/ChatGPT_Image_Mar_6_2026_11_28_31_AM_dyz5pq.png")}
-                    alt="Garment inspection"
-                    fill
-                    sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 700px"
-                    className="object-cover"
-                    priority
-                  />
+              <div className="relative rounded-2xl overflow-hidden border border-neutral-200 aspect-[4/3]">
 
-                </div>
+                <Image
+                  src={cloudinaryTransform("https://res.cloudinary.com/djgu1bhef/image/upload/v1772771351/ChatGPT_Image_Mar_6_2026_11_28_31_AM_dyz5pq.png")}
+                  alt="Garment inspection"
+                  fill
+                  sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 700px"
+                  className="object-cover"
+                  priority
+                />
 
               </div>
 
@@ -338,7 +293,7 @@ function Hero() {
 function About() {
   return (
     <section className="bg-[#F3F2EF] pt-10 pb-[8px]">
-      <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16">
+      <div className="max-w-[1600px] mx-auto px-2 md:px-10 xl:px-16">
         <div className="grid grid-cols-1 md:grid-cols-[0.55fr_0.45fr] gap-[8px]">
 
           {/* LEFT CARD */}
@@ -364,10 +319,12 @@ function About() {
             <div className="text-[16px] sm:text-[17px] md:text-[18px] leading-[1.7] text-neutral-600">
 
               <p>
-                We produce dress-led womenswear, resort sets, modest fashion,
-                golfwear, and capsule collections — from first idea to global
-                delivery. You work directly with our China factory team on tech
-                packs, sampling, in-line quality control, and pre-shipment inspection.
+              Production starts with an idea — a sketch, a reference piece,
+                sometimes just a conversation about what the brand wants to
+                create. From there the process moves through tech packs,
+                sampling, and factory production in China, with quality checks
+                and shipping arranged until the finished pieces reach their
+                final destination.
               </p>
 
             </div>
@@ -494,7 +451,7 @@ function ProductCategories() {
 
     <section ref={sectionRef} className="bg-[#F3F2EF] pt-[8px]">
 
-      <div className="max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16">
+      <div className="max-w-[1600px] mx-auto px-2 sm:px-10 xl:px-16">
 
         <div className="bg-white border border-[#D6D1C8] rounded-2xl">
 
@@ -708,7 +665,7 @@ function MaterialsTrims() {
 
       <div className="px-[8px]">
 
-        <div className="border border-neutral-200 rounded-2xl">
+        <div className=" ">
 
           <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 pt-16 md:pt-20 xl:pt-24">
 
@@ -1176,7 +1133,7 @@ function Gallery() {
 
   return (
     <section className="bg-[#F3F2EF] py-22">
-      <div className="max-w-[1600px] mx-auto px-10 xl:px-16">
+      <div className="max-w-[1600px] mx-auto px-6 xl:px-16">
 
         {/* HEADER */}
         <div className="flex justify-center mb-24">
