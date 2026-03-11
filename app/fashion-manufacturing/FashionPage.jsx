@@ -81,7 +81,6 @@ export default function Page() {
       <Gallery />  
       <FAQ />
       <Footer />
-      <CookieConsent />
     </main>
   );
 }
@@ -979,55 +978,7 @@ function Projects() {
   )
 
 }
-
-
-function CookieConsent() {
-  const [visible, setVisible] = useState(false)
-
-  useEffect(() => {
-    const consent = localStorage.getItem("cookie-consent")
-    if (!consent) {
-      setVisible(true)
-    }
-  }, [])
-
-  const handleChoice = (choice) => {
-    localStorage.setItem("cookie-consent", choice)
-    setVisible(false)
-  }
-
-  if (!visible) return null
-
-  return (
-    <div className="fixed bottom-0 left-0 w-full bg-white border-t border-neutral-200 z-50">
-      <div className="max-w-[1600px] mx-auto px-10 xl:px-16 py-6 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-
-        <div className="text-neutral-700 text-[15px] leading-[1.6] max-w-3xl">
-          We use cookies to ensure structured performance monitoring,
-          analytics alignment, and operational reliability across this platform.
-          By continuing, you agree to our use of cookies.
-        </div>
-
-        <div className="flex items-center gap-4 shrink-0">
-          <button
-            onClick={() => handleChoice("declined")}
-            className="px-6 py-2.5 text-sm border border-neutral-300 rounded-lg text-neutral-700 hover:bg-neutral-100 transition"
-          >
-            Decline
-          </button>
-
-          <button
-            onClick={() => handleChoice("accepted")}
-            className="px-6 py-2.5 text-sm bg-neutral-900 text-white rounded-lg hover:bg-neutral-800 transition"
-          >
-            Accept
-          </button>
-        </div>
-
-      </div>
-    </div>
-  )
-}
+ 
  
 
 function Gallery() {
