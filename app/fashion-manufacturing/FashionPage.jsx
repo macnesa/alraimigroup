@@ -96,69 +96,27 @@ export default function Page() {
 ========================= */
 function Hero() {
 
-  const heroRef = useRef(null)
-
   const cloudinaryTransform = (url) => {
     return url.replace(
       "/upload/",
-      "/upload/f_auto,q_auto,c_fill,w_1400/"
+      "/upload/f_auto,q_auto,c_fill,w_2000/"
     )
   }
 
-  useEffect(() => {
-
-    const ctx = gsap.context(() => {
-
-      const tl = gsap.timeline({
-        defaults: { ease: "power2.out" }
-      })
-
-      tl.from(".hero-label", {
-        opacity: 0,
-        y: 10,
-        duration: 0.35
-      })
-
-      .from(".hero-title span", {
-        y: 22,
-        opacity: 0,
-        stagger: 0.04,
-        duration: 0.4
-      }, "-=0.2")
-
-      .from(".hero-desc", {
-        y: 16,
-        opacity: 0,
-        duration: 0.35
-      }, "-=0.25")
-
-      .from(".hero-cta", {
-        y: 16,
-        opacity: 0,
-        duration: 0.35
-      }, "-=0.25")
-
-      .from(".hero-image", {
-        opacity: 0,
-        y: 20,
-        duration: 0.45
-      }, "-=0.35")
-
-    }, heroRef)
-
-    return () => ctx.revert()
-
-  }, [])
+  const heroImage =
+    "https://res.cloudinary.com/djgu1bhef/image/upload/v1773152395/ChatGPT_Image_Mar_10_2026_09_16_01_PM_ssybh8.png"
 
   return (
 
-    <section ref={heroRef} className="bg-[#F3F2EF] pt-[8px]">
+    <section className="bg-[#F3F2EF] pt-[8px]">
 
       {/* HEADER */}
 
-      <header className="mx-[8px]">
+      <header className="mx-[8px] text-black">
 
         <div className="max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16 py-5 flex items-center justify-between">
+
+          {/* LOGO */}
 
           <Link href="/" className="flex items-center">
 
@@ -172,13 +130,16 @@ function Hero() {
 
           </Link>
 
+
+          {/* NAV */}
+
           <nav className="flex items-center gap-4 sm:gap-6 md:gap-10 text-sm text-neutral-700">
 
             <Link href="/" className="hover:text-black transition-colors">
               Home
             </Link>
 
-            <Link href="/fashion-manufacturing" className="text-black">
+            <Link href="/fashion-manufacturing" className="hover:text-black transition-colors">
               Fashion
             </Link>
 
@@ -191,6 +152,9 @@ function Hero() {
             </Link>
 
           </nav>
+
+
+          {/* HEADER CTA */}
 
           <Link
             href="/contact#get-pi"
@@ -209,64 +173,65 @@ function Hero() {
 
       <div className="px-[8px] pt-[8px]">
 
-        <div className="max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16 py-20 md:py-24 lg:py-28">
+        <div className="max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16 py-20 md:py-24">
 
-          <div className="grid lg:grid-cols-[0.54fr_0.46fr] gap-10 md:gap-14 items-center">
+          <div className="grid lg:grid-cols-[0.54fr_0.46fr] gap-12 md:gap-16 items-center">
 
             {/* TEXT */}
 
             <div>
 
-              <div className="hero-label mb-6 sm:mb-8">
-                <span className="text-xs tracking-[0.2em] text-neutral-500">
-                  FASHION MANUFACTURING
+              <div className="mb-6 sm:mb-8">
+
+                <span className="text-xs tracking-[0.2em] text-neutral-500 uppercase">
+                  Global Manufacturing Partner
                 </span>
+
               </div>
 
-              <h1 className="hero-title font-light leading-[1.05] tracking-[-0.02em] text-neutral-900 max-w-[700px] text-[32px] sm:text-[36px] md:text-[42px] lg:text-[48px] xl:text-[52px]">
+
+              <h1
+                className="font-light leading-[1.05] tracking-[-0.02em] text-neutral-900 mb-6 sm:mb-8"
+                style={{ fontSize: "clamp(42px,4vw,64px)" }}
+              >
 
                 <span className="block">
-                  From Tech Pack to Shipment.
+                  Fashion Manufacturing
                 </span>
 
                 <span className="block text-[#8C7A5B]">
-                  Controlled Fit. Structured Production.
+                  & Luxury Packaging
+                </span>
+
+                <span className="block">
+                  Managed in China
                 </span>
 
               </h1>
 
-              <p className="hero-desc mt-6 text-[16px] leading-[1.7] text-neutral-600 max-w-[620px]">
 
-                Womenswear, resortwear, and activewear manufactured through
-                structured sampling, measured production control, AQL inspection,
-                and coordinated global delivery from our factory network in China.
+              <p
+                className="text-neutral-600 leading-[1.7] max-w-xl"
+                style={{ fontSize: "clamp(16px,1.3vw,19px)" }}
+              >
+
+                Sampling, production control, AQL inspection,
+                and international delivery managed by one team.
 
               </p>
-
-              <div className="hero-cta mt-8 flex flex-col sm:flex-row items-start gap-4 sm:gap-8">
-
-                <Link
-                  href="/contact#start-brand"
-                  className="inline-flex items-center gap-2 bg-black text-white px-7 py-3 rounded-lg text-sm font-medium transition hover:bg-neutral-800"
-                >
-                  Start Your Brand
-                  <FaArrowRight className="text-xs" />
-                </Link>
-
-              </div>
 
             </div>
 
 
             {/* IMAGE */}
 
-            <div className="hero-image">
+            <div>
 
               <div className="relative rounded-2xl overflow-hidden border border-neutral-200 aspect-[4/3]">
 
                 <Image
-                  src={cloudinaryTransform("https://res.cloudinary.com/djgu1bhef/image/upload/v1772771351/ChatGPT_Image_Mar_6_2026_11_28_31_AM_dyz5pq.png")}
-                  alt="Garment inspection"
+                  src={cloudinaryTransform(heroImage)}
+                  alt="Manufacturing oversight in China"
                   fill
                   sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 700px"
                   className="object-cover"

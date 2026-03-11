@@ -33,7 +33,8 @@ export const metadata = {
     siteName: "Alraimi Group",
     images: [
       {
-        url: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772602454/ChatGPT_Image_Mar_4_2026_12_33_53_PM_nkppls.png",
+        url: "/og-image.jpg",
+     
         width: 1200,
         height: 630,
         alt: "Fashion manufacturing production"

@@ -1,36 +1,195 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Alraimi Business Group --- Website
 
-## Getting Started
+Production website for **alraimigroup.com**, built using **Next.js (App
+Router)**.
 
-First, run the development server:
+This repository contains the frontend application, form APIs, UI
+component system, SEO configuration, and deployment setup for the
+Alraimi Business Group website.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+The project is designed to be:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+-   fast
+-   minimal in dependencies
+-   easy to maintain
+-   production-stable
+-   SEO compatible
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+The website functions primarily as a **B2B lead‑generation platform**
+for international brands looking for manufacturing partners in China.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+------------------------------------------------------------------------
 
-## Learn More
+# Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+Core technologies used:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+-   Next.js (App Router)
+-   React
+-   Tailwind CSS
+-   GSAP (scroll animations)
+-   Cloudinary (image optimization & delivery)
+-   Vercel (hosting & deployment)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Supporting tooling:
 
-## Deploy on Vercel
+-   Node.js
+-   PostCSS
+-   ESLint
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+------------------------------------------------------------------------
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Development Requirements
+
+Node.js \>= 18\
+npm \>= 9
+
+Verify:
+
+`node -v`\
+`npm -v`
+
+------------------------------------------------------------------------
+
+# Installation
+
+Clone:
+
+`git clone <repository-url>`
+
+Install dependencies:
+
+`npm install`
+
+------------------------------------------------------------------------
+
+# Development
+
+Run development server:
+
+`npm run dev`
+
+Open:
+
+`http://localhost:3000`
+
+------------------------------------------------------------------------
+
+# Production
+
+Build:
+
+`npm run build`
+
+Run:
+
+`npm start`
+
+------------------------------------------------------------------------
+
+# Environment Variables
+
+Create `.env.local`:
+
+EMAIL_TO=contact@alraimigroup.com\
+EMAIL_FROM=noreply@alraimigroup.com\
+SMTP_HOST=smtp.example.com\
+SMTP_PORT=587\
+SMTP_USER=username\
+SMTP_PASS=password
+
+------------------------------------------------------------------------
+
+# API Endpoints
+
+## Inquiry
+
+`/api/inquiry`
+
+Handles general manufacturing inquiries.
+
+Fields:
+
+-   name
+-   email
+-   company
+-   message
+
+## PI Request
+
+`/api/pi-request`
+
+Handles production quote requests.
+
+Fields:
+
+-   name
+-   company
+-   email
+-   product category
+-   quantity
+-   timeline
+-   notes
+
+------------------------------------------------------------------------
+
+# SEO
+
+Implemented:
+
+-   sitemap.js
+-   robots.js
+-   Open Graph metadata
+
+Recommended additions:
+
+-   og-image.jpg
+-   structured data (JSON‑LD)
+-   canonical tags
+
+------------------------------------------------------------------------
+
+# Deployment
+
+Hosted on **Vercel**.
+
+Features:
+
+-   automatic builds
+-   global CDN
+-   preview deployments
+-   edge caching
+
+Deploy triggered by:
+
+`git push`
+
+------------------------------------------------------------------------
+
+# Performance
+
+Optimizations:
+
+-   Cloudinary image transformations
+-   minimal JS payload
+-   server rendering where required
+-   HTTP/3 support
+-   CDN edge delivery
+
+------------------------------------------------------------------------
+
+# Development Principles
+
+The project follows simple engineering rules:
+
+-   simplicity over abstraction
+-   predictable component structure
+-   minimal dependencies
+-   readable code over clever code
+-   performance first
+
+------------------------------------------------------------------------
+
+# License
+
+Internal project for Alraimi Business Group.
