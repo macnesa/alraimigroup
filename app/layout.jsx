@@ -103,6 +103,9 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
+      <head>
+        <meta name="google-site-verification" content="qNdBnvqNZf5tk0wgOpHOblzcRZZjGrtz7s0DjB3V2O0" />
+      </head>
       <body className="antialiased">
         <Providers>{children}</Providers>
         
