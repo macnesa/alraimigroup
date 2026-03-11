@@ -1,5 +1,7 @@
 import "./globals.css";
 import Providers from "./providers";
+import Script from "next/script";
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
 export const metadata = {
   metadataBase: new URL("https://alraimigroup.com"),
@@ -7,7 +9,7 @@ export const metadata = {
   title: {
     default:
       "Alraimi Group — Fashion Manufacturing & Luxury Packaging in China",
-    template: "%s | Alraimi Group"
+    template: "%s | Alraimi Group",
   },
 
   description:
@@ -18,11 +20,11 @@ export const metadata = {
     "luxury packaging manufacturer",
     "private label clothing manufacturer",
     "custom packaging China",
-    "OEM fashion production"
+    "OEM fashion production",
   ],
 
   alternates: {
-    canonical: "/"
+    canonical: "/",
   },
 
   openGraph: {
@@ -34,14 +36,14 @@ export const metadata = {
     images: [
       {
         url: "/og-image.jpg",
-     
+
         width: 1200,
         height: 630,
-        alt: "Fashion manufacturing production"
-      }
+        alt: "Fashion manufacturing production",
+      },
     ],
     locale: "en_US",
-    type: "website"
+    type: "website",
   },
 
   twitter: {
@@ -49,13 +51,13 @@ export const metadata = {
     title: "Alraimi Group",
     description:
       "Manufacturing partner in China for fashion and luxury packaging brands.",
-    images: ["/og-image.jpg"]
+    images: ["/og-image.jpg"],
   },
 
   robots: {
     index: true,
-    follow: true
-  }
+    follow: true,
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -76,10 +78,10 @@ export default function RootLayout({ children }) {
       telephone: "+8619924111300",
       contactType: "customer service",
       areaServed: "Worldwide",
-      availableLanguage: ["English"]
+      availableLanguage: ["English"],
     },
 
-    sameAs: ["https://www.instagram.com/alraimigroup"]
+    sameAs: ["https://www.instagram.com/alraimigroup"],
   };
 
   const websiteSchema = {
@@ -93,8 +95,8 @@ export default function RootLayout({ children }) {
     name: "Alraimi Group",
 
     publisher: {
-      "@id": "https://alraimigroup.com/#organization"
-    }
+      "@id": "https://alraimigroup.com/#organization",
+    },
   };
 
   return (
@@ -105,16 +107,30 @@ export default function RootLayout({ children }) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationSchema)
+            __html: JSON.stringify(organizationSchema),
           }}
         />
 
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(websiteSchema)
+            __html: JSON.stringify(websiteSchema),
           }}
         />
+
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+          strategy="afterInteractive"
+        />
+
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '${GA_ID}');
+  `}
+        </Script>
       </body>
     </html>
   );
