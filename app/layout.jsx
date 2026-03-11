@@ -49,7 +49,7 @@ export const metadata = {
     title: "Alraimi Group",
     description:
       "Manufacturing partner in China for fashion and luxury packaging brands.",
-    images: ["https://res.cloudinary.com/djgu1bhef/image/upload/v1772602454/ChatGPT_Image_Mar_4_2026_12_33_53_PM_nkppls.png"]
+    images: ["/og-image.jpg"]
   },
 
   robots: {
