@@ -2,6 +2,8 @@ import "./globals.css";
 import Providers from "./providers";
 import Script from "next/script";
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
+import { Analytics } from "@vercel/analytics/react"
+
 
 export const metadata = {
   metadataBase: new URL("https://alraimigroup.com"),
@@ -103,7 +105,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className="antialiased">
         <Providers>{children}</Providers>
-
+        
+        <Analytics />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
