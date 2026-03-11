@@ -204,16 +204,16 @@ export default function Footer() {
             </p>
 
             <div className="flex gap-8">
+ 
 
-              <span className="hover:text-white transition cursor-pointer">
-                Terms of Use
-              </span>
+  <Link
+    href="/privacy"
+    className="hover:text-white transition"
+  >
+    Privacy Policy
+  </Link>
 
-              <span className="hover:text-white transition cursor-pointer">
-                Privacy Policy
-              </span>
-
-            </div>
+</div>
 
           </div>
 
