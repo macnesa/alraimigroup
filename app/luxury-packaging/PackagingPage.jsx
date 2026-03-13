@@ -273,7 +273,7 @@ function About() {
 
   return (
 
-    <section className="bg-[#F3F2EF] pt-10 pb-[8px]">
+    <section className="bg-[#F3F2EF] pt-8 pb-[8px]">
 
       <div className="max-w-[1600px] mx-auto px-2 md:px-10 xl:px-16">
 
@@ -281,9 +281,9 @@ function About() {
 
           {/* LEFT CARD */}
 
-          <div className="bg-white border border-[#DDD7CE] rounded-2xl px-8 sm:px-12 md:px-16 xl:px-20 py-14 md:py-16 xl:py-20 text-center md:text-left">
+          <div className="bg-white border border-[#DDD7CE] rounded-2xl px-8 sm:px-12 md:px-16 xl:px-20 py-12 md:py-16 xl:py-20 text-center md:text-left">
 
-            <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-8">
+            <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
               OVERVIEW
             </div>
 
@@ -293,20 +293,20 @@ function About() {
               <span>Built for Consistency</span>
             </h2>
 
-            <div className="mt-8 h-[1px] w-24 bg-[#DDD7CE] mx-auto md:mx-0"></div>
+            <div className="mt-6 h-[1px] w-24 bg-[#DDD7CE] mx-auto md:mx-0"></div>
 
           </div>
 
 
           {/* RIGHT CARD */}
 
-          <div className="bg-white border border-[#DDD7CE] rounded-2xl px-8 sm:px-12 md:px-16 xl:px-20 py-14 md:py-16 xl:py-20 flex items-center">
+          <div className="bg-white border border-[#DDD7CE] rounded-2xl px-8 sm:px-12 md:px-16 xl:px-20 py-12 md:py-16 xl:py-20 flex items-center">
 
-            <div className="text-[16px] sm:text-[17px] md:text-[18px] leading-[1.7] text-neutral-600">
+            <div className="text-[16px] sm:text-[17px] md:text-[18px] leading-[1.7] text-neutral-700 max-w-[520px]">
 
               <p>
-              Packaging often becomes the first physical experience a customer has with a brand.  
-              Boxes for perfume, cosmetics, fashion, and retail products are developed from dieline and samples to finished packaging, produced with factory partners in China.
+                Packaging often becomes the first physical experience a customer has with a brand.  
+                Boxes for perfume, cosmetics, fashion, and retail products are developed from dieline and samples to finished packaging, produced with factory partners in China.
               </p>
 
             </div>
@@ -398,16 +398,6 @@ function ProductCategories() {
         ease: "power2.out"
       }, "-=0.2")
 
-      gsap.from(".category-image", {
-        scale: 1.06,
-        duration: 1.2,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: ".category-image",
-          start: "top 85%",
-        }
-      })
-
       gsap.utils.toArray(".category-card").forEach((card) => {
 
         const tags = card.querySelectorAll(".tag-item")
@@ -443,6 +433,7 @@ function ProductCategories() {
 
   }, [])
 
+
   return (
 
     <section ref={sectionRef} className="bg-[#F3F2EF] pt-[8px]">
@@ -451,12 +442,12 @@ function ProductCategories() {
 
         <div className="bg-white border border-[#D6D1C8] rounded-2xl">
 
-          <div className="px-8 sm:px-12 md:px-16 xl:px-20 py-14 md:py-16 xl:py-20">
+          <div className="px-8 sm:px-12 md:px-16 xl:px-20 py-12 md:py-16 xl:py-20">
 
 
             {/* LABEL */}
 
-            <div className="flex justify-center mb-8 categories-label">
+            <div className="flex justify-center mb-6 categories-label">
 
               <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium">
                  Types
@@ -467,10 +458,10 @@ function ProductCategories() {
 
             {/* HEADER */}
 
-            <div className="categories-header text-center max-w-[720px] mx-auto mb-16">
+            <div className="categories-header text-center max-w-[720px] mx-auto mb-12 md:mb-16">
 
               <h2 className="text-[34px] sm:text-[36px] md:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900 mb-6">
-              Packaging Types
+                Packaging Types
               </h2>
 
               <p className="text-[16px] sm:text-[18px] leading-[1.7] text-neutral-600">
@@ -483,20 +474,20 @@ function ProductCategories() {
 
             {/* GRID */}
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 justify-items-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 md:gap-6 justify-items-center">
 
               {categories.map((category) => (
 
-                <div key={category.title} className="category-card w-full max-w-[420px] bg-white border border-[#D6D1C8]/70 rounded-2xl p-6">
+                <div key={category.title} className="category-card w-full max-w-[420px] bg-white border border-[#D6D1C8]/70 rounded-2xl p-5 md:p-6">
 
-                  <div className="relative w-full aspect-[16/10] rounded-lg overflow-hidden mb-6 border border-neutral-200">
+                  <div className="relative w-full aspect-[4/3] md:aspect-[16/10] rounded-lg overflow-hidden mb-6 border border-neutral-200">
 
                     <Image
                       src={cloudinaryTransform(category.image)}
                       alt={category.title}
                       fill
                       sizes="(max-width:640px) 100vw, (max-width:1280px) 50vw, 420px"
-                      className="object-cover category-image"
+                      className="object-cover"
                     />
 
                   </div>
@@ -505,7 +496,7 @@ function ProductCategories() {
                     {category.title}
                   </div>
 
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1.5 md:gap-2">
 
                     {category.items.map((item) => (
                       <span key={item} className="tag-item text-[13px] px-3 py-1 rounded-md bg-neutral-100 border border-neutral-200 text-neutral-600">
@@ -600,78 +591,53 @@ function FinishesSystem() {
 
     const ctx = gsap.context(() => {
 
-      const headerTL = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".finishes-header",
-          start: "top 80%"
+      gsap.from(".finishes-header",{
+        opacity:0,
+        y:24,
+        duration:0.7,
+        ease:"power2.out",
+        scrollTrigger:{
+          trigger:sectionRef.current,
+          start:"top 80%"
         }
       })
 
-      headerTL
-        .from(".finishes-label", {
-          opacity: 0,
-          y: 16,
-          duration: 0.6,
-          ease: "power2.out"
-        })
-        .from(".finishes-title", {
-          opacity: 0,
-          y: 18,
-          duration: 0.7,
-          ease: "power2.out"
-        }, "-=0.3")
-        .from(".finishes-desc", {
-          opacity: 0,
-          y: 18,
-          duration: 0.7,
-          ease: "power2.out"
-        }, "-=0.4")
-
-      gsap.from(".finish-card", {
-        opacity: 0,
-        y: 30,
-        duration: 0.7,
-        stagger: 0.12,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: ".finishes-grid",
-          start: "top 80%"
+      gsap.from(".finish-card",{
+        opacity:0,
+        y:28,
+        duration:0.7,
+        stagger:0.1,
+        ease:"power2.out",
+        scrollTrigger:{
+          trigger:".finishes-grid",
+          start:"top 80%"
         }
       })
 
-      gsap.from(".finish-image", {
-        scale: 1.05,
-        duration: 1.2,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: ".finishes-grid",
-          start: "top 85%"
-        }
-      })
-
-      gsap.utils.toArray(".finish-card").forEach((card) => {
+      gsap.utils.toArray(".finish-card").forEach((card)=>{
 
         const tags = card.querySelectorAll(".finish-tag")
 
-        gsap.from(tags, {
-          opacity: 0,
-          y: 6,
-          duration: 0.35,
-          stagger: 0.05,
-          ease: "power1.out",
-          scrollTrigger: {
-            trigger: card,
-            start: "top 85%"
+        gsap.from(tags,{
+          opacity:0,
+          y:6,
+          duration:0.35,
+          stagger:0.05,
+          ease:"power1.out",
+          scrollTrigger:{
+            trigger:card,
+            start:"top 85%"
           }
         })
 
       })
 
-    }, sectionRef)
+    },sectionRef)
 
-    return () => ctx.revert()
+    return ()=>ctx.revert()
 
-  }, [])
+  },[])
+
 
   return (
 
@@ -681,62 +647,81 @@ function FinishesSystem() {
 
         <div className="bg-white border border-[#D6D1C8] rounded-2xl">
 
-          <div className="px-8 sm:px-12 md:px-16 xl:px-20 py-14 md:py-16 xl:py-20">
+          <div className="px-8 sm:px-12 md:px-16 xl:px-20 py-12 md:py-16 xl:py-20">
 
-            <div className="finishes-header grid grid-cols-1 md:grid-cols-[1fr_420px] gap-10 md:gap-16 items-start mb-16 md:mb-20">
+
+            {/* HEADER */}
+
+            <div className="finishes-header grid grid-cols-1 md:grid-cols-[1fr_420px] gap-8 md:gap-16 items-start mb-14 md:mb-20">
 
               <div>
 
-                <div className="finishes-label inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
+                <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
                   Finishes
                 </div>
 
-                <h2 className="finishes-title text-[30px] sm:text-[34px] md:text-[38px] lg:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900 max-w-[720px]">
+                <h2 className="text-[30px] sm:text-[34px] md:text-[38px] lg:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900 max-w-[720px]">
                   Luxury Finishes
-                  <br />
+                  <br/>
                   <span>Mix & Match Control</span>
                 </h2>
 
               </div>
 
-              <div className="finishes-desc text-[16px] md:text-[17px] leading-[1.7] text-neutral-600 max-w-[420px]">
+              <div className="text-[16px] md:text-[17px] leading-[1.7] text-neutral-600 max-w-[420px]">
 
-                Our production system allows brands to mix finishes precisely — ensuring consistency across packaging, inserts, and supporting materials while maintaining strict color and material control.
+                Our production system allows brands to mix finishes precisely —
+                ensuring consistency across packaging, inserts, and supporting
+                materials while maintaining strict color and material control.
 
               </div>
 
             </div>
 
-            <div className="finishes-grid grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
 
-              {finishes.map((finish) => (
+            {/* GRID */}
 
-                <div key={finish.title} className="finish-card bg-white border border-[#D6D1C8]/70 rounded-2xl p-6">
+            <div className="finishes-grid grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-10">
 
-                  <div className="grid grid-cols-1 sm:grid-cols-[220px_1fr] gap-6 items-start">
+              {finishes.map((finish)=> (
 
-                    <div className="relative w-full h-[140px] sm:h-[110px] rounded-lg overflow-hidden border border-neutral-200">
+                <div
+                  key={finish.title}
+                  className="finish-card bg-white border border-[#D6D1C8]/70 rounded-2xl p-5 md:p-6 min-h-[120px]"
+                >
+
+                  <div className="flex items-center gap-4 md:grid md:grid-cols-[220px_1fr] md:items-center md:gap-6">
+
+                    {/* IMAGE */}
+
+                    <div className="relative w-[90px] h-[90px] md:w-full md:h-[110px] rounded-lg overflow-hidden border border-neutral-200 flex-shrink-0">
 
                       <Image
                         src={cloudinaryTransform(finish.image)}
                         alt={finish.title}
                         fill
-                        sizes="(max-width:768px) 100vw, 220px"
-                        className="object-cover finish-image"
+                        sizes="(max-width:768px) 90px, 220px"
+                        className="object-cover"
                       />
 
                     </div>
 
+
+                    {/* TEXT */}
+
                     <div>
 
-                      <div className="text-[20px] font-medium text-neutral-900 mb-4">
+                      <div className="text-[18px] md:text-[20px] font-medium text-neutral-900 mb-3">
                         {finish.title}
                       </div>
 
-                      <div className="flex flex-wrap gap-2">
+                      <div className="flex flex-wrap gap-1.5 md:gap-2">
 
-                        {finish.items.map((item) => (
-                          <span key={item} className="finish-tag text-[13px] px-3 py-1 rounded-md bg-neutral-100 border border-neutral-200 text-neutral-600">
+                        {finish.items.map((item)=>(
+                          <span
+                            key={item}
+                            className="finish-tag text-[13px] px-3 py-1 rounded-md bg-neutral-100 border border-neutral-200 text-neutral-600"
+                          >
                             {item}
                           </span>
                         ))}
@@ -777,13 +762,32 @@ function Inserts() {
     const ctx = gsap.context(() => {
 
       const tl = gsap.timeline({
-        scrollTrigger: { trigger: sectionRef.current, start: "top 75%", toggleActions: "play none none none" },
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 75%",
+          toggleActions: "play none none none"
+        },
         defaults: { ease: "power2.out" }
       })
 
-      tl.from(".inserts-left", { opacity: 0, x: -40, duration: 0.6 })
-        .from(".inserts-line", { scaleY: 0, transformOrigin: "top center", duration: 0.7 }, "-=0.4")
-        .from(".insert-item", { opacity: 0, y: 30, duration: 0.5, stagger: 0.08 }, "-=0.5")
+      tl.from(".inserts-left", {
+        opacity: 0,
+        x: -40,
+        duration: 0.6
+      })
+
+      tl.from(".inserts-line", {
+        scaleY: 0,
+        transformOrigin: "top center",
+        duration: 0.7
+      }, "-=0.4")
+
+      tl.from(".insert-item", {
+        opacity: 0,
+        y: 30,
+        duration: 0.5,
+        stagger: 0.08
+      }, "-=0.5")
 
     }, sectionRef)
 
@@ -792,18 +796,42 @@ function Inserts() {
   }, [])
 
 
+  const inserts = [
+    {
+      title: "EVA / Foam",
+      desc: "Precision-cut inserts with optional velvet wrapping."
+    },
+    {
+      title: "Paperboard / Cardboard",
+      desc: "Multi-layer precision structures for rigid support."
+    },
+    {
+      title: "Molded Pulp",
+      desc: "Recyclable interior solutions in natural or colored finishes."
+    },
+    {
+      title: "Fabric / Satin",
+      desc: "Soft cushions and trays for elevated presentation."
+    },
+    {
+      title: "Thermoformed Trays",
+      desc: "Engineered trays when compliance requires exact fit."
+    }
+  ]
+
+
   return (
 
-    <section ref={sectionRef} className="bg-[#F3F2EF] py-20 md:py-24 xl:py-28">
+    <section ref={sectionRef} className="bg-[#F3F2EF] pt-[8px]">
 
-      <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16">
+      <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 py-20 md:py-24 xl:py-28">
 
-        <div className="grid md:grid-cols-12 gap-14 md:gap-20 items-start relative">
+        <div className="grid md:grid-cols-[0.42fr_0.58fr] gap-12 md:gap-16 items-start relative">
 
 
           {/* LEFT */}
 
-          <div className="inserts-left md:col-span-4">
+          <div className="inserts-left">
 
             <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
               Inserts
@@ -820,34 +848,13 @@ function Inserts() {
 
           {/* RIGHT */}
 
-          <div className="md:col-span-8 relative">
+          <div className="relative">
 
-            <div className="inserts-line absolute left-0 top-0 bottom-0 w-[1px] bg-neutral-300/70"></div>
+            <div className="inserts-line absolute left-[4px] top-0 bottom-0 w-[1px] bg-neutral-300"></div>
 
-            <div className="pl-10 md:pl-14 space-y-12 md:space-y-14">
+            <div className="pl-8 md:pl-10 space-y-10 md:space-y-12">
 
-              {[
-                {
-                  title: "EVA / Foam",
-                  desc: "Precision-cut inserts with optional velvet wrapping.",
-                },
-                {
-                  title: "Paperboard / Cardboard",
-                  desc: "Multi-layer precision structures for rigid support.",
-                },
-                {
-                  title: "Molded Pulp",
-                  desc: "Recyclable interior solutions in natural or colored finishes.",
-                },
-                {
-                  title: "Fabric / Satin",
-                  desc: "Soft cushions and trays for elevated presentation.",
-                },
-                {
-                  title: "Thermoformed Trays",
-                  desc: "Engineered trays when compliance requires exact fit.",
-                },
-              ].map((item) => (
+              {inserts.map((item) => (
 
                 <div key={item.title} className="insert-item">
 
@@ -855,7 +862,7 @@ function Inserts() {
                     {item.title}
                   </div>
 
-                  <div className="text-neutral-600 text-[16px] md:text-[17px] leading-[1.7] max-w-[720px]">
+                  <div className="text-neutral-600 text-[16px] md:text-[17px] leading-[1.7] max-w-[640px]">
                     {item.desc}
                   </div>
 
@@ -876,7 +883,7 @@ function Inserts() {
 
   )
 
-} 
+}
 
 
 function FactoryCapabilities() {
@@ -890,12 +897,27 @@ function FactoryCapabilities() {
     const ctx = gsap.context(() => {
 
       const tl = gsap.timeline({
-        scrollTrigger: { trigger: sectionRef.current, start: "top 80%", once: true }
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+          once: true
+        }
       })
 
-      tl.from(".factory-header", { opacity: 0, y: 30, duration: 0.5, ease: "power2.out" })
+      tl.from(".factory-header", {
+        opacity: 0,
+        y: 24,
+        duration: 0.6,
+        ease: "power2.out"
+      })
 
-      tl.from(".factory-band", { opacity: 0, y: 30, duration: 0.5, ease: "power2.out", stagger: 0.12 }, "-=0.2")
+      tl.from(".factory-item", {
+        opacity: 0,
+        y: 30,
+        duration: 0.6,
+        stagger: 0.14,
+        ease: "power2.out"
+      }, "-=0.2")
 
     }, sectionRef)
 
@@ -904,140 +926,102 @@ function FactoryCapabilities() {
   }, [])
 
 
+  const capabilities = [
+    {
+      icon: Factory,
+      title: "Automated Production Lines",
+      desc: "Dedicated lines for die-cutting, lamination, foil stamping, UV coating, folding and gluing, magnet setting, and final packing."
+    },
+    {
+      icon: DraftingCompass,
+      title: "Pre-Press & Structural Engineering",
+      desc: "In-house pre-press control and structural engineering for custom dielines, collapsible builds, complex shoulder boxes, and precision tolerances."
+    },
+    {
+      icon: ShieldCheck,
+      title: "Stage-Based QC Cells",
+      desc: "Quality control integrated at printing, finishing, assembly, and pre-shipment inspection stages."
+    }
+  ]
+
+
   return (
 
     <section ref={sectionRef} className="bg-[#F3F2EF] pt-[8px]">
 
       <div className="max-w-[1600px] mx-auto px-2 md:px-10 xl:px-16">
 
-        <div className="bg-gradient-to-b from-[#1E1E1E] to-[#151515] border border-white/10 rounded-2xl overflow-hidden">
+        <div className="bg-[#181818] border border-white/10 rounded-2xl overflow-hidden">
 
 
           {/* HEADER */}
 
-          <div className="factory-header relative px-8 sm:px-12 md:px-16 xl:px-20 py-10 md:py-12 xl:py-14 border-b border-white/10 text-white overflow-hidden">
+          <div className="factory-header px-8 sm:px-12 md:px-16 xl:px-20 py-14 md:py-16 xl:py-20 border-b border-white/10 text-white">
 
-            <Image
-              src="https://images.unsplash.com/photo-1476683874822-744764a2438f?q=80&w=3270&auto=format&fit=crop"
-              alt="Factory background"
-              fill
-              className="object-cover opacity-30"
-            />
-
-            <div className="absolute inset-0 bg-black/40"></div>
-
-            <div className="relative z-10">
-
-              <div className="inline-flex items-center border border-white/30 text-white px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
-                Factory Capacity
-              </div>
-
-              <h2 className="text-[30px] sm:text-[34px] md:text-[38px] lg:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal max-w-[760px]">
-                Controlled Production
-                <br />
-                Infrastructure in China
-              </h2>
-
+            <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
+              Factory Capacity
             </div>
+
+            <h2 className="text-[30px] sm:text-[34px] md:text-[38px] lg:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal max-w-[720px]">
+              Controlled Production Infrastructure
+            </h2>
 
           </div>
 
 
-
-          {/* CAPABILITIES */}
+          {/* TIMELINE */}
 
           <div className="relative">
 
             {/* vertical guide line */}
 
-            <div className="absolute left-[44px] top-0 bottom-0 w-[1px] bg-white/10 hidden md:block"></div>
+            <div className="absolute left-[44px] md:left-[52px] top-0 bottom-0 w-[1px] bg-white/10"></div>
 
 
-            {/* BAND 1 */}
+            <div className="px-8 sm:px-12 md:px-16 xl:px-20 py-14 md:py-16 xl:py-20">
 
-            <div className="factory-band px-8 sm:px-12 md:px-16 xl:px-20 py-10 md:py-12 xl:py-14 border-b border-white/10">
+              <div className="space-y-14 md:space-y-16">
 
-              <div className="flex gap-6 items-start">
+                {capabilities.map((item, i) => {
 
-                <div className="w-[56px] h-[56px] rounded-lg bg-gradient-to-b from-[#2A2A2A] to-[#1F1F1F] border border-neutral-700 flex items-center justify-center flex-shrink-0 relative z-10">
-                  <Factory size={24} className="text-neutral-300" />
-                </div>
+                  const Icon = item.icon
 
-                <div>
+                  return (
 
-                  <div className="text-[20px] md:text-[22px] font-medium text-white mb-3">
-                    Automated Production Lines
-                  </div>
+                    <div key={i} className="factory-item flex gap-6 items-start">
 
-                  <div className="text-neutral-400 text-[16px] md:text-[17px] leading-[1.7] max-w-[760px]">
-                    Dedicated lines for die-cutting, lamination, foil stamping, UV coating,
-                    folding and gluing, magnet setting, and final packing.
-                  </div>
+                      {/* ICON */}
 
-                </div>
+                      <div className="w-[56px] h-[56px] rounded-lg bg-gradient-to-b from-[#2A2A2A] to-[#1F1F1F] border border-neutral-700 flex items-center justify-center flex-shrink-0 relative z-10">
 
-              </div>
+                        <Icon size={24} className="text-neutral-300" />
 
-            </div>
+                      </div>
 
 
+                      {/* TEXT */}
 
-            {/* BAND 2 */}
+                      <div>
 
-            <div className="factory-band px-8 sm:px-12 md:px-16 xl:px-20 py-10 md:py-12 xl:py-14 border-b border-white/10">
+                        <div className="text-[20px] md:text-[22px] font-medium text-white mb-3">
+                          {item.title}
+                        </div>
 
-              <div className="flex gap-6 items-start">
+                        <div className="text-neutral-400 text-[16px] md:text-[17px] leading-[1.7] max-w-[720px]">
+                          {item.desc}
+                        </div>
 
-                <div className="w-[56px] h-[56px] rounded-lg bg-gradient-to-b from-[#2A2A2A] to-[#1F1F1F] border border-neutral-700 flex items-center justify-center flex-shrink-0 relative z-10">
-                  <DraftingCompass size={24} className="text-neutral-300" />
-                </div>
+                      </div>
 
-                <div>
+                    </div>
 
-                  <div className="text-[20px] md:text-[22px] font-medium text-white mb-3">
-                    Pre-Press & Structural Engineering
-                  </div>
+                  )
 
-                  <div className="text-neutral-400 text-[16px] md:text-[17px] leading-[1.7] max-w-[760px]">
-                    In-house pre-press control and structural engineering for custom dielines,
-                    collapsible builds, complex shoulder boxes, and precision tolerances.
-                  </div>
-
-                </div>
+                })}
 
               </div>
 
             </div>
-
-
-
-            {/* BAND 3 */}
-
-            <div className="factory-band px-8 sm:px-12 md:px-16 xl:px-20 py-10 md:py-12 xl:py-14">
-
-              <div className="flex gap-6 items-start">
-
-                <div className="w-[56px] h-[56px] rounded-lg bg-gradient-to-b from-[#2A2A2A] to-[#1F1F1F] border border-neutral-700 flex items-center justify-center flex-shrink-0 relative z-10">
-                  <ShieldCheck size={24} className="text-neutral-300" />
-                </div>
-
-                <div>
-
-                  <div className="text-[20px] md:text-[22px] font-medium text-white mb-3">
-                    Stage-Based QC Cells
-                  </div>
-
-                  <div className="text-neutral-400 text-[16px] md:text-[17px] leading-[1.7] max-w-[760px]">
-                    Quality control integrated at printing, finishing, assembly,
-                    and pre-shipment inspection stages.
-                  </div>
-
-                </div>
-
-              </div>
-
-            </div>
-
 
           </div>
 
@@ -1104,13 +1088,15 @@ function Projects() {
       title: "Multiple Luxury Perfume Packaging",
       meta: "2025 • Luxury Packaging • Perfume",
       image: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772376971/image_2026-02-27_13-49-35_oikaga.png",
-      description: "Rigid boxes, premium paper bags, tester cards, and branded ribbon produced across multiple SKUs. Full process from sampling to AQL inspection and DDP delivery.",
+      description:
+        "Rigid boxes, premium paper bags, tester cards, and branded ribbon produced across multiple SKUs. Full process from sampling to AQL inspection and DDP delivery.",
     },
     {
       title: "Foldable Magnetic Gift Boxes",
       meta: "2025 • Luxury Packaging • Rigid Boxes",
       image: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772376971/image_2026-02-27_13-50-18_kzqkhy.png",
-      description: "Two collapsible magnetic rigid box sizes with matte lamination. Structural prototyping, color control, in-line QC and coordinated export delivery.",
+      description:
+        "Two collapsible magnetic rigid box sizes with matte lamination. Structural prototyping, color control, in-line QC and coordinated export delivery.",
     },
   ]
 
@@ -1124,7 +1110,7 @@ function Projects() {
 
         {/* HEADER */}
 
-        <div className="projects-header mb-14 md:mb-20 text-center">
+        <div className="projects-header mb-16 md:mb-20 text-center">
 
           <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
             Projects
@@ -1137,22 +1123,29 @@ function Projects() {
         </div>
 
 
-        <div className="space-y-16 md:space-y-20">
+        <div className="space-y-14 md:space-y-20">
 
           {projects.map((project, index) => (
 
-            <div key={project.title} className="project-block grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10 items-stretch">
+            <div
+              key={project.title}
+              className="project-block grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10 items-stretch"
+            >
 
 
               {/* IMAGE */}
 
-              <div className={`project-image md:col-span-8 ${index % 2 === 0 ? "md:order-2" : ""}`}>
+              <div className={`project-image md:col-span-7 ${index % 2 === 0 ? "md:order-2" : ""}`}>
 
                 <div className="bg-white border border-[#D6D1C8] rounded-2xl overflow-hidden h-full">
 
-                  <div className="aspect-[16/10] overflow-hidden">
+                  <div className="aspect-[16/10] md:aspect-[16/9]">
 
-                    <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover"
+                    />
 
                   </div>
 
@@ -1163,11 +1156,11 @@ function Projects() {
 
               {/* TEXT */}
 
-              <div className={`project-text md:col-span-4 ${index % 2 === 0 ? "md:order-1" : ""}`}>
+              <div className={`project-text md:col-span-5 ${index % 2 === 0 ? "md:order-1" : ""}`}>
 
                 <div className="bg-white border border-[#D6D1C8] rounded-2xl h-full flex items-center">
 
-                  <div className="px-8 sm:px-10 md:px-12 py-10 md:py-12 max-w-[420px]">
+                  <div className="px-8 sm:px-10 md:px-12 py-10 md:py-12 max-w-[460px]">
 
                     <div className="text-xs tracking-[0.18em] uppercase text-neutral-400 mb-4">
                       {String(index + 1).padStart(2, "0")}
@@ -1211,7 +1204,6 @@ function Projects() {
 
 function Gallery() {
 
-  // CLOUDINARY IMAGE OPTIMIZER
   function optimizeImage(url) {
     if (!url.includes("res.cloudinary.com")) return url;
 
@@ -1236,7 +1228,6 @@ function Gallery() {
       height: "h-[260px] md:h-[420px]",
       position: "object-center"
     },
-
     {
       src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1773051427/ChatGPT_Image_Mar_9_2026_03_44_40_PM_o9as43.png",
       alt: "Cargo loading truck",
@@ -1251,7 +1242,6 @@ function Gallery() {
       height: "h-[220px] md:h-[420px]",
       position: "object-center"
     },
-
     {
       src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1773052409/ChatGPT_Image_Mar_9_2026_05_33_10_PM_andc8r.png",
       alt: "Quality inspection process",
@@ -1276,35 +1266,54 @@ function Gallery() {
   ];
 
   return (
-    <section className="bg-[#F3F2EF] py-22">
-      <div className="max-w-[1600px] mx-auto px-6 xl:px-16">
+
+    <section className="bg-[#F3F2EF] py-20 md:py-24 xl:py-28">
+
+      <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16">
+
 
         {/* HEADER */}
-        <div className="flex justify-center mb-24">
-          <div className="inline-flex items-center border border-neutral-300 px-5 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium text-neutral-700">
+
+        <div className="flex justify-center mb-16 md:mb-20">
+
+          <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium">
             Gallery
           </div>
+
         </div>
 
+
         {/* GRID */}
-        <div className="grid grid-cols-2 md:grid-cols-12 gap-4 md:gap-6">
+
+        <div className="grid grid-cols-2 md:grid-cols-12 gap-[8px]">
+
           {images.map((item, index) => (
+
             <div key={index} className={item.span}>
-              <div className="rounded-2xl overflow-hidden border border-black/20">
+
+              <div className="rounded-2xl overflow-hidden">
+
                 <img
                   src={optimizeImage(item.src)}
                   alt={item.alt}
                   loading="lazy"
                   className={`w-full ${item.height} object-cover ${item.position}`}
                 />
+
               </div>
+
             </div>
+
           ))}
+
         </div>
 
       </div>
+
     </section>
+
   );
+
 }
 
 

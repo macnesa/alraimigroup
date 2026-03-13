@@ -66,7 +66,7 @@ function Hero() {
   const cloudinaryTransform = (url) => {
     return url.replace(
       "/upload/",
-      "/upload/f_auto,q_auto,c_fill,w_2000/"
+      "/upload/f_auto,q_auto,c_fill,w_1600/"
     )
   }
 
@@ -158,9 +158,7 @@ function Hero() {
 
         <header className="hero-header mx-[8px] text-black opacity-0 -translate-y-[20px]">
 
-          <div className="max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16 py-5 flex items-center justify-between">
-
-            {/* LOGO */}
+          <div className="max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16 py-3 md:py-5 flex items-center justify-between">
 
             <Link href="/" className="flex items-center">
 
@@ -174,9 +172,7 @@ function Hero() {
 
             </Link>
 
-            {/* NAV */}
-
-            <nav className="flex items-center gap-4 sm:gap-6 md:gap-10 text-sm text-neutral-700">
+            <nav className="flex items-center gap-3 sm:gap-6 md:gap-10 text-[13px] md:text-sm text-neutral-700">
 
               <Link href="/" className="hero-nav-item opacity-0 hover:text-black transition-colors">
                 Home
@@ -196,8 +192,6 @@ function Hero() {
 
             </nav>
 
-            {/* CTA DESKTOP ONLY */}
-
             <Link
               href="/contact#get-pi"
               className="hidden md:inline-flex items-center gap-2 px-7 py-3 rounded-lg text-sm font-medium bg-[#8C7A5B] text-white hover:bg-[#7A6A4E] transition"
@@ -215,9 +209,7 @@ function Hero() {
 
         <div className="px-[8px] pt-[8px]">
 
-          <div className="rounded-2xl overflow-hidden min-h-[96svh] relative">
-
-            {/* BACKGROUND */}
+          <div className="rounded-2xl overflow-hidden min-h-[72svh] md:min-h-[96svh] relative">
 
             <div className="absolute inset-0">
 
@@ -237,15 +229,13 @@ function Hero() {
             </div>
 
 
-            {/* CONTENT */}
+            <div className="relative z-10 flex flex-col min-h-[72svh] md:min-h-[96svh] max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16">
 
-            <div className="relative z-10 flex flex-col min-h-[96svh] max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16">
-
-              <div className="flex-1 flex items-center pb-12 md:pb-0">
+              <div className="flex-1 flex items-end md:items-center pb-6 md:pb-0">
 
                 <div className="w-full">
 
-                  <div className="hero-poni inline-flex items-center px-4 py-1.5 rounded-md text-[11px] sm:text-xs tracking-[0.18em] mb-6 sm:mb-8 border border-white/30 bg-white/10 uppercase">
+                  <div className="hero-poni inline-flex items-center px-4 py-1.5 rounded-md text-[10px] md:text-[11px] sm:text-xs tracking-[0.18em] mb-6 sm:mb-8 border border-white/30 bg-white/10 uppercase">
                     Global Manufacturing Partner
                   </div>
 
@@ -259,7 +249,7 @@ function Hero() {
                     </div>
 
                     <div className="overflow-hidden">
-                      <div className="hero-title-line">Remove Manufacturing Risk</div>
+                      <div className="hero-title-line">Remove <span className="hidden md:inline-block">Manufacturing</span> Risk</div>
                     </div>
 
                     <div className="overflow-hidden">
@@ -272,15 +262,13 @@ function Hero() {
 
                   <p
                     className="hero-sub text-white/75 leading-[1.7] mb-8 sm:mb-12 max-w-2xl"
-                    style={{ fontSize: "clamp(16px, 1.4vw, 20px)" }}
+                    style={{ fontSize: "clamp(15px, 1.4vw, 20px)" }}
                   >
 
                     Premium fashion manufacturing and luxury paper packaging —
                     one accountable team from sample to door-to-door shipment.
 
                   </p>
-
-                  {/* HERO CTA (ALL DEVICES) */}
 
                   <div className="hero-cta flex flex-col sm:flex-row items-start gap-4 sm:gap-8">
 
@@ -337,7 +325,6 @@ function ClientsMarquee() {
 
   const duplicated = [...logos, ...logos]
 
-
   useLayoutEffect(() => {
 
     const el = trackRef.current
@@ -364,14 +351,12 @@ function ClientsMarquee() {
   }, [])
 
 
-
   useAnimationFrame((_, delta) => {
 
     const segmentWidth = segmentWidthRef.current
     if (!segmentWidth) return
 
     const speed = 40
-
     let next = x.get() - (speed * delta) / 1000
 
     if (next <= -segmentWidth) {
@@ -383,7 +368,6 @@ function ClientsMarquee() {
   })
 
 
-
   return (
 
     <section className="bg-[#F3F2EF] pt-[8px]">
@@ -392,9 +376,9 @@ function ClientsMarquee() {
 
         <div className="bg-white border border-neutral-200 rounded-2xl">
 
-          <div className="max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16 py-14 md:py-16 text-center">
+          <div className="max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16 py-12 md:py-16 text-center">
 
-            <div className="text-xs tracking-[0.18em] uppercase text-neutral-600 mb-8">
+            <div className="text-xs tracking-[0.18em] uppercase text-neutral-600 mb-6">
               Trusted by
             </div>
 
@@ -403,11 +387,11 @@ function ClientsMarquee() {
 
               {/* fade kiri */}
 
-              <div className="pointer-events-none absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-white to-transparent z-10" />
+              <div className="pointer-events-none absolute left-0 top-0 h-full w-12 md:w-24 bg-gradient-to-r from-white to-transparent z-10" />
 
               {/* fade kanan */}
 
-              <div className="pointer-events-none absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-white to-transparent z-10" />
+              <div className="pointer-events-none absolute right-0 top-0 h-full w-12 md:w-24 bg-gradient-to-l from-white to-transparent z-10" />
 
 
               <motion.div
@@ -420,7 +404,7 @@ function ClientsMarquee() {
 
                   <div
                     key={index}
-                    className="flex-shrink-0 mx-12 flex items-center justify-center"
+                    className="flex-shrink-0 mx-6 md:mx-12 flex items-center justify-center"
                   >
 
                     <Image
@@ -428,7 +412,7 @@ function ClientsMarquee() {
                       alt="Client logo"
                       width={240}
                       height={120}
-                      className="object-contain h-24 w-auto invert opacity-80"
+                      className="object-contain h-16 md:h-24 w-auto invert opacity-80"
                     />
 
                   </div>
@@ -491,15 +475,21 @@ function About() {
 
           {/* LEFT CARD */}
 
-          <div className="about-card rounded-2xl border border-neutral-200 shadow-[0_10px_30px_rgba(0,0,0,0.04)] px-10 md:px-14 py-20 md:py-28 flex flex-col justify-end" style={{ background: "radial-gradient(circle at 25% 25%, rgba(255,255,255,1) 0%, rgba(255,255,255,0.95) 40%, rgba(245,243,239,1) 100%)" }}>
+          <div
+            className="about-card rounded-2xl border border-neutral-200 shadow-[0_10px_30px_rgba(0,0,0,0.04)] px-10 md:px-14 py-14 md:py-28 flex flex-col justify-end"
+            style={{
+              background:
+                "radial-gradient(circle at 25% 25%, rgba(255,255,255,1) 0%, rgba(255,255,255,0.95) 40%, rgba(245,243,239,1) 100%)",
+            }}
+          >
 
             <div className="max-w-[720px]">
 
-              <div className="about-poni inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-10">
+              <div className="about-poni inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
                 About
               </div>
 
-              <h2 className="text-[34px] sm:text-[36px] md:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900 mb-10">
+              <h2 className="text-[34px] sm:text-[36px] md:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900 mb-6">
 
                 <div className="overflow-hidden">
                   <div className="about-title-line">
@@ -524,15 +514,15 @@ function About() {
 
           {/* RIGHT CARD */}
 
-          <div className="about-card rounded-2xl border border-neutral-200 shadow-[0_10px_30px_rgba(0,0,0,0.04)] px-10 md:px-14 py-20 md:py-28 bg-white flex flex-col justify-start">
+          <div className="about-card rounded-2xl border border-neutral-200 shadow-[0_10px_30px_rgba(0,0,0,0.04)] px-10 md:px-14 py-14 md:py-28 bg-white flex flex-col justify-start">
 
             <div className="max-w-[760px] text-[16px] sm:text-[18px] leading-[1.7] text-neutral-700">
 
-              <p className="about-paragraph mb-8">
-                Alraimi Business Group is a <strong className="text-neutral-900 font-medium">China-based manufacturing partner</strong> for  premium brands. We produce fashion and luxury paper packaging, managing the <strong className="text-neutral-900 font-medium">full workflow</strong> from sampling and production to <strong className="text-neutral-900 font-medium">quality control</strong> and <strong className="text-neutral-900 font-medium">international shipping</strong>.
+              <p className="about-paragraph mb-6">
+                Alraimi Business Group is a <strong className="text-neutral-900 font-medium">China-based manufacturing partner</strong> for premium brands. We produce fashion and luxury paper packaging, managing the <strong className="text-neutral-900 font-medium">full workflow</strong> from sampling and production to <strong className="text-neutral-900 font-medium">quality control</strong> and <strong className="text-neutral-900 font-medium">international shipping</strong>.
               </p>
 
-              <p className="about-paragraph mb-10">
+              <p className="about-paragraph mb-8">
                 Brands work with us because they want <strong className="text-neutral-900 font-medium">one accountable team</strong> on the factory side—clear specs, <strong className="text-neutral-900 font-medium">stable quality</strong>, and <strong className="text-neutral-900 font-medium">reliable delivery</strong> so brands are not left navigating factories, timelines, or supplier communication alone.
               </p>
 
@@ -553,6 +543,7 @@ function About() {
   )
 
 }
+
 
 
 function Achievements() {
@@ -805,10 +796,6 @@ function HowWeWork() {
     onSelect()
   }, [emblaApi, onSelect])
 
-  /* -------------------------- */
-  /* MOBILE DETECTION */
-  /* -------------------------- */
-
   useEffect(() => {
 
     const check = () => {
@@ -822,10 +809,6 @@ function HowWeWork() {
     return () => window.removeEventListener("resize", check)
 
   }, [])
-
-  /* -------------------------- */
-  /* OBSERVE SECTION CENTER */
-  /* -------------------------- */
 
   useEffect(() => {
 
@@ -843,10 +826,6 @@ function HowWeWork() {
     return () => observer.disconnect()
 
   }, [])
-
-  /* -------------------------- */
-  /* AUTO PLAY */
-  /* -------------------------- */
 
   useEffect(() => {
 
@@ -870,10 +849,6 @@ function HowWeWork() {
 
   }, [emblaApi, isInView, isMobile])
 
-  /* -------------------------- */
-  /* DATA */
-  /* -------------------------- */
-
   const steps = [
     { icon: FileText, title: "Quick Brief & NDA", desc: "Send style references, quantity range and timeline." },
     { icon: DraftingCompass, title: "Design & Technical Prep", desc: "Finalize tech packs and materials." },
@@ -892,27 +867,22 @@ function HowWeWork() {
 
         <div className="bg-[#1b1b1b] rounded-2xl text-white">
 
-          <div className="max-w-[1600px] mx-auto px-10 xl:px-16 py-20 md:py-24">
+          <div className="max-w-[1600px] mx-auto px-10 xl:px-16 py-14 md:py-24">
 
-            {/* HEADER */}
+            <div className="mt-10 md:mt-16 grid grid-cols-1 md:grid-cols-[0.55fr_0.45fr] gap-10 md:gap-16 items-start">
 
-            <div className="mt-16 grid grid-cols-1 md:grid-cols-[0.55fr_0.45fr] gap-16 items-start">
+              <h2 className="text-[40px] leading-[1.1] tracking-[-0.015em]">
+                How We Work
+              </h2>
 
-<h2 className="text-[40px] leading-[1.1] tracking-[-0.015em]">
-  How We Work
-</h2>
+              <p className="text-[16px] sm:text-[18px] leading-[1.7] text-white/65">
+                Manufacturing works best when the process is clear. 
+                From the first brief to final delivery, our team stays close to the factory floor—keeping communication simple and production on track.
+              </p>
 
-<p className="text-[18px] leading-[1.7] text-white/65">
-  Manufacturing works best when the process is clear. 
-  From the first brief to final delivery, our team stays close to the factory floor—keeping communication simple and production on track.
-</p>
+            </div>
 
-</div>
-
-
-            {/* CAROUSEL */}
-
-            <div className="mt-20 overflow-hidden" ref={emblaRef}>
+            <div className="mt-12 md:mt-20 overflow-hidden" ref={emblaRef}>
 
               <div className="flex">
 
@@ -927,7 +897,7 @@ function HowWeWork() {
                       className="flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.333%] pr-6"
                     >
 
-                      <div className="relative rounded-2xl border border-white/10 bg-[#232323] p-12 min-h-[420px] flex flex-col">
+                      <div className="relative rounded-2xl border border-white/10 bg-[#232323] p-8 md:p-12 min-h-[340px] md:min-h-[420px] flex flex-col">
 
                         <div className="absolute top-6 right-8 text-[72px] text-white/5">
                           {String(i + 1).padStart(2, "0")}
@@ -941,11 +911,11 @@ function HowWeWork() {
 
                         <div className="mt-auto">
 
-                          <h4 className="text-[24px] mt-10">
+                          <h4 className="text-[24px] mt-6 md:mt-10">
                             {step.title}
                           </h4>
 
-                          <p className="mt-6 text-white/60">
+                          <p className="mt-4 md:mt-6 text-white/60">
                             {step.desc}
                           </p>
 
@@ -962,10 +932,7 @@ function HowWeWork() {
 
             </div>
 
-
-            {/* DOTS */}
-
-            <div className="mt-14 flex justify-center gap-4">
+            <div className="mt-10 md:mt-14 flex justify-center gap-4">
 
               {scrollSnaps.map((_, index) => (
 
@@ -1053,7 +1020,7 @@ function Services() {
           </div>
 
           <h2 className="text-[34px] sm:text-[36px] md:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900 mb-5">
-          What We Produce
+            What We Produce
           </h2>
 
           <p className="text-[16px] sm:text-[18px] leading-[1.7] text-neutral-600">
@@ -1065,49 +1032,51 @@ function Services() {
         </div>
 
         {/* STRUCTURE */}
-        <div className="relative flex flex-col lg:flex-row items-center justify-center gap-14 md:gap-16 lg:gap-40">
+        <div className="
+          grid
+          grid-rows-[auto_auto_auto]
+          row-gap-14
+          lg:flex
+          lg:items-center
+          lg:justify-center
+          lg:gap-40
+        ">
 
           {/* LEFT */}
           <a
             href="/fashion-manufacturing"
-            className="service-left flex-1 max-w-md group text-center lg:text-right transition-transform duration-300 hover:-translate-y-[4px]"
+            className="service-left w-full max-w-md justify-self-center lg:text-right"
           >
 
-            <h3 className="text-[26px] sm:text-[28px] md:text-[30px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900 transition-colors duration-300 group-hover:text-black">
-              Fashion Manufacturing
-            </h3>
+            <div className=" bg-transparent    p-7 md:p-0 text-center lg:text-right">
 
-            <p className="mt-4 text-[16px] leading-[1.7] text-neutral-600">
-              Apparel production from sampling to bulk execution, with
-              structured fit control, technical packs, and AQL inspection.
-            </p>
+              <h3 className="text-[26px] sm:text-[28px] md:text-[30px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900">
+                Fashion Manufacturing
+              </h3>
 
-            <span className="inline-flex items-center gap-2 mt-6 text-sm text-neutral-700 group-hover:text-black transition-colors">
+              <p className="mt-4 text-[16px] leading-[1.7] text-neutral-600">
+                Apparel production from sampling to bulk execution, with
+                structured fit control, technical packs, and AQL inspection.
+              </p>
 
-              View Service
-
-              <span className="transition-transform duration-300 group-hover:translate-x-[6px]">
-                →
+              <span className="inline-flex items-center gap-2 mt-6 text-sm text-neutral-700">
+                View Service →
               </span>
 
-            </span>
+            </div>
 
           </a>
 
           {/* HUB */}
-          <div className="service-hub flex-shrink-0 relative flex flex-col items-center justify-center">
+          <div className="service-hub justify-self-center flex items-center justify-center">
 
             <div className="w-[150px] h-[150px] sm:w-[180px] sm:h-[180px] lg:w-[220px] lg:h-[220px] rounded-full border border-neutral-300 flex items-center justify-center bg-white">
 
               <div
-                className="w-[110px] h-[110px] sm:w-[130px] sm:h-[130px] lg:w-[170px] lg:h-[170px] rounded-full flex items-center justify-center transition-transform duration-500 hover:scale-[1.04]"
+                className="w-[110px] h-[110px] sm:w-[130px] sm:h-[130px] lg:w-[170px] lg:h-[170px] rounded-full flex items-center justify-center"
                 style={{
-                  background: `
-                    radial-gradient(circle at 30% 30%,
-                    rgba(170,150,115,1) 0%,
-                    rgba(140,122,91,1) 60%,
-                    rgba(100,85,60,1) 100%)
-                  `
+                  background:
+                    "radial-gradient(circle at 30% 30%, rgba(170,150,115,1) 0%, rgba(140,122,91,1) 60%, rgba(100,85,60,1) 100%)"
                 }}
               >
                 <img
@@ -1124,27 +1093,25 @@ function Services() {
           {/* RIGHT */}
           <a
             href="/luxury-packaging"
-            className="service-right flex-1 max-w-md group text-center lg:text-left transition-transform duration-300 hover:-translate-y-[4px]"
+            className="service-right w-full max-w-md justify-self-center lg:text-left"
           >
 
-            <h3 className="text-[26px] sm:text-[28px] md:text-[30px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900 transition-colors duration-300 group-hover:text-black">
-              Luxury Packaging
-            </h3>
+            <div className="bg-transparent   p-7 md:p-0 text-center lg:text-left">
 
-            <p className="mt-4 text-[16px] leading-[1.7] text-neutral-600">
-              Premium rigid boxes, structural engineering, finishing
-              precision, and export-ready packaging systems.
-            </p>
+              <h3 className="text-[26px] sm:text-[28px] md:text-[30px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900">
+                Luxury Packaging
+              </h3>
 
-            <span className="inline-flex items-center gap-2 mt-6 text-sm text-neutral-700 group-hover:text-black transition-colors">
+              <p className="mt-4 text-[16px] leading-[1.7] text-neutral-600">
+                Premium rigid boxes, structural engineering, finishing
+                precision, and export-ready packaging systems.
+              </p>
 
-              View Service
-
-              <span className="transition-transform duration-300 group-hover:translate-x-[6px]">
-                →
+              <span className="inline-flex items-center gap-2 mt-6 text-sm text-neutral-700">
+                View Service →
               </span>
 
-            </span>
+            </div>
 
           </a>
 
@@ -1180,7 +1147,7 @@ function Catalogs() {
               </h2>
 
               {/* BODY LARGE */}
-              <p className="text-[18px] leading-[1.7] text-neutral-600 max-w-xl">
+              <p className="text-[16px] sm:text-[18px] leading-[1.7] text-neutral-600 max-w-xl">
                 Review available categories, material options and finishes,
                 minimum order quantities, and standard production timelines
                 across fashion manufacturing and luxury packaging.

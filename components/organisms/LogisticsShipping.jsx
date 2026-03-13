@@ -25,6 +25,7 @@ export default function LogisticsShipping() {
 
   },[])
 
+
   const incoterms = [
     {
       code: "EXW",
@@ -40,13 +41,15 @@ export default function LogisticsShipping() {
     },
   ]
 
+
   return (
 
-    <section ref={sectionRef} className="pt-16 md:pt-20 xl:pt-24 text-white">
+    <section ref={sectionRef} className="text-white">
 
       <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16">
 
-        <div className="grid grid-cols-1 md:grid-cols-[0.5fr_0.5fr] gap-14 md:gap-24">
+        <div className="grid grid-cols-1 md:grid-cols-[0.5fr_0.5fr] gap-10 md:gap-24">
+
 
           {/* LEFT */}
 
@@ -77,13 +80,13 @@ export default function LogisticsShipping() {
 
           {/* RIGHT */}
 
-          <div className="space-y-8 md:space-y-12">
+          <div className="space-y-6 md:space-y-10">
 
             {incoterms.map((item)=>(
               
-              <div key={item.code} className="incoterm-item pb-8 md:pb-10 border-b border-white/10">
+              <div key={item.code} className="incoterm-item pb-6 md:pb-10 border-b border-white/10">
 
-                <div className="text-[28px] sm:text-[32px] md:text-[36px] font-light tracking-[-0.02em] mb-4">
+                <div className="text-[26px] sm:text-[30px] md:text-[34px] font-light tracking-[-0.02em] mb-3">
                   {item.code}
                 </div>
 

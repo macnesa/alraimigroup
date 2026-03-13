@@ -33,6 +33,10 @@ export default function QualityControl() {
 
   useEffect(() => {
 
+    if (!imageRef.current) return
+
+    gsap.killTweensOf(imageRef.current)
+
     gsap.fromTo(
       imageRef.current,
       { opacity: 0 },
@@ -40,6 +44,7 @@ export default function QualityControl() {
     )
 
   }, [activeIndex])
+
 
   return (
 
@@ -49,7 +54,7 @@ export default function QualityControl() {
 
         {/* HEADER */}
 
-        <div className="mb-16 md:mb-20">
+        <div className="mb-14 md:mb-20">
 
           <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
             QUALITY CONTROL
@@ -64,12 +69,12 @@ export default function QualityControl() {
 
         {/* CONTENT */}
 
-        <div className="grid md:grid-cols-2 gap-14 md:gap-20 xl:gap-24 items-center">
+        <div className="grid md:grid-cols-2 gap-10 md:gap-20 xl:gap-24 items-center">
 
 
           {/* IMAGE */}
 
-          <div className="w-full aspect-square overflow-hidden rounded-2xl">
+          <div className="w-full aspect-[4/3] md:aspect-square overflow-hidden rounded-2xl">
 
             <img
               ref={imageRef}
@@ -85,7 +90,7 @@ export default function QualityControl() {
 
           {/* LIST */}
 
-          <div className="space-y-10">
+          <div className="space-y-8 md:space-y-10">
 
             {controls.map((item,index)=>{
 
@@ -96,7 +101,7 @@ export default function QualityControl() {
                 <div
                   key={item.title}
                   onClick={()=>setActiveIndex(index)}
-                  className="cursor-pointer pb-8 border-b border-white/10 transition-all duration-300"
+                  className="cursor-pointer pb-6 border-b border-white/10 transition-all duration-300"
                 >
 
                   <div
@@ -130,7 +135,7 @@ export default function QualityControl() {
             })}
 
 
-            <div className="pt-8 text-sm text-white/50 leading-[1.7] max-w-[520px]">
+            <div className="pt-6 text-sm text-white/50 leading-[1.7] max-w-[520px]">
               Real-time production photos and video updates are shared during manufacturing to maintain transparency and alignment.
             </div>
 
