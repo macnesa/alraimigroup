@@ -23,6 +23,8 @@ import {
   Quote
 } from "lucide-react"
 
+import { Lightbulb, Ruler, FlaskConical } from "lucide-react"
+
 
 import useEmblaCarousel from "embla-carousel-react"
 
@@ -41,8 +43,7 @@ import Footer from '../components/organisms/Footer'
 export default function Home() {
   return (
     <main className="bg-white text-neutral-100">
-      <Hero />
-      <ClientsMarquee/>
+      <Hero /> 
       <About/>
       <Achievements/>
       <HowWeWork/>
@@ -56,6 +57,100 @@ export default function Home() {
       <Footer/>
     </main> 
   );
+}
+
+
+function IndustrialStatement() {
+
+  const sectionRef = useRef(null)
+
+  useEffect(() => {
+
+    gsap.registerPlugin(ScrollTrigger)
+
+    const ctx = gsap.context(() => {
+
+      gsap.from(".statement-image", {
+        scale: 1.06,
+        duration: 1.4,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%"
+        }
+      })
+
+      gsap.from(".statement-text", {
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 75%"
+        }
+      })
+
+    }, sectionRef)
+
+    return () => ctx.revert()
+
+  }, [])
+
+  return (
+
+    <section ref={sectionRef} className="bg-[#F3F2EF] py-20 md:py-24 xl:py-28">
+
+      <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16">
+
+        <div className="relative rounded-2xl overflow-hidden">
+
+          {/* IMAGE */}
+
+          <div className="statement-image relative w-full h-[420px] md:h-[520px]">
+
+            <Image
+              src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?q=80&w=3000&auto=format&fit=crop"
+              alt="Manufacturing production"
+              fill
+              className="object-cover"
+            />
+
+            <div className="absolute inset-0 bg-black/50"></div>
+
+          </div>
+
+
+          {/* TEXT */}
+
+          <div className="statement-text absolute inset-0 flex items-center justify-center text-center px-6">
+
+            <div className="max-w-[760px] text-white">
+
+              <h2 className="text-[34px] sm:text-[40px] md:text-[48px] lg:text-[54px] leading-[1.1] tracking-[-0.02em] font-light mb-6">
+                Precision Manufacturing
+                <br />
+                for Global Brands
+              </h2>
+
+              <p className="text-[16px] md:text-[18px] leading-[1.7] text-white/80">
+                From structural engineering and sampling to controlled
+                manufacturing and international delivery, every stage of
+                production is managed to ensure consistency and reliability.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  )
+
 }
 
 
@@ -73,235 +168,9 @@ function Hero() {
   const heroImage =
     "https://res.cloudinary.com/djgu1bhef/image/upload/v1773152395/ChatGPT_Image_Mar_10_2026_09_16_01_PM_ssybh8.png"
 
-  useEffect(() => {
-
-    const ctx = gsap.context(() => {
-
-      const tl = gsap.timeline({
-        defaults: { ease: "power3.out" }
-      })
-
-      gsap.fromTo(
-        ".hero-bg",
-        { scale: 1.05 },
-        { scale: 1, duration: 1.4 }
-      )
-
-      gsap.fromTo(
-        ".hero-overlay",
-        { opacity: 0.8 },
-        { opacity: 1, duration: 0.8 }
-      )
-
-      tl.to(".hero-header",
-        { opacity: 1, y: 0, duration: 0.45 }
-      )
-
-      tl.to(".hero-nav-item",
-        { opacity: 1, stagger: 0.08, duration: 0.45 },
-        "-=0.25"
-      )
-
-      tl.fromTo(".hero-poni",
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.45 },
-        "-=0.15"
-      )
-
-      tl.fromTo(".hero-title-line",
-        { yPercent: 100 },
-        { yPercent: 0, stagger: 0.12, duration: 0.7 },
-        "+=0.1"
-      )
-
-      tl.fromTo(".hero-sub",
-        { opacity: 0, y: 16 },
-        { opacity: 1, y: 0, duration: 0.45 },
-        "-=0.3"
-      )
-
-      tl.fromTo(".hero-cta",
-        { opacity: 0, y: 16 },
-        { opacity: 1, y: 0, duration: 0.45 },
-        "-=0.25"
-      )
-
-    }, heroRef)
-
-    return () => ctx.revert()
-
-  }, [])
-
-  return (
-
-    <>
-      <style jsx>{`
-.hero-section-bg {
-  background: linear-gradient(
-    to bottom,
-    rgba(140,122,91,0.55) 0%,
-    rgba(140,122,91,0.25) 8%,
-    rgba(140,122,91,0.12) 16%,
-    rgba(140,122,91,0.05) 22%,
-    rgba(140,122,91,0) 25%
-  );
-  background-color: #ffffff;
-}
-      `}</style>
-
-      <section
-        ref={heroRef}
-        className="hero-section-bg text-white pt-[8px]"
-      >
-
-        {/* HEADER */}
-
-        <header className="hero-header mx-[8px] text-black opacity-0 -translate-y-[20px]">
-
-          <div className="max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16 py-3 md:py-5 flex items-center justify-between">
-
-            <Link href="/" className="flex items-center">
-
-              <Image
-                src="/images/alraimi-logo-black-1.png"
-                alt="Alraimi Logo"
-                width={42}
-                height={38}
-                priority
-              />
-
-            </Link>
-
-            <nav className="flex items-center gap-3 sm:gap-6 md:gap-10 text-[13px] md:text-sm text-neutral-700">
-
-              <Link href="/" className="hero-nav-item opacity-0 hover:text-black transition-colors">
-                Home
-              </Link>
-
-              <Link href="/fashion-manufacturing" className="hero-nav-item opacity-0 hover:text-black transition-colors">
-                Fashion
-              </Link>
-
-              <Link href="/luxury-packaging" className="hero-nav-item opacity-0 hover:text-black transition-colors">
-                Packaging
-              </Link>
-
-              <Link href="/contact" className="hero-nav-item opacity-0 hover:text-black transition-colors">
-                Contact
-              </Link>
-
-            </nav>
-
-            <Link
-              href="/contact#get-pi"
-              className="hidden md:inline-flex items-center gap-2 px-7 py-3 rounded-lg text-sm font-medium bg-[#8C7A5B] text-white hover:bg-[#7A6A4E] transition"
-            >
-              Get Your PI
-              <FaArrowRight className="text-xs" />
-            </Link>
-
-          </div>
-
-        </header>
-
-
-        {/* HERO */}
-
-        <div className="px-[8px] pt-[8px]">
-
-          <div className="rounded-2xl overflow-hidden min-h-[72svh] md:min-h-[96svh] relative">
-
-            <div className="absolute inset-0">
-
-              <Image
-                src={cloudinaryTransform(heroImage)}
-                alt="Manufacturing oversight in China"
-                fill
-                priority
-                sizes="100vw"
-                className="object-cover hero-bg"
-                style={{ objectPosition: "70% center" }}
-              />
-
-              <div className="absolute inset-0 bg-black/35 hero-overlay" />
-              <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/25 to-transparent" />
-
-            </div>
-
-
-            <div className="relative z-10 flex flex-col min-h-[72svh] md:min-h-[96svh] max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16">
-
-              <div className="flex-1 flex items-end md:items-center pb-6 md:pb-0">
-
-                <div className="w-full">
-
-                  <div className="hero-poni inline-flex items-center px-4 py-1.5 rounded-md text-[10px] md:text-[11px] sm:text-xs tracking-[0.18em] mb-6 sm:mb-8 border border-white/30 bg-white/10 uppercase">
-                    Global Manufacturing Partner
-                  </div>
-
-                  <h1
-                    className="font-light leading-[1.05] tracking-[-0.02em] mb-6 sm:mb-8"
-                    style={{ fontSize: "clamp(38px, 5vw, 64px)" }}
-                  >
-
-                    <div className="overflow-hidden">
-                      <div className="hero-title-line">Build Your Brand</div>
-                    </div>
-
-                    <div className="overflow-hidden">
-                      <div className="hero-title-line">Remove <span className="hidden md:inline-block">Manufacturing</span> Risk</div>
-                    </div>
-
-                    <div className="overflow-hidden">
-                      <div className="hero-title-line text-[#8C7A5B]">
-                        Delivered Worldwide
-                      </div>
-                    </div>
-
-                  </h1>
-
-                  <p
-                    className="hero-sub text-white/75 leading-[1.7] mb-8 sm:mb-12 max-w-2xl"
-                    style={{ fontSize: "clamp(15px, 1.4vw, 20px)" }}
-                  >
-
-                    Premium fashion manufacturing and luxury paper packaging —
-                    one accountable team from sample to door-to-door shipment.
-
-                  </p>
-
-                  <div className="hero-cta flex flex-col sm:flex-row items-start gap-4 sm:gap-8">
-
-                    <Link
-                      href="/contact#start-brand"
-                      className="inline-flex items-center justify-center gap-2 bg-white text-black px-8 py-3.5 rounded-lg text-sm font-medium hover:bg-neutral-200 transition"
-                    >
-                      Start Your Brand
-                      <FaArrowRight className="text-xs" />
-                    </Link>
-
-                  </div>
-
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-    </>
-  )
-}
-
-
-
-function ClientsMarquee() {
-
   const trackRef = useRef(null)
+  const trackRefMobile = useRef(null)
+
   const x = useMotionValue(0)
   const segmentWidthRef = useRef(0)
 
@@ -327,19 +196,29 @@ function ClientsMarquee() {
 
   useLayoutEffect(() => {
 
-    const el = trackRef.current
-    if (!el) return
-
     const measure = () => {
+
+      const isMobile = window.innerWidth < 768
+
+      const el = isMobile
+        ? trackRefMobile.current
+        : trackRef.current
+
+      if (!el) return
+
       const total = el.scrollWidth
       if (!total) return
+
       segmentWidthRef.current = total / 2
+
     }
 
     measure()
 
     const ro = new ResizeObserver(measure)
-    ro.observe(el)
+
+    if (trackRef.current) ro.observe(trackRef.current)
+    if (trackRefMobile.current) ro.observe(trackRefMobile.current)
 
     window.addEventListener("resize", measure)
 
@@ -349,7 +228,6 @@ function ClientsMarquee() {
     }
 
   }, [])
-
 
   useAnimationFrame((_, delta) => {
 
@@ -367,73 +245,381 @@ function ClientsMarquee() {
 
   })
 
+  useEffect(() => {
+
+    const ctx = gsap.context(() => {
+  
+      const mm = gsap.matchMedia()
+  
+      gsap.fromTo(
+        ".hero-bg",
+        { scale: 1.05 },
+        { scale: 1, duration: 1.4, ease: "power3.out" }
+      )
+  
+      gsap.fromTo(
+        ".hero-overlay",
+        { opacity: 0.8 },
+        { opacity: 1, duration: 0.8, ease: "power2.out" }
+      )
+  
+  
+      /* =========================
+         MOBILE TIMELINE
+      ========================== */
+  
+      mm.add("(max-width: 767px)", () => {
+  
+        const tl = gsap.timeline({
+          defaults: { ease: "power3.out" }
+        })
+  
+        tl.to(".hero-header", {
+          opacity: 1,
+          y: 0,
+          duration: 0.35
+        })
+
+        tl.to(".hero-nav-item",
+          {
+            opacity: 1,
+            stagger: 0.05,
+            duration: 0.35
+          },
+          "-=0.2"
+        )
+  
+        tl.fromTo(".hero-title-line",
+          { yPercent: 100 },
+          {
+            yPercent: 0,
+            stagger: 0.1,
+            duration: 0.55
+          },
+          "-=0.1"
+        )
+  
+        tl.fromTo(".hero-client-mobile",
+          { opacity: 0, y: 16 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.35
+          },
+          "-=0.35"
+        )
+  
+        tl.fromTo(".hero-sub",
+          { opacity: 0, y: 16 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.35
+          },
+          "-=0.25"
+        )
+  
+        tl.fromTo(".hero-cta",
+          { opacity: 0, y: 16 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.35
+          },
+          "-=0.25"
+        )
+  
+        tl.fromTo(".hero-poni",
+          { opacity: 0, y: 16 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.35
+          },
+          "-=0.25"
+        )
+  
+      })
+  
+  
+      /* =========================
+         DESKTOP TIMELINE
+      ========================== */
+  
+      mm.add("(min-width: 768px)", () => {
+  
+        const tl = gsap.timeline({
+          defaults: { ease: "power3.out" }
+        })
+  
+        tl.to(".hero-header", {
+          opacity: 1,
+          y: 0,
+          duration: 0.45
+        })
+  
+        tl.to(".hero-nav-item",
+          {
+            opacity: 1,
+            stagger: 0.08,
+            duration: 0.45
+          },
+          "-=0.25"
+        )
+  
+        tl.fromTo(".hero-poni",
+          { opacity: 0, y: 20 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.45
+          },
+          "-=0.15"
+        )
+  
+        tl.fromTo(".hero-title-line",
+          { yPercent: 100 },
+          {
+            yPercent: 0,
+            stagger: 0.12,
+            duration: 0.7
+          },
+          "+=0.1"
+        )
+  
+        tl.fromTo(".hero-sub",
+          { opacity: 0, y: 16 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.45
+          },
+          "-=0.3"
+        )
+  
+        tl.fromTo(".hero-cta",
+          { opacity: 0, y: 16 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.45
+          },
+          "-=0.25"
+        )
+  
+      })
+  
+    }, heroRef)
+  
+    return () => ctx.revert()
+  
+  }, [])
 
   return (
 
-    <section className="bg-[#F3F2EF] pt-[8px]">
-
-      <div className="px-[8px]">
-
-        <div className="bg-white border border-neutral-200 rounded-2xl">
-
-          <div className="max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16 py-12 md:py-16 text-center">
-
-            <div className="text-xs tracking-[0.18em] uppercase text-neutral-600 mb-6">
-              Trusted by
-            </div>
-
-
-            <div className="relative max-w-[1050px] mx-auto overflow-hidden">
-
-              {/* fade kiri */}
-
-              <div className="pointer-events-none absolute left-0 top-0 h-full w-12 md:w-24 bg-gradient-to-r from-white to-transparent z-10" />
-
-              {/* fade kanan */}
-
-              <div className="pointer-events-none absolute right-0 top-0 h-full w-12 md:w-24 bg-gradient-to-l from-white to-transparent z-10" />
-
-
-              <motion.div
-                ref={trackRef}
-                style={{ x }}
-                className="flex items-center"
-              >
-
-                {duplicated.map((logo, index) => (
-
-                  <div
-                    key={index}
-                    className="flex-shrink-0 mx-6 md:mx-12 flex items-center justify-center"
-                  >
-
-                    <Image
-                      src={logo}
-                      alt="Client logo"
-                      width={240}
-                      height={120}
-                      className="object-contain h-16 md:h-24 w-auto invert opacity-80"
-                    />
-
-                  </div>
-
-                ))}
-
-              </motion.div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-  )
-
+<>
+<style jsx>{`
+.hero-section-bg {
+  background: linear-gradient(
+    to bottom,
+    rgba(140,122,91,0.55) 0%,
+    rgba(140,122,91,0.25) 8%,
+    rgba(140,122,91,0.12) 16%,
+    rgba(140,122,91,0.05) 22%,
+    rgba(140,122,91,0) 25%
+  );
+  background-color: #F3F2EF;
 }
+`}</style>
+
+<section ref={heroRef} className="hero-section-bg text-white pt-[8px]">
+
+<header className="hero-header mx-[8px] text-black opacity-0 -translate-y-[20px]">
+
+<div className="max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16 py-3 md:py-5 flex items-center justify-between">
+
+<Link href="/" className="flex items-center">
+<Image src="/images/alraimi-logo-black-1.png" alt="Alraimi Logo" width={42} height={38} priority/>
+</Link>
+
+<nav className="flex items-center gap-3 sm:gap-6 md:gap-10 text-[13px] md:text-sm text-neutral-700">
+
+<Link href="/" className="hero-nav-item opacity-0 hover:text-black transition-colors">Home</Link>
+<Link href="/fashion-manufacturing" className="hero-nav-item opacity-0 hover:text-black transition-colors">Fashion</Link>
+<Link href="/luxury-packaging" className="hero-nav-item opacity-0 hover:text-black transition-colors">Packaging</Link>
+<Link href="/contact" className="hero-nav-item opacity-0 hover:text-black transition-colors">Contact</Link>
+
+</nav>
+
+<Link
+href="/contact#get-pi"
+className="hidden md:inline-flex items-center gap-2 px-7 py-3 rounded-lg text-sm font-medium bg-[#8C7A5B] text-white hover:bg-[#7A6A4E] transition"
+>
+Get Your PI
+<FaArrowRight className="text-xs"/>
+</Link>
+
+</div>
+
+</header>
+
+{/* HERO */}
+
+<div className="px-[8px] pt-[8px]">
+
+<div className="rounded-2xl overflow-hidden min-h-[82svh] md:min-h-[96svh] relative">
+
+<div className="absolute inset-0">
+
+<Image
+src={cloudinaryTransform(heroImage)}
+alt="Manufacturing oversight in China"
+fill
+priority
+sizes="100vw"
+className="object-cover hero-bg"
+style={{ objectPosition:"70% center" }}
+/>
+
+<div className="absolute inset-0 bg-black/35 hero-overlay"/>
+<div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/25 to-transparent"/>
+
+</div>
+
+<div className="relative z-10 flex flex-col min-h-[82svh] md:min-h-[96svh] max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16">
+
+<div className="flex-1 flex items-end md:items-center pb-6 md:pb-0">
+
+<div className="w-full">
+
+<div className="hero-poni inline-flex items-center px-4 py-1.5 rounded-md text-[10px] md:text-[11px] sm:text-xs tracking-[0.18em] mb-6 sm:mb-8 border border-white/30 bg-white/10 uppercase">
+Global Manufacturing Partner
+</div>
+
+<h1 className="font-light leading-[1.05] tracking-[-0.02em] mb-6 sm:mb-8"
+style={{ fontSize:"clamp(38px,5vw,64px)" }}>
+
+<div className="overflow-hidden">
+<div className="hero-title-line">Build Your Brand</div>
+</div>
+
+<div className="overflow-hidden">
+<div className="hero-title-line">Remove <span className="hidden md:inline-block">Manufacturing</span> Risk</div>
+</div>
+
+<div className="overflow-hidden">
+<div className="hero-title-line text-[#8C7A5B]">Delivered Worldwide</div>
+</div>
+
+</h1>
+
+<p className="hero-sub text-white/75 leading-[1.7] mb-8 sm:mb-12 max-w-2xl"
+style={{ fontSize:"clamp(15px,1.4vw,20px)" }}>
+Premium fashion manufacturing and luxury paper packaging —
+one accountable team from sample to door-to-door shipment.
+</p>
+
+<div className="hero-cta flex flex-col sm:flex-row items-start gap-4 sm:gap-8">
+
+<Link
+href="/contact#start-brand"
+className="inline-flex items-center justify-center gap-2 bg-white text-black px-8 py-3.5 rounded-lg text-sm font-medium hover:bg-neutral-200 transition"
+>
+Start Your Brand
+<FaArrowRight className="text-xs"/>
+</Link>
+
+</div>
+
+<div className="hero-client-mobile md:hidden mt-8">
+
+<div className="text-[11px] tracking-[0.18em] uppercase text-white/70 mb-3">
+Trusted by
+</div>
+
+<div className="relative overflow-hidden">
+
+<motion.div ref={trackRefMobile} style={{x}} className="flex items-center">
+
+{duplicated.map((logo,index)=>(
+<div key={index} className="flex-shrink-0 mx-6">
+
+<Image
+src={logo}
+alt="Client logo"
+width={200}
+height={100}
+className="object-contain h-10 w-auto opacity-80"
+/>
+
+</div>
+))}
+
+</motion.div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+{/* DESKTOP CLIENT SECTION */}
+
+<div className="hidden md:block px-[8px] pt-[8px]">
+
+<div className="bg-white border border-neutral-200 rounded-2xl">
+
+<div className="max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16 py-12 md:py-16 text-center">
+
+<div className="text-xs tracking-[0.18em] uppercase text-neutral-600 mb-6">
+Trusted by
+</div>
+
+<div className="relative max-w-[1050px] mx-auto overflow-hidden">
+
+<div className="pointer-events-none absolute left-0 top-0 h-full w-12 md:w-24 bg-gradient-to-r from-white to-transparent z-10"/>
+<div className="pointer-events-none absolute right-0 top-0 h-full w-12 md:w-24 bg-gradient-to-l from-white to-transparent z-10"/>
+
+<motion.div ref={trackRef} style={{x}} className="flex items-center">
+
+{duplicated.map((logo,index)=>(
+<div key={index} className="flex-shrink-0 mx-6 md:mx-12 flex items-center justify-center">
+
+<Image
+src={logo}
+alt="Client logo"
+width={240}
+height={120}
+className="object-contain h-16 md:h-24 w-auto invert opacity-80"
+/>
+
+</div>
+))}
+
+</motion.div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+</>
+  )
+}
+ 
 
 
 function About() {
@@ -773,14 +959,13 @@ function HowWeWork() {
 
   const [emblaRef, emblaApi] = useEmblaCarousel({
     align: "start",
-    loop: false,
+    loop: true,
   })
 
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [scrollSnaps, setScrollSnaps] = useState([])
 
   const [isInView, setIsInView] = useState(false)
-  const [isMobile, setIsMobile] = useState(false)
 
   const onSelect = useCallback(() => {
     if (!emblaApi) return
@@ -788,27 +973,15 @@ function HowWeWork() {
   }, [emblaApi])
 
   useEffect(() => {
+
     if (!emblaApi) return
 
     setScrollSnaps(emblaApi.scrollSnapList())
     emblaApi.on("select", onSelect)
 
     onSelect()
+
   }, [emblaApi, onSelect])
-
-  useEffect(() => {
-
-    const check = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
-
-    check()
-
-    window.addEventListener("resize", check)
-
-    return () => window.removeEventListener("resize", check)
-
-  }, [])
 
   useEffect(() => {
 
@@ -817,7 +990,7 @@ function HowWeWork() {
         setIsInView(entry.isIntersecting)
       },
       {
-        threshold: 0.6,
+        threshold: 0.35,
       }
     )
 
@@ -830,24 +1003,35 @@ function HowWeWork() {
   useEffect(() => {
 
     if (!emblaApi) return
-    if (isMobile) return
     if (!isInView) return
 
-    autoTimer.current = setInterval(() => {
+    const startAuto = () => {
 
-      if (!emblaApi) return
+      autoTimer.current = setInterval(() => {
 
-      if (emblaApi.canScrollNext()) {
         emblaApi.scrollNext()
-      } else {
-        clearInterval(autoTimer.current)
-      }
 
-    }, 2600)
+      }, 4200)
 
-    return () => clearInterval(autoTimer.current)
+    }
 
-  }, [emblaApi, isInView, isMobile])
+    const stopAuto = () => clearInterval(autoTimer.current)
+
+    startAuto()
+
+    emblaApi.on("pointerDown", stopAuto)
+    emblaApi.on("pointerUp", startAuto)
+
+    return () => {
+
+      stopAuto()
+
+      emblaApi.off("pointerDown", stopAuto)
+      emblaApi.off("pointerUp", startAuto)
+
+    }
+
+  }, [emblaApi, isInView])
 
   const steps = [
     { icon: FileText, title: "Quick Brief & NDA", desc: "Send style references, quantity range and timeline." },
@@ -867,21 +1051,32 @@ function HowWeWork() {
 
         <div className="bg-[#1b1b1b] rounded-2xl text-white">
 
-          <div className="max-w-[1600px] mx-auto px-10 xl:px-16 py-14 md:py-24">
+          <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 py-16 md:py-24">
 
-            <div className="mt-10 md:mt-16 grid grid-cols-1 md:grid-cols-[0.55fr_0.45fr] gap-10 md:gap-16 items-start">
+            {/* HEADER */}
+            <div className="grid grid-cols-1 md:grid-cols-[0.55fr_0.45fr] gap-8 md:gap-16 items-start">
 
-              <h2 className="text-[40px] leading-[1.1] tracking-[-0.015em]">
-                How We Work
-              </h2>
+              <div>
 
-              <p className="text-[16px] sm:text-[18px] leading-[1.7] text-white/65">
+                <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
+                  Process
+                </div>
+
+                <h2 className="text-[34px] sm:text-[36px] md:text-[40px] leading-[1.1] tracking-[-0.015em]">
+                  How We Work
+                </h2>
+
+              </div>
+
+              <p className="text-[16px] sm:text-[18px] leading-[1.7] text-white/65 max-w-[520px]">
                 Manufacturing works best when the process is clear. 
                 From the first brief to final delivery, our team stays close to the factory floor—keeping communication simple and production on track.
               </p>
 
             </div>
 
+
+            {/* CAROUSEL */}
             <div className="mt-12 md:mt-20 overflow-hidden" ref={emblaRef}>
 
               <div className="flex">
@@ -894,7 +1089,7 @@ function HowWeWork() {
 
                     <div
                       key={i}
-                      className="flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.333%] pr-6"
+                      className="shrink-0 basis-[100%] md:basis-[50%] lg:basis-[33.333%] px-3"
                     >
 
                       <div className="relative rounded-2xl border border-white/10 bg-[#232323] p-8 md:p-12 min-h-[340px] md:min-h-[420px] flex flex-col">
@@ -911,11 +1106,11 @@ function HowWeWork() {
 
                         <div className="mt-auto">
 
-                          <h4 className="text-[24px] mt-6 md:mt-10">
+                          <h4 className="text-[22px] md:text-[24px] mt-6 md:mt-10">
                             {step.title}
                           </h4>
 
-                          <p className="mt-4 md:mt-6 text-white/60">
+                          <p className="mt-4 md:mt-6 text-white/60 text-[15px] leading-[1.7]">
                             {step.desc}
                           </p>
 
@@ -926,12 +1121,15 @@ function HowWeWork() {
                     </div>
 
                   )
+
                 })}
 
               </div>
 
             </div>
 
+
+            {/* DOTS */}
             <div className="mt-10 md:mt-14 flex justify-center gap-4">
 
               {scrollSnaps.map((_, index) => (
@@ -1008,116 +1206,129 @@ function Services() {
   return (
     <section
       ref={sectionRef}
-      className="bg-[#F3F2EF] pt-24 pb-32 md:pt-28 md:pb-40 overflow-hidden"
+      className="bg-[#F3F2EF] pt-[8px] overflow-hidden"
     >
-      <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16">
 
-        {/* HEADER */}
-        <div className="services-header mb-14 md:mb-16 text-center max-w-xl mx-auto">
+      <div className="px-[8px]">
 
-          <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
-            Services
-          </div>
+        {/* CARD CONTAINER (mobile only) */}
+        <div className="max-w-[1600px] mx-auto bg-white md:bg-transparent border border-neutral-200 md:border-0 rounded-2xl md:rounded-none overflow-hidden">
 
-          <h2 className="text-[34px] sm:text-[36px] md:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900 mb-5">
-            What We Produce
-          </h2>
+          <div className="px-6 md:px-10 xl:px-16 py-16 md:py-20">
 
-          <p className="text-[16px] sm:text-[18px] leading-[1.7] text-neutral-600">
-            Built to support your brand’s growth with reliable production,
-            structured quality control, and global delivery systems.
-          </p>
+            {/* HEADER */}
+            <div className="services-header mb-14 md:mb-16 text-center max-w-xl mx-auto">
 
-          <div className="services-accent mt-8 h-[1px] w-16 bg-[#8C7A5B] mx-auto" />
-        </div>
-
-        {/* STRUCTURE */}
-        <div className="
-          grid
-          grid-rows-[auto_auto_auto]
-          row-gap-14
-          lg:flex
-          lg:items-center
-          lg:justify-center
-          lg:gap-40
-        ">
-
-          {/* LEFT */}
-          <a
-            href="/fashion-manufacturing"
-            className="service-left w-full max-w-md justify-self-center lg:text-right"
-          >
-
-            <div className=" bg-transparent    p-7 md:p-0 text-center lg:text-right">
-
-              <h3 className="text-[26px] sm:text-[28px] md:text-[30px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900">
-                Fashion Manufacturing
-              </h3>
-
-              <p className="mt-4 text-[16px] leading-[1.7] text-neutral-600">
-                Apparel production from sampling to bulk execution, with
-                structured fit control, technical packs, and AQL inspection.
-              </p>
-
-              <span className="inline-flex items-center gap-2 mt-6 text-sm text-neutral-700">
-                View Service →
-              </span>
-
-            </div>
-
-          </a>
-
-          {/* HUB */}
-          <div className="service-hub justify-self-center flex items-center justify-center">
-
-            <div className="w-[150px] h-[150px] sm:w-[180px] sm:h-[180px] lg:w-[220px] lg:h-[220px] rounded-full border border-neutral-300 flex items-center justify-center bg-white">
-
-              <div
-                className="w-[110px] h-[110px] sm:w-[130px] sm:h-[130px] lg:w-[170px] lg:h-[170px] rounded-full flex items-center justify-center"
-                style={{
-                  background:
-                    "radial-gradient(circle at 30% 30%, rgba(170,150,115,1) 0%, rgba(140,122,91,1) 60%, rgba(100,85,60,1) 100%)"
-                }}
-              >
-                <img
-                  src="/images/alraimi-logo-white-1.png"
-                  alt="Alraimi Logo"
-                  className="w-10 sm:w-12 lg:w-14 opacity-95"
-                />
+              <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
+                Services
               </div>
 
+              <h2 className="text-[30px] sm:text-[36px] md:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900 mb-5">
+                What We Produce
+              </h2> 
+
+              <p className="text-[15px] sm:text-[18px] leading-[1.7] text-neutral-600">
+                Built to support your brand’s growth, quality control, and global delivery systems.
+              </p> 
+            </div>
+
+
+            {/* STRUCTURE */}
+            <div
+              className="
+              grid
+              grid-rows-[auto_auto_auto]
+              row-gap-10
+              lg:flex
+              lg:items-center
+              lg:justify-center
+              lg:gap-24
+            "
+            >
+
+              {/* LEFT */}
+              <a
+                href="/fashion-manufacturing"
+                className="service-left w-full max-w-md justify-self-center lg:text-right"
+              >
+
+                <div className="p-6 md:p-0 text-center lg:text-right">
+
+                  <h3 className="text-[22px] sm:text-[24px] md:text-[26px] leading-[1.2] tracking-[-0.01em] font-normal text-neutral-900">
+                    Fashion Manufacturing
+                  </h3>
+
+                  <p className="mt-4 text-[15px] leading-[1.7] text-neutral-600">
+                    Apparel production from sampling to bulk execution, with
+                    structured fit control, technical packs, and AQL inspection.
+                  </p>
+
+                  <span className="inline-flex items-center gap-2 mt-5 text-sm text-neutral-700">
+                    View Service →
+                  </span>
+
+                </div>
+
+              </a>
+
+
+              {/* HUB */}
+              <div className="service-hub justify-self-center flex items-center justify-center">
+
+                <div className="w-[180px] h-[180px] sm:w-[200px] sm:h-[200px] lg:w-[240px] lg:h-[240px] rounded-full border border-neutral-300 flex items-center justify-center bg-white">
+
+                  <div
+                    className="w-[140px] h-[140px] sm:w-[150px] sm:h-[150px] lg:w-[180px] lg:h-[180px] rounded-full flex items-center justify-center"
+                    style={{
+                      background:
+                        "radial-gradient(circle at 30% 30%, rgba(170,150,115,1) 0%, rgba(140,122,91,1) 60%, rgba(100,85,60,1) 100%)"
+                    }}
+                  >
+                    <img
+                      src="/images/alraimi-logo-white-1.png"
+                      alt="Alraimi Logo"
+                      className="w-12 sm:w-14 lg:w-16 opacity-95"
+                    />
+                  </div>
+
+                </div>
+
+              </div>
+
+
+              {/* RIGHT */}
+              <a
+                href="/luxury-packaging"
+                className="service-right w-full max-w-md justify-self-center lg:text-left"
+              >
+
+                <div className="p-6 md:p-0 text-center lg:text-left">
+
+                  <h3 className="text-[22px] sm:text-[24px] md:text-[26px] leading-[1.2] tracking-[-0.01em] font-normal text-neutral-900">
+                    Luxury Packaging
+                  </h3>
+
+                  <p className="mt-4 text-[15px] leading-[1.7] text-neutral-600">
+                    Premium rigid boxes, structural engineering, finishing
+                    precision, and export-ready packaging systems.
+                  </p>
+
+                  <span className="inline-flex items-center gap-2 mt-5 text-sm text-neutral-700">
+                    View Service →
+                  </span>
+
+                </div>
+
+              </a>
+
             </div>
 
           </div>
-
-          {/* RIGHT */}
-          <a
-            href="/luxury-packaging"
-            className="service-right w-full max-w-md justify-self-center lg:text-left"
-          >
-
-            <div className="bg-transparent   p-7 md:p-0 text-center lg:text-left">
-
-              <h3 className="text-[26px] sm:text-[28px] md:text-[30px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900">
-                Luxury Packaging
-              </h3>
-
-              <p className="mt-4 text-[16px] leading-[1.7] text-neutral-600">
-                Premium rigid boxes, structural engineering, finishing
-                precision, and export-ready packaging systems.
-              </p>
-
-              <span className="inline-flex items-center gap-2 mt-6 text-sm text-neutral-700">
-                View Service →
-              </span>
-
-            </div>
-
-          </a>
 
         </div>
 
       </div>
+
     </section>
   );
 }
@@ -1127,73 +1338,126 @@ function Catalogs() {
   return (
     <section className="bg-[#F3F2EF] pt-[8px]">
 
-      <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16">
+      <div className="px-[8px]">
 
-        <div className="grid grid-cols-1 md:grid-cols-[0.55fr_0.45fr] gap-[8px]">
+        <div className="max-w-[1600px] mx-auto">
 
-          {/* LEFT CARD */}
-          <div className="border border-neutral-200 rounded-2xl bg-white">
+          {/* CONTENT */}
+          <div className="px-6 md:px-10 xl:px-16 py-14 md:py-16">
 
-            <div className="px-8 sm:px-10 xl:px-12 py-14 md:py-16">
+            {/* HEADER */}
+            <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] items-end gap-6 md:gap-16 mb-14 md:mb-16">
 
-              {/* SECTION LABEL */}
-              <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
-                Catalogs
+              {/* LEFT */}
+              <div>
+
+                <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-4 md:mb-6">
+                  Catalogs
+                </div>
+
+                <h2 className="text-[30px] sm:text-[36px] md:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900">
+                  Production Catalogs
+                </h2>
+
               </div>
 
-              {/* HEADING */}
-              <h2 className="text-[34px] sm:text-[36px] md:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900 mb-6">
-                Production Catalogs
-              </h2>
 
-              {/* BODY LARGE */}
-              <p className="text-[16px] sm:text-[18px] leading-[1.7] text-neutral-600 max-w-xl">
+              {/* RIGHT */}
+              <div className="text-[15px] sm:text-[18px] leading-[1.7] text-neutral-600 max-w-xl md:ml-auto">
+
                 Review available categories, material options and finishes,
                 minimum order quantities, and standard production timelines
                 across fashion manufacturing and luxury packaging.
-              </p>
+
+              </div>
 
             </div>
 
-          </div>
 
+            {/* CATALOG CARDS */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-[8px]">
 
-          {/* RIGHT CARD */}
-          <div className="border border-neutral-200 rounded-2xl bg-white">
+              {/* FASHION */}
+              <a
+                href="https://github.com/boson-collective/alraimi-downloads/releases/download/catalog-2026/alraimi-fashion-manufacturing-catalog-2026.zip"
+                className="group border border-neutral-300 rounded-2xl bg-white p-8 flex flex-col justify-between transition hover:border-neutral-400"
+              >
 
-            <div className="px-8 sm:px-10 xl:px-12 py-14 md:py-16">
+                <div>
 
-              <div className="border border-black/20 rounded-2xl p-3">
+                  <div className="text-xs tracking-[0.18em] uppercase text-neutral-500 mb-3">
+                    Fashion
+                  </div>
 
-                <div className="bg-white rounded-2xl overflow-hidden">
+                  <h3 className="text-[20px] font-medium text-neutral-900 mb-4">
+                    Manufacturing Catalog
+                  </h3>
 
-                  {/* BUTTON 1 */}
-                  <a
-                    href="https://github.com/boson-collective/alraimi-downloads/releases/download/catalog-2026/alraimi-fashion-manufacturing-catalog-2026.zip"
-                    className="w-full flex items-center justify-between px-6 sm:px-8 md:px-10 py-6 md:py-8 text-sm font-medium text-neutral-900 transition-colors duration-200 hover:bg-neutral-100 border-b border-neutral-300"
-                  >
-                    <span>Get Fashion Catalog</span>
-                    <Download size={18} strokeWidth={1.5} className="opacity-60" />
-                  </a>
-
-                  {/* BUTTON 2 */}
-                  <a
-                    href="https://github.com/boson-collective/alraimi-downloads/releases/download/catalog-2026/alraimi-luxury-packaging-catalog-2026.zip"
-                    className="w-full flex items-center justify-between px-6 sm:px-8 md:px-10 py-6 md:py-8 text-sm font-medium text-neutral-900 transition-colors duration-200 hover:bg-neutral-100"
-                  >
-                    <span>Get Packaging Catalog</span>
-                    <Download size={18} strokeWidth={1.5} className="opacity-60" />
-                  </a>
+                  <p className="text-[15px] leading-[1.7] text-neutral-600">
+                    Fabrics, trims, construction methods, production minimums,
+                    and apparel manufacturing capabilities.
+                  </p>
 
                 </div>
 
-              </div>
+                <div className="flex items-center justify-between mt-8 text-sm font-medium text-neutral-900">
 
-              {/* NOTE */}
-              <div className="mt-6 text-sm text-neutral-500">
-                Delivered directly via email upon request.
-              </div>
+                  <span>Download Catalog</span>
 
+                  <Download
+                    size={18}
+                    strokeWidth={1.5}
+                    className="opacity-60 transition group-hover:opacity-100"
+                  />
+
+                </div>
+
+              </a>
+
+
+              {/* PACKAGING */}
+              <a
+                href="https://github.com/boson-collective/alraimi-downloads/releases/download/catalog-2026/alraimi-luxury-packaging-catalog-2026.zip"
+                className="group border border-neutral-300 rounded-2xl bg-white p-8 flex flex-col justify-between transition hover:border-neutral-400"
+              >
+
+                <div>
+
+                  <div className="text-xs tracking-[0.18em] uppercase text-neutral-500 mb-3">
+                    Packaging
+                  </div>
+
+                  <h3 className="text-[20px] font-medium text-neutral-900 mb-4">
+                    Luxury Packaging Catalog
+                  </h3>
+
+                  <p className="text-[15px] leading-[1.7] text-neutral-600">
+                    Box structures, finishes, inserts, ribbons,
+                    paper options, and production specifications.
+                  </p>
+
+                </div>
+
+                <div className="flex items-center justify-between mt-8 text-sm font-medium text-neutral-900">
+
+                  <span>Download Catalog</span>
+
+                  <Download
+                    size={18}
+                    strokeWidth={1.5}
+                    className="opacity-60 transition group-hover:opacity-100"
+                  />
+
+                </div>
+
+              </a>
+
+            </div>
+
+
+            {/* NOTE */}
+            <div className="mt-8 text-sm text-neutral-500">
+              Delivered directly via email upon request.
             </div>
 
           </div>
@@ -1245,31 +1509,27 @@ function Projects() {
   const Card = ({ project }) => (
     <div className="project-card group relative w-full md:w-[28vw] max-w-[520px] md:max-w-[420px] aspect-[4/5] rounded-2xl overflow-hidden bg-neutral-100 shadow-[0_8px_30px_rgba(0,0,0,0.06)] md:shadow-none z-10">
 
-      {/* IMAGE */}
       <img
         src={project.image}
         alt={project.title}
-        className="absolute inset-0 w-full h-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(.22,.61,.36,1)] group-hover:scale-[1.05]"
+        className="absolute inset-0 w-full h-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(.22,.61,.36,1)] md:group-hover:scale-[1.05]"
       />
 
-      {/* DARK OVERLAY */}
-      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/75 transition-colors duration-500" />
+      <div className="absolute inset-0 bg-black/20 md:group-hover:bg-black/75 transition-colors duration-500" />
 
-      {/* NORMAL CONTENT */}
-      <div className="absolute bottom-6 left-6 right-6 text-white transition-opacity duration-300 group-hover:opacity-0">
+      <div className="absolute bottom-4 left-4 right-4 md:bottom-6 md:left-6 md:right-6 text-white transition-opacity duration-300 md:group-hover:opacity-0">
 
-        <div className="text-[18px] sm:text-[20px] leading-[1.25] tracking-[-0.01em] font-medium">
+        <div className="text-[15px] md:text-[18px] leading-[1.25] tracking-[-0.01em] font-medium">
           {project.title}
         </div>
 
-        <div className="text-xs tracking-[0.18em] uppercase text-white/70 mt-2">
+        <div className="text-[10px] md:text-xs tracking-[0.18em] uppercase text-white/70 mt-1 md:mt-2">
           {project.location}
         </div>
 
       </div>
 
-      {/* HOVER CONTENT */}
-      <div className="absolute inset-0 flex items-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+      <div className="hidden md:flex absolute inset-0 items-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
 
         <div className="px-8 text-white">
 
@@ -1292,33 +1552,9 @@ function Projects() {
     </div>
   )
 
-  useEffect(() => {
-
-    const ctx = gsap.context(() => {
-
-      const tl = gsap.timeline({
-        scrollTrigger: { trigger: sectionRef.current, start: "top 80%" },
-        defaults: { ease: "power2.out" }
-      })
-
-      tl.from(".projects-header", { opacity: 0, y: 20, duration: 0.7 })
-
-      tl.from(".project-card", {
-        opacity: 0,
-        y: 30,
-        stagger: 0.1,
-        duration: 0.8
-      }, "-=0.3")
-
-    }, sectionRef)
-
-    return () => ctx.revert()
-
-  }, [])
-
   return (
 
-    <section ref={sectionRef} className="bg-[#F3F2EF] pt-[8px] overflow-hidden">
+    <section className="bg-[#F3F2EF] pt-[8px] overflow-hidden">
 
       <div className="px-[8px]">
 
@@ -1335,12 +1571,12 @@ function Projects() {
                 Projects
               </div>
 
-              <h2 className="text-[34px] sm:text-[36px] md:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900">
+              <h2 className="text-[30px] sm:text-[36px] md:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900">
                 Project Snapshot
               </h2>
 
-              <p className="mx-auto text-[16px] sm:text-[18px] leading-[1.7] text-neutral-600 mt-6 max-w-[720px]">
-              A look at fashion and packaging projects we've produced. From early development and sampling to final delivery.
+              <p className="mx-auto text-[15px] sm:text-[18px] leading-[1.7] text-neutral-600 mt-6 max-w-[720px]">
+                A look at fashion and packaging projects we've produced. From early development and sampling to final delivery.
               </p>
 
             </div>
@@ -1375,8 +1611,8 @@ function Projects() {
             </div>
 
 
-            {/* MOBILE */}
-            <div className="md:hidden flex flex-col gap-10 max-w-[520px] mx-auto">
+            {/* MOBILE GRID */}
+            <div className="md:hidden grid grid-cols-2 gap-4 max-w-[520px] mx-auto">
               {projects.map((project, i) => (
                 <Card key={i} project={project} />
               ))}
@@ -1406,7 +1642,10 @@ function Leadership() {
 
     const ctx = gsap.context(() => {
 
-      const tl = gsap.timeline({ scrollTrigger: { trigger: sectionRef.current, start: "top 80%" }, defaults: { ease: "power2.out" } })
+      const tl = gsap.timeline({
+        scrollTrigger: { trigger: sectionRef.current, start: "top 80%" },
+        defaults: { ease: "power2.out" }
+      })
 
       tl.from(".leadership-card", { opacity: 0, y: 40, duration: 0.8 })
 
@@ -1419,7 +1658,12 @@ function Leadership() {
         wrapper.appendChild(line)
       })
 
-      tl.from(split.lines, { yPercent: 100, opacity: 0, stagger: 0.2, duration: 0.8 }, "-=0.4")
+      tl.from(split.lines, {
+        yPercent: 100,
+        opacity: 0,
+        stagger: 0.2,
+        duration: 0.8
+      }, "-=0.4")
 
       tl.from(".leadership-identity", { opacity: 0, y: 20, duration: 0.7 }, "-=0.3")
 
@@ -1433,28 +1677,56 @@ function Leadership() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="bg-[#F3F2EF] py-20 overflow-hidden">
+    <section ref={sectionRef} className="bg-[#F3F2EF] overflow-hidden">
 
       <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16">
 
-        <div className="leadership-card relative rounded-2xl border border-neutral-200 shadow-[0_12px_40px_rgba(0,0,0,0.04)] px-8 sm:px-12 md:px-16 xl:px-20 py-14 md:py-16 xl:py-20" style={{ background: "radial-gradient(circle at 20% 20%, rgba(255,255,255,1) 0%, rgba(255,255,255,0.96) 35%, rgba(245,243,239,1) 100%)" }}>
+        {/* TAG OUTSIDE CARD */}
+        <div className="flex justify-center mb-6 md:mb-8">
 
-          <svg className="absolute top-12 right-12 w-[110px] h-[110px] opacity-15" viewBox="0 0 24 24" fill="#8C7A5B">
+          <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium">
+            Production Oversight
+          </div>
+
+        </div>
+
+
+        {/* CARD */}
+        <div
+          className="leadership-card relative rounded-2xl border border-neutral-200 shadow-[0_12px_40px_rgba(0,0,0,0.04)] px-8 sm:px-12 md:px-16 xl:px-20 py-14 md:py-16 xl:py-20"
+          style={{
+            background: "radial-gradient(circle at 20% 20%, rgba(255,255,255,1) 0%, rgba(255,255,255,0.96) 35%, rgba(245,243,239,1) 100%)"
+          }}
+        >
+
+          {/* QUOTE ICON */}
+          <svg
+            className="absolute top-12 right-12 w-[110px] h-[110px] opacity-15"
+            viewBox="0 0 24 24"
+            fill="#8C7A5B"
+          >
             <path d="M7.17 6C5.97 6 5 6.97 5 8.17v3.66C5 13.03 5.97 14 7.17 14H9v3H6v2h3c1.1 0 2-.9 2-2V8.17C11 6.97 10.03 6 8.83 6H7.17zm9 0c-1.2 0-2.17.97-2.17 2.17v3.66c0 1.2.97 2.17 2.17 2.17H18v3h-3v2h3c1.1 0 2-.9 2-2V8.17C20 6.97 19.03 6 17.83 6h-1.66z"/>
           </svg>
 
-          <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-8 md:mb-10">
-            Factory & Production Oversight
-          </div>
 
-          <h2 ref={quoteRef} className="text-neutral-900 text-[18px] sm:text-[20px] md:text-[22px] leading-[1.7] tracking-[-0.01em] w-full max-w-[900px]">
+          {/* QUOTE */}
+          <h2
+            ref={quoteRef}
+            className="text-neutral-900 text-[18px] sm:text-[20px] md:text-[22px] leading-[1.75] tracking-[-0.005em] max-w-[1000px] text-pretty"
+          >
             We treat every order like it’s our own brand. Your idea is translated into production-ready details, then we manage sampling and execution step by step with our team in China. You get clear updates, real visibility during production, and a final quality check before anything leaves the factory. Quality first — then shipment.
           </h2>
 
+
+          {/* IDENTITY */}
           <div className="leadership-identity mt-10 md:mt-14 xl:mt-16 flex items-center gap-4 sm:gap-6">
 
             <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl overflow-hidden border border-neutral-200">
-              <img src="/images/haitham.png" alt="Haitham Al-Raimi" className="w-full h-full object-cover object-top" />
+              <img
+                src="/images/haitham.png"
+                alt="Haitham Al-Raimi"
+                className="w-full h-full object-cover object-top"
+              />
             </div>
 
             <div>
@@ -1479,165 +1751,168 @@ function Leadership() {
 
 
 function Gallery() {
-  const sectionRef = useRef(null);
+
+  const sectionRef = useRef(null)
 
   const media = [
-    // ROW 1 (4 blocks)
+
     {
       src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1773063330/ChatGPT_Image_Mar_9_2026_06_09_04_PM_yi7i50.png",
       alt: "Container port logistics",
-      type: "image",
       span: "md:col-span-3"
     },
     {
       src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1773064884/ChatGPT_Image_Mar_9_2026_09_01_08_PM_amfsgu.png",
       alt: "Factory walkthrough",
-      type: "image",
       span: "md:col-span-3"
     },
     {
       src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1773063328/ChatGPT_Image_Mar_9_2026_06_16_12_PM_iwzagy.png",
       alt: "Cargo loading truck",
-      type: "image",
       span: "md:col-span-3"
     },
     {
       src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1773063321/ChatGPT_Image_Mar_9_2026_08_22_01_PM_eyrgwo.png",
       alt: "Factory production line",
-      type: "image",
       span: "md:col-span-3"
     },
 
-    // ROW 2 (3 blocks)
     {
       src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1773044805/ChatGPT_Image_Mar_9_2026_03_16_02_PM_vrmfdg.png",
       alt: "Quality inspection process",
-      type: "image",
       span: "md:col-span-6"
     },
     {
       src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1773066154/ChatGPT_Image_Mar_9_2026_09_22_22_PM_vguqzn.png",
       alt: "Shipping container yard",
-      type: "image",
       span: "md:col-span-6"
-    }, 
+    },
 
-    // ROW 3 (4 blocks)
     {
       src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1773065825/ChatGPT_Image_Mar_9_2026_09_16_44_PM_vat8ji.png",
       alt: "Container loading",
-      type: "image",
       span: "md:col-span-3"
     },
     {
       src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1773064659/ChatGPT_Image_Mar_9_2026_08_45_28_PM_gv4tbh.png",
       alt: "Factory inspection",
-      type: "image",
       span: "md:col-span-3"
     },
     {
       src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1773064659/ChatGPT_Image_Mar_9_2026_08_57_16_PM_dupr5n.png",
       alt: "Truck loading",
-      type: "image",
       span: "md:col-span-3"
     },
     {
       src: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772708330/ChatGPT_Image_Mar_5_2026_05_52_41_PM_frxpql.png",
       alt: "Distribution warehouse",
-      type: "image",
       span: "md:col-span-3"
     }
-  ];
+
+  ]
+
 
   useEffect(() => {
+
     const ctx = gsap.context(() => {
 
-      const tl = gsap.timeline({
+      gsap.from(".gallery-header", {
+        opacity: 0,
+        y: 20,
+        duration: 0.7,
+        ease: "power2.out",
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 80%"
-        },
-        defaults: { ease: "power2.out" }
-      });
+        }
+      })
 
-      tl.from(".gallery-header", {
+      gsap.from(".gallery-strip", {
         opacity: 0,
-        y: 20,
-        duration: 0.7
-      });
+        scale: 1.05,
+        duration: 1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".gallery-strip",
+          start: "top 80%"
+        }
+      })
 
-      tl.from(".gallery-item", {
+      gsap.from(".gallery-item", {
         opacity: 0,
         y: 30,
         stagger: 0.08,
-        duration: 0.8
-      }, "-=0.3");
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".gallery-grid",
+          start: "top 85%"
+        }
+      })
 
-    }, sectionRef);
+    }, sectionRef)
 
-    return () => ctx.revert();
-  }, []);
+    return () => ctx.revert()
+
+  }, [])
+
 
   return (
+
     <section
       ref={sectionRef}
-      className="bg-[#F3F2EF] pt-[8px] overflow-hidden"
+      className="bg-[#F3F2EF] py-10 md:py-28 overflow-hidden"
     >
-      <div className="px-[8px]">
 
-        <div className="rounded-2xl">
+      <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16">
 
-          <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 py-20 md:py-24">
 
-            {/* HEADER */}
-            <div className="gallery-header flex justify-center mb-16 md:mb-20">
-              <div className="inline-flex items-center border border-[#8C7A5B]/40 px-5 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium text-[#8C7A5B]">
-                Gallery
-              </div>
-            </div>
+        {/* HEADER */}
 
-            {/* GRID */}
-            <div className="grid grid-cols-2 md:grid-cols-12 gap-4 md:gap-6">
+        <div className="gallery-header text-center mb-14 md:mb-16">
 
-              {media.map((item, index) => (
-                <div
-                  key={index}
-                  className={`gallery-item col-span-1 ${item.span}`}
-                >
-                  <div className="rounded-2xl overflow-hidden border border-white/10">
-
-                    {item.type === "video" ? (
-                      <video
-                        src={item.src}
-                        className="w-full h-[220px] md:h-[340px] object-cover"
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
-                        controls={false}
-                      />
-                    ) : (
-                      <img
-                        src={item.src}
-                        alt={item.alt}
-                        className="w-full h-[220px] md:h-[340px] object-cover"
-                        loading="lazy"
-                      />
-                    )}
-
-                  </div>
-                </div>
-              ))}
-
-            </div>
-
+          <div className="inline-flex items-center border border-[#8C7A5B]/40 px-5 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium text-[#8C7A5B] mb-6">
+            Gallery
           </div>
+
+          <h2 className="text-[30px] sm:text-[36px] md:text-[40px] leading-[1.1] tracking-[-0.015em] text-neutral-900 max-w-[720px] mx-auto">
+            Inside Production, Logistics,
+            <br/>
+            and Global Delivery
+          </h2>
+
+        </div>
+  
+        {/* GRID */}
+
+        <div className="gallery-grid grid grid-cols-2 md:grid-cols-12 gap-4 md:gap-6">
+
+          {media.map((item, index) => (
+
+            <div
+              key={index}
+              className={`gallery-item col-span-1 ${item.span}`}
+            >
+
+              <img
+                src={item.src}
+                alt={item.alt}
+                className="w-full h-[220px] md:h-[320px] object-cover rounded-xl"
+                loading="lazy"
+              />
+
+            </div>
+
+          ))}
 
         </div>
 
       </div>
+
     </section>
-  );
+
+  )
+
 }
 
 
@@ -1710,13 +1985,13 @@ function Testimonials() {
       <div className="max-w-[1100px] mx-auto px-8">
 
         {/* HEADER */}
-        <div className="mb-20 text-center">
+        <div className="mb-14 md:mb-20 text-center">
 
-          <div className="inline-flex items-center border border-[#8C7A5B]/40 px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium text-[#8C7A5B] mb-8">
+          <div className="inline-flex items-center border border-[#8C7A5B]/40 px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium text-[#8C7A5B] mb-6 md:mb-8">
             Testimonials
           </div>
 
-          <h2 className="text-[34px] sm:text-[36px] md:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900">
+          <h2 className="text-[30px] sm:text-[36px] md:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900">
             What Our Customers
             <br />
             Say About Us
@@ -1727,7 +2002,7 @@ function Testimonials() {
         {/* MOBILE */}
         <div className="md:hidden">
 
-          <div className="rounded-2xl bg-white border border-[#D6D1C8] p-6 shadow-sm flex flex-col min-h-[420px]">
+          <div className="rounded-2xl bg-white border border-[#D6D1C8] p-5 shadow-sm flex flex-col min-h-[360px]">
 
             <AnimatePresence mode="wait">
 
@@ -1742,13 +2017,13 @@ function Testimonials() {
               >
 
                 <div className="flex-1">
-                  <p className="text-[18px] sm:text-[20px] leading-[1.6] text-[#2C2C2C]">
+                  <p className="text-[16px] sm:text-[18px] leading-[1.6] text-[#2C2C2C]">
                     "{active.quote}"
                   </p>
                 </div>
 
-                <div className="mt-6">
-                  <div className="text-[22px] font-medium text-[#191919]">
+                <div className="mt-5">
+                  <div className="text-[20px] font-medium text-[#191919]">
                     {active.stat}
                   </div>
                   <p className="text-[#8C7A5B] text-sm mt-1">
@@ -1756,7 +2031,7 @@ function Testimonials() {
                   </p>
                 </div>
 
-                <div className="flex items-center gap-4 pt-4 mt-6 border-t border-[#D6D1C8]">
+                <div className="flex items-center gap-4 pt-4 mt-5 border-t border-[#D6D1C8]">
 
                   <img
                     src={active.image}
@@ -1786,7 +2061,6 @@ function Testimonials() {
         {/* DESKTOP */}
         <div className="hidden md:grid md:grid-cols-[260px_1fr] gap-8 items-stretch">
 
-          {/* LEFT SIDE */}
           <AnimatePresence mode="wait">
 
             <motion.div
@@ -1820,8 +2094,6 @@ function Testimonials() {
 
           </AnimatePresence>
 
-
-          {/* RIGHT SIDE */}
           <div className="h-full rounded-2xl bg-white border border-[#D6D1C8] p-8 flex flex-col justify-between shadow-sm">
 
             <AnimatePresence mode="wait">
@@ -1856,9 +2128,8 @@ function Testimonials() {
 
         </div>
 
-
         {/* NAV */}
-        <div className="flex items-center justify-center gap-4 mt-10">
+        <div className="flex items-center justify-center gap-4 mt-8 md:mt-10">
 
           <button
             onClick={prev}
@@ -1896,6 +2167,7 @@ function Testimonials() {
 }
 
 
+
 function FAQ() {
 
   const faqs = [
@@ -1923,20 +2195,20 @@ function FAQ() {
   const visibleFaqs = showAll ? faqs : faqs.slice(0, 6)
 
   return (
-    <section className="bg-[#F3F2EF] py-20">
+    <section className="bg-[#F3F2EF]">
 
       <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16">
 
-        <div className="grid grid-cols-1 md:grid-cols-[0.45fr_0.55fr] gap-12 md:gap-20">
+        <div className="grid grid-cols-1 md:grid-cols-[0.45fr_0.55fr] gap-8 md:gap-20">
 
           {/* LEFT */}
           <div>
 
-            <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
+            <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-5">
               FAQ
             </div>
 
-            <h2 className="text-[34px] sm:text-[36px] md:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900">
+            <h2 className="text-[30px] sm:text-[36px] md:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900">
               Frequently Asked
               <br />
               Questions
@@ -1953,16 +2225,24 @@ function FAQ() {
               const isOpen = openIndex === realIndex
 
               return (
-                <FAQItem key={realIndex} item={item} isOpen={isOpen} onClick={() => toggle(realIndex)} />
+                <FAQItem
+                  key={realIndex}
+                  item={item}
+                  isOpen={isOpen}
+                  onClick={() => toggle(realIndex)}
+                />
               )
 
             })}
 
             {faqs.length > 6 && (
 
-              <div className="mt-10">
+              <div className="mt-8">
 
-                <button onClick={() => setShowAll(!showAll)} className="text-sm font-medium text-neutral-700 hover:text-black transition">
+                <button
+                  onClick={() => setShowAll(!showAll)}
+                  className="text-sm font-medium text-neutral-700 hover:text-black transition"
+                >
                   {showAll ? "Show Less" : "Show More Questions"}
                 </button>
 
@@ -1984,11 +2264,14 @@ function FAQ() {
 function FAQItem({ item, isOpen, onClick }) {
 
   return (
-    <div className="border-b border-neutral-300 py-6">
+    <div className="border-b border-neutral-300 py-4 md:py-6">
 
-      <button onClick={onClick} className="w-full flex items-start justify-between text-left">
+      <button
+        onClick={onClick}
+        className="w-full flex items-start justify-between text-left"
+      >
 
-        <span className="text-[18px] leading-[1.4] text-neutral-900 pr-6">
+        <span className="text-[16px] md:text-[18px] leading-[1.4] text-neutral-900 pr-6">
           {item.q}
         </span>
 
@@ -1999,7 +2282,7 @@ function FAQItem({ item, isOpen, onClick }) {
       </button>
 
       {isOpen && (
-        <div className="mt-4 text-[16px] leading-[1.7] text-neutral-600 pr-10">
+        <div className="mt-3 text-[15px] md:text-[16px] leading-[1.7] text-neutral-600 pr-10">
           {item.a}
         </div>
       )}

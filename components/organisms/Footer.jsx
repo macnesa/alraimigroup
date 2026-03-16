@@ -6,7 +6,7 @@ export default function Footer() {
 
       {/* CTA SECTION */}
       <div className="max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16">
-        <div className="relative z-20 rounded-2xl overflow-hidden min-h-[420px] md:min-h-[560px] flex items-end shadow-[0_25px_60px_rgba(0,0,0,0.25)]">
+        <div className="relative z-20 rounded-2xl overflow-hidden min-h-[340px] md:min-h-[560px] flex items-end shadow-[0_25px_60px_rgba(0,0,0,0.25)]">
 
           <img
             src="https://res.cloudinary.com/djgu1bhef/image/upload/v1772983520/hero-bgg_omvkvt.png"
@@ -16,10 +16,10 @@ export default function Footer() {
 
           <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/45 to-black/20" />
 
-          <div className="relative z-10 w-full px-6 sm:px-10 xl:px-16 pb-16 md:pb-24 pt-20 md:pt-32 grid gap-12 md:gap-0 md:grid-cols-[1.3fr_1fr] items-end">
+          <div className="relative z-10 w-full px-6 sm:px-10 xl:px-16 pb-12 md:pb-24 pt-16 md:pt-32 grid gap-8 md:gap-0 md:grid-cols-[1.3fr_1fr] items-end">
 
             <div className="max-w-3xl text-white">
-              <h2 className="text-[34px] sm:text-[42px] md:text-[60px] xl:text-[70px] font-normal leading-[1.05] tracking-[-0.02em]">
+              <h2 className="text-[30px] sm:text-[42px] md:text-[60px] xl:text-[70px] font-normal leading-[1.05] tracking-[-0.02em]">
                 Ready to Move at Global Scale?
               </h2>
             </div>
@@ -71,40 +71,40 @@ export default function Footer() {
 
               <div className="flex gap-4">
 
-{[
-  {
-    icon: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg",
-    url: "https://www.instagram.com/alraimigroup/"
-  },
-  {
-    icon: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/x.svg",
-    url: "https://x.com/yourbrand"
-  },
-  {
-    icon: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg",
-    url: "https://linkedin.com/company/yourbrand"
-  }
-].map((item, i) => (
+                {[
+                  {
+                    icon: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg",
+                    url: "https://www.instagram.com/alraimigroup/"
+                  },
+                  {
+                    icon: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/x.svg",
+                    url: "https://x.com/yourbrand"
+                  },
+                  {
+                    icon: "https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg",
+                    url: "https://linkedin.com/company/yourbrand"
+                  }
+                ].map((item, i) => (
 
-  <a
-    key={i}
-    href={item.url}
-    target="_blank"
-    rel="noopener noreferrer"
-    className="group w-10 h-10 rounded-lg border border-neutral-500 flex items-center justify-center transition hover:bg-neutral-100 hover:border-neutral-300"
-  >
+                  <a
+                    key={i}
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group w-10 h-10 rounded-lg border border-neutral-500 flex items-center justify-center transition hover:bg-neutral-100 hover:border-neutral-300"
+                  >
 
-    <img
-      src={item.icon}
-      alt="social"
-      className="w-4 h-4 opacity-70 transition invert group-hover:invert-0 group-hover:opacity-100"
-    />
+                    <img
+                      src={item.icon}
+                      alt="social"
+                      className="w-4 h-4 opacity-70 transition invert group-hover:invert-0 group-hover:opacity-100"
+                    />
 
-  </a>
+                  </a>
 
-))}
+                ))}
 
-</div>
+              </div>
 
             </div>
 
@@ -182,7 +182,7 @@ export default function Footer() {
 
                 <li>
                   Jl. Batumejan 5D Padang Linjong  
-                  Canggu, Bali
+                  Canggu, Bali, Indonesia
                 </li>
 
                 <li>
@@ -204,16 +204,15 @@ export default function Footer() {
             </p>
 
             <div className="flex gap-8">
- 
 
-  <Link
-    href="/privacy"
-    className="hover:text-white transition"
-  >
-    Privacy Policy
-  </Link>
+              <Link
+                href="/privacy"
+                className="hover:text-white transition"
+              >
+                Privacy Policy
+              </Link>
 
-</div>
+            </div>
 
           </div>
 
