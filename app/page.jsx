@@ -263,11 +263,6 @@ function Hero() {
         { opacity: 1, duration: 0.8, ease: "power2.out" }
       )
   
-  
-      /* =========================
-         MOBILE TIMELINE
-      ========================== */
-  
       mm.add("(max-width: 767px)", () => {
   
         const tl = gsap.timeline({
@@ -340,11 +335,6 @@ function Hero() {
         )
   
       })
-  
-  
-      /* =========================
-         DESKTOP TIMELINE
-      ========================== */
   
       mm.add("(min-width: 768px)", () => {
   
@@ -463,11 +453,9 @@ Get Your PI
 
 </header>
 
-{/* HERO */}
-
 <div className="px-[8px] pt-[8px]">
 
-<div className="rounded-2xl overflow-hidden min-h-[82svh] md:min-h-[96svh] relative">
+<div className="rounded-2xl overflow-hidden min-h-[max(82svh,640px)] md:min-h-[96svh] relative">
 
 <div className="absolute inset-0">
 
@@ -486,7 +474,7 @@ style={{ objectPosition:"70% center" }}
 
 </div>
 
-<div className="relative z-10 flex flex-col min-h-[82svh] md:min-h-[96svh] max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16">
+<div className="relative z-10 flex flex-col min-h-[max(82svh,640px)] md:min-h-[96svh] max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16 pt-8 md:pt-0">
 
 <div className="flex-1 flex items-end md:items-center pb-6 md:pb-0">
 
@@ -533,10 +521,6 @@ Start Your Brand
 
 <div className="hero-client-mobile md:hidden mt-8">
 
-<div className="text-[11px] tracking-[0.18em] uppercase text-white/70 mb-3">
-Trusted by
-</div>
-
 <div className="relative overflow-hidden">
 
 <motion.div ref={trackRefMobile} style={{x}} className="flex items-center">
@@ -562,49 +546,6 @@ className="object-contain h-10 w-auto opacity-80"
 </div>
 
 </div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-{/* DESKTOP CLIENT SECTION */}
-
-<div className="hidden md:block px-[8px] pt-[8px]">
-
-<div className="bg-white border border-neutral-200 rounded-2xl">
-
-<div className="max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16 py-12 md:py-16 text-center">
-
-<div className="text-xs tracking-[0.18em] uppercase text-neutral-600 mb-6">
-Trusted by
-</div>
-
-<div className="relative max-w-[1050px] mx-auto overflow-hidden">
-
-<div className="pointer-events-none absolute left-0 top-0 h-full w-12 md:w-24 bg-gradient-to-r from-white to-transparent z-10"/>
-<div className="pointer-events-none absolute right-0 top-0 h-full w-12 md:w-24 bg-gradient-to-l from-white to-transparent z-10"/>
-
-<motion.div ref={trackRef} style={{x}} className="flex items-center">
-
-{duplicated.map((logo,index)=>(
-<div key={index} className="flex-shrink-0 mx-6 md:mx-12 flex items-center justify-center">
-
-<Image
-src={logo}
-alt="Client logo"
-width={240}
-height={120}
-className="object-contain h-16 md:h-24 w-auto invert opacity-80"
-/>
-
-</div>
-))}
-
-</motion.div>
 
 </div>
 
