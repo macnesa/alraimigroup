@@ -1068,85 +1068,70 @@ function FAQ() {
     {q:"Can I visit the factory?",a:"Absolutely. China factory tours are available by appointment, or live video inspections can be arranged anytime."},
   ]
 
-  const [open,setOpen]=React.useState(null)
+  const [openIndex, setOpenIndex] = useState(null)
+  const [showAll, setShowAll] = useState(false)
+
+  const toggle = (index) => {
+    setOpenIndex(openIndex === index ? null : index)
+  }
+
+  const visibleFaqs = showAll ? faqs : faqs.slice(0, 6)
 
   return (
 
-    <section className="bg-[#F3F2EF] pt-[8px]">
+    <section className="bg-[#F3F2EF]">
 
-      <div className="px-[8px]">
+      <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16">
 
-        <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 py-20 md:py-28">
+        <div className="grid grid-cols-1 md:grid-cols-[0.45fr_0.55fr] gap-8 md:gap-20">
 
-          <div className="grid grid-cols-1 md:grid-cols-[0.45fr_0.55fr] gap-12 md:gap-20">
+          {/* LEFT */}
+          <div>
 
-            {/* LEFT */}
+            <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-5">
+              FAQ
+            </div>
 
-            <div>
+            <h2 className="text-[30px] sm:text-[36px] md:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900">
+              Frequently Asked
+              <br />
+              Questions
+            </h2>
 
-              <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
-                FAQ
+          </div>
+
+          {/* RIGHT */}
+          <div>
+
+            {visibleFaqs.map((item, index) => {
+
+              const isOpen = openIndex === index
+
+              return (
+                <FAQItem
+                  key={index}
+                  item={item}
+                  isOpen={isOpen}
+                  onClick={() => toggle(index)}
+                />
+              )
+
+            })}
+
+            {faqs.length > 6 && (
+
+              <div className="mt-8">
+
+                <button
+                  onClick={() => setShowAll(!showAll)}
+                  className="text-sm font-medium text-neutral-700 hover:text-black transition"
+                >
+                  {showAll ? "Show Less" : "Show More Questions"}
+                </button>
+
               </div>
 
-              <h2 className="text-[34px] sm:text-[36px] md:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900">
-                Frequently Asked<br/>Questions
-              </h2>
-
-            </div>
-
-
-            {/* RIGHT */}
-
-            <div>
-
-              {faqs.map((item,i)=>{
-
-                const isOpen=open===i
-
-                return(
-
-                  <div key={i} className="border-b border-neutral-200">
-
-                    <button
-                      onClick={()=>setOpen(isOpen?null:i)}
-                      className="w-full flex items-center justify-between text-left py-5 md:py-6"
-                    >
-
-                      <span className="text-[17px] md:text-[18px] text-neutral-900 leading-[1.4] pr-10">
-                        {item.q}
-                      </span>
-
-                      <Plus
-                        size={20}
-                        strokeWidth={1.75}
-                        className={`shrink-0 transition-all duration-300 ${
-                          isOpen
-                            ? "rotate-45 text-neutral-900"
-                            : "rotate-0 text-neutral-500"
-                        }`}
-                      />
-
-                    </button>
-
-                    <div className={`overflow-hidden transition-all duration-300 ${
-                      isOpen
-                        ? "max-h-[240px] pb-6"
-                        : "max-h-0"
-                    }`}>
-
-                      <p className="text-[16px] leading-[1.7] text-neutral-600 pr-10">
-                        {item.a}
-                      </p>
-
-                    </div>
-
-                  </div>
-
-                )
-
-              })}
-
-            </div>
+            )}
 
           </div>
 
@@ -1155,6 +1140,45 @@ function FAQ() {
       </div>
 
     </section>
+
+  )
+}
+
+
+function FAQItem({ item, isOpen, onClick }) {
+
+  return (
+
+    <div className="border-b border-neutral-300 py-4 md:py-6">
+
+      <button
+        onClick={onClick}
+        className="w-full flex items-start justify-between text-left"
+      >
+
+        <span className="text-[16px] md:text-[18px] leading-[1.4] text-neutral-900 pr-6">
+          {item.q}
+        </span>
+
+        <Plus
+          size={18}
+          strokeWidth={1.75}
+          className={`shrink-0 transition-all duration-300 ${
+            isOpen
+              ? "rotate-45 text-neutral-900"
+              : "rotate-0 text-neutral-500"
+          }`}
+        />
+
+      </button>
+
+      {isOpen && (
+        <div className="mt-3 text-[15px] md:text-[16px] leading-[1.7] text-neutral-600 pr-10">
+          {item.a}
+        </div>
+      )}
+
+    </div>
 
   )
 

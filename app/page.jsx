@@ -555,6 +555,49 @@ className="object-contain h-10 w-auto opacity-80"
 
 </div>
 
+{/* DESKTOP CLIENT SECTION */}
+
+<div className="hidden md:block px-[8px] pt-[8px]">
+
+<div className="bg-white border border-neutral-200 rounded-2xl">
+
+<div className="max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16 py-12 md:py-16 text-center">
+
+<div className="text-xs tracking-[0.18em] uppercase text-neutral-600 mb-6">
+Trusted by
+</div>
+
+<div className="relative max-w-[1050px] mx-auto overflow-hidden">
+
+<div className="pointer-events-none absolute left-0 top-0 h-full w-12 md:w-24 bg-gradient-to-r from-white to-transparent z-10"/>
+<div className="pointer-events-none absolute right-0 top-0 h-full w-12 md:w-24 bg-gradient-to-l from-white to-transparent z-10"/>
+
+<motion.div ref={trackRef} style={{x}} className="flex items-center">
+
+{duplicated.map((logo,index)=>(
+<div key={index} className="flex-shrink-0 mx-6 md:mx-12 flex items-center justify-center">
+
+<Image
+src={logo}
+alt="Client logo"
+width={240}
+height={120}
+className="object-contain h-16 md:h-24 w-auto invert opacity-80"
+/>
+
+</div>
+))}
+
+</motion.div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
 </section>
 
 </>
