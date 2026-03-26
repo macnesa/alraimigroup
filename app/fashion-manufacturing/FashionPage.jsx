@@ -158,49 +158,51 @@ function Hero() {
 
       <header className="mx-[8px]">
 
-        <div className="max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16 py-4 md:py-5 flex items-center justify-between">
+      <div className="max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16 py-4 md:py-5 flex items-center justify-between">
 
-          <Link href="/" className="flex items-center">
+{/* LOGO */}
+<Link href="/" className="flex items-center relative">
+  <div className="relative h-[36px] md:h-[42px] lg:h-[46px] overflow-visible">
+    <Image
+      src="/images/alraimi-logo-black-1.png"
+      alt="Alraimi Logo"
+      width={90}
+      height={80}
+      className="h-[50px] md:h-[58px] lg:h-[66px] w-auto object-contain -my-2"
+      priority
+    />
+  </div>
+</Link>
 
-            <Image
-              src="/images/alraimi-logo-black-1.png"
-              alt="Alraimi Logo"
-              width={42}
-              height={38}
-              priority
-            />
+{/* NAV */}
+<nav className="flex items-center gap-4 sm:gap-6 md:gap-10 text-sm text-neutral-700">
+  <Link href="/" className="hover:text-black transition-colors">
+    Home
+  </Link>
 
-          </Link>
+  <Link href="/fashion-manufacturing" className="text-black">
+    Fashion
+  </Link>
 
-          <nav className="flex items-center gap-4 sm:gap-6 md:gap-10 text-sm text-neutral-700">
+  <Link href="/luxury-packaging" className="hover:text-black transition-colors">
+    Packaging
+  </Link>
 
-            <Link href="/" className="hover:text-black transition-colors">
-              Home
-            </Link>
+  <Link href="/contact" className="hover:text-black transition-colors">
+    Contact
+  </Link>
+</nav>
 
-            <Link href="/fashion-manufacturing" className="text-black">
-              Fashion
-            </Link>
+{/* CTA */}
+<Link
+  href="/contact#get-pi"
+  className="hidden md:inline-flex items-center gap-2 px-7 py-3 rounded-lg text-sm font-medium bg-[#8C7A5B] text-white hover:bg-[#7A6A4E] transition"
+>
+  Get Your PI
+  <FaArrowRight className="text-xs" />
+</Link>
 
-            <Link href="/luxury-packaging" className="hover:text-black transition-colors">
-              Packaging
-            </Link>
-
-            <Link href="/contact" className="hover:text-black transition-colors">
-              Contact
-            </Link>
-
-          </nav>
-
-          <Link
-            href="/contact#get-pi"
-            className="hidden md:inline-flex items-center gap-2 px-7 py-3 rounded-lg text-sm font-medium bg-[#8C7A5B] text-white hover:bg-[#7A6A4E] transition"
-          >
-            Get Your PI
-            <FaArrowRight className="text-xs" />
-          </Link>
-
-        </div>
+</div>
 
       </header>
 
@@ -524,13 +526,13 @@ function MaterialsTrims() {
 
       <div className="px-[8px]">
 
-        <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 pt-12 md:pt-20 xl:pt-24">
+        <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 pt-8 md:pt-14 xl:pt-16">
 
           {/* HEADER */}
 
-          <div className="mb-8 md:mb-16 xl:mb-20">
+          <div className="mb-6 md:mb-12 xl:mb-14">
 
-            <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
+            <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-4">
               MATERIALS & TRIMS
             </div>
 
@@ -542,13 +544,13 @@ function MaterialsTrims() {
 
           {/* GRID */}
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-[8px] pb-12 md:pb-16 xl:pb-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-[8px] pb-10 md:pb-12 xl:pb-14">
 
             {data.map((block) => (
 
               <div
                 key={block.title}
-                className="relative bg-white border border-neutral-300 rounded-2xl overflow-hidden min-h-[180px] md:min-h-[220px] flex items-center"
+                className="relative bg-white border border-neutral-300 rounded-2xl overflow-hidden min-h-[170px] md:min-h-[200px] flex items-center"
               >
 
                 {/* IMAGE */}
@@ -568,9 +570,10 @@ function MaterialsTrims() {
 
                 {/* CONTENT */}
 
-                <div className="relative z-10 px-6 md:px-8 py-6 md:py-8 max-w-[65%]">
+                <div className="relative z-10 px-6 md:px-8 py-5 md:py-6 max-w-[65%]">
 
-                  <div className="text-[15px] sm:text-[16px] md:text-[18px] leading-[1.3] font-medium text-neutral-900 mb-3">
+                  {/* FIXED TITLE (BALANCED) */}
+                  <div className="text-[18px] sm:text-[19px] md:text-[20px] leading-[1.25] tracking-[-0.005em] font-medium text-neutral-900 mb-2.5">
                     {block.title}
                   </div>
 
@@ -669,15 +672,11 @@ function FitSizing() {
           backgroundSize: "900px",
           backgroundRepeat: "repeat",
           backgroundPosition: "left center",
-
           WebkitMaskImage:
             "linear-gradient(to right, black 0%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
-
           WebkitMaskComposite: "destination-in",
-
           maskImage:
             "linear-gradient(to right, black 0%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
-
           maskComposite: "intersect",
         }}
       />
@@ -692,15 +691,11 @@ function FitSizing() {
           backgroundSize: "900px",
           backgroundRepeat: "repeat",
           backgroundPosition: "right center",
-
           WebkitMaskImage:
             "linear-gradient(to left, black 0%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
-
           WebkitMaskComposite: "destination-in",
-
           maskImage:
             "linear-gradient(to left, black 0%, transparent 100%), linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
-
           maskComposite: "intersect",
         }}
       />
@@ -709,15 +704,15 @@ function FitSizing() {
 
       <div className="relative px-[8px]">
 
-        <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 py-16 md:py-24 xl:py-28">
+        <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 py-10 md:py-14 xl:py-16">
 
-          <div className="grid grid-cols-1 md:grid-cols-[0.45fr_0.55fr] gap-10 md:gap-20 xl:gap-24">
+          <div className="grid grid-cols-1 md:grid-cols-[0.45fr_0.55fr] gap-8 md:gap-14 xl:gap-16">
 
             {/* LEFT */}
 
             <div>
 
-              <div className="fit-label inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
+              <div className="fit-label inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-4">
                 FIT & SIZING
               </div>
 
@@ -725,7 +720,7 @@ function FitSizing() {
                 We Set Your Fit Once —<br/>Then Protect It Every Reorder
               </h2>
 
-              <div className="fit-desc mt-8 text-[16px] sm:text-[17px] md:text-[18px] leading-[1.7] text-neutral-600 max-w-[480px]">
+              <div className="fit-desc mt-6 text-[16px] sm:text-[17px] md:text-[18px] leading-[1.7] text-neutral-600 max-w-[480px]">
                 Fit consistency is controlled through documentation, approvals, and locked references before production.
               </div>
 
@@ -734,12 +729,12 @@ function FitSizing() {
 
             {/* RIGHT */}
 
-            <div className="space-y-8 md:space-y-12">
+            <div className="space-y-6 md:space-y-8">
 
               {controls.map((item) => (
                 <div key={item.title} className="fit-item">
 
-                  <div className="text-[18px] sm:text-[19px] md:text-[20px] leading-[1.3] font-medium text-neutral-900 mb-3">
+                  <div className="text-[18px] sm:text-[19px] md:text-[20px] leading-[1.3] font-medium text-neutral-900 mb-2">
                     {item.title}
                   </div>
 
@@ -747,7 +742,7 @@ function FitSizing() {
                     {item.description}
                   </div>
 
-                  <div className="mt-4 h-[1px] bg-neutral-300" />
+                  <div className="mt-3 h-[1px] bg-neutral-300" />
 
                 </div>
               ))}
@@ -764,6 +759,7 @@ function FitSizing() {
 
   )
 }
+
  
 
 function Projects() {
@@ -842,91 +838,90 @@ function Projects() {
 
       <div className="px-[8px]">
 
-        <div className="border border-[#D6D1C8] rounded-2xl">
+        {/* ✅ OUTER SPACING DIPADATKAN, NO BORDER */}
+        <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 py-12 md:py-16 xl:py-18">
 
-          <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 py-20 md:py-28">
 
+          {/* HEADER */}
 
-            {/* HEADER */}
+          <div className="projects-header mb-16 md:mb-20 text-center">
 
-            <div className="projects-header mb-16 md:mb-24 text-center">
-
-              <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
-                Projects
-              </div>
-
-              <h2 className="text-[34px] sm:text-[36px] md:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900">
-                Selected Fashion Production
-              </h2>
-
+            <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
+              Projects
             </div>
 
+            <h2 className="text-[34px] sm:text-[36px] md:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900">
+              Selected Fashion Production
+            </h2>
 
-            {/* PROJECT BLOCKS */}
+          </div>
 
-            <div className="space-y-[8px]">
 
-              {projects.map((project,index)=>(
+          {/* PROJECT BLOCKS */}
+
+          <div className="space-y-[8px]">
+
+            {projects.map((project,index)=>(
+
+              <div
+                key={project.title}
+                className="project-block grid grid-cols-1 md:grid-cols-12 gap-[8px] items-stretch"
+              >
+
+
+                {/* IMAGE */}
 
                 <div
-                  key={project.title}
-                  className="project-block grid grid-cols-1 md:grid-cols-12 gap-[8px] items-stretch"
+                  className={`project-image md:col-span-4 ${
+                    index%2===0 ? "md:order-2": ""
+                  }`}
                 >
 
+                  {/* ✅ BORDER TETAP */}
+                  <div className="border border-[#D6D1C8] rounded-2xl overflow-hidden h-full bg-white">
 
-                  {/* IMAGE */}
+                    <div className="aspect-square md:aspect-[3/4] overflow-hidden">
 
-                  <div
-                    className={`project-image md:col-span-4 ${
-                      index%2===0 ? "md:order-2": ""
-                    }`}
-                  >
-
-                    <div className="border border-[#D6D1C8] rounded-2xl overflow-hidden h-full bg-white">
-
-                      <div className="aspect-square md:aspect-[3/4] overflow-hidden">
-
-                        <img
-                          src={project.image}
-                          alt={project.title}
-                          className="w-full h-full object-cover object-top"
-                        />
-
-                      </div>
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover object-top"
+                      />
 
                     </div>
 
                   </div>
 
+                </div>
 
-                  {/* TEXT */}
 
-                  <div
-                    className={`project-text md:col-span-8 ${
-                      index%2===0 ? "md:order-1": ""
-                    }`}
-                  >
+                {/* TEXT */}
 
-                    <div className="border border-[#D6D1C8] rounded-2xl h-full flex items-center bg-white">
+                <div
+                  className={`project-text md:col-span-8 ${
+                    index%2===0 ? "md:order-1": ""
+                  }`}
+                >
 
-                      <div className="px-8 sm:px-10 md:px-14 xl:px-16 py-10 md:py-14 max-w-[580px]">
+                  {/* ✅ BORDER TETAP */}
+                  <div className="border border-[#D6D1C8] rounded-2xl h-full flex items-center bg-white">
 
-                        <div className="text-xs tracking-[0.18em] uppercase text-neutral-500 mb-4">
-                          {String(index+1).padStart(2,"0")}
-                        </div>
+                    <div className="px-8 sm:px-10 md:px-14 xl:px-16 py-8 md:py-10 max-w-[580px]">
 
-                        <h3 className="text-[24px] sm:text-[26px] md:text-[28px] leading-[1.2] tracking-[-0.015em] font-medium text-neutral-900 mb-4">
-                          {project.title}
-                        </h3>
+                      <div className="text-xs tracking-[0.18em] uppercase text-neutral-500 mb-4">
+                        {String(index+1).padStart(2,"0")}
+                      </div>
 
-                        <p className="text-[16px] leading-[1.7] text-neutral-600 mb-6">
-                          {project.description}
-                        </p>
+                      <h3 className="text-[24px] sm:text-[26px] md:text-[28px] leading-[1.2] tracking-[-0.015em] font-medium text-neutral-900 mb-4">
+                        {project.title}
+                      </h3>
 
-                        <div className="text-[13px] tracking-wide text-neutral-500">
-                          {project.meta}
-                        </div>
+                      <p className="text-[16px] leading-[1.7] text-neutral-600 mb-6">
+                        {project.description}
+                      </p>
 
+                      <div className="text-[13px] tracking-wide text-neutral-500">
+                        {project.meta}
                       </div>
 
                     </div>
@@ -935,9 +930,9 @@ function Projects() {
 
                 </div>
 
-              ))}
+              </div>
 
-            </div>
+            ))}
 
           </div>
 
@@ -1057,130 +1052,130 @@ function Gallery() {
 
 function FAQ() {
 
-  const faqs = [
-    {q:"Are you the manufacturer?",a:"Yes. Your order is produced on our lines in China under our PI, QC, and warranty."},
-    {q:"What MOQs do you work with?",a:"Typical first runs are 150–200 pcs per color per style. Final MOQs are confirmed by style and material in your PI."},
-    {q:"How fast are samples and production?",a:"Samples usually take 2–3 weeks after specification confirmation. Production typically runs 4–8 weeks depending on style and material."},
-    {q:"Do you help with tech packs and size charts?",a:"Yes. We prepare editable size charts, support tech packs, and share measurement photos and videos during each sample round."},
-    {q:"How do you ensure quality?",a:"We conduct in-line QC during production and a pre-shipment AQL inspection with a full report and visual documentation."},
-    {q:"Can you ship door-to-door?",a:"Yes. We offer DDP with customs clearance, or EXW/FOB if you prefer to use your own forwarder."},
-    {q:"What are your standard payment terms?",a:"50% deposit and 50% pre-shipment (adjustable). Final terms are confirmed in your PI."},
-    {q:"Can I visit the factory?",a:"Absolutely. China factory tours are available by appointment, or live video inspections can be arranged anytime."},
-  ]
+const faqs = [
+  {q:"Are you the manufacturer?",a:"Yes. Your order is produced on our lines in China under our PI, QC, and warranty."},
+  {q:"What MOQs do you work with?",a:"Typical first runs are 150–200 pcs per color per style. Final MOQs are confirmed by style and material in your PI."},
+  {q:"How fast are samples and production?",a:"Samples usually take 2–3 weeks after specification confirmation. Production typically runs 4–8 weeks depending on style and material."},
+  {q:"Do you help with tech packs and size charts?",a:"Yes. We prepare editable size charts, support tech packs, and share measurement photos and videos during each sample round."},
+  {q:"How do you ensure quality?",a:"We conduct in-line QC during production and a pre-shipment AQL inspection with a full report and visual documentation."},
+  {q:"Can you ship door-to-door?",a:"Yes. We offer DDP with customs clearance, or EXW/FOB if you prefer to use your own forwarder."},
+  {q:"What are your standard payment terms?",a:"50% deposit and 50% pre-shipment (adjustable). Final terms are confirmed in your PI."},
+  {q:"Can I visit the factory?",a:"Absolutely. China factory tours are available by appointment, or live video inspections can be arranged anytime."},
+]
 
-  const [openIndex, setOpenIndex] = useState(null)
-  const [showAll, setShowAll] = useState(false)
+const [openIndex, setOpenIndex] = useState(null)
+const [showAll, setShowAll] = useState(false)
 
-  const toggle = (index) => {
-    setOpenIndex(openIndex === index ? null : index)
-  }
+const toggle = (index) => {
+  setOpenIndex(openIndex === index ? null : index)
+}
 
-  const visibleFaqs = showAll ? faqs : faqs.slice(0, 6)
+const visibleFaqs = showAll ? faqs : faqs.slice(0, 6)
 
-  return (
+return (
 
-    <section className="bg-[#F3F2EF]">
+  <section className="bg-[#F3F2EF]">
 
-      <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16">
+    <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16">
 
-        <div className="grid grid-cols-1 md:grid-cols-[0.45fr_0.55fr] gap-8 md:gap-20">
+      <div className="grid grid-cols-1 md:grid-cols-[0.45fr_0.55fr] gap-8 md:gap-20">
 
-          {/* LEFT */}
-          <div>
+        {/* LEFT */}
+        <div>
 
-            <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-5">
-              FAQ
+          <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-5">
+            FAQ
+          </div>
+
+          <h2 className="text-[30px] sm:text-[36px] md:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900">
+            Frequently Asked
+            <br />
+            Questions
+          </h2>
+
+        </div>
+
+        {/* RIGHT */}
+        <div>
+
+          {visibleFaqs.map((item, index) => {
+
+            const isOpen = openIndex === index
+
+            return (
+              <FAQItem
+                key={index}
+                item={item}
+                isOpen={isOpen}
+                onClick={() => toggle(index)}
+              />
+            )
+
+          })}
+
+          {faqs.length > 6 && (
+
+            <div className="mt-8">
+
+              <button
+                onClick={() => setShowAll(!showAll)}
+                className="text-sm font-medium text-neutral-700 hover:text-black transition"
+              >
+                {showAll ? "Show Less" : "Show More Questions"}
+              </button>
+
             </div>
 
-            <h2 className="text-[30px] sm:text-[36px] md:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900">
-              Frequently Asked
-              <br />
-              Questions
-            </h2>
-
-          </div>
-
-          {/* RIGHT */}
-          <div>
-
-            {visibleFaqs.map((item, index) => {
-
-              const isOpen = openIndex === index
-
-              return (
-                <FAQItem
-                  key={index}
-                  item={item}
-                  isOpen={isOpen}
-                  onClick={() => toggle(index)}
-                />
-              )
-
-            })}
-
-            {faqs.length > 6 && (
-
-              <div className="mt-8">
-
-                <button
-                  onClick={() => setShowAll(!showAll)}
-                  className="text-sm font-medium text-neutral-700 hover:text-black transition"
-                >
-                  {showAll ? "Show Less" : "Show More Questions"}
-                </button>
-
-              </div>
-
-            )}
-
-          </div>
+          )}
 
         </div>
 
       </div>
 
-    </section>
+    </div>
 
-  )
+  </section>
+
+)
 }
 
 
 function FAQItem({ item, isOpen, onClick }) {
 
-  return (
+return (
 
-    <div className="border-b border-neutral-300 py-4 md:py-6">
+  <div className="border-b border-neutral-300 py-4 md:py-6">
 
-      <button
-        onClick={onClick}
-        className="w-full flex items-start justify-between text-left"
-      >
+    <button
+      onClick={onClick}
+      className="w-full flex items-start justify-between text-left"
+    >
 
-        <span className="text-[16px] md:text-[18px] leading-[1.4] text-neutral-900 pr-6">
-          {item.q}
-        </span>
+      <span className="text-[16px] md:text-[18px] leading-[1.4] text-neutral-900 pr-6">
+        {item.q}
+      </span>
 
-        <Plus
-          size={18}
-          strokeWidth={1.75}
-          className={`shrink-0 transition-all duration-300 ${
-            isOpen
-              ? "rotate-45 text-neutral-900"
-              : "rotate-0 text-neutral-500"
-          }`}
-        />
+      <Plus
+        size={18}
+        strokeWidth={1.75}
+        className={`shrink-0 transition-all duration-300 ${
+          isOpen
+            ? "rotate-45 text-neutral-900"
+            : "rotate-0 text-neutral-500"
+        }`}
+      />
 
-      </button>
+    </button>
 
-      {isOpen && (
-        <div className="mt-3 text-[15px] md:text-[16px] leading-[1.7] text-neutral-600 pr-10">
-          {item.a}
-        </div>
-      )}
+    {isOpen && (
+      <div className="mt-3 text-[15px] md:text-[16px] leading-[1.7] text-neutral-600 pr-10">
+        {item.a}
+      </div>
+    )}
 
-    </div>
+  </div>
 
-  )
+)
 
 }
  

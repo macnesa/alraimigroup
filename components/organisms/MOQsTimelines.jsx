@@ -25,7 +25,8 @@ export default function MOQsTimelines() {
 
       <div className="px-[8px]">
 
-        <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 py-20 md:py-24 xl:py-28">
+        {/* 🔥 ONLY THIS CHANGED */}
+        <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 py-12 md:py-16 xl:py-18">
 
           {/* Header */}
 

@@ -428,25 +428,43 @@ function Hero() {
 
 <div className="max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16 py-3 md:py-5 flex items-center justify-between">
 
-<Link href="/" className="flex items-center">
-<Image src="/images/alraimi-logo-black-1.png" alt="Alraimi Logo" width={42} height={38} priority/>
+{/* LOGO */}
+<Link href="/" className="flex items-center relative">
+  <div className="relative h-[34px] md:h-[40px] lg:h-[44px] overflow-visible">
+    <Image
+      src="/images/alraimi-logo-black-1.png"
+      alt="Alraimi Logo"
+      width={90}
+      height={80}
+      className="h-[48px] md:h-[56px] lg:h-[64px] w-auto object-contain -my-2"
+      priority
+    />
+  </div>
 </Link>
 
+{/* NAV */}
 <nav className="flex items-center gap-3 sm:gap-6 md:gap-10 text-[13px] md:text-sm text-neutral-700">
-
-<Link href="/" className="hero-nav-item opacity-0 hover:text-black transition-colors">Home</Link>
-<Link href="/fashion-manufacturing" className="hero-nav-item opacity-0 hover:text-black transition-colors">Fashion</Link>
-<Link href="/luxury-packaging" className="hero-nav-item opacity-0 hover:text-black transition-colors">Packaging</Link>
-<Link href="/contact" className="hero-nav-item opacity-0 hover:text-black transition-colors">Contact</Link>
-
+  <Link href="/" className="hero-nav-item opacity-0 hover:text-black transition-colors">
+    Home
+  </Link>
+  <Link href="/fashion-manufacturing" className="hero-nav-item opacity-0 hover:text-black transition-colors">
+    Fashion
+  </Link>
+  <Link href="/luxury-packaging" className="hero-nav-item opacity-0 hover:text-black transition-colors">
+    Packaging
+  </Link>
+  <Link href="/contact" className="hero-nav-item opacity-0 hover:text-black transition-colors">
+    Contact
+  </Link>
 </nav>
 
+{/* CTA */}
 <Link
-href="/contact#get-pi"
-className="hidden md:inline-flex items-center gap-2 px-7 py-3 rounded-lg text-sm font-medium bg-[#8C7A5B] text-white hover:bg-[#7A6A4E] transition"
+  href="/contact#get-pi"
+  className="hidden md:inline-flex items-center gap-2 px-7 py-3 rounded-lg text-sm font-medium bg-[#8C7A5B] text-white hover:bg-[#7A6A4E] transition"
 >
-Get Your PI
-<FaArrowRight className="text-xs"/>
+  Get Your PI
+  <FaArrowRight className="text-xs" />
 </Link>
 
 </div>
@@ -1142,7 +1160,6 @@ function HowWeWork() {
   )
 }
 
-
 function Services() {
   const sectionRef = useRef(null);
 
@@ -1161,12 +1178,6 @@ function Services() {
         opacity: 0,
         y: 30,
         duration: 0.8,
-      });
-
-      tl.from(".services-accent", {
-        scaleX: 0,
-        transformOrigin: "center",
-        duration: 0.7,
       });
 
       tl.from(".service-hub", {
@@ -1195,7 +1206,6 @@ function Services() {
 
       <div className="px-[8px]">
 
-        {/* CARD CONTAINER (mobile only) */}
         <div className="max-w-[1600px] mx-auto bg-white md:bg-transparent border border-neutral-200 md:border-0 rounded-2xl md:rounded-none overflow-hidden">
 
           <div className="px-6 md:px-10 xl:px-16 py-16 md:py-20">
@@ -1233,7 +1243,7 @@ function Services() {
               {/* LEFT */}
               <a
                 href="/fashion-manufacturing"
-                className="service-left w-full max-w-md justify-self-center lg:text-right"
+                className="service-left block w-full max-w-md justify-self-center lg:text-right cursor-pointer"
               >
 
                 <div className="p-6 md:p-0 text-center lg:text-right">
@@ -1247,7 +1257,17 @@ function Services() {
                     structured fit control, technical packs, and AQL inspection.
                   </p>
 
-                  <span className="inline-flex items-center gap-2 mt-5 text-sm text-neutral-700">
+                  <span
+                    className="
+                      inline-flex items-center gap-2 mt-6
+                      px-4 py-2
+                      bg-neutral-50
+                      border border-neutral-200
+                      rounded-lg
+                      text-sm text-neutral-900
+                      active:scale-[0.97]
+                    "
+                  >
                     View Service →
                   </span>
 
@@ -1283,7 +1303,7 @@ function Services() {
               {/* RIGHT */}
               <a
                 href="/luxury-packaging"
-                className="service-right w-full max-w-md justify-self-center lg:text-left"
+                className="service-right block w-full max-w-md justify-self-center lg:text-left cursor-pointer"
               >
 
                 <div className="p-6 md:p-0 text-center lg:text-left">
@@ -1297,7 +1317,17 @@ function Services() {
                     precision, and export-ready packaging systems.
                   </p>
 
-                  <span className="inline-flex items-center gap-2 mt-5 text-sm text-neutral-700">
+                  <span
+                    className="
+                      inline-flex items-center gap-2 mt-6
+                      px-4 py-2
+                      bg-neutral-50
+                      border border-neutral-200
+                      rounded-lg
+                      text-sm text-neutral-900
+                      active:scale-[0.97]
+                    "
+                  >
                     View Service →
                   </span>
 
@@ -1318,6 +1348,7 @@ function Services() {
 }
 
 
+
 function Catalogs() {
   return (
     <section className="bg-[#F3F2EF] pt-[8px]">
@@ -1330,32 +1361,21 @@ function Catalogs() {
           <div className="px-6 md:px-10 xl:px-16 py-14 md:py-16">
 
             {/* HEADER */}
-            <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] items-end gap-6 md:gap-16 mb-14 md:mb-16">
+            <div className="mb-14 md:mb-16 text-center max-w-xl mx-auto">
 
-              {/* LEFT */}
-              <div>
+<div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
+  Catalogs
+</div>
 
-                <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-4 md:mb-6">
-                  Catalogs
-                </div>
+<h2 className="text-[30px] sm:text-[36px] md:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900 mb-5">
+  Production Catalogs
+</h2> 
 
-                <h2 className="text-[30px] sm:text-[36px] md:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900">
-                  Production Catalogs
-                </h2>
+<p className="text-[15px] sm:text-[18px] leading-[1.7] text-neutral-600">
+Overview of categories, materials, finishes, minimum order quantities, and production timelines
+</p> 
 
-              </div>
-
-
-              {/* RIGHT */}
-              <div className="text-[15px] sm:text-[18px] leading-[1.7] text-neutral-600 max-w-xl md:ml-auto">
-
-                Review available categories, material options and finishes,
-                minimum order quantities, and standard production timelines
-                across fashion manufacturing and luxury packaging.
-
-              </div>
-
-            </div>
+</div>
 
 
             {/* CATALOG CARDS */}
@@ -1374,7 +1394,7 @@ function Catalogs() {
                   </div>
 
                   <h3 className="text-[20px] font-medium text-neutral-900 mb-4">
-                    Manufacturing Catalog
+                    Fashion Catalog
                   </h3>
 
                   <p className="text-[15px] leading-[1.7] text-neutral-600">
@@ -1457,20 +1477,20 @@ function Catalogs() {
 
 function Projects() {
 
-  const sectionRef = useRef(null)
+  const sectionRef = useRef(null);
 
   const projects = [
     {
       title: "Magnetic Gift Boxes",
       location: "United Kingdom",
-      image: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772376971/image_2026-02-27_13-50-18_kzqkhy.png",
+      image: "https://res.cloudinary.com/djgu1bhef/image/upload/f_auto,q_auto,w_800/v1772376971/image_2026-02-27_13-50-18_kzqkhy.png",
       description:
         "High-volume collapsible magnetic rigid boxes produced for a major UK holiday event. Over 20,000 boxes delivered with matte lamination and premium printing."
     },
     {
       title: "Multiple Luxury Perfume Packaging",
       location: "Saudi Arabia",
-      image: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772376971/image_2026-02-27_13-49-35_oikaga.png",
+      image: "https://res.cloudinary.com/djgu1bhef/image/upload/f_auto,q_auto,w_800/v1772376971/image_2026-02-27_13-49-35_oikaga.png",
       description:
         "Comprehensive paper packaging program for several Saudi perfume brands including rigid boxes, paper bags, tester blotters, and branded ribbon."
     },
@@ -1484,24 +1504,77 @@ function Projects() {
     {
       title: "Golf Apparel Startup",
       location: "Dubai",
-      image: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772707102/VHD_Golf_Shoot-1284_1_m9lktl.png",
+      image: "https://res.cloudinary.com/djgu1bhef/image/upload/f_auto,q_auto,w_800/v1772707102/VHD_Golf_Shoot-1284_1_m9lktl.png",
       description:
         "End-to-end manufacturing including polos, shorts, pants and caps alongside custom packaging built for launch-ready retail presentation."
     },
-  ]
+  ];
+
+  useEffect(() => {
+
+    const ctx = gsap.context(() => {
+
+      // HEADER → CLEAN FADE (NO PERSONALITY)
+      gsap.fromTo(".projects-header",
+        { opacity: 0 },
+        {
+          opacity: 1,
+          duration: 0.5,
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 85%",
+            once: true,
+          }
+        }
+      );
+
+      // CARDS → INDUSTRIAL FADE (NO STAGGER)
+      const cards = gsap.utils.toArray(".project-card");
+
+      cards.forEach((card) => {
+        gsap.fromTo(card,
+          { opacity: 0, y: 12 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.45,
+            ease: "none",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 92%",
+              once: true,
+            }
+          }
+        );
+      });
+
+    }, sectionRef);
+
+    return () => ctx.revert();
+
+  }, []);
 
   const Card = ({ project }) => (
-    <div className="project-card group relative w-full md:w-[28vw] max-w-[520px] md:max-w-[420px] aspect-[4/5] rounded-2xl overflow-hidden bg-neutral-100 shadow-[0_8px_30px_rgba(0,0,0,0.06)] md:shadow-none z-10">
+    <div className="project-card group relative w-full aspect-[4/5] rounded-2xl overflow-hidden bg-neutral-100">
 
       <img
         src={project.image}
         alt={project.title}
-        className="absolute inset-0 w-full h-full object-cover transition-transform duration-[900ms] ease-[cubic-bezier(.22,.61,.36,1)] md:group-hover:scale-[1.05]"
+        loading="lazy"
+        decoding="async"
+        className="
+          absolute inset-0 w-full h-full object-cover
+          transition-transform duration-[900ms]
+          ease-[cubic-bezier(.22,.61,.36,1)]
+          md:group-hover:scale-[1.04]
+          will-change-transform
+        "
       />
 
-      <div className="absolute inset-0 bg-black/20 md:group-hover:bg-black/75 transition-colors duration-500" />
+      <div className="absolute inset-0 bg-black/20 md:group-hover:bg-black/70 transition-colors duration-500" />
 
-      <div className="absolute bottom-4 left-4 right-4 md:bottom-6 md:left-6 md:right-6 text-white transition-opacity duration-300 md:group-hover:opacity-0">
+      <div className="absolute bottom-4 left-4 right-4 md:bottom-6 md:left-6 md:right-6 text-white transition-opacity duration-200 md:group-hover:opacity-0">
 
         <div className="text-[15px] md:text-[18px] leading-[1.25] tracking-[-0.01em] font-medium">
           {project.title}
@@ -1513,11 +1586,11 @@ function Projects() {
 
       </div>
 
-      <div className="hidden md:flex absolute inset-0 items-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+      <div className="hidden md:flex absolute inset-0 items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
 
-        <div className="px-8 text-white">
+        <div className="px-6 lg:px-8 text-white">
 
-          <div className="text-[20px] font-medium mb-3">
+          <div className="text-[18px] lg:text-[20px] font-medium mb-3">
             {project.title}
           </div>
 
@@ -1525,7 +1598,7 @@ function Projects() {
             {project.location}
           </div>
 
-          <p className="text-[15px] leading-[1.6] text-white/80">
+          <p className="text-[14px] lg:text-[15px] leading-[1.6] text-white/80">
             {project.description}
           </p>
 
@@ -1534,11 +1607,10 @@ function Projects() {
       </div>
 
     </div>
-  )
+  );
 
   return (
-
-    <section className="bg-[#F3F2EF] pt-[8px] overflow-hidden">
+    <section ref={sectionRef} className="bg-[#F3F2EF] pt-[8px] overflow-hidden">
 
       <div className="px-[8px]">
 
@@ -1548,54 +1620,30 @@ function Projects() {
 
           <div className="relative px-6 md:px-10 xl:px-16 pt-16 md:pt-20 pb-20 md:pb-24">
 
-            {/* HEADER */}
-            <div className="projects-header mb-14 md:mb-16 text-center">
+            <div className="projects-header mb-14 md:mb-16 grid grid-cols-1 md:grid-cols-[0.6fr_0.4fr] items-center gap-6 md:gap-16">
 
-              <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
-                Projects
+              <div>
+                <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
+                  Projects
+                </div>
+
+                <h2 className="text-[30px] sm:text-[36px] md:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900">
+                  Project Snapshot
+                </h2>
               </div>
 
-              <h2 className="text-[30px] sm:text-[36px] md:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900">
-                Project Snapshot
-              </h2>
-
-              <p className="mx-auto text-[15px] sm:text-[18px] leading-[1.7] text-neutral-600 mt-6 max-w-[720px]">
-                A look at fashion and packaging projects we've produced. From early development and sampling to final delivery.
-              </p>
-
-            </div>
-
-
-            {/* DESKTOP GRID */}
-            <div
-              className="hidden md:grid"
-              style={{
-                gridTemplateColumns: "1fr auto 1fr",
-                gridTemplateRows: "auto 48px auto",
-                alignItems: "center"
-              }}
-            >
-
-              <div style={{ gridColumn: 2, gridRow: 1, alignSelf: "end" }}>
-                <Card project={projects[1]} />
-              </div>
-
-              <div style={{ gridColumn: 1, gridRow: 2, justifySelf: "center" }}>
-                <Card project={projects[0]} />
-              </div>
-
-              <div style={{ gridColumn: 3, gridRow: 2, justifySelf: "center" }}>
-                <Card project={projects[3]} />
-              </div>
-
-              <div style={{ gridColumn: 2, gridRow: 3, alignSelf: "start" }}>
-                <Card project={projects[2]} />
+              <div className="text-[15px] sm:text-[18px] leading-[1.7] text-neutral-600 max-w-xl">
+              A look at fashion and packaging projects we've produced. From early development and sampling to final delivery.
               </div>
 
             </div>
 
+            <div className="hidden md:grid grid-cols-4 gap-[24px]">
+              {projects.map((project, i) => (
+                <Card key={i} project={project} />
+              ))}
+            </div>
 
-            {/* MOBILE GRID */}
             <div className="md:hidden grid grid-cols-2 gap-4 max-w-[520px] mx-auto">
               {projects.map((project, i) => (
                 <Card key={i} project={project} />
@@ -1609,10 +1657,11 @@ function Projects() {
       </div>
 
     </section>
-
-  )
-
+  );
 }
+
+
+
 
 
 function Leadership() {
@@ -1626,30 +1675,40 @@ function Leadership() {
 
     const ctx = gsap.context(() => {
 
+      split = new SplitText(quoteRef.current, {
+        type: "lines",
+        linesClass: "split-line"
+      })
+
       const tl = gsap.timeline({
-        scrollTrigger: { trigger: sectionRef.current, start: "top 80%" },
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 70%",
+        },
         defaults: { ease: "power2.out" }
       })
 
-      tl.from(".leadership-card", { opacity: 0, y: 40, duration: 0.8 })
-
-      split = new SplitText(quoteRef.current, { type: "lines", linesClass: "split-line" })
-
-      split.lines.forEach(line => {
-        const wrapper = document.createElement("div")
-        wrapper.style.overflow = "hidden"
-        line.parentNode.insertBefore(wrapper, line)
-        wrapper.appendChild(line)
+      // CARD
+      tl.from(".leadership-card", {
+        opacity: 0,
+        y: 30,
+        duration: 0.7
       })
 
+      // QUOTE (clean reveal, no wrapper hack)
       tl.from(split.lines, {
-        yPercent: 100,
+        y: 30,
         opacity: 0,
-        stagger: 0.2,
-        duration: 0.8
-      }, "-=0.4")
+        stagger: 0.08,
+        duration: 0.6
+      }, "-=0.2")
 
-      tl.from(".leadership-identity", { opacity: 0, y: 20, duration: 0.7 }, "-=0.3")
+      // IDENTITY (clear separation)
+      tl.from(".leadership-identity", {
+        opacity: 0,
+        y: 20,
+        duration: 0.6
+      }, "+=0.1")
 
     }, sectionRef)
 
@@ -1665,19 +1724,10 @@ function Leadership() {
 
       <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16">
 
-        {/* TAG OUTSIDE CARD */}
-        <div className="flex justify-center mb-6 md:mb-8">
-
-          <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium">
-            Production Oversight
-          </div>
-
-        </div>
-
+      
 
         {/* CARD */}
-        <div
-          className="leadership-card relative rounded-2xl border border-neutral-200 shadow-[0_12px_40px_rgba(0,0,0,0.04)] px-8 sm:px-12 md:px-16 xl:px-20 py-14 md:py-16 xl:py-20"
+        <div className="leadership-card relative rounded-2xl border border-neutral-200 shadow-[0_12px_40px_rgba(0,0,0,0.04)] px-8 sm:px-12 md:px-16 xl:px-20 py-14 md:py-16 xl:py-20"
           style={{
             background: "radial-gradient(circle at 20% 20%, rgba(255,255,255,1) 0%, rgba(255,255,255,0.96) 35%, rgba(245,243,239,1) 100%)"
           }}
@@ -1692,15 +1742,13 @@ function Leadership() {
             <path d="M7.17 6C5.97 6 5 6.97 5 8.17v3.66C5 13.03 5.97 14 7.17 14H9v3H6v2h3c1.1 0 2-.9 2-2V8.17C11 6.97 10.03 6 8.83 6H7.17zm9 0c-1.2 0-2.17.97-2.17 2.17v3.66c0 1.2.97 2.17 2.17 2.17H18v3h-3v2h3c1.1 0 2-.9 2-2V8.17C20 6.97 19.03 6 17.83 6h-1.66z"/>
           </svg>
 
-
           {/* QUOTE */}
           <h2
             ref={quoteRef}
-            className="text-neutral-900 text-[18px] sm:text-[20px] md:text-[22px] leading-[1.75] tracking-[-0.005em] max-w-[1000px] text-pretty"
+            className="text-neutral-900 text-[18px] sm:text-[20px] md:text-[22px] leading-[1.75] tracking-[-0.005em] max-w-[1000px]"
           >
             We treat every order like it’s our own brand. Your idea is translated into production-ready details, then we manage sampling and execution step by step with our team in China. You get clear updates, real visibility during production, and a final quality check before anything leaves the factory. Quality first — then shipment.
           </h2>
-
 
           {/* IDENTITY */}
           <div className="leadership-identity mt-10 md:mt-14 xl:mt-16 flex items-center gap-4 sm:gap-6">
@@ -1937,13 +1985,36 @@ function Testimonials() {
     },
   ]
 
-  const [index, setIndex] = React.useState(0)
+  const [index, setIndex] = useState(0)
+  const intervalRef = useRef(null)
 
-  const prev = () =>
+  const startAuto = () => {
+    stopAuto()
+    intervalRef.current = setInterval(() => {
+      setIndex((p) => (p === testimonials.length - 1 ? 0 : p + 1))
+    }, 5000)
+  }
+
+  const stopAuto = () => {
+    if (intervalRef.current) clearInterval(intervalRef.current)
+  }
+
+  useEffect(() => {
+    startAuto()
+    return stopAuto
+  }, [])
+
+  const prev = () => {
+    stopAuto()
     setIndex((p) => (p === 0 ? testimonials.length - 1 : p - 1))
+    startAuto()
+  }
 
-  const next = () =>
+  const next = () => {
+    stopAuto()
     setIndex((p) => (p === testimonials.length - 1 ? 0 : p + 1))
+    startAuto()
+  }
 
   const active = testimonials[index]
 
@@ -1966,7 +2037,11 @@ function Testimonials() {
           "radial-gradient(circle at 20% 0%, rgba(44,38,43,0.06) 0%, transparent 50%), #F3F2EF",
       }}
     >
-      <div className="max-w-[1100px] mx-auto px-8">
+      <div
+        className="max-w-[1100px] mx-auto px-8"
+        onMouseEnter={stopAuto}
+        onMouseLeave={startAuto}
+      >
 
         {/* HEADER */}
         <div className="mb-14 md:mb-20 text-center">
@@ -1986,7 +2061,7 @@ function Testimonials() {
         {/* MOBILE */}
         <div className="md:hidden">
 
-          <div className="rounded-2xl bg-white border border-[#D6D1C8] p-5 shadow-sm flex flex-col min-h-[360px]">
+          <div className="rounded-2xl bg-white border border-[#D6D1C8] p-5 flex flex-col min-h-[360px]">
 
             <AnimatePresence mode="wait">
 
@@ -2065,7 +2140,7 @@ function Testimonials() {
                 />
               </div>
 
-              <div className="rounded-2xl bg-white border border-[#D6D1C8] p-5 shadow-sm">
+              <div className="rounded-2xl bg-white border border-[#D6D1C8] p-5">
                 <h3 className="text-sm font-medium text-[#191919]">
                   {active.name}
                 </h3>
@@ -2078,7 +2153,7 @@ function Testimonials() {
 
           </AnimatePresence>
 
-          <div className="h-full rounded-2xl bg-white border border-[#D6D1C8] p-8 flex flex-col justify-between shadow-sm">
+          <div className="h-full rounded-2xl bg-white border border-[#D6D1C8] p-8 flex flex-col justify-between">
 
             <AnimatePresence mode="wait">
 
@@ -2127,7 +2202,11 @@ function Testimonials() {
             {testimonials.map((_, i) => (
               <button
                 key={i}
-                onClick={() => setIndex(i)}
+                onClick={() => {
+                  stopAuto()
+                  setIndex(i)
+                  startAuto()
+                }}
                 className={`w-2 h-2 rounded-full transition ${
                   i === index ? "bg-[#8C7A5B]" : "bg-[#D6D1C8]"
                 }`}

@@ -98,57 +98,51 @@ function Hero() {
 
       <header className="mx-[8px]">
 
-        <div className="max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16 py-5 flex items-center justify-between">
+      <div className="max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16 py-5 flex items-center justify-between">
 
-          {/* LOGO */}
+{/* LOGO */}
+<Link href="/" className="flex items-center relative">
+  <div className="relative h-[36px] md:h-[42px] lg:h-[46px] overflow-visible">
+    <Image
+      src="/images/alraimi-logo-black-1.png"
+      alt="Alraimi Logo"
+      width={90}
+      height={80}
+      className="h-[50px] md:h-[58px] lg:h-[66px] w-auto object-contain -my-2"
+      priority
+    />
+  </div>
+</Link>
 
-          <Link href="/" className="flex items-center">
+{/* NAV */}
+<nav className="flex items-center gap-4 sm:gap-6 md:gap-10 text-sm text-neutral-700">
+  <Link href="/" className="hover:text-black transition">
+    Home
+  </Link>
 
-            <Image
-              src="/images/alraimi-logo-black-1.png"
-              alt="Alraimi Logo"
-              width={42}
-              height={38}
-              priority
-            />
+  <Link href="/fashion-manufacturing" className="hover:text-black transition">
+    Fashion
+  </Link>
 
-          </Link>
+  <Link href="/luxury-packaging" className="hover:text-black transition">
+    Packaging
+  </Link>
 
+  <Link href="/contact" className="text-black">
+    Contact
+  </Link>
+</nav>
 
-          {/* NAV (VISIBLE MOBILE) */}
+{/* CTA */}
+<Link
+  href="/contact#get-pi"
+  className="hidden md:inline-flex items-center gap-2 px-7 py-3 rounded-lg text-sm font-medium bg-black text-white hover:bg-[#7A6A4E] transition"
+>
+  Get Your PI
+  <FaArrowRight className="text-xs" />
+</Link>
 
-          <nav className="flex items-center gap-4 sm:gap-6 md:gap-10 text-sm text-neutral-700">
-
-            <Link href="/" className="hover:text-black transition">
-              Home
-            </Link>
-
-            <Link href="/fashion-manufacturing" className="hover:text-black transition">
-              Fashion
-            </Link>
-
-            <Link href="/luxury-packaging" className="hover:text-black transition">
-              Packaging
-            </Link>
-
-            <Link href="/contact" className="text-black">
-              Contact
-            </Link>
-
-          </nav>
-
-
-          {/* CTA DESKTOP ONLY */}
-
-          <Link
-            href="/contact#get-pi"
-            className="hidden md:inline-flex items-center gap-2 px-7 py-3 rounded-lg text-sm font-medium bg-black text-white hover:bg-[#7A6A4E] transition"
-          >
-            Get Your PI
-            <FaArrowRight className="text-xs" />
-          </Link>
-
-        </div>
+</div>
 
       </header>
 

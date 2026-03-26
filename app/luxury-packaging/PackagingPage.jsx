@@ -136,51 +136,53 @@ function Hero() {
 
           <div className="max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16 pt-[20px]">
 
-            <header className="fade-up flex items-center justify-between">
+<header className="fade-up flex items-center justify-between">
 
-              <Link href="/" className="flex items-center">
+  {/* LOGO */}
+  <Link href="/" className="flex items-center relative">
+    <div className="relative h-[36px] md:h-[42px] lg:h-[46px] overflow-visible">
+      <Image
+        src="/images/alraimi-logo-white-2.png"
+        alt="Alraimi Logo"
+        width={90}
+        height={80}
+        className="h-[50px] md:h-[58px] lg:h-[66px] w-auto object-contain -my-2"
+        priority
+      />
+    </div>
+  </Link>
 
-                <Image
-                  src="/images/alraimi-logo-white-2.png"
-                  alt="Alraimi Logo"
-                  width={42}
-                  height={38}
-                  priority
-                />
+  {/* NAV */}
+  <nav className="flex items-center gap-4 sm:gap-6 md:gap-10 text-sm text-white/70">
+    <Link href="/" className="hover:text-white transition">
+      Home
+    </Link>
 
-              </Link>
+    <Link href="/fashion-manufacturing" className="hover:text-white transition">
+      Fashion
+    </Link>
 
-              <nav className="flex items-center gap-4 sm:gap-6 md:gap-10 text-sm text-white/70">
+    <Link href="/luxury-packaging" className="text-white">
+      Packaging
+    </Link>
 
-                <Link href="/" className="hover:text-white transition">
-                  Home
-                </Link>
+    <Link href="/contact" className="hover:text-white transition">
+      Contact
+    </Link>
+  </nav>
 
-                <Link href="/fashion-manufacturing" className="hover:text-white transition">
-                  Fashion
-                </Link>
+  {/* CTA */}
+  <Link
+    href="/contact#get-pi"
+    className="hidden md:inline-flex items-center gap-2 px-7 py-3 rounded-lg text-sm font-medium bg-[#8C7A5B] text-white hover:bg-[#7A6A4E] transition"
+  >
+    Get Your PI
+    <FaArrowRight className="text-xs" />
+  </Link>
 
-                <Link href="/luxury-packaging" className="text-white">
-                  Packaging
-                </Link>
+</header>
 
-                <Link href="/contact" className="hover:text-white transition">
-                  Contact
-                </Link>
-
-              </nav>
-
-              <Link
-                href="/contact#get-pi"
-                className="hidden md:inline-flex items-center gap-2 px-7 py-3 rounded-lg text-sm font-medium bg-[#8C7A5B] text-white hover:bg-[#7A6A4E] transition"
-              >
-                Get Your PI
-                <FaArrowRight className="text-xs" />
-              </Link>
-
-            </header>
-
-          </div>
+</div>
 
 
           {/* HERO */}
@@ -824,56 +826,62 @@ function Inserts() {
 
     <section ref={sectionRef} className="bg-[#F3F2EF] pt-[8px]">
 
-      <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 py-20 md:py-24 xl:py-28">
+      {/* 🔥 TAMBAH SURFACE PADDING CONSISTENT */}
+      <div className="px-[8px]">
 
-        <div className="grid md:grid-cols-[0.42fr_0.58fr] gap-12 md:gap-16 items-start relative">
+        {/* 🔥 OUTER VERTICAL DIPADATKAN */}
+        <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 py-12 md:py-16 xl:py-18">
 
-
-          {/* LEFT */}
-
-          <div className="inserts-left">
-
-            <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
-              Inserts
-            </div>
-
-            <h2 className="text-[30px] sm:text-[34px] md:text-[38px] lg:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900">
-              Interior Protection
-              <br />
-              Architecture
-            </h2>
-
-          </div>
+          <div className="grid md:grid-cols-[0.42fr_0.58fr] gap-12 md:gap-16 items-start relative">
 
 
-          {/* RIGHT */}
+            {/* LEFT */}
 
-          <div className="relative">
+            <div className="inserts-left">
 
-            <div className="inserts-line absolute left-[4px] top-0 bottom-0 w-[1px] bg-neutral-300"></div>
+              <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
+                Inserts
+              </div>
 
-            <div className="pl-8 md:pl-10 space-y-10 md:space-y-12">
-
-              {inserts.map((item) => (
-
-                <div key={item.title} className="insert-item">
-
-                  <div className="text-[22px] md:text-[24px] font-medium text-neutral-900 mb-3">
-                    {item.title}
-                  </div>
-
-                  <div className="text-neutral-600 text-[16px] md:text-[17px] leading-[1.7] max-w-[640px]">
-                    {item.desc}
-                  </div>
-
-                </div>
-
-              ))}
+              <h2 className="text-[30px] sm:text-[34px] md:text-[38px] lg:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900">
+                Interior Protection
+                <br />
+                Architecture
+              </h2>
 
             </div>
 
-          </div>
 
+            {/* RIGHT */}
+
+            <div className="relative">
+
+              <div className="inserts-line absolute left-[4px] top-0 bottom-0 w-[1px] bg-neutral-300"></div>
+
+              <div className="pl-8 md:pl-10 space-y-10 md:space-y-12">
+
+                {inserts.map((item) => (
+
+                  <div key={item.title} className="insert-item">
+
+                    <div className="text-[22px] md:text-[24px] font-medium text-neutral-900 mb-3">
+                      {item.title}
+                    </div>
+
+                    <div className="text-neutral-600 text-[16px] md:text-[17px] leading-[1.7] max-w-[640px]">
+                      {item.desc}
+                    </div>
+
+                  </div>
+
+                ))}
+
+              </div>
+
+            </div>
+
+
+          </div>
 
         </div>
 
@@ -884,6 +892,7 @@ function Inserts() {
   )
 
 }
+
 
 
 function FactoryCapabilities() {
@@ -1103,91 +1112,96 @@ function Projects() {
 
   return (
 
-    <section ref={sectionRef} className="bg-[#F3F2EF] py-20 md:py-24 xl:py-28">
+    <section ref={sectionRef} className="bg-[#F3F2EF] pt-[8px]">
 
-      <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16">
+      <div className="px-[8px]">
 
-
-        {/* HEADER */}
-
-        <div className="projects-header mb-16 md:mb-20 text-center">
-
-          <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
-            Projects
-          </div>
-
-          <h2 className="text-[30px] sm:text-[34px] md:text-[38px] lg:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900">
-            Selected Packaging Production
-          </h2>
-
-        </div>
+        {/* 🔥 OUTER SPACING DIPADATKAN */}
+        <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 py-12 md:py-16 xl:py-18">
 
 
-        <div className="space-y-14 md:space-y-20">
+          {/* HEADER */}
 
-          {projects.map((project, index) => (
+          <div className="projects-header mb-16 md:mb-20 text-center">
 
-            <div
-              key={project.title}
-              className="project-block grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10 items-stretch"
-            >
-
-
-              {/* IMAGE */}
-
-              <div className={`project-image md:col-span-7 ${index % 2 === 0 ? "md:order-2" : ""}`}>
-
-                <div className="bg-white border border-[#D6D1C8] rounded-2xl overflow-hidden h-full">
-
-                  <div className="aspect-[16/10] md:aspect-[16/9]">
-
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover"
-                    />
-
-                  </div>
-
-                </div>
-
-              </div>
-
-
-              {/* TEXT */}
-
-              <div className={`project-text md:col-span-5 ${index % 2 === 0 ? "md:order-1" : ""}`}>
-
-                <div className="bg-white border border-[#D6D1C8] rounded-2xl h-full flex items-center">
-
-                  <div className="px-8 sm:px-10 md:px-12 py-10 md:py-12 max-w-[460px]">
-
-                    <div className="text-xs tracking-[0.18em] uppercase text-neutral-400 mb-4">
-                      {String(index + 1).padStart(2, "0")}
-                    </div>
-
-                    <h3 className="text-[22px] md:text-[24px] leading-[1.25] font-medium tracking-[-0.015em] text-neutral-900 mb-4">
-                      {project.title}
-                    </h3>
-
-                    <p className="text-[15px] leading-[1.7] text-neutral-600 mb-6">
-                      {project.description}
-                    </p>
-
-                    <div className="text-[13px] tracking-wide text-neutral-500">
-                      {project.meta}
-                    </div>
-
-                  </div>
-
-                </div>
-
-              </div>
-
-
+            <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
+              Projects
             </div>
 
-          ))}
+            <h2 className="text-[30px] sm:text-[34px] md:text-[38px] lg:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900">
+              Selected Packaging Production
+            </h2>
+
+          </div>
+
+
+          <div className="space-y-14 md:space-y-20">
+
+            {projects.map((project, index) => (
+
+              <div
+                key={project.title}
+                className="project-block grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10 items-stretch"
+              >
+
+
+                {/* IMAGE */}
+
+                <div className={`project-image md:col-span-7 ${index % 2 === 0 ? "md:order-2" : ""}`}>
+
+                  <div className="bg-white border border-[#D6D1C8] rounded-2xl overflow-hidden h-full">
+
+                    <div className="aspect-[16/10] md:aspect-[16/9]">
+
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover"
+                      />
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+
+                {/* TEXT */}
+
+                <div className={`project-text md:col-span-5 ${index % 2 === 0 ? "md:order-1" : ""}`}>
+
+                  <div className="bg-white border border-[#D6D1C8] rounded-2xl h-full flex items-center">
+
+                    <div className="px-8 sm:px-10 md:px-12 py-10 md:py-12 max-w-[460px]">
+
+                      <div className="text-xs tracking-[0.18em] uppercase text-neutral-400 mb-4">
+                        {String(index + 1).padStart(2, "0")}
+                      </div>
+
+                      <h3 className="text-[22px] md:text-[24px] leading-[1.25] font-medium tracking-[-0.015em] text-neutral-900 mb-4">
+                        {project.title}
+                      </h3>
+
+                      <p className="text-[15px] leading-[1.7] text-neutral-600 mb-6">
+                        {project.description}
+                      </p>
+
+                      <div className="text-[13px] tracking-wide text-neutral-500">
+                        {project.meta}
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+
+              </div>
+
+            ))}
+
+          </div>
 
         </div>
 
@@ -1267,44 +1281,50 @@ function Gallery() {
 
   return (
 
-    <section className="bg-[#F3F2EF] py-20 md:py-24 xl:py-28">
+    <section className="bg-[#F3F2EF] pt-[8px]">
 
-      <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16">
+      {/* 🔥 CONSISTENT SURFACE */}
+      <div className="px-[8px]">
+
+        {/* 🔥 OUTER VERTICAL DIPADATKAN */}
+        <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 py-12 md:py-16 xl:py-18">
 
 
-        {/* HEADER */}
+          {/* HEADER */}
 
-        <div className="flex justify-center mb-16 md:mb-20">
+          <div className="flex justify-center mb-16 md:mb-20">
 
-          <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium">
-            Gallery
+            <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium">
+              Gallery
+            </div>
+
           </div>
 
-        </div>
 
+          {/* GRID */}
 
-        {/* GRID */}
+          <div className="grid grid-cols-2 md:grid-cols-12 gap-[8px]">
 
-        <div className="grid grid-cols-2 md:grid-cols-12 gap-[8px]">
+            {images.map((item, index) => (
 
-          {images.map((item, index) => (
+              <div key={index} className={item.span}>
 
-            <div key={index} className={item.span}>
+                <div className="rounded-2xl overflow-hidden">
 
-              <div className="rounded-2xl overflow-hidden">
+                  <img
+                    src={optimizeImage(item.src)}
+                    alt={item.alt}
+                    loading="lazy"
+                    className={`w-full ${item.height} object-cover ${item.position}`}
+                  />
 
-                <img
-                  src={optimizeImage(item.src)}
-                  alt={item.alt}
-                  loading="lazy"
-                  className={`w-full ${item.height} object-cover ${item.position}`}
-                />
+                </div>
 
               </div>
 
-            </div>
+            ))}
 
-          ))}
+          </div>
 
         </div>
 
@@ -1318,6 +1338,7 @@ function Gallery() {
 
 
 function FAQ() {
+
   const faqs = [
     {
       q: "Are you the manufacturer?",
@@ -1366,77 +1387,122 @@ function FAQ() {
   ]
 
   const [openIndex, setOpenIndex] = useState(null)
+  const [showAll, setShowAll] = useState(false)
 
   const toggle = (index) => {
     setOpenIndex(openIndex === index ? null : index)
   }
 
+  const visibleFaqs = showAll ? faqs : faqs.slice(0, 6)
+
   return (
-    <section className="bg-[#F3F2EF] py-20 md:py-28">
-      <div className="max-w-[1600px] mx-auto px-6 sm:px-8 xl:px-16">
 
-        <div className="grid grid-cols-1 md:grid-cols-[0.45fr_0.55fr] gap-12 md:gap-20">
+    <section className="bg-[#F3F2EF] pt-[8px]">
 
-          {/* LEFT */}
-          <div>
-            <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
-              FAQ
+      <div className="px-[8px]">
+
+        {/* 🔥 ONLY THIS CHANGED */}
+        <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 pt-4 md:pt-6 xl:pt-8 pb-4 md:pb-6 xl:pb-8">
+
+          <div className="grid grid-cols-1 md:grid-cols-[0.45fr_0.55fr] gap-8 md:gap-20">
+
+            {/* LEFT */}
+            <div>
+
+              <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-5">
+                FAQ
+              </div>
+
+              <h2 className="text-[30px] sm:text-[36px] md:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900">
+                Frequently Asked
+                <br />
+                Questions
+              </h2>
+
             </div>
 
-            <h2 className="text-[32px] sm:text-[36px] md:text-[42px] leading-[1.1] tracking-[-0.015em] font-medium text-neutral-900">
-              Frequently Asked
-              <br />
-              Questions
-            </h2>
-          </div>
+            {/* RIGHT */}
+            <div>
 
-          {/* RIGHT */}
-          <div>
-            {faqs.map((item, index) => {
-              const isOpen = openIndex === index
+              {visibleFaqs.map((item, index) => {
 
-              return (
-                <div key={index} className="border-b border-neutral-200">
+                const isOpen = openIndex === index
+
+                return (
+                  <FAQItem
+                    key={index}
+                    item={item}
+                    isOpen={isOpen}
+                    onClick={() => toggle(index)}
+                  />
+                )
+
+              })}
+
+              {faqs.length > 6 && (
+
+                <div className="mt-8">
 
                   <button
-                    onClick={() => toggle(index)}
-                    className="w-full flex items-start justify-between text-left py-5 md:py-6"
+                    onClick={() => setShowAll(!showAll)}
+                    className="text-sm font-medium text-neutral-700 hover:text-black transition"
                   >
-                    <span className="text-[17px] md:text-[18px] text-neutral-900 leading-[1.45] pr-6 md:pr-10">
-                      {item.q}
-                    </span>
-
-                    <Plus
-                      size={18}
-                      strokeWidth={1.75}
-                      className={`shrink-0 transition-all duration-300 ${
-                        isOpen
-                          ? "rotate-45 text-neutral-900"
-                          : "rotate-0 text-neutral-400"
-                      }`}
-                    />
+                    {showAll ? "Show Less" : "Show More Questions"}
                   </button>
 
-                  <div
-                    className={`overflow-hidden transition-all duration-300 ${
-                      isOpen
-                        ? "max-h-[500px] pb-6 opacity-100"
-                        : "max-h-0 opacity-0"
-                    }`}
-                  >
-                    <p className="text-[15px] md:text-[16px] leading-[1.75] text-neutral-600 pr-6 md:pr-10">
-                      {item.a}
-                    </p>
-                  </div>
-
                 </div>
-              )
-            })}
+
+              )}
+
+            </div>
+
           </div>
 
         </div>
 
       </div>
+
     </section>
+
   )
+}
+
+
+function FAQItem({ item, isOpen, onClick }) {
+
+  return (
+
+    <div className="border-b border-neutral-300 py-4 md:py-6">
+
+      <button
+        onClick={onClick}
+        className="w-full flex items-start justify-between text-left"
+      >
+
+        <span className="text-[16px] md:text-[18px] leading-[1.4] text-neutral-900 pr-6">
+          {item.q}
+        </span>
+
+        <Plus
+          size={18}
+          strokeWidth={1.75}
+          className={`shrink-0 transition-all duration-300 ${
+            isOpen
+              ? "rotate-45 text-neutral-900"
+              : "rotate-0 text-neutral-500"
+          }`}
+        />
+
+      </button>
+
+      {isOpen && (
+        <div className="mt-3 text-[15px] md:text-[16px] leading-[1.7] text-neutral-600 pr-10">
+          {item.a}
+        </div>
+      )}
+
+    </div>
+
+  )
+
 }
