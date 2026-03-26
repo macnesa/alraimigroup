@@ -157,6 +157,7 @@ function IndustrialStatement() {
 function Hero() {
 
   const heroRef = useRef(null)
+  const [isLoaded, setIsLoaded] = useState(false)
 
   const cloudinaryTransform = (url) => {
     return url.replace(
@@ -246,6 +247,8 @@ function Hero() {
   })
 
   useEffect(() => {
+
+    if (!isLoaded) return
 
     const ctx = gsap.context(() => {
   
@@ -403,7 +406,7 @@ function Hero() {
   
     return () => ctx.revert()
   
-  }, [])
+  }, [isLoaded])
 
   return (
 
@@ -428,7 +431,6 @@ function Hero() {
 
 <div className="max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16 py-3 md:py-5 flex items-center justify-between">
 
-{/* LOGO */}
 <Link href="/" className="flex items-center relative">
   <div className="relative h-[34px] md:h-[40px] lg:h-[44px] overflow-visible">
     <Image
@@ -442,27 +444,14 @@ function Hero() {
   </div>
 </Link>
 
-{/* NAV */}
 <nav className="flex items-center gap-3 sm:gap-6 md:gap-10 text-[13px] md:text-sm text-neutral-700">
-  <Link href="/" className="hero-nav-item opacity-0 hover:text-black transition-colors">
-    Home
-  </Link>
-  <Link href="/fashion-manufacturing" className="hero-nav-item opacity-0 hover:text-black transition-colors">
-    Fashion
-  </Link>
-  <Link href="/luxury-packaging" className="hero-nav-item opacity-0 hover:text-black transition-colors">
-    Packaging
-  </Link>
-  <Link href="/contact" className="hero-nav-item opacity-0 hover:text-black transition-colors">
-    Contact
-  </Link>
+  <Link href="/" className="hero-nav-item opacity-0 hover:text-black transition-colors">Home</Link>
+  <Link href="/fashion-manufacturing" className="hero-nav-item opacity-0 hover:text-black transition-colors">Fashion</Link>
+  <Link href="/luxury-packaging" className="hero-nav-item opacity-0 hover:text-black transition-colors">Packaging</Link>
+  <Link href="/contact" className="hero-nav-item opacity-0 hover:text-black transition-colors">Contact</Link>
 </nav>
 
-{/* CTA */}
-<Link
-  href="/contact#get-pi"
-  className="hidden md:inline-flex items-center gap-2 px-7 py-3 rounded-lg text-sm font-medium bg-[#8C7A5B] text-white hover:bg-[#7A6A4E] transition"
->
+<Link href="/contact#get-pi" className="hidden md:inline-flex items-center gap-2 px-7 py-3 rounded-lg text-sm font-medium bg-[#8C7A5B] text-white hover:bg-[#7A6A4E] transition">
   Get Your PI
   <FaArrowRight className="text-xs" />
 </Link>
@@ -475,24 +464,25 @@ function Hero() {
 
 <div className="rounded-2xl overflow-hidden min-h-[max(82svh,640px)] md:min-h-[96svh] relative">
 
-<div className="absolute inset-0">
+<div className="absolute inset-0 bg-[#E5E5E5] animate-pulse" />
 
+<div className="absolute inset-0">
 <Image
 src={cloudinaryTransform(heroImage)}
 alt="Manufacturing oversight in China"
 fill
 priority
 sizes="100vw"
-className="object-cover hero-bg"
+onLoad={() => setIsLoaded(true)}
+className={`object-cover hero-bg transition-opacity duration-700 ${isLoaded ? "opacity-100" : "opacity-0"}`}
 style={{ objectPosition:"70% center" }}
 />
 
 <div className="absolute inset-0 bg-black/35 hero-overlay"/>
 <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/25 to-transparent"/>
-
 </div>
 
-<div className="relative z-10 flex flex-col min-h-[max(82svh,640px)] md:min-h-[96svh] max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16 pt-8 md:pt-0">
+<div className={`relative z-10 flex flex-col min-h-[max(82svh,640px)] md:min-h-[96svh] max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16 pt-8 md:pt-0 transition-opacity duration-500 ${isLoaded ? "opacity-100" : "opacity-0"}`}>
 
 <div className="flex-1 flex items-end md:items-center pb-6 md:pb-0">
 
@@ -572,8 +562,6 @@ className="object-contain h-10 w-auto opacity-80"
 </div>
 
 </div>
-
-{/* DESKTOP CLIENT SECTION */}
 
 <div className="hidden md:block px-[8px] pt-[8px]">
 
@@ -953,7 +941,6 @@ function Achievements() {
   );
 }
 
-
 function HowWeWork() {
 
   const sectionRef = useRef(null)
@@ -975,46 +962,28 @@ function HowWeWork() {
   }, [emblaApi])
 
   useEffect(() => {
-
     if (!emblaApi) return
-
     setScrollSnaps(emblaApi.scrollSnapList())
     emblaApi.on("select", onSelect)
-
     onSelect()
-
   }, [emblaApi, onSelect])
 
   useEffect(() => {
-
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsInView(entry.isIntersecting)
-      },
-      {
-        threshold: 0.35,
-      }
+      ([entry]) => setIsInView(entry.isIntersecting),
+      { threshold: 0.35 }
     )
-
     if (sectionRef.current) observer.observe(sectionRef.current)
-
     return () => observer.disconnect()
-
   }, [])
 
   useEffect(() => {
-
-    if (!emblaApi) return
-    if (!isInView) return
+    if (!emblaApi || !isInView) return
 
     const startAuto = () => {
-
       autoTimer.current = setInterval(() => {
-
         emblaApi.scrollNext()
-
       }, 4200)
-
     }
 
     const stopAuto = () => clearInterval(autoTimer.current)
@@ -1025,12 +994,9 @@ function HowWeWork() {
     emblaApi.on("pointerUp", startAuto)
 
     return () => {
-
       stopAuto()
-
       emblaApi.off("pointerDown", stopAuto)
       emblaApi.off("pointerUp", startAuto)
-
     }
 
   }, [emblaApi, isInView])
@@ -1051,15 +1017,15 @@ function HowWeWork() {
 
       <div className="px-[8px]">
 
+        {/* CONTAINER (UNCHANGED) */}
         <div className="bg-[#1b1b1b] rounded-2xl text-white">
 
           <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 py-16 md:py-24">
 
             {/* HEADER */}
-            <div className="grid grid-cols-1 md:grid-cols-[0.55fr_0.45fr] gap-8 md:gap-16 items-start">
+            <div className="grid grid-cols-1 md:grid-cols-[0.65fr_0.35fr] gap-8 md:gap-16 items-start">
 
               <div>
-
                 <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
                   Process
                 </div>
@@ -1067,16 +1033,14 @@ function HowWeWork() {
                 <h2 className="text-[34px] sm:text-[36px] md:text-[40px] leading-[1.1] tracking-[-0.015em]">
                   How We Work
                 </h2>
-
               </div>
 
-              <p className="text-[16px] sm:text-[18px] leading-[1.7] text-white/65 max-w-[520px]">
+              <p className="text-[16px] sm:text-[18px] leading-[1.7] text-white/65  ">
                 Manufacturing works best when the process is clear. 
                 From the first brief to final delivery, our team stays close to the factory floor—keeping communication simple and production on track.
               </p>
 
             </div>
-
 
             {/* CAROUSEL */}
             <div className="mt-12 md:mt-20 overflow-hidden" ref={emblaRef}>
@@ -1086,6 +1050,7 @@ function HowWeWork() {
                 {steps.map((step, i) => {
 
                   const Icon = step.icon
+                  const isActive = i === selectedIndex
 
                   return (
 
@@ -1094,25 +1059,77 @@ function HowWeWork() {
                       className="shrink-0 basis-[100%] md:basis-[50%] lg:basis-[33.333%] px-3"
                     >
 
-                      <div className="relative rounded-2xl border border-white/10 bg-[#232323] p-8 md:p-12 min-h-[340px] md:min-h-[420px] flex flex-col">
+                      <div
+                        className={`
+                          group relative rounded-2xl p-8 md:p-12 min-h-[340px] md:min-h-[420px] flex flex-col
+                          transition-all duration-500
 
-                        <div className="absolute top-6 right-8 text-[72px] text-white/5">
+                          ${isActive
+                            ? "bg-[#202020] border border-[#8C7A5B]/60"
+                            : "bg-[#232323] border border-white/10 hover:border-white/30"
+                          }
+                        `}
+                      >
+
+                        {/* NUMBER */}
+                        <div
+                          className={`
+                            absolute top-6 right-8 text-[72px] transition-all duration-500
+
+                            ${isActive
+                              ? "text-[#8C7A5B]/30"
+                              : "text-white/5 group-hover:text-white/10"
+                            }
+                          `}
+                        >
                           {String(i + 1).padStart(2, "0")}
                         </div>
 
-                        <div className="w-12 h-12 flex items-center justify-center rounded-lg border border-white/10 bg-[#2a2a2a]">
+                        {/* ICON */}
+                        <div
+                          className={`
+                            w-12 h-12 flex items-center justify-center rounded-lg transition-all duration-300
 
-                          <Icon size={22} strokeWidth={1.5} className="text-[#8C7A5B]" />
-
+                            ${isActive
+                              ? "bg-[#8C7A5B]/20 border border-[#8C7A5B]/60"
+                              : "bg-[#2a2a2a] border border-white/10 group-hover:border-white/30"
+                            }
+                          `}
+                        >
+                          <Icon
+                            size={22}
+                            strokeWidth={1.5}
+                            className={`text-[#8C7A5B] transition-transform duration-300 ${
+                              isActive ? "scale-105" : "group-hover:scale-105"
+                            }`}
+                          />
                         </div>
 
                         <div className="mt-auto">
 
-                          <h4 className="text-[22px] md:text-[24px] mt-6 md:mt-10">
+                          <h4
+                            className={`
+                              text-[22px] md:text-[24px] mt-6 md:mt-10 transition-colors
+
+                              ${isActive
+                                ? "text-white"
+                                : "text-white/80 group-hover:text-white"
+                              }
+                            `}
+                          >
                             {step.title}
                           </h4>
 
-                          <p className="mt-4 md:mt-6 text-white/60 text-[15px] leading-[1.7]">
+                          <p
+                            className={`
+                              mt-4 md:mt-6 text-[15px] leading-[1.7] transition-colors
+
+                              ${isActive
+                                ? "text-white/80"
+                                : "text-white/60 group-hover:text-white/80"
+                              }
+                            `}
+                          >
                             {step.desc}
                           </p>
 
@@ -1130,23 +1147,28 @@ function HowWeWork() {
 
             </div>
 
-
             {/* DOTS */}
-            <div className="mt-10 md:mt-14 flex justify-center gap-4">
+            <div className="mt-10 md:mt-14 flex justify-center items-center gap-3">
 
-              {scrollSnaps.map((_, index) => (
+              {scrollSnaps.map((_, index) => {
 
-                <button
-                  key={index}
-                  onClick={() => emblaApi && emblaApi.scrollTo(index)}
-                  className={`rounded-full transition ${
-                    index === selectedIndex
-                      ? "w-3 h-3 bg-[#8C7A5B]"
-                      : "w-2.5 h-2.5 bg-white/30"
-                  }`}
-                />
+                const isActive = index === selectedIndex
 
-              ))}
+                return (
+                  <button
+                    key={index}
+                    onClick={() => emblaApi && emblaApi.scrollTo(index)}
+                    className={`
+                      transition-all duration-300 rounded-full
+
+                      ${isActive
+                        ? "w-8 h-2 bg-[#8C7A5B]"
+                        : "w-2.5 h-2.5 bg-white/30 hover:bg-white/60"
+                      }
+                    `}
+                  />
+                )
+              })}
 
             </div>
 
