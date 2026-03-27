@@ -9,7 +9,7 @@ export default function Footer() {
         <div className="relative z-20 rounded-2xl overflow-hidden min-h-[340px] md:min-h-[560px] flex items-end shadow-[0_25px_60px_rgba(0,0,0,0.25)]">
 
           <img
-            src="https://res.cloudinary.com/djgu1bhef/image/upload/v1772983520/hero-bgg_omvkvt.png"
+            src="https://res.cloudinary.com/djgu1bhef/image/upload/v1774622052/ChatGPT_Image_Mar_27_2026_09_33_33_PM_fezmdn.png"
             alt="Factory production"
             className="absolute inset-0 w-full h-full object-cover"
           />

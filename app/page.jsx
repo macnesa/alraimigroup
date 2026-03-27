@@ -166,8 +166,13 @@ function Hero() {
     )
   }
 
-  const heroImage =
-    "https://res.cloudinary.com/djgu1bhef/image/upload/v1773152395/ChatGPT_Image_Mar_10_2026_09_16_01_PM_ssybh8.png"
+  const heroImages = [
+    "https://res.cloudinary.com/djgu1bhef/image/upload/v1774616605/ChatGPT_Image_Mar_27_2026_07_55_13_PM_snqo6a.png",
+    "https://res.cloudinary.com/djgu1bhef/image/upload/v1773152395/ChatGPT_Image_Mar_10_2026_09_18_47_PM_jk1fyo.png",
+    "https://res.cloudinary.com/djgu1bhef/image/upload/v1773152395/ChatGPT_Image_Mar_10_2026_09_16_01_PM_ssybh8.png",
+  ]
+
+  const imageRefs = useRef([])
 
   const trackRef = useRef(null)
   const trackRefMobile = useRef(null)
@@ -194,6 +199,79 @@ function Hero() {
   ]
 
   const duplicated = [...logos, ...logos]
+
+  // ================= IMAGE LOOP =================
+  useEffect(() => {
+
+    if (!isLoaded) return
+
+    const ctx = gsap.context(() => {
+
+      const images = imageRefs.current
+      const DURATION = 6
+      const FADE = 1.5
+
+      images.forEach((img, i) => {
+        gsap.set(img, {
+          opacity: i === 0 ? 1 : 0,
+          scale: i === 0 ? 1.05 : 1.08
+        })
+      })
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+
+          const tl = gsap.timeline({
+            repeat: -1,
+            defaults: { ease: "none" }
+          })
+
+          images.forEach((img, i) => {
+
+            const nextIndex = (i + 1) % images.length
+            const next = images[nextIndex]
+
+            const start = i * DURATION
+            const fadeStart = start + (DURATION - FADE)
+
+            if (nextIndex !== 0) {
+              tl.set(next, { scale: 1.08, opacity: 0 }, start)
+            } else {
+              tl.set(next, { opacity: 0 }, start)
+            }
+
+            tl.to(img, {
+              scale: 1,
+              duration: DURATION
+            }, start)
+
+            tl.to(next, {
+              opacity: 1,
+              duration: FADE,
+              ease: "power1.inOut"
+            }, fadeStart)
+
+            tl.to(img, {
+              opacity: 0,
+              duration: FADE,
+              ease: "power1.inOut"
+            }, fadeStart)
+
+          })
+
+          // 🔥 FINAL FIX (NO GLITCH LOOP)
+          tl.set(images[0], {
+            scale: 1.08
+          }, images.length * DURATION - 0.0001)
+
+        })
+      })
+
+    }, heroRef)
+
+    return () => ctx.revert()
+
+  }, [isLoaded])
 
   useLayoutEffect(() => {
 
@@ -232,6 +310,8 @@ function Hero() {
 
   useAnimationFrame((_, delta) => {
 
+    if (!isLoaded) return
+
     const segmentWidth = segmentWidthRef.current
     if (!segmentWidth) return
 
@@ -246,6 +326,7 @@ function Hero() {
 
   })
 
+  // ================= INTRO =================
   useEffect(() => {
 
     if (!isLoaded) return
@@ -253,13 +334,7 @@ function Hero() {
     const ctx = gsap.context(() => {
   
       const mm = gsap.matchMedia()
-  
-      gsap.fromTo(
-        ".hero-bg",
-        { scale: 1.05 },
-        { scale: 1, duration: 1.4, ease: "power3.out" }
-      )
-  
+
       gsap.fromTo(
         ".hero-overlay",
         { opacity: 0.8 },
@@ -272,70 +347,13 @@ function Hero() {
           defaults: { ease: "power3.out" }
         })
   
-        tl.to(".hero-header", {
-          opacity: 1,
-          y: 0,
-          duration: 0.35
-        })
-
-        tl.to(".hero-nav-item",
-          {
-            opacity: 1,
-            stagger: 0.05,
-            duration: 0.35
-          },
-          "-=0.2"
-        )
-  
-        tl.fromTo(".hero-title-line",
-          { yPercent: 100 },
-          {
-            yPercent: 0,
-            stagger: 0.1,
-            duration: 0.55
-          },
-          "-=0.1"
-        )
-  
-        tl.fromTo(".hero-client-mobile",
-          { opacity: 0, y: 16 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.35
-          },
-          "-=0.35"
-        )
-  
-        tl.fromTo(".hero-sub",
-          { opacity: 0, y: 16 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.35
-          },
-          "-=0.25"
-        )
-  
-        tl.fromTo(".hero-cta",
-          { opacity: 0, y: 16 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.35
-          },
-          "-=0.25"
-        )
-  
-        tl.fromTo(".hero-poni",
-          { opacity: 0, y: 16 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.35
-          },
-          "-=0.25"
-        )
+        tl.to(".hero-header", { opacity: 1, y: 0, duration: 0.35 })
+        tl.to(".hero-nav-item", { opacity: 1, stagger: 0.05, duration: 0.35 }, "-=0.2")
+        tl.fromTo(".hero-title-line", { yPercent: 100 }, { yPercent: 0, stagger: 0.1, duration: 0.55 }, "-=0.1")
+        tl.fromTo(".hero-client-mobile", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.35 }, "-=0.35")
+        tl.fromTo(".hero-sub", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.35 }, "-=0.25")
+        tl.fromTo(".hero-cta", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.35 }, "-=0.25")
+        tl.fromTo(".hero-poni", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.35 }, "-=0.25")
   
       })
   
@@ -345,60 +363,12 @@ function Hero() {
           defaults: { ease: "power3.out" }
         })
   
-        tl.to(".hero-header", {
-          opacity: 1,
-          y: 0,
-          duration: 0.45
-        })
-  
-        tl.to(".hero-nav-item",
-          {
-            opacity: 1,
-            stagger: 0.08,
-            duration: 0.45
-          },
-          "-=0.25"
-        )
-  
-        tl.fromTo(".hero-poni",
-          { opacity: 0, y: 20 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.45
-          },
-          "-=0.15"
-        )
-  
-        tl.fromTo(".hero-title-line",
-          { yPercent: 100 },
-          {
-            yPercent: 0,
-            stagger: 0.12,
-            duration: 0.7
-          },
-          "+=0.1"
-        )
-  
-        tl.fromTo(".hero-sub",
-          { opacity: 0, y: 16 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.45
-          },
-          "-=0.3"
-        )
-  
-        tl.fromTo(".hero-cta",
-          { opacity: 0, y: 16 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.45
-          },
-          "-=0.25"
-        )
+        tl.to(".hero-header", { opacity: 1, y: 0, duration: 0.45 })
+        tl.to(".hero-nav-item", { opacity: 1, stagger: 0.08, duration: 0.45 }, "-=0.25")
+        tl.fromTo(".hero-poni", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.45 }, "-=0.15")
+        tl.fromTo(".hero-title-line", { yPercent: 100 }, { yPercent: 0, stagger: 0.12, duration: 0.7 }, "+=0.1")
+        tl.fromTo(".hero-sub", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.45 }, "-=0.3")
+        tl.fromTo(".hero-cta", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.45 }, "-=0.25")
   
       })
   
@@ -467,19 +437,25 @@ function Hero() {
 <div className="absolute inset-0 bg-[#E5E5E5] animate-pulse" />
 
 <div className="absolute inset-0">
-<Image
-src={cloudinaryTransform(heroImage)}
-alt="Manufacturing oversight in China"
-fill
-priority
-sizes="100vw"
-onLoad={() => setIsLoaded(true)}
-className={`object-cover hero-bg transition-opacity duration-700 ${isLoaded ? "opacity-100" : "opacity-0"}`}
-style={{ objectPosition:"70% center" }}
-/>
+
+{heroImages.map((img, i) => (
+  <Image
+    key={i}
+    ref={(el) => (imageRefs.current[i] = el)}
+    src={cloudinaryTransform(img)}
+    alt="Manufacturing oversight in China"
+    fill
+    priority={i === 0}
+    sizes="100vw"
+    onLoad={() => i === 0 && setIsLoaded(true)}
+    className={`object-cover hero-bg transition-opacity duration-700 ${isLoaded ? "opacity-100" : "opacity-0"}`}
+    style={{ objectPosition:"70% center" }}
+  />
+))}
 
 <div className="absolute inset-0 bg-black/35 hero-overlay"/>
 <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/25 to-transparent"/>
+
 </div>
 
 <div className={`relative z-10 flex flex-col min-h-[max(82svh,640px)] md:min-h-[96svh] max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16 pt-8 md:pt-0 transition-opacity duration-500 ${isLoaded ? "opacity-100" : "opacity-0"}`}>
@@ -609,6 +585,7 @@ className="object-contain h-16 md:h-24 w-auto invert opacity-80"
 </>
   )
 }
+
  
 
 
@@ -1001,6 +978,18 @@ function HowWeWork() {
 
   }, [emblaApi, isInView])
 
+  // 🔥 IMAGE SOURCE
+  const stepImages = [
+    "https://res.cloudinary.com/djgu1bhef/image/upload/v1774609069/ChatGPT_Image_Mar_27_2026_05_11_22_PM_ymrlut.png",
+    "https://res.cloudinary.com/djgu1bhef/image/upload/v1774609069/ChatGPT_Image_Mar_27_2026_05_08_12_PM_tieqki.png",
+    "https://res.cloudinary.com/djgu1bhef/image/upload/v1774609069/ChatGPT_Image_Mar_27_2026_05_43_13_PM_ceogwk.png",
+    "https://res.cloudinary.com/djgu1bhef/image/upload/v1774609068/ChatGPT_Image_Mar_27_2026_05_37_01_PM_wfzcdd.png",
+    "https://res.cloudinary.com/djgu1bhef/image/upload/v1774609068/ChatGPT_Image_Mar_27_2026_05_25_14_PM_nvkh2a.png",
+    "https://res.cloudinary.com/djgu1bhef/image/upload/v1774609068/ChatGPT_Image_Mar_27_2026_05_56_52_PM_g67kgx.png",
+    "https://res.cloudinary.com/djgu1bhef/image/upload/v1774609068/ChatGPT_Image_Mar_27_2026_05_45_57_PM_ag4x0d.png",
+    "https://res.cloudinary.com/djgu1bhef/image/upload/v1774609068/ChatGPT_Image_Mar_27_2026_05_49_15_PM_x6wyj9.png",
+  ]
+
   const steps = [
     { icon: FileText, title: "Quick Brief & NDA", desc: "Send style references, quantity range and timeline." },
     { icon: DraftingCompass, title: "Design & Technical Prep", desc: "Finalize tech packs and materials." },
@@ -1017,7 +1006,6 @@ function HowWeWork() {
 
       <div className="px-[8px]">
 
-        {/* CONTAINER (UNCHANGED) */}
         <div className="bg-[#1b1b1b] rounded-2xl text-white">
 
           <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 py-16 md:py-24">
@@ -1035,7 +1023,7 @@ function HowWeWork() {
                 </h2>
               </div>
 
-              <p className="text-[16px] sm:text-[18px] leading-[1.7] text-white/65  ">
+              <p className="text-[16px] sm:text-[18px] leading-[1.7] text-white/65">
                 Manufacturing works best when the process is clear. 
                 From the first brief to final delivery, our team stays close to the factory floor—keeping communication simple and production on track.
               </p>
@@ -1061,7 +1049,7 @@ function HowWeWork() {
 
                       <div
                         className={`
-                          group relative rounded-2xl p-8 md:p-12 min-h-[340px] md:min-h-[420px] flex flex-col
+                          group relative overflow-hidden rounded-2xl p-8 md:p-12 min-h-[340px] md:min-h-[420px] flex flex-col
                           transition-all duration-500
 
                           ${isActive
@@ -1070,6 +1058,19 @@ function HowWeWork() {
                           }
                         `}
                       >
+
+                        {/* 🔥 BG IMAGE (ONLY ADDITION) */}
+                        <div
+                          className={`absolute inset-0 pointer-events-none transition-opacity duration-500 ${
+                            isActive ? "opacity-[0.06]" : "opacity-0"
+                          }`}
+                          style={{
+                            backgroundImage: `url(${stepImages[i]})`,
+                            backgroundSize: "cover",
+                            backgroundPosition: "center",
+                            filter: "grayscale(100%)",
+                          }}
+                        />
 
                         {/* NUMBER */}
                         <div
