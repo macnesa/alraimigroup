@@ -130,7 +130,7 @@ export async function POST(req) {
     // ===== SEND EMAIL =====
     await resend.emails.send({
       from: "Alraimi Website <onboarding@resend.dev>",
-      to: ["mmacnesa@gmail.com"],
+      to: ["hello@alraimigroup.com"],
       subject: "New Production Inquiry",
       html: `
 <div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:#F3F2EF;padding:40px 20px;">
