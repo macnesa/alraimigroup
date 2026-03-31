@@ -700,7 +700,7 @@ function About() {
 
 
 function Achievements() {
-  const sectionRef = useRef(null);
+  const sectionRef = useRef(null)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -716,17 +716,20 @@ function Achievements() {
         stagger: 0.1,
         duration: 0.8,
         ease: "power2.out",
-      });
+      })
 
       document.querySelectorAll(".count-number").forEach((el) => {
-        const target = parseFloat(el.dataset.target);
+        const target = parseFloat(el.dataset.target)
 
         gsap.fromTo(
           el,
           { innerText: 0 },
           {
             innerText: target,
-            duration: 1,
+
+            // 🔥 ONLY CHANGE HERE (SLOWER)
+            duration: 2.2,
+
             ease: "power2.out",
             snap: { innerText: 0.1 },
             scrollTrigger: {
@@ -735,20 +738,20 @@ function Achievements() {
             },
             onUpdate: function () {
 
-              const value = parseFloat(el.innerText);
+              const value = parseFloat(el.innerText)
 
               if (el.dataset.unit === "M") {
-                el.innerText = value.toFixed(1).replace(".0", "");
+                el.innerText = value.toFixed(1).replace(".0", "")
               } else if (el.dataset.unit === "K") {
-                el.innerText = Math.floor(value);
+                el.innerText = Math.floor(value)
               } else {
-                el.innerText = Math.floor(value);
+                el.innerText = Math.floor(value)
               }
 
             },
           }
-        );
-      });
+        )
+      })
 
       gsap.from(".achievement-underline", {
         scaleX: 0,
@@ -760,12 +763,12 @@ function Achievements() {
           start: "top 80%",
         },
         stagger: 0.1,
-      });
+      })
 
-    }, sectionRef);
+    }, sectionRef)
 
-    return () => ctx.revert();
-  }, []);
+    return () => ctx.revert()
+  }, [])
 
   return (
     <section
@@ -775,7 +778,6 @@ function Achievements() {
 
       <div className="px-[8px]">
 
-        {/* OUTER SURFACE */}
         <div className="bg-white border border-neutral-200 rounded-2xl p-[8px]">
 
           <div className="max-w-[1600px] mx-auto px-6 sm:px-10 xl:px-16 py-20 md:py-24">
@@ -812,8 +814,6 @@ function Achievements() {
                   On-Ground Coordination
                 </div>
               </div>
-
-
 
               {/* CARD 2 */}
               <div className="achievement-card relative rounded-2xl overflow-hidden aspect-auto lg:aspect-square">
@@ -852,8 +852,6 @@ function Achievements() {
                 </div>
 
               </div>
-
-
 
               {/* CARD 3 */}
               <div className="achievement-card relative rounded-2xl overflow-hidden aspect-auto lg:aspect-square border border-[#D6D1C8]">
@@ -915,8 +913,9 @@ function Achievements() {
       </div>
 
     </section>
-  );
+  )
 }
+
 
 function HowWeWork() {
 
@@ -1698,40 +1697,55 @@ function Leadership() {
 
     const ctx = gsap.context(() => {
 
-      split = new SplitText(quoteRef.current, {
-        type: "lines",
-        linesClass: "split-line"
-      })
+      const init = () => {
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 70%",
-        },
-        defaults: { ease: "power2.out" }
-      })
+        // 🔥 split AFTER font ready
+        split = new SplitText(quoteRef.current, {
+          type: "lines",
+          linesClass: "split-line"
+        })
 
-      // CARD
-      tl.from(".leadership-card", {
-        opacity: 0,
-        y: 30,
-        duration: 0.7
-      })
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 70%"
+          },
+          defaults: { ease: "power2.out" }
+        })
 
-      // QUOTE (clean reveal, no wrapper hack)
-      tl.from(split.lines, {
-        y: 30,
-        opacity: 0,
-        stagger: 0.08,
-        duration: 0.6
-      }, "-=0.2")
+        // CARD
+        tl.from(".leadership-card", {
+          opacity: 0,
+          y: 30,
+          duration: 0.7
+        })
 
-      // IDENTITY (clear separation)
-      tl.from(".leadership-identity", {
-        opacity: 0,
-        y: 20,
-        duration: 0.6
-      }, "+=0.1")
+        // 🔥 reveal container FIRST (prevent flicker)
+        tl.set(quoteRef.current, { opacity: 1 })
+
+        // 🔥 clean line reveal (original feel)
+        tl.from(split.lines, {
+          y: 30,
+          opacity: 0,
+          stagger: 0.08,
+          duration: 0.6
+        }, "-=0.2")
+
+        // IDENTITY
+        tl.from(".leadership-identity", {
+          opacity: 0,
+          y: 20,
+          duration: 0.6
+        }, "+=0.1")
+
+      }
+
+      // 🔥 WAIT FONT (critical)
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(init)
+      } else {
+        init()
+      }
 
     }, sectionRef)
 
@@ -1747,12 +1761,12 @@ function Leadership() {
 
       <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16">
 
-      
-
         {/* CARD */}
-        <div className="leadership-card relative rounded-2xl border border-neutral-200 shadow-[0_12px_40px_rgba(0,0,0,0.04)] px-8 sm:px-12 md:px-16 xl:px-20 py-14 md:py-16 xl:py-20"
+        <div
+          className="leadership-card relative rounded-2xl border border-neutral-200 shadow-[0_12px_40px_rgba(0,0,0,0.04)] px-8 sm:px-12 md:px-16 xl:px-20 py-14 md:py-16 xl:py-20"
           style={{
-            background: "radial-gradient(circle at 20% 20%, rgba(255,255,255,1) 0%, rgba(255,255,255,0.96) 35%, rgba(245,243,239,1) 100%)"
+            background:
+              "radial-gradient(circle at 20% 20%, rgba(255,255,255,1) 0%, rgba(255,255,255,0.96) 35%, rgba(245,243,239,1) 100%)"
           }}
         >
 
@@ -1768,7 +1782,7 @@ function Leadership() {
           {/* QUOTE */}
           <h2
             ref={quoteRef}
-            className="text-neutral-900 text-[18px] sm:text-[20px] md:text-[22px] leading-[1.75] tracking-[-0.005em] max-w-[1000px]"
+            className="text-neutral-900 text-[18px] sm:text-[20px] md:text-[22px] leading-[1.75] tracking-[-0.005em] max-w-[1000px] opacity-0"
           >
             We treat every order like it’s our own brand. Your idea is translated into production-ready details, then we manage sampling and execution step by step with our team in China. You get clear updates, real visibility during production, and a final quality check before anything leaves the factory. Quality first — then shipment.
           </h2>

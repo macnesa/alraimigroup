@@ -305,71 +305,100 @@ function InquiryForm() {
     name: "",
     email: "",
     whatsapp: "",
-    company_website: ""
+    company_website: "",
+    secondary_contact: ""
   })
 
   const [loading, setLoading] = useState(false)
-
+  const [error, setError] = useState("")
+  const [startTime] = useState(Date.now())
 
   const handleChange = (e) => {
-
     const { name, value } = e.target
 
-    setFormData({
-      ...formData,
+    setFormData((prev) => ({
+      ...prev,
       [name]: value
-    })
-
+    }))
   }
-
 
   const handleCheckbox = (value) => {
+    setFormData((prev) => {
+      let updated = [...prev.projectType]
 
-    let updated = [...formData.projectType]
+      if (updated.includes(value)) {
+        updated = updated.filter(item => item !== value)
+      } else {
+        updated.push(value)
+      }
 
-    if (updated.includes(value)) {
-      updated = updated.filter(item => item !== value)
-    } else {
-      updated.push(value)
-    }
-
-    setFormData({
-      ...formData,
-      projectType: updated
+      return {
+        ...prev,
+        projectType: updated
+      }
     })
-
   }
 
+  const validate = () => {
+    if (!formData.name || !formData.email) {
+      return "Name and Email are required"
+    }
+
+    if (formData.name.length > 100 || formData.email.length > 100) {
+      return "Input too long"
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(formData.email)) {
+      return "Invalid email format"
+    }
+
+    return ""
+  }
 
   const handleSubmit = async (e) => {
-
     e.preventDefault()
 
+    if (loading) return
+
+    const validationError = validate()
+    if (validationError) {
+      setError(validationError)
+      return
+    }
+
+    setError("")
     setLoading(true)
 
     try {
 
-      await fetch("/api/inquiry", {
+      const payload = {
+        ...formData,
+        startTime
+      }
+
+      const res = await fetch("/api/inquiry", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(payload)
       })
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}))
+        throw new Error(data?.error || "Request failed")
+      }
 
       window.location.href = "/inquiry-received"
 
-    } catch (error) {
-
-      console.error(error)
-      alert("Something went wrong")
-
+    } catch (err) {
+      console.error(err)
+      setError(err.message || "Something went wrong")
     }
 
     setLoading(false)
-
   }
-
 
   return (
     <section id="start" className="bg-[#F3F2EF] pt-[8px]">
@@ -433,21 +462,44 @@ function InquiryForm() {
 
                 <form onSubmit={handleSubmit} className="space-y-10">
 
-   {/* HONEYPOT (ANTI SPAM) */}
+                  {/* ERROR */}
+                  {error && (
+                    <div className="text-sm text-red-600 bg-red-50 border border-red-200 px-4 py-3 rounded-lg">
+                      {error}
+                    </div>
+                  )}
 
-   <input
-                  type="text"
-                  name="company_website"
-                  value={formData.company_website}
-                  onChange={handleChange}
-                  style={{ display: "none" }}
-                  autoComplete="off"
-                />
+                  {/* HONEYPOT 1 */}
+                  <input
+                    type="text"
+                    name="company_website"
+                    value={formData.company_website}
+                    onChange={handleChange}
+                    autoComplete="off"
+                    style={{
+                      position: "absolute",
+                      left: "-9999px",
+                      opacity: 0
+                    }}
+                  />
+
+                  {/* HONEYPOT 2 */}
+                  <input
+                    type="text"
+                    name="secondary_contact"
+                    value={formData.secondary_contact}
+                    onChange={handleChange}
+                    autoComplete="off"
+                    style={{
+                      position: "absolute",
+                      left: "-9999px",
+                      opacity: 0
+                    }}
+                  />
 
                   {/* PROJECT TYPE */}
 
                   <div>
-
                     <div className="text-xs tracking-[0.18em] text-neutral-500 mb-4 uppercase">
                       Project Type
                     </div>
@@ -455,122 +507,65 @@ function InquiryForm() {
                     <div className="flex flex-wrap gap-6 text-sm">
 
                       <label className="flex items-center gap-2">
-                        <input
-                          type="checkbox"
-                          onChange={() => handleCheckbox("Fashion")}
-                        />
+                        <input type="checkbox" onChange={() => handleCheckbox("Fashion")} />
                         Fashion
                       </label>
 
                       <label className="flex items-center gap-2">
-                        <input
-                          type="checkbox"
-                          onChange={() => handleCheckbox("Packaging")}
-                        />
+                        <input type="checkbox" onChange={() => handleCheckbox("Packaging")} />
                         Packaging
                       </label>
 
                       <label className="flex items-center gap-2">
-                        <input
-                          type="checkbox"
-                          onChange={() => handleCheckbox("Both")}
-                        />
+                        <input type="checkbox" onChange={() => handleCheckbox("Both")} />
                         Both
                       </label>
 
                     </div>
-
                   </div>
 
 
-                  {/* PRODUCTION DETAILS */}
+                  {/* PRODUCTION */}
 
                   <div>
-
                     <div className="text-xs tracking-[0.18em] text-neutral-500 mb-4 uppercase">
                       Production Details
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-4">
 
-                      <input
-                        name="quantity"
-                        value={formData.quantity}
-                        onChange={handleChange}
-                        className="w-full border border-neutral-300 rounded-lg px-4 py-3 text-sm"
-                        placeholder="Quantity Range"
-                      />
+                      <input name="quantity" value={formData.quantity} onChange={handleChange} placeholder="Quantity Range" className="w-full border border-neutral-300 rounded-lg px-4 py-3 text-sm" />
 
-                      <input
-                        name="timeline"
-                        value={formData.timeline}
-                        onChange={handleChange}
-                        className="w-full border border-neutral-300 rounded-lg px-4 py-3 text-sm"
-                        placeholder="Target Timeline"
-                      />
+                      <input name="timeline" value={formData.timeline} onChange={handleChange} placeholder="Target Timeline" className="w-full border border-neutral-300 rounded-lg px-4 py-3 text-sm" />
 
-                      <input
-                        name="budget"
-                        value={formData.budget}
-                        onChange={handleChange}
-                        className="w-full border border-neutral-300 rounded-lg px-4 py-3 text-sm"
-                        placeholder="Budget (optional)"
-                      />
+                      <input name="budget" value={formData.budget} onChange={handleChange} placeholder="Budget (optional)" className="w-full border border-neutral-300 rounded-lg px-4 py-3 text-sm" />
 
-                      <select
-                        name="brandStage"
-                        value={formData.brandStage}
-                        onChange={handleChange}
-                        className="w-full border border-neutral-300 rounded-lg px-4 py-3 text-sm"
-                      >
-
+                      <select name="brandStage" value={formData.brandStage} onChange={handleChange} className="w-full border border-neutral-300 rounded-lg px-4 py-3 text-sm">
                         <option value="">Brand Stage</option>
                         <option value="Startup">Startup</option>
                         <option value="Established">Established</option>
-
                       </select>
 
                     </div>
-
                   </div>
 
 
                   {/* CONTACT */}
 
                   <div>
-
                     <div className="text-xs tracking-[0.18em] text-neutral-500 mb-4 uppercase">
                       Contact Information
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-4">
 
-                      <input
-                        name="name"
-                        value={formData.name}
-                        onChange={handleChange}
-                        placeholder="Name"
-                        className="border border-neutral-300 rounded-lg px-4 py-3 text-sm"
-                      />
+                      <input name="name" value={formData.name} onChange={handleChange} placeholder="Name" className="border border-neutral-300 rounded-lg px-4 py-3 text-sm" />
 
-                      <input
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        placeholder="Email"
-                        className="border border-neutral-300 rounded-lg px-4 py-3 text-sm"
-                      />
+                      <input name="email" value={formData.email} onChange={handleChange} placeholder="Email" className="border border-neutral-300 rounded-lg px-4 py-3 text-sm" />
 
-                      <input
-                        name="whatsapp"
-                        value={formData.whatsapp}
-                        onChange={handleChange}
-                        placeholder="WhatsApp"
-                        className="border border-neutral-300 rounded-lg px-4 py-3 text-sm md:col-span-2"
-                      />
+                      <input name="whatsapp" value={formData.whatsapp} onChange={handleChange} placeholder="WhatsApp" className="border border-neutral-300 rounded-lg px-4 py-3 text-sm md:col-span-2" />
 
                     </div>
-
                   </div>
 
 
@@ -581,9 +576,7 @@ function InquiryForm() {
                     disabled={loading}
                     className="w-full bg-black text-white rounded-lg py-4 text-sm font-medium hover:bg-neutral-800 transition"
                   >
-
                     {loading ? "Submitting..." : "Submit Inquiry"}
-
                   </button>
 
                 </form>
@@ -614,85 +607,111 @@ function GetYourPI() {
     name: "",
     email: "",
     whatsapp: "",
-    company_website: "" // honeypot
+    company_website: "",
+    secondary_contact: ""
   })
 
   const [loading, setLoading] = useState(false)
-
+  const [error, setError] = useState("")
+  const [startTime] = useState(Date.now())
 
   const handleChange = (e) => {
-
     const { name, value } = e.target
 
-    setFormData({
-      ...formData,
+    setFormData((prev) => ({
+      ...prev,
       [name]: value
-    })
-
+    }))
   }
-
 
   const handleCheckbox = (value) => {
+    setFormData((prev) => {
+      let updated = [...prev.category]
 
-    let updated = [...formData.category]
+      if (updated.includes(value)) {
+        updated = updated.filter(item => item !== value)
+      } else {
+        updated.push(value)
+      }
 
-    if (updated.includes(value)) {
-      updated = updated.filter(item => item !== value)
-    } else {
-      updated.push(value)
-    }
-
-    setFormData({
-      ...formData,
-      category: updated
+      return {
+        ...prev,
+        category: updated
+      }
     })
-
   }
 
+  const validate = () => {
+    if (!formData.name || !formData.email) {
+      return "Name and Email are required"
+    }
+
+    if (formData.name.length > 100 || formData.email.length > 100) {
+      return "Input too long"
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(formData.email)) {
+      return "Invalid email format"
+    }
+
+    return ""
+  }
 
   const handleSubmit = async (e) => {
-
     e.preventDefault()
 
+    if (loading) return
+
+    const validationError = validate()
+    if (validationError) {
+      setError(validationError)
+      return
+    }
+
+    setError("")
     setLoading(true)
 
     try {
 
-      await fetch("/api/pi-request", {
+      const payload = {
+        ...formData,
+        startTime
+      }
+
+      const res = await fetch("/api/pi-request", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(payload)
       })
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}))
+        throw new Error(data?.error || "Request failed")
+      }
 
       window.location.href = "/inquiry-received"
 
-    } catch (error) {
-
-      console.error(error)
-      alert("Something went wrong")
-
+    } catch (err) {
+      console.error(err)
+      setError(err.message || "Something went wrong")
     }
 
     setLoading(false)
-
   }
-
 
   return (
     <section id="get-pi" className="bg-[#F3F2EF] pt-[8px]">
 
       <div className="px-[8px]">
-
         <div className="border border-neutral-200 rounded-2xl">
-
           <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 py-28">
 
             {/* HEADER */}
 
             <div className="max-w-[720px] mx-auto text-center mb-16">
-
               <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
                 GET YOUR PI
               </div>
@@ -708,7 +727,6 @@ function GetYourPI() {
                 Our team will prepare a production quotation and shipping
                 estimate for your project.
               </p>
-
             </div>
 
 
@@ -718,152 +736,93 @@ function GetYourPI() {
 
               <form onSubmit={handleSubmit} className="space-y-10">
 
-                {/* HONEYPOT (ANTI SPAM) */}
+                {/* ERROR MESSAGE */}
+                {error && (
+                  <div className="text-sm text-red-600 bg-red-50 border border-red-200 px-4 py-3 rounded-lg">
+                    {error}
+                  </div>
+                )}
 
+                {/* HONEYPOTS */}
                 <input
                   type="text"
                   name="company_website"
                   value={formData.company_website}
                   onChange={handleChange}
-                  style={{ display: "none" }}
                   autoComplete="off"
+                  style={{
+                    position: "absolute",
+                    left: "-9999px",
+                    opacity: 0
+                  }}
+                />
+
+                <input
+                  type="text"
+                  name="secondary_contact"
+                  value={formData.secondary_contact}
+                  onChange={handleChange}
+                  autoComplete="off"
+                  style={{
+                    position: "absolute",
+                    left: "-9999px",
+                    opacity: 0
+                  }}
                 />
 
                 {/* CATEGORY */}
-
                 <div>
-
                   <div className="text-xs tracking-[0.18em] text-neutral-500 mb-4 uppercase">
                     Packaging Category
                   </div>
 
                   <div className="flex flex-wrap gap-6 text-sm">
-
                     <label className="flex items-center gap-2">
-                      <input
-                        type="checkbox"
-                        onChange={() => handleCheckbox("Perfume / Cosmetics")}
-                      />
+                      <input type="checkbox" onChange={() => handleCheckbox("Perfume / Cosmetics")} />
                       Perfume / Cosmetics
                     </label>
 
                     <label className="flex items-center gap-2">
-                      <input
-                        type="checkbox"
-                        onChange={() => handleCheckbox("Apparel / Gifting")}
-                      />
+                      <input type="checkbox" onChange={() => handleCheckbox("Apparel / Gifting")} />
                       Apparel / Gifting
                     </label>
 
                     <label className="flex items-center gap-2">
-                      <input
-                        type="checkbox"
-                        onChange={() => handleCheckbox("Other")}
-                      />
+                      <input type="checkbox" onChange={() => handleCheckbox("Other")} />
                       Other
                     </label>
-
                   </div>
-
                 </div>
 
-
-                {/* PRODUCTION DETAILS */}
-
+                {/* PRODUCTION */}
                 <div>
-
                   <div className="text-xs tracking-[0.18em] text-neutral-500 mb-4 uppercase">
                     Production Details
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-4">
-
-                    <input
-                      name="quantity"
-                      value={formData.quantity}
-                      onChange={handleChange}
-                      placeholder="Quantity Range"
-                      className="border border-neutral-300 rounded-lg px-4 py-3 text-sm"
-                    />
-
-                    <input
-                      name="country"
-                      value={formData.country}
-                      onChange={handleChange}
-                      placeholder="Target Ship-To Country"
-                      className="border border-neutral-300 rounded-lg px-4 py-3 text-sm"
-                    />
-
-                    <input
-                      name="timeline"
-                      value={formData.timeline}
-                      onChange={handleChange}
-                      placeholder="Target Timeline"
-                      className="border border-neutral-300 rounded-lg px-4 py-3 text-sm"
-                    />
-
-                    <input
-                      name="boxType"
-                      value={formData.boxType}
-                      onChange={handleChange}
-                      placeholder="Box / Bag Type (if known)"
-                      className="border border-neutral-300 rounded-lg px-4 py-3 text-sm"
-                    />
-
-                    <input
-                      name="finishes"
-                      value={formData.finishes}
-                      onChange={handleChange}
-                      placeholder="Finishes (Foil, Emboss, Lamination, etc)"
-                      className="border border-neutral-300 rounded-lg px-4 py-3 text-sm md:col-span-2"
-                    />
-
+                    <input name="quantity" value={formData.quantity} onChange={handleChange} placeholder="Quantity Range" className="border border-neutral-300 rounded-lg px-4 py-3 text-sm" />
+                    <input name="country" value={formData.country} onChange={handleChange} placeholder="Target Ship-To Country" className="border border-neutral-300 rounded-lg px-4 py-3 text-sm" />
+                    <input name="timeline" value={formData.timeline} onChange={handleChange} placeholder="Target Timeline" className="border border-neutral-300 rounded-lg px-4 py-3 text-sm" />
+                    <input name="boxType" value={formData.boxType} onChange={handleChange} placeholder="Box / Bag Type (if known)" className="border border-neutral-300 rounded-lg px-4 py-3 text-sm" />
+                    <input name="finishes" value={formData.finishes} onChange={handleChange} placeholder="Finishes (Foil, Emboss, Lamination, etc)" className="border border-neutral-300 rounded-lg px-4 py-3 text-sm md:col-span-2" />
                   </div>
-
                 </div>
 
-
                 {/* CONTACT */}
-
                 <div>
-
                   <div className="text-xs tracking-[0.18em] text-neutral-500 mb-4 uppercase">
                     Contact Information
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-4">
-
-                    <input
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      placeholder="Name"
-                      className="border border-neutral-300 rounded-lg px-4 py-3 text-sm"
-                    />
-
-                    <input
-                      name="email"
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="Email"
-                      className="border border-neutral-300 rounded-lg px-4 py-3 text-sm"
-                    />
-
-                    <input
-                      name="whatsapp"
-                      value={formData.whatsapp}
-                      onChange={handleChange}
-                      placeholder="WhatsApp"
-                      className="border border-neutral-300 rounded-lg px-4 py-3 text-sm md:col-span-2"
-                    />
-
+                    <input name="name" value={formData.name} onChange={handleChange} placeholder="Name" className="border border-neutral-300 rounded-lg px-4 py-3 text-sm" />
+                    <input name="email" value={formData.email} onChange={handleChange} placeholder="Email" className="border border-neutral-300 rounded-lg px-4 py-3 text-sm" />
+                    <input name="whatsapp" value={formData.whatsapp} onChange={handleChange} placeholder="WhatsApp" className="border border-neutral-300 rounded-lg px-4 py-3 text-sm md:col-span-2" />
                   </div>
-
                 </div>
 
-
                 {/* CTA */}
-
                 <button
                   type="submit"
                   disabled={loading}
@@ -878,9 +837,7 @@ function GetYourPI() {
             </div>
 
           </div>
-
         </div>
-
       </div>
 
     </section>
