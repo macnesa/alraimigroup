@@ -603,13 +603,9 @@ function About() {
       })
 
       tl.from(".about-card", { opacity: 0, y: 40, stagger: 0.15, duration: 0.8 })
-
       tl.from(".about-poni", { opacity: 0, y: 20, duration: 0.6 }, "-=0.4")
-
       tl.from(".about-title-line", { yPercent: 100, stagger: 0.12, duration: 0.9 }, "-=0.3")
-
       tl.from(".about-divider", { scaleX: 0, transformOrigin: "left center", duration: 0.7 }, "-=0.5")
-
       tl.from(".about-paragraph", { opacity: 0, y: 20, stagger: 0.08, duration: 0.7 }, "-=0.4")
 
     }, sectionRef)
@@ -626,17 +622,29 @@ function About() {
 
         <div className="grid grid-cols-1 md:grid-cols-[0.45fr_0.55fr] gap-[8px]">
 
-          {/* LEFT CARD */}
-
+          {/* LEFT CARD (IMAGE) */}
           <div
-            className="about-card rounded-2xl border border-neutral-200 shadow-[0_10px_30px_rgba(0,0,0,0.04)] px-10 md:px-14 py-14 md:py-28 flex flex-col justify-end"
-            style={{
-              background:
-                "radial-gradient(circle at 25% 25%, rgba(255,255,255,1) 0%, rgba(255,255,255,0.95) 40%, rgba(245,243,239,1) 100%)",
-            }}
+            className="about-card relative overflow-hidden rounded-2xl border border-neutral-200 shadow-[0_10px_30px_rgba(0,0,0,0.04)] px-10 md:px-14 py-14 md:py-28 flex flex-col justify-end"
           >
 
-            <div className="max-w-[720px]">
+            {/* IMAGE */}
+            <img
+              src="https://res.cloudinary.com/djgu1bhef/image/upload/v1775115216/ChatGPT_Image_Apr_2_2026_02_32_32_PM_qxfyvq.png"
+              alt="process"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+
+            {/* OVERLAY (BIAR TEKS KEBACA, TAPI GAK MATIIN GAMBAR) */}
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(to top, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.75) 40%, rgba(255,255,255,0.35) 70%, rgba(255,255,255,0.1) 100%)"
+              }}
+            />
+
+            {/* CONTENT */}
+            <div className="relative z-10 max-w-[720px]">
 
               <div className="about-poni inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
                 About
@@ -658,16 +666,21 @@ function About() {
 
               </h2>
 
-              <div className="about-divider h-[1px] w-24 bg-neutral-300" />
+              <div className="about-divider h-[1px] w-24 bg-neutral-400/60" />
 
             </div>
 
           </div>
 
 
-          {/* RIGHT CARD */}
-
-          <div className="about-card rounded-2xl border border-neutral-200 shadow-[0_10px_30px_rgba(0,0,0,0.04)] px-10 md:px-14 py-14 md:py-28 bg-white flex flex-col justify-start">
+          {/* RIGHT CARD (GRADIENT PINDAH SINI) */}
+          <div
+            className="about-card rounded-2xl border border-neutral-200 shadow-[0_10px_30px_rgba(0,0,0,0.04)] px-10 md:px-14 py-14 md:py-28 flex flex-col justify-start"
+            style={{
+              background:
+                "radial-gradient(circle at 25% 25%, rgba(255,255,255,1) 0%, rgba(255,255,255,0.96) 40%, rgba(245,243,239,1) 100%)",
+            }}
+          >
 
             <div className="max-w-[760px] text-[16px] sm:text-[18px] leading-[1.7] text-neutral-700">
 
@@ -675,13 +688,13 @@ function About() {
                 Alraimi Business Group is a <strong className="text-neutral-900 font-medium">China-based manufacturing partner</strong> for premium brands. We produce fashion and luxury paper packaging, managing the <strong className="text-neutral-900 font-medium">full workflow</strong> from sampling and production to <strong className="text-neutral-900 font-medium">quality control</strong> and <strong className="text-neutral-900 font-medium">international shipping</strong>.
               </p>
 
-              <p className="about-paragraph mb-8">
+              <p className="about-paragraph mb-6">
                 Brands work with us because they want <strong className="text-neutral-900 font-medium">one accountable team</strong> on the factory side—clear specs, <strong className="text-neutral-900 font-medium">stable quality</strong>, and <strong className="text-neutral-900 font-medium">reliable delivery</strong> so brands are not left navigating factories, timelines, or supplier communication alone.
               </p>
 
-              <div className="about-paragraph text-sm text-neutral-500">
-                Sampling • Production • AQL Inspection • EXW / FOB / DDP Shipping
-              </div>
+              <p className="about-paragraph text-[13px] text-neutral-400">
+                Sampling · Production · AQL Inspection · EXW / FOB / DDP Shipping
+              </p>
 
             </div>
 
@@ -929,7 +942,6 @@ function HowWeWork() {
 
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [scrollSnaps, setScrollSnaps] = useState([])
-
   const [isInView, setIsInView] = useState(false)
 
   const onSelect = useCallback(() => {
@@ -965,7 +977,6 @@ function HowWeWork() {
     const stopAuto = () => clearInterval(autoTimer.current)
 
     startAuto()
-
     emblaApi.on("pointerDown", stopAuto)
     emblaApi.on("pointerUp", startAuto)
 
@@ -977,7 +988,6 @@ function HowWeWork() {
 
   }, [emblaApi, isInView])
 
-  // 🔥 IMAGE SOURCE
   const stepImages = [
     "https://res.cloudinary.com/djgu1bhef/image/upload/v1774609069/ChatGPT_Image_Mar_27_2026_05_11_22_PM_ymrlut.png",
     "https://res.cloudinary.com/djgu1bhef/image/upload/v1774609069/ChatGPT_Image_Mar_27_2026_05_08_12_PM_tieqki.png",
@@ -1058,16 +1068,26 @@ function HowWeWork() {
                         `}
                       >
 
-                        {/* 🔥 BG IMAGE (ONLY ADDITION) */}
+                        {/* BASE IMAGE */}
                         <div
-                          className={`absolute inset-0 pointer-events-none transition-opacity duration-500 ${
-                            isActive ? "opacity-[0.06]" : "opacity-0"
-                          }`}
+                          className="absolute inset-0 pointer-events-none transition-all duration-500"
                           style={{
                             backgroundImage: `url(${stepImages[i]})`,
                             backgroundSize: "cover",
                             backgroundPosition: "center",
-                            filter: "grayscale(100%)",
+                            opacity: isActive ? 0.12 : 0.05,
+                            filter: isActive ? "grayscale(70%)" : "grayscale(100%)",
+                          }}
+                        />
+
+                        {/* 🔥 WARM TINT (ACTIVE ONLY) */}
+                        <div
+                          className={`
+                            absolute inset-0 pointer-events-none transition-all duration-500
+                            ${isActive ? "opacity-[0.08]" : "opacity-0"}
+                          `}
+                          style={{
+                            background: "linear-gradient(to bottom right, rgba(140,122,91,0.35), transparent)"
                           }}
                         />
 
@@ -1250,64 +1270,53 @@ function Services() {
 
 
             {/* STRUCTURE */}
-            <div
-              className="
-              grid
-              grid-rows-[auto_auto_auto]
-              row-gap-10
-              lg:flex
-              lg:items-center
-              lg:justify-center
-              lg:gap-24
-            "
-            >
+            <div className="grid grid-rows-[auto_auto_auto] row-gap-10 lg:flex lg:items-center lg:justify-center lg:gap-24">
 
               {/* LEFT */}
               <a
                 href="/fashion-manufacturing"
-                className="service-left block w-full max-w-md justify-self-center lg:text-right cursor-pointer"
+                className="service-left group block w-full max-w-md justify-self-center lg:text-right cursor-pointer"
               >
+                {/* 🔥 hover layer (no GSAP conflict) */}
+                <div className="p-6 md:p-0 text-center lg:text-right transition-all duration-500 md:group-hover:-translate-x-2">
 
-                <div className="p-6 md:p-0 text-center lg:text-right">
-
-                  <h3 className="text-[22px] sm:text-[24px] md:text-[26px] leading-[1.2] tracking-[-0.01em] font-normal text-neutral-900">
+                  <h3 className="text-[22px] sm:text-[24px] md:text-[26px] leading-[1.2] tracking-[-0.01em] font-normal text-neutral-900 transition-all duration-500 md:group-hover:-translate-y-1">
                     Fashion Manufacturing
                   </h3>
 
-                  <p className="mt-4 text-[15px] leading-[1.7] text-neutral-600">
+                  <p className="mt-4 text-[15px] leading-[1.7] text-neutral-600 transition-all duration-500 md:group-hover:-translate-y-1">
                     Apparel production from sampling to bulk execution, with
                     structured fit control, technical packs, and AQL inspection.
                   </p>
 
-                  <span
-                    className="
-                      inline-flex items-center gap-2 mt-6
-                      px-4 py-2
-                      bg-neutral-50
-                      border border-neutral-200
-                      rounded-lg
-                      text-sm text-neutral-900
-                      active:scale-[0.97]
-                    "
-                  >
+                  <span className="inline-flex items-center gap-2 mt-6 px-4 py-2 bg-black text-white border border-black rounded-lg text-sm transition-all duration-500 md:group-hover:px-5 md:group-hover:-translate-y-1">
                     View Service →
                   </span>
 
                 </div>
-
               </a>
 
 
               {/* HUB */}
               <div className="service-hub justify-self-center flex items-center justify-center">
 
-                <div className="w-[180px] h-[180px] sm:w-[200px] sm:h-[200px] lg:w-[240px] lg:h-[240px] rounded-full border border-neutral-300 flex items-center justify-center bg-white">
+                <div className="relative w-[180px] h-[180px] sm:w-[200px] sm:h-[200px] lg:w-[240px] lg:h-[240px] rounded-full border border-neutral-300 flex items-center justify-center bg-white">
 
+                  {/* subtle outer glow */}
+                  <div className="absolute inset-0 rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.08)]" />
+
+                  {/* INNER CORE */}
                   <div
-                    className="w-[140px] h-[140px] sm:w-[150px] sm:h-[150px] lg:w-[180px] lg:h-[180px] rounded-full flex items-center justify-center"
+                    className="relative z-10 w-[140px] h-[140px] sm:w-[150px] sm:h-[150px] lg:w-[180px] lg:h-[180px] rounded-full flex items-center justify-center transition-all duration-500"
                     style={{
                       background:
-                        "radial-gradient(circle at 30% 30%, rgba(170,150,115,1) 0%, rgba(140,122,91,1) 60%, rgba(100,85,60,1) 100%)"
+                        "radial-gradient(circle at 30% 30%, rgba(170,150,115,1) 0%, rgba(140,122,91,1) 60%, rgba(100,85,60,1) 100%)",
+                      boxShadow: `
+                        0 18px 40px rgba(0,0,0,0.18),
+                        0 6px 12px rgba(0,0,0,0.08),
+                        inset 0 1px 2px rgba(255,255,255,0.25),
+                        inset 0 -2px 6px rgba(0,0,0,0.12)
+                      `
                     }}
                   >
                     <img
@@ -1325,36 +1334,24 @@ function Services() {
               {/* RIGHT */}
               <a
                 href="/luxury-packaging"
-                className="service-right block w-full max-w-md justify-self-center lg:text-left cursor-pointer"
+                className="service-right group block w-full max-w-md justify-self-center lg:text-left cursor-pointer"
               >
+                <div className="p-6 md:p-0 text-center lg:text-left transition-all duration-500 md:group-hover:translate-x-2">
 
-                <div className="p-6 md:p-0 text-center lg:text-left">
-
-                  <h3 className="text-[22px] sm:text-[24px] md:text-[26px] leading-[1.2] tracking-[-0.01em] font-normal text-neutral-900">
+                  <h3 className="text-[22px] sm:text-[24px] md:text-[26px] leading-[1.2] tracking-[-0.01em] font-normal text-neutral-900 transition-all duration-500 md:group-hover:-translate-y-1">
                     Luxury Packaging
                   </h3>
 
-                  <p className="mt-4 text-[15px] leading-[1.7] text-neutral-600">
+                  <p className="mt-4 text-[15px] leading-[1.7] text-neutral-600 transition-all duration-500 md:group-hover:-translate-y-1">
                     Premium rigid boxes, structural engineering, finishing
                     precision, and export-ready packaging systems.
                   </p>
 
-                  <span
-                    className="
-                      inline-flex items-center gap-2 mt-6
-                      px-4 py-2
-                      bg-neutral-50
-                      border border-neutral-200
-                      rounded-lg
-                      text-sm text-neutral-900
-                      active:scale-[0.97]
-                    "
-                  >
+                  <span className="inline-flex items-center gap-2 mt-6 px-4 py-2 bg-black text-white border border-black rounded-lg text-sm transition-all duration-500 md:group-hover:px-5 md:group-hover:-translate-y-1">
                     View Service →
                   </span>
 
                 </div>
-
               </a>
 
             </div>
@@ -1385,19 +1382,19 @@ function Catalogs() {
             {/* HEADER */}
             <div className="mb-14 md:mb-16 text-center max-w-xl mx-auto">
 
-<div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
-  Catalogs
-</div>
+              <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
+                Catalogs
+              </div>
 
-<h2 className="text-[30px] sm:text-[36px] md:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900 mb-5">
-  Production Catalogs
-</h2> 
+              <h2 className="text-[30px] sm:text-[36px] md:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900 mb-5">
+                Production Catalogs
+              </h2> 
 
-<p className="text-[15px] sm:text-[18px] leading-[1.7] text-neutral-600">
-Overview of categories, materials, finishes, minimum order quantities, and production timelines
-</p> 
+              <p className="text-[15px] sm:text-[18px] leading-[1.7] text-neutral-600">
+                Overview of categories, materials, finishes, minimum order quantities, and production timelines
+              </p> 
 
-</div>
+            </div>
 
 
             {/* CATALOG CARDS */}
@@ -1406,10 +1403,24 @@ Overview of categories, materials, finishes, minimum order quantities, and produ
               {/* FASHION */}
               <a
                 href="https://github.com/boson-collective/alraimi-downloads/releases/download/catalog-2026/alraimi-fashion-manufacturing-catalog-2026.zip"
-                className="group border border-neutral-300 rounded-2xl bg-white p-8 flex flex-col justify-between transition hover:border-neutral-400"
+                className="group relative overflow-hidden border border-neutral-300 rounded-2xl bg-white p-8 flex flex-col justify-between transition hover:border-neutral-400"
               >
 
-                <div>
+                {/* 🔥 TEXTURE */}
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    backgroundImage:
+                      "url('https://res.cloudinary.com/djgu1bhef/image/upload/v1775116661/ChatGPT_Image_Apr_2_2026_02_56_30_PM_ykoyju.png')",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    opacity: 0.42,
+                    mixBlendMode: "multiply"
+                  }}
+                />
+
+                {/* CONTENT */}
+                <div className="relative z-10">
 
                   <div className="text-xs tracking-[0.18em] uppercase text-neutral-500 mb-3">
                     Fashion
@@ -1426,7 +1437,7 @@ Overview of categories, materials, finishes, minimum order quantities, and produ
 
                 </div>
 
-                <div className="flex items-center justify-between mt-8 text-sm font-medium text-neutral-900">
+                <div className="relative z-10 flex items-center justify-between mt-8 text-sm font-medium text-neutral-900">
 
                   <span>Download Catalog</span>
 
@@ -1444,10 +1455,24 @@ Overview of categories, materials, finishes, minimum order quantities, and produ
               {/* PACKAGING */}
               <a
                 href="https://github.com/boson-collective/alraimi-downloads/releases/download/catalog-2026/alraimi-luxury-packaging-catalog-2026.zip"
-                className="group border border-neutral-300 rounded-2xl bg-white p-8 flex flex-col justify-between transition hover:border-neutral-400"
+                className="group relative overflow-hidden border border-neutral-300 rounded-2xl bg-white p-8 flex flex-col justify-between transition hover:border-neutral-400"
               >
 
-                <div>
+                {/* 🔥 TEXTURE */}
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    backgroundImage:
+                      "url('https://res.cloudinary.com/djgu1bhef/image/upload/v1775116661/ChatGPT_Image_Apr_2_2026_02_56_30_PM_ykoyju.png')",
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    opacity: 0.44, // 🔥 sedikit beda biar gak flat identical
+                    mixBlendMode: "multiply"
+                  }}
+                />
+
+                {/* CONTENT */}
+                <div className="relative z-10">
 
                   <div className="text-xs tracking-[0.18em] uppercase text-neutral-500 mb-3">
                     Packaging
@@ -1464,7 +1489,7 @@ Overview of categories, materials, finishes, minimum order quantities, and produ
 
                 </div>
 
-                <div className="flex items-center justify-between mt-8 text-sm font-medium text-neutral-900">
+                <div className="relative z-10 flex items-center justify-between mt-8 text-sm font-medium text-neutral-900">
 
                   <span>Download Catalog</span>
 
@@ -1536,39 +1561,27 @@ function Projects() {
 
     const ctx = gsap.context(() => {
 
-      // HEADER → CLEAN FADE (NO PERSONALITY)
-      gsap.fromTo(".projects-header",
-        { opacity: 0 },
-        {
-          opacity: 1,
-          duration: 0.5,
-          ease: "none",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 85%",
-            once: true,
-          }
+      gsap.from(".projects-header", {
+        opacity: 0,
+        y: 20,
+        duration: 0.6,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 85%",
         }
-      );
+      });
 
-      // CARDS → INDUSTRIAL FADE (NO STAGGER)
-      const cards = gsap.utils.toArray(".project-card");
-
-      cards.forEach((card) => {
-        gsap.fromTo(card,
-          { opacity: 0, y: 12 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.45,
-            ease: "none",
-            scrollTrigger: {
-              trigger: card,
-              start: "top 92%",
-              once: true,
-            }
-          }
-        );
+      gsap.from(".project-card", {
+        opacity: 0,
+        y: 20,
+        stagger: 0.08,
+        duration: 0.6,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%",
+        }
       });
 
     }, sectionRef);
@@ -1578,53 +1591,54 @@ function Projects() {
   }, []);
 
   const Card = ({ project }) => (
-    <div className="project-card group relative w-full aspect-[4/5] rounded-2xl overflow-hidden bg-neutral-100">
+    <div className="project-card">
 
-      <img
-        src={project.image}
-        alt={project.title}
-        loading="lazy"
-        decoding="async"
-        className="
-          absolute inset-0 w-full h-full object-cover
-          transition-transform duration-[900ms]
-          ease-[cubic-bezier(.22,.61,.36,1)]
-          md:group-hover:scale-[1.04]
-          will-change-transform
-        "
-      />
+      {/* IMAGE + LOWER GRADIENT */}
+      <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
 
-      <div className="absolute inset-0 bg-black/20 md:group-hover:bg-black/70 transition-colors duration-500" />
+        <img
+          src={project.image}
+          alt={project.title}
+          className="
+            absolute inset-0 w-full h-full object-cover
+            transition-transform duration-[900ms]
+            ease-[cubic-bezier(.22,.61,.36,1)]
+            hover:scale-[1.03]
+          "
+        />
 
-      <div className="absolute bottom-4 left-4 right-4 md:bottom-6 md:left-6 md:right-6 text-white transition-opacity duration-200 md:group-hover:opacity-0">
-
-        <div className="text-[15px] md:text-[18px] leading-[1.25] tracking-[-0.01em] font-medium">
-          {project.title}
-        </div>
-
-        <div className="text-[10px] md:text-xs tracking-[0.18em] uppercase text-white/70 mt-1 md:mt-2">
-          {project.location}
-        </div>
+        {/* SUBTLE LOWER GRADIENT */}
+        <div
+          className="absolute inset-x-0 bottom-0 h-[18%] pointer-events-none"
+          style={{
+            background: `
+              linear-gradient(
+                to top,
+                rgba(243,242,239,0.95) 0%,
+                rgba(243,242,239,0.6) 30%,
+                rgba(243,242,239,0.2) 70%,
+                transparent 100%
+              )
+            `
+          }}
+        />
 
       </div>
 
-      <div className="hidden md:flex absolute inset-0 items-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      {/* TEXT CARD (NO BG, BORDER ONLY) */}
+      <div className="mt-5 border border-neutral-200 rounded-2xl px-5 py-5">
 
-        <div className="px-6 lg:px-8 text-white">
-
-          <div className="text-[18px] lg:text-[20px] font-medium mb-3">
-            {project.title}
-          </div>
-
-          <div className="text-xs tracking-[0.18em] uppercase text-white/60 mb-5">
-            {project.location}
-          </div>
-
-          <p className="text-[14px] lg:text-[15px] leading-[1.6] text-white/80">
-            {project.description}
-          </p>
-
+        <div className="text-[15px] md:text-[18px] font-medium text-neutral-900 leading-[1.25]">
+          {project.title}
         </div>
+
+        <div className="text-[10px] md:text-xs tracking-[0.18em] uppercase text-[#8C7A5B] mt-2">
+          {project.location}
+        </div>
+
+        <p className="text-[13px] md:text-[14px] leading-[1.6] text-neutral-600 mt-3">
+          {project.description}
+        </p>
 
       </div>
 
@@ -1632,41 +1646,35 @@ function Projects() {
   );
 
   return (
-    <section ref={sectionRef} className="bg-[#F3F2EF] pt-[8px] overflow-hidden">
+    <section ref={sectionRef} className="bg-[#F3F2EF] pt-[8px]">
 
       <div className="px-[8px]">
 
-        <div className="max-w-[1600px] mx-auto bg-white rounded-2xl overflow-hidden relative">
+        <div className="max-w-[1600px] mx-auto rounded-2xl overflow-hidden">
 
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-[520px] bg-gradient-to-t from-[#F3F2EF] to-white" />
+          <div className="px-6 md:px-10 xl:px-16 pt-16 md:pt-20 pb-20 md:pb-24">
 
-          <div className="relative px-6 md:px-10 xl:px-16 pt-16 md:pt-20 pb-20 md:pb-24">
+          <div className="projects-header mb-14 md:mb-16 grid grid-cols-1 md:grid-cols-[0.6fr_0.4fr] gap-6 md:gap-16">
 
-            <div className="projects-header mb-14 md:mb-16 grid grid-cols-1 md:grid-cols-[0.6fr_0.4fr] items-center gap-6 md:gap-16">
+{/* LEFT (UNCHANGED) */}
+<div>
+  <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
+    Projects
+  </div>
 
-              <div>
-                <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
-                  Projects
-                </div>
+  <h2 className="text-[30px] sm:text-[36px] md:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900">
+    Project Snapshot
+  </h2>
+</div>
 
-                <h2 className="text-[30px] sm:text-[36px] md:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900">
-                  Project Snapshot
-                </h2>
-              </div>
+{/* RIGHT */}
+<div className="md:pt-[42px] text-[15px] sm:text-[18px] leading-[1.7] text-neutral-600 max-w-xl">
+  A look at fashion and packaging projects we've produced. From early development and sampling to final delivery.
+</div>
 
-              <div className="text-[15px] sm:text-[18px] leading-[1.7] text-neutral-600 max-w-xl">
-              A look at fashion and packaging projects we've produced. From early development and sampling to final delivery.
-              </div>
+</div>
 
-            </div>
-
-            <div className="hidden md:grid grid-cols-4 gap-[24px]">
-              {projects.map((project, i) => (
-                <Card key={i} project={project} />
-              ))}
-            </div>
-
-            <div className="md:hidden grid grid-cols-2 gap-4 max-w-[520px] mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-[24px]">
               {projects.map((project, i) => (
                 <Card key={i} project={project} />
               ))}
@@ -1699,7 +1707,6 @@ function Leadership() {
 
       const init = () => {
 
-        // 🔥 split AFTER font ready
         split = new SplitText(quoteRef.current, {
           type: "lines",
           linesClass: "split-line"
@@ -1713,17 +1720,14 @@ function Leadership() {
           defaults: { ease: "power2.out" }
         })
 
-        // CARD
         tl.from(".leadership-card", {
           opacity: 0,
           y: 30,
           duration: 0.7
         })
 
-        // 🔥 reveal container FIRST (prevent flicker)
         tl.set(quoteRef.current, { opacity: 1 })
 
-        // 🔥 clean line reveal (original feel)
         tl.from(split.lines, {
           y: 30,
           opacity: 0,
@@ -1731,16 +1735,20 @@ function Leadership() {
           duration: 0.6
         }, "-=0.2")
 
-        // IDENTITY
+        tl.from(".leadership-divider", {
+          opacity: 0,
+          scaleX: 0.8,
+          duration: 0.5
+        }, "-=0.2")
+
         tl.from(".leadership-identity", {
           opacity: 0,
           y: 20,
           duration: 0.6
-        }, "+=0.1")
+        }, "+=0.05")
 
       }
 
-      // 🔥 WAIT FONT (critical)
       if (document.fonts && document.fonts.ready) {
         document.fonts.ready.then(init)
       } else {
@@ -1761,7 +1769,6 @@ function Leadership() {
 
       <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16">
 
-        {/* CARD */}
         <div
           className="leadership-card relative rounded-2xl border border-neutral-200 shadow-[0_12px_40px_rgba(0,0,0,0.04)] px-8 sm:px-12 md:px-16 xl:px-20 py-14 md:py-16 xl:py-20"
           style={{
@@ -1782,13 +1789,23 @@ function Leadership() {
           {/* QUOTE */}
           <h2
             ref={quoteRef}
-            className="text-neutral-900 text-[18px] sm:text-[20px] md:text-[22px] leading-[1.75] tracking-[-0.005em] max-w-[1000px] opacity-0"
+            className="text-neutral-900 text-[18px] sm:text-[20px] md:text-[22px] leading-[1.75] tracking-[-0.005em] max-w-[920px] opacity-0"
           >
-            We treat every order like it’s our own brand. Your idea is translated into production-ready details, then we manage sampling and execution step by step with our team in China. You get clear updates, real visibility during production, and a final quality check before anything leaves the factory. Quality first — then shipment.
+            We treat every order as if it were our own brand. Your idea is translated into production-ready details, then we manage sampling and execution step by step with our team in China. You receive clear updates, real visibility during production, and a final quality check before anything leaves the factory.
           </h2>
 
+          {/* 🔥 GRADIENT DIVIDER */}
+          <div className="leadership-divider mt-5 md:mt-8">
+            <div
+              className="h-[1px] w-full"
+              style={{
+                background: "linear-gradient(to right, rgba(140,122,91,0.35), rgba(140,122,91,0.15), transparent)"
+              }}
+            />
+          </div>
+
           {/* IDENTITY */}
-          <div className="leadership-identity mt-10 md:mt-14 xl:mt-16 flex items-center gap-4 sm:gap-6">
+          <div className="leadership-identity mt-10 md:mt-12 flex items-center gap-4 sm:gap-6">
 
             <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl overflow-hidden border border-neutral-200">
               <img
@@ -1799,12 +1816,32 @@ function Leadership() {
             </div>
 
             <div>
-              <div className="text-neutral-900 font-medium text-[18px]">
-                Haitham Al-Raimi
+
+              <div className="flex items-center gap-2">
+
+                <div className="text-neutral-900 font-medium text-[18px]">
+                  Haitham Al-Raimi
+                </div>
+
+                <a
+                  href="https://linkedin.com/in/YOUR_LINKEDIN"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center justify-center w-5 h-5"
+                >
+                  <img
+                    src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg"
+                    alt="linkedin"
+                    className="w-3.5 h-3.5 opacity-50 transition group-hover:opacity-100"
+                  />
+                </a>
+
               </div>
+
               <div className="text-neutral-500 text-sm mt-1">
                 Managing Director · Alraimi Business Group
               </div>
+
             </div>
 
           </div>
@@ -1991,7 +2028,7 @@ function Testimonials() {
     {
       name: "Arsalan Khan",
       role: "Logistics Innovation Strategist",
-      image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800&auto=format&fit=crop",
+      image: "https://res.cloudinary.com/djgu1bhef/image/upload/v1775107018/WhatsApp_Image_2026-04-01_at_20.43.39_hnh6sg.jpg",
       quote: `Alraimi understands our operational challenges, adapts to our workflows, and delivers real execution discipline. Their oversight feels like a structured extension of our internal team.`,
       stat: "8x",
       statLabel: "increase in operational efficiency",
@@ -1999,7 +2036,7 @@ function Testimonials() {
     {
       name: "Qusai Abuhejleh",
       role: "Construction Supplier · Qatar",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop",
+      image: "https://res.cloudinary.com/djgu1bhef/image/upload/v1775107018/WhatsApp_Image_2026-04-01_at_17.18.19_kprr8y.jpg",
       quote: `Structured procurement flow and serious execution discipline. The consistency removes uncertainty in every shipment.`,
       stat: "3x",
       statLabel: "faster procurement cycles",
@@ -2007,18 +2044,26 @@ function Testimonials() {
     {
       name: "Gehad Mayas",
       role: "Solace Development · Bali",
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop",
+      image: "https://res.cloudinary.com/djgu1bhef/image/upload/v1775107018/WhatsApp_Image_2026-04-01_at_17.22.08_xxpm0p.jpg",
       quote: `Outstanding operational control. Orders arrive on time and in perfect condition. The execution discipline gives real confidence when scaling projects.`,
       stat: "99%",
       statLabel: "on-time delivery rate",
     },
     {
-      name: "Kamilia",
+      name: "Kamila",
       role: "Fashion Brand Owner · Dubai",
-      image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=800&auto=format&fit=crop",
+      image: "https://res.cloudinary.com/djgu1bhef/image/upload/v1775107018/WhatsApp_Image_2026-04-01_at_17.19.33_sxyixz.jpg",
       quote: `Two years of smooth production, fast sampling, and zero structural miscommunication. That level of clarity reduces costly mistakes significantly.`,
       stat: "2 Years",
       statLabel: "continuous production partnership",
+    },
+    {
+      name: "Delphine & Thibault",
+      role: "Fashion Brand Owner",
+      image: "https://res.cloudinary.com/djgu1bhef/image/upload/v1775107018/WhatsApp_Image_2026-04-01_at_17.23.22_oj94hm.jpg",
+      quote: `Consistent product quality and clear production flow allow us to focus fully on growing our golf collections. Every drop is delivered with precision without the usual manufacturing friction.`,
+      stat: "2 Years",
+      statLabel: "consistent product delivery performance",
     },
   ]
 
@@ -2075,7 +2120,7 @@ function Testimonials() {
       }}
     >
       <div
-        className="max-w-[1100px] mx-auto px-8"
+        className="max-w-[1100px] mx-auto px-6 sm:px-8"
         onMouseEnter={stopAuto}
         onMouseLeave={startAuto}
       >
@@ -2087,7 +2132,7 @@ function Testimonials() {
             Testimonials
           </div>
 
-          <h2 className="text-[30px] sm:text-[36px] md:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900">
+          <h2 className="text-[28px] sm:text-[34px] md:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900">
             What Our Customers
             <br />
             Say About Us
@@ -2098,7 +2143,7 @@ function Testimonials() {
         {/* MOBILE */}
         <div className="md:hidden">
 
-          <div className="rounded-2xl bg-white border border-[#D6D1C8] p-5 flex flex-col min-h-[360px]">
+          <div className="rounded-2xl bg-white border border-[#D6D1C8] p-6">
 
             <AnimatePresence mode="wait">
 
@@ -2109,17 +2154,11 @@ function Testimonials() {
                 animate="center"
                 exit="exit"
                 transition={transition}
-                className="flex flex-col flex-1"
               >
 
-                <div className="flex-1">
-                  <p className="text-[16px] sm:text-[18px] leading-[1.6] text-[#2C2C2C]">
-                    "{active.quote}"
-                  </p>
-                </div>
-
-                <div className="mt-5">
-                  <div className="text-[20px] font-medium text-[#191919]">
+                {/* STAT */}
+                <div className="mb-6">
+                  <div className="text-[28px] text-[#191919] leading-none">
                     {active.stat}
                   </div>
                   <p className="text-[#8C7A5B] text-sm mt-1">
@@ -2127,21 +2166,31 @@ function Testimonials() {
                   </p>
                 </div>
 
-                <div className="flex items-center gap-4 pt-4 mt-5 border-t border-[#D6D1C8]">
+                {/* QUOTE */}
+                <p className="text-[16px] leading-[1.6] text-[#2C2C2C] mb-6">
+                  "{active.quote}"
+                </p>
 
-                  <img
-                    src={active.image}
-                    alt={active.name}
-                    className="w-12 h-12 rounded-full object-cover"
-                  />
+                {/* DIVIDER + PROFILE */}
+                <div className="border-t border-[#D6D1C8] pt-5">
 
-                  <div>
-                    <div className="text-sm font-medium text-[#191919]">
-                      {active.name}
+                  <div className="flex items-center gap-4">
+
+                    <img
+                      src={active.image}
+                      alt={active.name}
+                      className="w-12 h-12 rounded-full object-cover"
+                    />
+
+                    <div>
+                      <div className="text-sm font-medium text-[#191919]">
+                        {active.name}
+                      </div>
+                      <div className="text-xs text-[#2C2C2C]">
+                        {active.role}
+                      </div>
                     </div>
-                    <div className="text-xs text-[#2C2C2C]">
-                      {active.role}
-                    </div>
+
                   </div>
 
                 </div>
@@ -2154,7 +2203,8 @@ function Testimonials() {
 
         </div>
 
-        {/* DESKTOP */}
+
+        {/* DESKTOP (UNCHANGED, FULL) */}
         <div className="hidden md:grid md:grid-cols-[260px_1fr] gap-8 items-stretch">
 
           <AnimatePresence mode="wait">
@@ -2203,18 +2253,18 @@ function Testimonials() {
                 transition={transition}
               >
 
-                <p className="text-[20px] lg:text-[22px] leading-[1.6] text-[#2C2C2C]">
-                  "{active.quote}"
-                </p>
-
-                <div className="mt-6">
-                  <div className="text-[22px] font-medium text-[#191919]">
+                <div className="mb-8">
+                  <div className="text-[36px] md:text-[44px] text-[#191919] leading-none">
                     {active.stat}
                   </div>
-                  <p className="text-[#8C7A5B] text-sm mt-1">
+                  <p className="text-[#8C7A5B] text-sm mt-2">
                     {active.statLabel}
                   </p>
                 </div>
+
+                <p className="text-[18px] lg:text-[20px] leading-[1.6] text-[#2C2C2C] max-w-[560px]">
+                  "{active.quote}"
+                </p>
 
               </motion.div>
 
@@ -2223,6 +2273,7 @@ function Testimonials() {
           </div>
 
         </div>
+
 
         {/* NAV */}
         <div className="flex items-center justify-center gap-4 mt-8 md:mt-10">
