@@ -764,168 +764,129 @@ function FitSizing() {
 
 function Projects() {
 
-  const sectionRef = useRef(null)
-
-  useEffect(()=>{
-
-    gsap.registerPlugin(ScrollTrigger)
-
-    const ctx = gsap.context(()=>{
-
-      gsap.from(".projects-header",{
-        opacity:0,
-        y:30,
-        duration:0.6,
-        ease:"power2.out",
-        scrollTrigger:{
-          trigger:sectionRef.current,
-          start:"top 80%",
-          once:true
-        }
-      })
-
-      gsap.utils.toArray(".project-block").forEach((block)=>{
-
-        const tl = gsap.timeline({
-          scrollTrigger:{
-            trigger:block,
-            start:"top 85%",
-            once:true
-          }
-        })
-
-        tl.from(
-          block.querySelector(".project-image"),
-          {opacity:0,scale:1.05,duration:0.8,ease:"power2.out"}
-        )
-
-        tl.from(
-          block.querySelector(".project-text"),
-          {opacity:0,y:40,duration:0.6,ease:"power2.out"},
-          "-=0.6"
-        )
-
-      })
-
-    },sectionRef)
-
-    return ()=>ctx.revert()
-
-  },[])
-
+  const sectionRef = useRef(null);
 
   const projects = [
     {
-      title:"Boutique Womenswear Brand",
-      location:"Dubai (Confidential)",
-      meta:"2025 • Fashion • Womenswear",
-      image:"/images/projects/womenswear.png",
-      description:"Dress-led collections; 5,000+ pcs across drops; samples 2–3 weeks; production 4–8 weeks; size-chart & measurement-video approvals; in-line QC + pre-shipment AQL; DDP available.",
+      title: "Boutique Womenswear Brand",
+      location: "Dubai",
+      meta: "2025 • Fashion • Womenswear",
+      image: "/images/projects/womenswear.png",
+      description:
+        "Dress-led collections produced across multiple drops, supported by structured sampling, measurement approvals, and in-line quality control to ensure consistency at scale.",
     },
     {
-      title:"Golf Apparel Startup",
-      location:"Dubai (Confidential)",
-      meta:"2025 • Fashion • Activewear",
-      image:"/images/projects/golf-apparel.png",
-      description:"Polos, shorts, pants, caps; first order ~3,000 pcs (~300 per color/design); samples 2–3 weeks; production 4–8 weeks; custom paper box & foil garment wrap; in-line QC + pre-shipment AQL; DDP available.",
+      title: "Golf Apparel Startup",
+      location: "Dubai",
+      meta: "2025 • Fashion • Activewear",
+      image: "/images/projects/golf-apparel.png",
+      description:
+        "End-to-end production for a golf apparel startup, covering multiple categories with coordinated packaging and a streamlined process from sampling to final delivery.",
     },
-  ]
+  ];
 
+  useEffect(() => {
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const ctx = gsap.context(() => {
+
+      gsap.from(".projects-header", {
+        opacity: 0,
+        y: 24,
+        duration: 0.7,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 85%",
+        }
+      });
+
+      gsap.utils.toArray(".project-item").forEach((el) => {
+
+        gsap.from(el, {
+          opacity: 0,
+          y: 32,
+          duration: 0.7,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 88%",
+          }
+        });
+
+      });
+
+    }, sectionRef);
+
+    return () => ctx.revert();
+
+  }, []);
 
   return (
-
     <section ref={sectionRef} className="bg-[#F3F2EF] pt-[8px]">
 
       <div className="px-[8px]">
 
-        {/* ✅ OUTER SPACING DIPADATKAN, NO BORDER */}
-        <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 py-12 md:py-16 xl:py-18">
-
+        {/* ❌ padding bottom dihapus */}
+        <div className="max-w-[1600px] mx-auto px-5 sm:px-6 md:px-10 xl:px-16 pt-16 md:pt-20">
 
           {/* HEADER */}
-
           <div className="projects-header mb-16 md:mb-20 text-center">
 
             <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
               Projects
             </div>
 
-            <h2 className="text-[34px] sm:text-[36px] md:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900">
+            <h2 className="text-[30px] sm:text-[34px] md:text-[40px] leading-[1.05] tracking-[-0.02em] text-neutral-900">
               Selected Fashion Production
             </h2>
 
           </div>
 
+          {/* GRID */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 sm:gap-14 md:gap-20 justify-items-center">
 
-          {/* PROJECT BLOCKS */}
-
-          <div className="space-y-[8px]">
-
-            {projects.map((project,index)=>(
+            {projects.map((project) => (
 
               <div
                 key={project.title}
-                className="project-block grid grid-cols-1 md:grid-cols-12 gap-[8px] items-stretch"
+                className="project-item w-full max-w-[420px] md:max-w-[460px]"
               >
 
-
                 {/* IMAGE */}
+                <div className="mb-6 md:mb-8 rounded-2xl overflow-hidden">
+                  <div className="aspect-[3/4]">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
 
-                <div
-                  className={`project-image md:col-span-4 ${
-                    index%2===0 ? "md:order-2": ""
-                  }`}
-                >
+                {/* TEXT */}
+                <div>
 
-                  {/* ✅ BORDER TETAP */}
-                  <div className="border border-[#D6D1C8] rounded-2xl overflow-hidden h-full bg-white">
+                  <h3 className="text-[20px] sm:text-[22px] md:text-[24px] leading-[1.2] text-neutral-900 mb-2">
+                    {project.title}
+                  </h3>
 
-                    <div className="aspect-square md:aspect-[3/4] overflow-hidden">
+                  <div className="text-[10px] sm:text-[11px] tracking-[0.18em] uppercase text-[#8C7A5B] mb-5 md:mb-6">
+                    {project.location}
+                  </div>
 
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-full object-cover object-top"
-                      />
+                  {/* DESC BLOCK */}
+                  <div className="pt-5 md:pt-6 border-t border-neutral-300/70 max-w-[340px] sm:max-w-[360px]">
 
-                    </div>
+                    <p className="text-[14px] sm:text-[15px] leading-[1.7] text-neutral-700">
+                      {project.description}
+                    </p>
 
                   </div>
 
-                </div>
-
-
-                {/* TEXT */}
-
-                <div
-                  className={`project-text md:col-span-8 ${
-                    index%2===0 ? "md:order-1": ""
-                  }`}
-                >
-
-                  {/* ✅ BORDER TETAP */}
-                  <div className="border border-[#D6D1C8] rounded-2xl h-full flex items-center bg-white">
-
-                    <div className="px-8 sm:px-10 md:px-14 xl:px-16 py-8 md:py-10 max-w-[580px]">
-
-                      <div className="text-xs tracking-[0.18em] uppercase text-neutral-500 mb-4">
-                        {String(index+1).padStart(2,"0")}
-                      </div>
-
-                      <h3 className="text-[24px] sm:text-[26px] md:text-[28px] leading-[1.2] tracking-[-0.015em] font-medium text-neutral-900 mb-4">
-                        {project.title}
-                      </h3>
-
-                      <p className="text-[16px] leading-[1.7] text-neutral-600 mb-6">
-                        {project.description}
-                      </p>
-
-                      <div className="text-[13px] tracking-wide text-neutral-500">
-                        {project.meta}
-                      </div>
-
-                    </div>
-
+                  <div className="text-[11px] sm:text-[12px] text-neutral-400 tracking-wide mt-5 md:mt-6">
+                    {project.meta}
                   </div>
 
                 </div>
@@ -941,9 +902,7 @@ function Projects() {
       </div>
 
     </section>
-
-  )
-
+  );
 }
 
 

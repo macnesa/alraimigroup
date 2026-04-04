@@ -1057,31 +1057,37 @@ function Projects() {
 
       gsap.from(".projects-header", {
         opacity: 0,
-        y: 30,
-        duration: 0.6,
+        y: 24,
+        duration: 0.7,
         ease: "power2.out",
-        scrollTrigger: { trigger: sectionRef.current, start: "top 80%", once: true }
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 85%",
+        }
       })
 
       gsap.utils.toArray(".project-block").forEach((block) => {
 
         const tl = gsap.timeline({
-          scrollTrigger: { trigger: block, start: "top 85%", once: true }
+          scrollTrigger: {
+            trigger: block,
+            start: "top 88%",
+          }
         })
 
         tl.from(block.querySelector(".project-image"), {
           opacity: 0,
-          scale: 1.04,
+          scale: 1.03,
           duration: 0.8,
           ease: "power2.out"
         })
 
         tl.from(block.querySelector(".project-text"), {
           opacity: 0,
-          y: 40,
+          y: 32,
           duration: 0.6,
           ease: "power2.out"
-        }, "-=0.6")
+        }, "-=0.5")
 
       })
 
@@ -1095,6 +1101,7 @@ function Projects() {
   const projects = [
     {
       title: "Multiple Luxury Perfume Packaging",
+      location: "Saudi Arabia",
       meta: "2025 • Luxury Packaging • Perfume",
       image: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772376971/image_2026-02-27_13-49-35_oikaga.png",
       description:
@@ -1102,6 +1109,7 @@ function Projects() {
     },
     {
       title: "Foldable Magnetic Gift Boxes",
+      location: "United Kingdom",
       meta: "2025 • Luxury Packaging • Rigid Boxes",
       image: "https://res.cloudinary.com/djgu1bhef/image/upload/v1772376971/image_2026-02-27_13-50-18_kzqkhy.png",
       description:
@@ -1116,40 +1124,37 @@ function Projects() {
 
       <div className="px-[8px]">
 
-        {/* 🔥 OUTER SPACING DIPADATKAN */}
-        <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 py-12 md:py-16 xl:py-18">
-
+        {/* ❌ NO padding bottom */}
+        <div className="max-w-[1600px] mx-auto px-5 sm:px-6 md:px-10 xl:px-16 pt-16 md:pt-20">
 
           {/* HEADER */}
-
           <div className="projects-header mb-16 md:mb-20 text-center">
 
             <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
               Projects
             </div>
 
-            <h2 className="text-[30px] sm:text-[34px] md:text-[38px] lg:text-[40px] leading-[1.1] tracking-[-0.015em] font-normal text-neutral-900">
+            <h2 className="text-[30px] sm:text-[34px] md:text-[40px] leading-[1.05] tracking-[-0.02em] text-neutral-900">
               Selected Packaging Production
             </h2>
 
           </div>
 
 
+          {/* BLOCKS */}
           <div className="space-y-14 md:space-y-20">
 
             {projects.map((project, index) => (
 
               <div
                 key={project.title}
-                className="project-block grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10 items-stretch"
+                className="project-block grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center"
               >
 
-
                 {/* IMAGE */}
+                <div className={`project-image md:col-span-8 ${index % 2 === 0 ? "md:order-2" : ""}`}>
 
-                <div className={`project-image md:col-span-7 ${index % 2 === 0 ? "md:order-2" : ""}`}>
-
-                  <div className="bg-white border border-[#D6D1C8] rounded-2xl overflow-hidden h-full">
+                  <div className="rounded-2xl overflow-hidden">
 
                     <div className="aspect-[16/10] md:aspect-[16/9]">
 
@@ -1167,29 +1172,32 @@ function Projects() {
 
 
                 {/* TEXT */}
+                <div className={`project-text md:col-span-4 ${index % 2 === 0 ? "md:order-1" : ""}`}>
 
-                <div className={`project-text md:col-span-5 ${index % 2 === 0 ? "md:order-1" : ""}`}>
+                  <div className="max-w-[360px]">
 
-                  <div className="bg-white border border-[#D6D1C8] rounded-2xl h-full flex items-center">
+                    {/* TITLE */}
+                    <h3 className="text-[20px] sm:text-[22px] md:text-[24px] leading-[1.25] tracking-[-0.01em] font-medium text-neutral-900 mb-2">
+                      {project.title}
+                    </h3>
 
-                    <div className="px-8 sm:px-10 md:px-12 py-10 md:py-12 max-w-[460px]">
+                    {/* LOCATION */}
+                    <div className="text-[11px] tracking-[0.18em] uppercase text-[#8C7A5B] mb-6">
+                      {project.location}
+                    </div>
 
-                      <div className="text-xs tracking-[0.18em] uppercase text-neutral-400 mb-4">
-                        {String(index + 1).padStart(2, "0")}
-                      </div>
+                    {/* DESC (CONSISTENT SYSTEM) */}
+                    <div className="pt-6 border-t border-neutral-300/70">
 
-                      <h3 className="text-[22px] md:text-[24px] leading-[1.25] font-medium tracking-[-0.015em] text-neutral-900 mb-4">
-                        {project.title}
-                      </h3>
-
-                      <p className="text-[15px] leading-[1.7] text-neutral-600 mb-6">
+                      <p className="text-[14px] sm:text-[15px] leading-[1.7] text-neutral-700">
                         {project.description}
                       </p>
 
-                      <div className="text-[13px] tracking-wide text-neutral-500">
-                        {project.meta}
-                      </div>
+                    </div>
 
+                    {/* META */}
+                    <div className="text-[11px] sm:text-[12px] text-neutral-400 tracking-wide mt-6">
+                      {project.meta}
                     </div>
 
                   </div>
