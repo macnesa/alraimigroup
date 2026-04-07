@@ -4,6 +4,7 @@
 import Image from "next/image";
 import Link from 'next/link'
 import React, { useRef, useEffect, useState, useCallback } from "react";
+import { useRouter } from "next/navigation"
 import {
   FaApple,
   FaAmazon,
@@ -294,292 +295,433 @@ function Hero() {
 
 /* ---------------- FORM ---------------- */
 
+
+function Field({ label, children, note, error }) {
+  return (
+    <div>
+      <label className={`text-sm font-medium ${error ? "text-red-600" : "text-neutral-700"}`}>
+        {label}
+      </label>
+
+      {note && <p className="text-xs text-neutral-400 mt-1">{note}</p>}
+
+      <div className="mt-2">{children}</div>
+
+      {error && (
+        <p className="text-xs text-red-500 mt-1">{error}</p>
+      )}
+    </div>
+  )
+}
+
 function InquiryForm() {
 
-  const [formData, setFormData] = useState({
-    projectType: [],
+  const router = useRouter()
+
+  const [step, setStep] = useState(1)
+
+  const next = () => {
+    if (!validateStep()) return
+    setStep((s) => Math.min(s + 1, 4))
+  }
+
+  const back = () => setStep((s) => Math.max(s - 1, 1))
+
+  // ================= STATE =================
+  const [form, setForm] = useState({
+    name: "",
+    company: "",
+    email: "",
+    phone: "",
+    projectType: "",
+    productName: "",
+    specs: "",
+    referenceLink: "",
     quantity: "",
     timeline: "",
     budget: "",
     brandStage: "",
-    name: "",
-    email: "",
-    whatsapp: "",
-    company_website: "",
-    secondary_contact: ""
+    branding: "",
+    targetPrice: "",
+    orderTimeline: "",
+    deadline: "",
+    destination: "",
+    notes: ""
   })
 
+  const [files, setFiles] = useState([])
+  const [fileNames, setFileNames] = useState([])
+
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState("")
-  const [startTime] = useState(Date.now())
+  const [submitError, setSubmitError] = useState("")
 
-  const handleChange = (e) => {
-    const { name, value } = e.target
+  // ================= AUTOSAVE =================
+  useEffect(() => {
+    const saved = localStorage.getItem("inquiry-form")
+    if (saved) {
+      const parsed = JSON.parse(saved)
+      if (parsed.form) setForm(parsed.form)
+      if (parsed.fileNames) setFileNames(parsed.fileNames)
+    }
+  }, [])
 
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value
-    }))
+  useEffect(() => {
+    localStorage.setItem(
+      "inquiry-form",
+      JSON.stringify({ form, fileNames })
+    )
+  }, [form, fileNames])
+
+  // ================= ERROR =================
+  const [errors, setErrors] = useState({})
+
+  const validationConfig = {
+    1: ["name", "email"],
+    2: ["projectType", "productName", "specs"],
+    3: ["quantity", "timeline"],
+    4: ["orderTimeline", "deadline", "destination"]
   }
 
-  const handleCheckbox = (value) => {
-    setFormData((prev) => {
-      let updated = [...prev.projectType]
+  const errorMessages = {
+    name: "Full name is required",
+    email: "Email is required",
+    projectType: "Please select a project type",
+    productName: "Product name is required",
+    specs: "Product specifications are required",
+    quantity: "Quantity is required",
+    timeline: "Timeline is required",
+    orderTimeline: "Order timeline is required",
+    deadline: "Delivery deadline is required",
+    destination: "Shipping destination is required"
+  }
 
-      if (updated.includes(value)) {
-        updated = updated.filter(item => item !== value)
-      } else {
-        updated.push(value)
-      }
+  const validateStep = () => {
 
-      return {
-        ...prev,
-        projectType: updated
-      }
+    const requiredFields = validationConfig[step] || []
+    let newErrors = {}
+
+    requiredFields.forEach(field => {
+      if (!form[field]) newErrors[field] = errorMessages[field]
     })
+
+    setErrors(newErrors)
+
+    return Object.keys(newErrors).length === 0
   }
 
-  const validate = () => {
-    if (!formData.name || !formData.email) {
-      return "Name and Email are required"
-    }
-
-    if (formData.name.length > 100 || formData.email.length > 100) {
-      return "Input too long"
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(formData.email)) {
-      return "Invalid email format"
-    }
-
-    return ""
+  const handleChange = (key, value) => {
+    setForm(prev => ({ ...prev, [key]: value }))
+    setErrors(prev => ({ ...prev, [key]: "" }))
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
+  // ================= FILE =================
+  const allowedTypes = [
+    "image/jpeg",
+    "image/png",
+    "image/webp",
+    "application/pdf"
+  ]
 
+  const maxSize = 5 * 1024 * 1024
+  const maxFiles = 5
+
+  const handleFile = (e) => {
+
+    const selected = Array.from(e.target.files)
+
+    let updatedFiles = [...files]
+    let updatedNames = [...fileNames]
+
+    for (let file of selected) {
+
+      if (!allowedTypes.includes(file.type)) {
+        alert(`${file.name} format not allowed`)
+        continue
+      }
+
+      if (file.size > maxSize) {
+        alert(`${file.name} exceeds 5MB`)
+        continue
+      }
+
+      if (updatedFiles.length >= maxFiles) {
+        alert(`Max ${maxFiles} files`)
+        break
+      }
+
+      updatedFiles.push(file)
+      updatedNames.push(file.name)
+    }
+
+    setFiles(updatedFiles)
+    setFileNames(updatedNames)
+  }
+
+  const removeFile = (index) => {
+    const f = [...files]
+    const n = [...fileNames]
+    f.splice(index, 1)
+    n.splice(index, 1)
+    setFiles(f)
+    setFileNames(n)
+  }
+
+  // ================= SUBMIT =================
+  const handleSubmit = async () => {
+
+    if (!validateStep()) return
     if (loading) return
 
-    const validationError = validate()
-    if (validationError) {
-      setError(validationError)
-      return
-    }
-
-    setError("")
     setLoading(true)
+    setSubmitError("")
 
     try {
+      const data = new FormData()
 
-      const payload = {
-        ...formData,
-        startTime
-      }
+      Object.entries(form).forEach(([k, v]) => data.append(k, v))
+
+      files.forEach(f => data.append("files", f))
 
       const res = await fetch("/api/inquiry", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(payload)
+        body: data
       })
 
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}))
-        throw new Error(data?.error || "Request failed")
-      }
+      const text = await res.text()
 
-      window.location.href = "/inquiry-received"
+      if (!res.ok) throw new Error(text)
+
+      localStorage.removeItem("inquiry-form")
+
+      router.push("/inquiry-received")
 
     } catch (err) {
-      console.error(err)
-      setError(err.message || "Something went wrong")
+      setSubmitError(err.message || "Failed to send inquiry")
     }
 
     setLoading(false)
   }
 
   return (
-    <section id="start" className="bg-[#F3F2EF] pt-[8px]">
-
+    <section className="bg-[#F3F2EF] pt-[8px]">
       <div className="px-[8px]">
-
         <div className="border border-neutral-200 rounded-2xl">
 
           <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 py-28">
 
-            <div className="grid md:grid-cols-[0.45fr_0.55fr] gap-[72px] items-start">
+            <div className="grid md:grid-cols-[0.42fr_0.58fr] gap-[80px] items-start">
 
-              {/* LEFT */}
-
-              <div>
-
-                <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-8">
-                  START YOUR BRAND
+              {/* LEFT (UNCHANGED) */}
+              <div className="max-w-[520px]">
+                <div className="mb-8">
+                  <div className="inline-flex border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase">
+                    START YOUR BRAND
+                  </div>
                 </div>
 
-                <h2 className="text-[40px] leading-[1.1] tracking-[-0.015em] mb-6 text-neutral-900">
+                <h2 className="text-[40px] leading-[1.1] text-neutral-900 mb-6">
                   Production Inquiry
                 </h2>
 
-                <p className="text-[18px] leading-[1.7] text-neutral-600 mb-10 max-w-[520px]">
-                  Tell us about your project and production requirements. Our
-                  team will review feasibility, sampling needs, and production
-                  timelines with our factory partners in China.
+                <p className="text-[18px] text-neutral-600 mb-10 leading-[1.7]">
+                Tell us about your project and production requirements. Our team will review feasibility, sampling needs, and production timelines with our factory partners in China.
                 </p>
 
-                <div className="space-y-5 text-[16px] text-neutral-700">
+                <div className="space-y-6 text-neutral-700">
+                  <div className="flex gap-4"><span className="text-[#8C7A5B]">01</span>Submit complete project details</div>
+                  <div className="flex gap-4"><span className="text-[#8C7A5B]">02</span>Internal feasibility review</div>
+                  <div className="flex gap-4"><span className="text-[#8C7A5B]">03</span>Sampling & quotation alignment</div>
+                  <div className="flex gap-4"><span className="text-[#8C7A5B]">04</span>Production planning</div>
+                </div>
+              </div>
 
-                  <div className="flex gap-3">
-                    <span className="text-[#8C7A5B]">01</span>
-                    Submit project details
+              {/* RIGHT */}
+              <div className="border border-neutral-200 rounded-2xl p-10 bg-white">
+
+                {/* HEADER */}
+                <div className="mb-10 flex items-center justify-between">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-xl border border-neutral-300 flex items-center justify-center">
+                      0{step}
+                    </div>
+                    <div>
+                      <div className="text-xs tracking-[0.2em] text-neutral-400 uppercase">
+                        Step {step} of 4
+                      </div>
+                      <div className="text-[16px] text-neutral-800">
+                        {["Client Details","Product Details","Order Details","Logistics"][step-1]}
+                      </div>
+                    </div>
                   </div>
 
-                  <div className="flex gap-3">
-                    <span className="text-[#8C7A5B]">02</span>
-                    Factory feasibility review
+                  <div className="w-[120px] h-[2px] bg-neutral-200 relative">
+                    <div
+                      className="absolute top-0 left-0 h-full bg-black transition-all duration-500"
+                      style={{ width: `${(step/4)*100}%` }}
+                    />
                   </div>
+                </div>
 
-                  <div className="flex gap-3">
-                    <span className="text-[#8C7A5B]">03</span>
-                    Sampling & quotation
-                  </div>
+                {submitError && (
+                  <div className="mb-6 text-sm text-red-600">{submitError}</div>
+                )}
 
-                  <div className="flex gap-3">
-                    <span className="text-[#8C7A5B]">04</span>
-                    Production planning
-                  </div>
+                <div className="border-t border-neutral-200 pt-10 space-y-8">
+
+                  {/* STEP 1 */}
+                  {step === 1 && (
+                    <>
+                      <Field label="Full Name *" error={errors.name}>
+                        <input value={form.name} onChange={(e)=>handleChange("name", e.target.value)} placeholder="Your full name" className={`input ${errors.name?"input-error":""}`}/>
+                      </Field>
+
+                      <Field label="Company Name">
+                        <input value={form.company} onChange={(e)=>handleChange("company", e.target.value)} placeholder="Your company or business name" className="input"/>
+                      </Field>
+
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <Field label="Email *" error={errors.email}>
+                          <input value={form.email} onChange={(e)=>handleChange("email", e.target.value)} placeholder="email@company.com" className={`input ${errors.email?"input-error":""}`}/>
+                        </Field>
+
+                        <Field label="Phone / WhatsApp">
+                          <input value={form.phone} onChange={(e)=>handleChange("phone", e.target.value)} placeholder="+62 XXX XXX XXXX" className="input"/>
+                        </Field>
+                      </div>
+                    </>
+                  )}
+
+                  {/* STEP 2 */}
+                  {step === 2 && (
+                    <>
+                      <Field label="Project Type *" error={errors.projectType}>
+                        <div className="flex flex-wrap gap-3 text-sm">
+                          {["Fashion","Packaging","Other Production"].map(item => (
+                            <div key={item} onClick={()=>handleChange("projectType", item)} className={`chip ${form.projectType===item?"active":""} ${errors.projectType?"chip-error":""}`}>
+                              {item}
+                            </div>
+                          ))}
+                        </div>
+                      </Field>
+
+                      <Field label="Product Name *" error={errors.productName}>
+                        <input value={form.productName} onChange={(e)=>handleChange("productName", e.target.value)} placeholder="e.g. Solar LED Street Light 100W" className={`input ${errors.productName?"input-error":""}`}/>
+                      </Field>
+
+                      <Field label="Product Specifications *" error={errors.specs}>
+                        <textarea value={form.specs} onChange={(e)=>handleChange("specs", e.target.value)} placeholder="e.g. 100W, 6000K..." className={`input h-[120px] ${errors.specs?"input-error":""}`}/>
+                      </Field>
+
+                      <Field label="References (Link or File)">
+                        <div className="space-y-4">
+                          <input value={form.referenceLink} onChange={(e)=>handleChange("referenceLink", e.target.value)} placeholder="Paste reference link (optional)" className="input"/>
+
+                          <label className="flex items-center gap-4 cursor-pointer">
+                            <div className="flex-1 border border-dashed border-neutral-300 rounded-lg px-4 py-4 text-sm text-neutral-500 text-center">
+                              {fileNames.length > 0
+                                ? fileNames.join(", ")
+                                : "Upload (JPG, PNG, WEBP, PDF • max 5MB • max 5 files)"}
+                            </div>
+                            <input type="file" multiple accept=".jpg,.jpeg,.png,.webp,.pdf" className="hidden" onChange={handleFile}/>
+                          </label>
+
+                          {fileNames.map((name,i)=>(
+                            <div key={i} className="flex justify-between text-xs">
+                              {name}
+                              <button onClick={()=>removeFile(i)} className="text-red-500">Remove</button>
+                            </div>
+                          ))}
+                        </div>
+                      </Field>
+                    </>
+                  )}
+
+                  {/* STEP 3 */}
+                  {step === 3 && (
+                    <>
+                      <Field label="Quantity Range *" error={errors.quantity}>
+                        <input value={form.quantity} onChange={(e)=>handleChange("quantity", e.target.value)} placeholder="e.g. 500 - 2000 pcs" className={`input ${errors.quantity?"input-error":""}`}/>
+                      </Field>
+
+                      <div className="grid md:grid-cols-2 gap-4">
+                        <Field label="Target Timeline *" error={errors.timeline}>
+                          <input value={form.timeline} onChange={(e)=>handleChange("timeline", e.target.value)} placeholder="e.g. 4–8 weeks" className={`input ${errors.timeline?"input-error":""}`}/>
+                        </Field>
+
+                        <Field label="Target Price (optional)">
+                          <input value={form.budget} onChange={(e)=>handleChange("budget", e.target.value)} placeholder="e.g. $5,000 - $20,000" className="input"/>
+                        </Field>
+                      </div>
+
+                      <Field label="Brand Stage">
+                        <div className="relative">
+                          <select value={form.brandStage} onChange={(e)=>handleChange("brandStage", e.target.value)} className="input pr-10 appearance-none">
+                            <option value="">Select stage</option>
+                            <option>Startup</option>
+                            <option>Growing</option>
+                            <option>Established</option>
+                          </select>
+                          <div className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400">▾</div>
+                        </div>
+                      </Field>
+
+                      <Field label="Branding Requirements">
+                        <div className="flex flex-wrap gap-3 text-sm">
+                          {["Custom Logo / OEM","Standard Packaging","Both","Undecided"].map(item => (
+                            <div key={item} onClick={()=>handleChange("branding", item)} className={`chip ${form.branding===item?"active":""}`}>
+                              {item}
+                            </div>
+                          ))}
+                        </div>
+                      </Field>
+
+                      <Field label="Target Price per Unit (USD)">
+                        <input value={form.targetPrice} onChange={(e)=>handleChange("targetPrice", e.target.value)} placeholder="e.g. 45.00" className="input"/>
+                      </Field>
+                    </>
+                  )}
+
+                  {/* STEP 4 */}
+                  {step === 4 && (
+                    <>
+                      <Field label="Order Timeline *" error={errors.orderTimeline}>
+                        <input value={form.orderTimeline} onChange={(e)=>handleChange("orderTimeline", e.target.value)} placeholder="e.g. Within 2 weeks" className={`input ${errors.orderTimeline?"input-error":""}`}/>
+                      </Field>
+
+                      <Field label="Delivery Deadline *" error={errors.deadline}>
+                        <input value={form.deadline} onChange={(e)=>handleChange("deadline", e.target.value)} placeholder="dd/mm/yyyy" className={`input ${errors.deadline?"input-error":""}`}/>
+                      </Field>
+
+                      <Field label="Shipping Destination *" error={errors.destination}>
+                        <input value={form.destination} onChange={(e)=>handleChange("destination", e.target.value)} placeholder="e.g. Jakarta, Indonesia" className={`input ${errors.destination?"input-error":""}`}/>
+                      </Field>
+
+                      <Field label="Additional Notes">
+                        <textarea value={form.notes} onChange={(e)=>handleChange("notes", e.target.value)} placeholder="Any additional details..." className="input h-[120px]"/>
+                      </Field>
+                    </>
+                  )}
 
                 </div>
 
-              </div>
-
-
-              {/* RIGHT FORM */}
-
-              <div className="border border-neutral-200 rounded-2xl p-10 bg-white">
-
-                <form onSubmit={handleSubmit} className="space-y-10">
-
-                  {/* ERROR */}
-                  {error && (
-                    <div className="text-sm text-red-600 bg-red-50 border border-red-200 px-4 py-3 rounded-lg">
-                      {error}
-                    </div>
+                {/* CTA */}
+                <div className="flex justify-between mt-12">
+                  {step > 1 && (
+                    <button onClick={back} className="px-5 py-3 border border-neutral-300 rounded-lg text-sm">
+                      ← Back
+                    </button>
                   )}
 
-                  {/* HONEYPOT 1 */}
-                  <input
-                    type="text"
-                    name="company_website"
-                    value={formData.company_website}
-                    onChange={handleChange}
-                    autoComplete="off"
-                    style={{
-                      position: "absolute",
-                      left: "-9999px",
-                      opacity: 0
-                    }}
-                  />
-
-                  {/* HONEYPOT 2 */}
-                  <input
-                    type="text"
-                    name="secondary_contact"
-                    value={formData.secondary_contact}
-                    onChange={handleChange}
-                    autoComplete="off"
-                    style={{
-                      position: "absolute",
-                      left: "-9999px",
-                      opacity: 0
-                    }}
-                  />
-
-                  {/* PROJECT TYPE */}
-
-                  <div>
-                    <div className="text-xs tracking-[0.18em] text-neutral-500 mb-4 uppercase">
-                      Project Type
-                    </div>
-
-                    <div className="flex flex-wrap gap-6 text-sm">
-
-                      <label className="flex items-center gap-2">
-                        <input type="checkbox" onChange={() => handleCheckbox("Fashion")} />
-                        Fashion
-                      </label>
-
-                      <label className="flex items-center gap-2">
-                        <input type="checkbox" onChange={() => handleCheckbox("Packaging")} />
-                        Packaging
-                      </label>
-
-                      <label className="flex items-center gap-2">
-                        <input type="checkbox" onChange={() => handleCheckbox("Both")} />
-                        Both
-                      </label>
-
-                    </div>
-                  </div>
-
-
-                  {/* PRODUCTION */}
-
-                  <div>
-                    <div className="text-xs tracking-[0.18em] text-neutral-500 mb-4 uppercase">
-                      Production Details
-                    </div>
-
-                    <div className="grid md:grid-cols-2 gap-4">
-
-                      <input name="quantity" value={formData.quantity} onChange={handleChange} placeholder="Quantity Range" className="w-full border border-neutral-300 rounded-lg px-4 py-3 text-sm" />
-
-                      <input name="timeline" value={formData.timeline} onChange={handleChange} placeholder="Target Timeline" className="w-full border border-neutral-300 rounded-lg px-4 py-3 text-sm" />
-
-                      <input name="budget" value={formData.budget} onChange={handleChange} placeholder="Budget (optional)" className="w-full border border-neutral-300 rounded-lg px-4 py-3 text-sm" />
-
-                      <select name="brandStage" value={formData.brandStage} onChange={handleChange} className="w-full border border-neutral-300 rounded-lg px-4 py-3 text-sm">
-                        <option value="">Brand Stage</option>
-                        <option value="Startup">Startup</option>
-                        <option value="Established">Established</option>
-                      </select>
-
-                    </div>
-                  </div>
-
-
-                  {/* CONTACT */}
-
-                  <div>
-                    <div className="text-xs tracking-[0.18em] text-neutral-500 mb-4 uppercase">
-                      Contact Information
-                    </div>
-
-                    <div className="grid md:grid-cols-2 gap-4">
-
-                      <input name="name" value={formData.name} onChange={handleChange} placeholder="Name" className="border border-neutral-300 rounded-lg px-4 py-3 text-sm" />
-
-                      <input name="email" value={formData.email} onChange={handleChange} placeholder="Email" className="border border-neutral-300 rounded-lg px-4 py-3 text-sm" />
-
-                      <input name="whatsapp" value={formData.whatsapp} onChange={handleChange} placeholder="WhatsApp" className="border border-neutral-300 rounded-lg px-4 py-3 text-sm md:col-span-2" />
-
-                    </div>
-                  </div>
-
-
-                  {/* CTA */}
-
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="w-full bg-black text-white rounded-lg py-4 text-sm font-medium hover:bg-neutral-800 transition"
-                  >
-                    {loading ? "Submitting..." : "Submit Inquiry"}
-                  </button>
-
-                </form>
+                  {step < 4 ? (
+                    <button onClick={next} className="ml-auto bg-black text-white px-6 py-3 rounded-lg">
+                      Continue →
+                    </button>
+                  ) : (
+                    <button onClick={handleSubmit} className="ml-auto bg-[#8C7A5B] text-white px-6 py-3 rounded-lg">
+                      {loading ? "Sending..." : "Submit Inquiry"}
+                    </button>
+                  )}
+                </div>
 
               </div>
 
@@ -588,115 +730,193 @@ function InquiryForm() {
           </div>
 
         </div>
-
       </div>
+
+      <style jsx>{`
+        .input {
+          width: 100%;
+          border: 1px solid #d4d4d4;
+          border-radius: 10px;
+          padding: 12px 14px;
+          font-size: 14px;
+          outline: none;
+          background: white;
+        }
+
+        .input:focus {
+          border-color: #8C7A5B;
+        }
+
+        .input-error {
+          border-color: #dc2626;
+          background: #fef2f2;
+        }
+
+        .chip {
+          padding: 10px 14px;
+          border: 1px solid #d4d4d4;
+          border-radius: 999px;
+          cursor: pointer;
+        }
+
+        .chip-error {
+          border-color: #dc2626;
+          color: #dc2626;
+        }
+
+        .chip:hover {
+          border-color: #8C7A5B;
+          color: #8C7A5B;
+        }
+
+        .chip.active {
+          border-color: #8C7A5B;
+          background: #F3F2EF;
+          color: #8C7A5B;
+        }
+      `}</style>
 
     </section>
   )
-}
+} 
+ 
 
 function GetYourPI() {
 
-  const [formData, setFormData] = useState({
-    category: [],
-    quantity: "",
-    country: "",
-    timeline: "",
-    boxType: "",
-    finishes: "",
+  const router = useRouter()
+  const [step, setStep] = useState(1)
+
+  const next = () => {
+    if (!validateStep()) return
+    setStep((s) => Math.min(s + 1, 4))
+  }
+
+  const back = () => setStep((s) => Math.max(s - 1, 1))
+
+  const [form, setForm] = useState({
     name: "",
+    company: "",
     email: "",
-    whatsapp: "",
-    company_website: "",
-    secondary_contact: ""
+    phone: "",
+    projectType: "",
+    productName: "",
+    specs: "",
+    referenceLink: "",
+    quantity: "",
+    timeline: "",
+    budget: "",
+    brandStage: "",
+    branding: "",
+    targetPrice: "",
+    orderTimeline: "",
+    deadline: "",
+    destination: "",
+    notes: ""
   })
 
+  const [files, setFiles] = useState([])
+  const [fileNames, setFileNames] = useState([])
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState("")
-  const [startTime] = useState(Date.now())
+  const [errors, setErrors] = useState({})
 
-  const handleChange = (e) => {
-    const { name, value } = e.target
+  useEffect(() => {
+    setErrors({})
+  }, [step])
 
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value
-    }))
+  const validationConfig = {
+    1: ["name", "email"],
+    2: ["projectType", "productName", "specs"],
+    3: ["quantity", "timeline"],
+    4: ["orderTimeline", "deadline", "destination"]
   }
 
-  const handleCheckbox = (value) => {
-    setFormData((prev) => {
-      let updated = [...prev.category]
+  const errorMessages = {
+    name: "Full name is required",
+    email: "Email is required",
+    projectType: "Please select a project type",
+    productName: "Product name is required",
+    specs: "Product specifications are required",
+    quantity: "Quantity is required",
+    timeline: "Timeline is required",
+    orderTimeline: "Order timeline is required",
+    deadline: "Delivery deadline is required",
+    destination: "Shipping destination is required"
+  }
 
-      if (updated.includes(value)) {
-        updated = updated.filter(item => item !== value)
-      } else {
-        updated.push(value)
-      }
+  const validateStep = () => {
+    const requiredFields = validationConfig[step] || []
+    let newErrors = {}
 
-      return {
-        ...prev,
-        category: updated
-      }
+    requiredFields.forEach(field => {
+      if (!form[field]) newErrors[field] = errorMessages[field]
     })
+
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
   }
 
-  const validate = () => {
-    if (!formData.name || !formData.email) {
-      return "Name and Email are required"
-    }
-
-    if (formData.name.length > 100 || formData.email.length > 100) {
-      return "Input too long"
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-    if (!emailRegex.test(formData.email)) {
-      return "Invalid email format"
-    }
-
-    return ""
+  const handleChange = (key, value) => {
+    setForm(prev => ({ ...prev, [key]: value }))
+    setErrors(prev => ({ ...prev, [key]: "" }))
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
+  const allowedTypes = ["image/jpeg","image/png","image/webp","application/pdf"]
+  const maxSize = 5 * 1024 * 1024
+  const maxFiles = 5
 
+  const handleFile = (e) => {
+    const selected = Array.from(e.target.files)
+    let updatedFiles = [...files]
+    let updatedNames = [...fileNames]
+
+    for (let file of selected) {
+      if (!allowedTypes.includes(file.type)) continue
+      if (file.size > maxSize) continue
+      if (updatedFiles.length >= maxFiles) break
+      updatedFiles.push(file)
+      updatedNames.push(file.name)
+    }
+
+    setFiles(updatedFiles)
+    setFileNames(updatedNames)
+  }
+
+  const removeFile = (index) => {
+    const f = [...files]
+    const n = [...fileNames]
+    f.splice(index, 1)
+    n.splice(index, 1)
+    setFiles(f)
+    setFileNames(n)
+  }
+
+  const handleSubmit = async () => {
+
+    if (!validateStep()) return
     if (loading) return
 
-    const validationError = validate()
-    if (validationError) {
-      setError(validationError)
-      return
-    }
-
-    setError("")
     setLoading(true)
 
     try {
+      const data = new FormData()
 
-      const payload = {
-        ...formData,
-        startTime
-      }
+      Object.entries(form).forEach(([k, v]) => data.append(k, v))
+      files.forEach(f => data.append("files", f))
 
-      const res = await fetch("/api/pi-request", {
+      const res = await fetch("/api/inquiry", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(payload)
+        body: data
       })
 
       if (!res.ok) {
-        const data = await res.json().catch(() => ({}))
-        throw new Error(data?.error || "Request failed")
+        const text = await res.text()
+        throw new Error(text)
       }
 
-      window.location.href = "/inquiry-received"
+      router.push("/inquiry-received")
 
     } catch (err) {
-      console.error(err)
-      setError(err.message || "Something went wrong")
+      alert(err.message || "Failed to send inquiry")
     }
 
     setLoading(false)
@@ -707,9 +927,8 @@ function GetYourPI() {
 
       <div className="px-[8px]">
         <div className="border border-neutral-200 rounded-2xl">
-          <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 py-28">
 
-            {/* HEADER */}
+          <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 py-28">
 
             <div className="max-w-[720px] mx-auto text-center mb-16">
               <div className="inline-flex items-center border border-[#8C7A5B]/40 text-[#8C7A5B] px-4 py-1 rounded-md text-xs tracking-[0.18em] uppercase font-medium mb-6">
@@ -729,116 +948,233 @@ function GetYourPI() {
               </p>
             </div>
 
-
-            {/* FORM */}
-
             <div className="max-w-[880px] mx-auto border border-neutral-200 rounded-2xl p-10 bg-white">
 
-              <form onSubmit={handleSubmit} className="space-y-10">
-
-                {/* ERROR MESSAGE */}
-                {error && (
-                  <div className="text-sm text-red-600 bg-red-50 border border-red-200 px-4 py-3 rounded-lg">
-                    {error}
+              <div className="mb-10 flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-xl border border-neutral-300 flex items-center justify-center">
+                    0{step}
                   </div>
+                  <div>
+                    <div className="text-xs tracking-[0.2em] text-neutral-400 uppercase">
+                      Step {step} of 4
+                    </div>
+                    <div className="text-[16px] text-neutral-800">
+                      {["Client Details","Product Details","Order Details","Logistics"][step-1]}
+                    </div>
+                  </div>
+                </div>
+
+                <div className="w-[120px] h-[2px] bg-neutral-200 relative">
+                  <div className="absolute top-0 left-0 h-full bg-black transition-all duration-500" style={{ width: `${(step/4)*100}%` }} />
+                </div>
+              </div>
+
+              <div className="border-t border-neutral-200 pt-10 space-y-8">
+
+                {step === 1 && (
+                  <>
+                    <Field label="Full Name *" error={errors.name}>
+                      <input value={form.name} onChange={(e)=>handleChange("name", e.target.value)} placeholder="Your full name" className={`input ${errors.name?"input-error":""}`}/>
+                    </Field>
+
+                    <Field label="Company Name">
+                      <input value={form.company} onChange={(e)=>handleChange("company", e.target.value)} placeholder="Your company or business name" className="input"/>
+                    </Field>
+
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <Field label="Email *" error={errors.email}>
+                        <input value={form.email} onChange={(e)=>handleChange("email", e.target.value)} placeholder="email@company.com" className={`input ${errors.email?"input-error":""}`}/>
+                      </Field>
+
+                      <Field label="Phone / WhatsApp">
+                        <input value={form.phone} onChange={(e)=>handleChange("phone", e.target.value)} placeholder="+62 XXX XXX XXXX" className="input"/>
+                      </Field>
+                    </div>
+                  </>
                 )}
 
-                {/* HONEYPOTS */}
-                <input
-                  type="text"
-                  name="company_website"
-                  value={formData.company_website}
-                  onChange={handleChange}
-                  autoComplete="off"
-                  style={{
-                    position: "absolute",
-                    left: "-9999px",
-                    opacity: 0
-                  }}
-                />
+                {step === 2 && (
+                  <>
+                    <Field label="Project Type *" error={errors.projectType}>
+                      <div className="flex flex-wrap gap-3 text-sm">
+                        {["Fashion","Packaging","Other Production"].map(item => (
+                          <div key={item} onClick={()=>handleChange("projectType", item)} className={`chip ${form.projectType===item?"active":""} ${errors.projectType?"chip-error":""}`}>
+                            {item}
+                          </div>
+                        ))}
+                      </div>
+                    </Field>
 
-                <input
-                  type="text"
-                  name="secondary_contact"
-                  value={formData.secondary_contact}
-                  onChange={handleChange}
-                  autoComplete="off"
-                  style={{
-                    position: "absolute",
-                    left: "-9999px",
-                    opacity: 0
-                  }}
-                />
+                    <Field label="Product Name *" error={errors.productName}>
+                      <input value={form.productName} onChange={(e)=>handleChange("productName", e.target.value)} placeholder="e.g. Solar LED Street Light 100W" className={`input ${errors.productName?"input-error":""}`}/>
+                    </Field>
 
-                {/* CATEGORY */}
-                <div>
-                  <div className="text-xs tracking-[0.18em] text-neutral-500 mb-4 uppercase">
-                    Packaging Category
-                  </div>
+                    <Field label="Product Specifications *" error={errors.specs}>
+                      <textarea value={form.specs} onChange={(e)=>handleChange("specs", e.target.value)} placeholder="e.g. 100W, 6000K..." className={`input h-[120px] ${errors.specs?"input-error":""}`}/>
+                    </Field>
 
-                  <div className="flex flex-wrap gap-6 text-sm">
-                    <label className="flex items-center gap-2">
-                      <input type="checkbox" onChange={() => handleCheckbox("Perfume / Cosmetics")} />
-                      Perfume / Cosmetics
-                    </label>
+                    <Field label="References (Link or File)">
+                      <div className="space-y-4">
 
-                    <label className="flex items-center gap-2">
-                      <input type="checkbox" onChange={() => handleCheckbox("Apparel / Gifting")} />
-                      Apparel / Gifting
-                    </label>
+                        <input value={form.referenceLink} onChange={(e)=>handleChange("referenceLink", e.target.value)} placeholder="Paste reference link (optional)" className="input"/>
 
-                    <label className="flex items-center gap-2">
-                      <input type="checkbox" onChange={() => handleCheckbox("Other")} />
-                      Other
-                    </label>
-                  </div>
-                </div>
+                        <label className="flex items-center gap-4 cursor-pointer">
+                          <div className="flex-1 border border-dashed border-neutral-300 rounded-lg px-4 py-4 text-sm text-neutral-500 text-center">
+                            {fileNames.length > 0 ? fileNames.join(", ") : "Upload (JPG, PNG, WEBP, PDF • max 5MB • max 5 files)"}
+                          </div>
 
-                {/* PRODUCTION */}
-                <div>
-                  <div className="text-xs tracking-[0.18em] text-neutral-500 mb-4 uppercase">
-                    Production Details
-                  </div>
+                          <input type="file" multiple accept=".jpg,.jpeg,.png,.webp,.pdf" className="hidden" onChange={handleFile}/>
+                        </label>
 
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <input name="quantity" value={formData.quantity} onChange={handleChange} placeholder="Quantity Range" className="border border-neutral-300 rounded-lg px-4 py-3 text-sm" />
-                    <input name="country" value={formData.country} onChange={handleChange} placeholder="Target Ship-To Country" className="border border-neutral-300 rounded-lg px-4 py-3 text-sm" />
-                    <input name="timeline" value={formData.timeline} onChange={handleChange} placeholder="Target Timeline" className="border border-neutral-300 rounded-lg px-4 py-3 text-sm" />
-                    <input name="boxType" value={formData.boxType} onChange={handleChange} placeholder="Box / Bag Type (if known)" className="border border-neutral-300 rounded-lg px-4 py-3 text-sm" />
-                    <input name="finishes" value={formData.finishes} onChange={handleChange} placeholder="Finishes (Foil, Emboss, Lamination, etc)" className="border border-neutral-300 rounded-lg px-4 py-3 text-sm md:col-span-2" />
-                  </div>
-                </div>
+                        {fileNames.map((name,i)=>(
+                          <div key={i} className="flex justify-between text-xs">
+                            {name}
+                            <button onClick={()=>removeFile(i)} className="text-red-500">Remove</button>
+                          </div>
+                        ))}
 
-                {/* CONTACT */}
-                <div>
-                  <div className="text-xs tracking-[0.18em] text-neutral-500 mb-4 uppercase">
-                    Contact Information
-                  </div>
+                      </div>
+                    </Field>
+                  </>
+                )}
 
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <input name="name" value={formData.name} onChange={handleChange} placeholder="Name" className="border border-neutral-300 rounded-lg px-4 py-3 text-sm" />
-                    <input name="email" value={formData.email} onChange={handleChange} placeholder="Email" className="border border-neutral-300 rounded-lg px-4 py-3 text-sm" />
-                    <input name="whatsapp" value={formData.whatsapp} onChange={handleChange} placeholder="WhatsApp" className="border border-neutral-300 rounded-lg px-4 py-3 text-sm md:col-span-2" />
-                  </div>
-                </div>
+                {step === 3 && (
+                  <>
+                    <Field label="Quantity Range *" error={errors.quantity}>
+                      <input value={form.quantity} onChange={(e)=>handleChange("quantity", e.target.value)} placeholder="e.g. 500 - 2000 pcs" className={`input ${errors.quantity?"input-error":""}`}/>
+                    </Field>
 
-                {/* CTA */}
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="w-full text-white rounded-lg py-4 text-sm font-medium transition hover:opacity-90"
-                  style={{ backgroundColor: "black" }}
-                >
-                  {loading ? "Submitting..." : "Request Quotation"}
-                </button>
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <Field label="Target Timeline *" error={errors.timeline}>
+                        <input value={form.timeline} onChange={(e)=>handleChange("timeline", e.target.value)} placeholder="e.g. 4–8 weeks" className={`input ${errors.timeline?"input-error":""}`}/>
+                      </Field>
 
-              </form>
+                      <Field label="Target Price (optional)">
+                        <input value={form.budget} onChange={(e)=>handleChange("budget", e.target.value)} placeholder="e.g. $5,000 - $20,000" className="input"/>
+                      </Field>
+                    </div>
+
+                    <Field label="Brand Stage">
+                      <div className="relative">
+                        <select value={form.brandStage} onChange={(e)=>handleChange("brandStage", e.target.value)} className="input pr-10 appearance-none">
+                          <option value="">Select stage</option>
+                          <option>Startup</option>
+                          <option>Growing</option>
+                          <option>Established</option>
+                        </select>
+                        <div className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400">▾</div>
+                      </div>
+                    </Field>
+
+                    <Field label="Branding Requirements">
+                      <div className="flex flex-wrap gap-3 text-sm">
+                        {["Custom Logo / OEM","Standard Packaging","Both","Undecided"].map(item => (
+                          <div key={item} onClick={()=>handleChange("branding", item)} className={`chip ${form.branding===item?"active":""}`}>
+                            {item}
+                          </div>
+                        ))}
+                      </div>
+                    </Field>
+
+                    <Field label="Target Price per Unit (USD)">
+                      <input value={form.targetPrice} onChange={(e)=>handleChange("targetPrice", e.target.value)} placeholder="e.g. 45.00" className="input"/>
+                    </Field>
+                  </>
+                )}
+
+                {step === 4 && (
+                  <>
+                    <Field label="Order Timeline *" error={errors.orderTimeline}>
+                      <input value={form.orderTimeline} onChange={(e)=>handleChange("orderTimeline", e.target.value)} placeholder="e.g. Within 2 weeks" className={`input ${errors.orderTimeline?"input-error":""}`}/>
+                    </Field>
+
+                    <Field label="Delivery Deadline *" error={errors.deadline}>
+                      <input value={form.deadline} onChange={(e)=>handleChange("deadline", e.target.value)} placeholder="dd/mm/yyyy" className={`input ${errors.deadline?"input-error":""}`}/>
+                    </Field>
+
+                    <Field label="Shipping Destination *" error={errors.destination}>
+                      <input value={form.destination} onChange={(e)=>handleChange("destination", e.target.value)} placeholder="e.g. Jakarta, Indonesia" className={`input ${errors.destination?"input-error":""}`}/>
+                    </Field>
+
+                    <Field label="Additional Notes">
+                      <textarea value={form.notes} onChange={(e)=>handleChange("notes", e.target.value)} placeholder="Any additional details..." className="input h-[120px]"/>
+                    </Field>
+                  </>
+                )}
+
+              </div>
+
+              <div className="flex justify-between mt-12">
+
+                {step > 1 && (
+                  <button onClick={back} className="px-5 py-3 border border-neutral-300 rounded-lg text-sm">
+                    ← Back
+                  </button>
+                )}
+
+                {step < 4 ? (
+                  <button onClick={next} className="ml-auto bg-black text-white px-6 py-3 rounded-lg">
+                    Continue →
+                  </button>
+                ) : (
+                  <button onClick={handleSubmit} className="ml-auto bg-[#8C7A5B] text-white px-6 py-3 rounded-lg">
+                    {loading ? "Sending..." : "Submit PI"}
+                  </button>
+                )}
+
+              </div>
 
             </div>
 
           </div>
+
         </div>
       </div>
+
+      <style jsx>{`
+        .input {
+          width: 100%;
+          border: 1px solid #d4d4d4;
+          border-radius: 10px;
+          padding: 12px 14px;
+          font-size: 14px;
+          outline: none;
+          background: white;
+        }
+
+        .input:focus {
+          border-color: #8C7A5B;
+        }
+
+        .input-error {
+          border-color: #dc2626;
+          background: #fef2f2;
+        }
+
+        .chip {
+          padding: 10px 14px;
+          border: 1px solid #d4d4d4;
+          border-radius: 999px;
+          cursor: pointer;
+        }
+
+        .chip-error {
+          border-color: #dc2626;
+          color: #dc2626;
+        }
+
+        .chip:hover {
+          border-color: #8C7A5B;
+          color: #8C7A5B;
+        }
+
+        .chip.active {
+          border-color: #8C7A5B;
+          background: #F3F2EF;
+          color: #8C7A5B;
+        }
+      `}</style>
 
     </section>
   )

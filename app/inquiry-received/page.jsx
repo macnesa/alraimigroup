@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { FaArrowRight } from "react-icons/fa"
+import Footer from '../../components/organisms/Footer'
 
 export default function InquiryReceived() {
   return (
@@ -103,6 +104,8 @@ export default function InquiryReceived() {
         </div>
 
       </section>
+      
+      <Footer/>
 
     </main>
   )
