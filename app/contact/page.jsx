@@ -338,7 +338,6 @@ function InquiryForm() {
     specs: "",
     referenceLink: "",
     quantity: "",
-    timeline: "",
     budget: "",
     brandStage: "",
     branding: "",
@@ -378,7 +377,7 @@ function InquiryForm() {
   const validationConfig = {
     1: ["name", "email"],
     2: ["projectType", "productName", "specs"],
-    3: ["quantity", "timeline"],
+    3: ["quantity"],
     4: ["orderTimeline", "deadline", "destination"]
   }
 
@@ -389,7 +388,6 @@ function InquiryForm() {
     productName: "Product name is required",
     specs: "Product specifications are required",
     quantity: "Quantity is required",
-    timeline: "Timeline is required",
     orderTimeline: "Order timeline is required",
     deadline: "Delivery deadline is required",
     destination: "Shipping destination is required"
@@ -605,11 +603,11 @@ function InquiryForm() {
                       </Field>
 
                       <Field label="Product Name *" error={errors.productName}>
-                        <input value={form.productName} onChange={(e)=>handleChange("productName", e.target.value)} placeholder="e.g. Solar LED Street Light 100W" className={`input ${errors.productName?"input-error":""}`}/>
+                        <input value={form.productName} onChange={(e)=>handleChange("productName", e.target.value)} placeholder="e.g. T-Shirt / Magnetic Box" className={`input ${errors.productName?"input-error":""}`}/>
                       </Field>
 
                       <Field label="Product Specifications *" error={errors.specs}>
-                        <textarea value={form.specs} onChange={(e)=>handleChange("specs", e.target.value)} placeholder="e.g. 100W, 6000K..." className={`input h-[120px] ${errors.specs?"input-error":""}`}/>
+                        <textarea value={form.specs} onChange={(e)=>handleChange("specs", e.target.value)} placeholder="e.g. Cotton, Linen..." className={`input h-[120px] ${errors.specs?"input-error":""}`}/>
                       </Field>
 
                       <Field label="References (Link or File)">
@@ -644,26 +642,22 @@ function InquiryForm() {
                       </Field>
 
                       <div className="grid md:grid-cols-2 gap-4">
-                        <Field label="Target Timeline *" error={errors.timeline}>
-                          <input value={form.timeline} onChange={(e)=>handleChange("timeline", e.target.value)} placeholder="e.g. 4–8 weeks" className={`input ${errors.timeline?"input-error":""}`}/>
+                        <Field label="Brand Stage">
+                          <div className="relative">
+                            <select value={form.brandStage} onChange={(e)=>handleChange("brandStage", e.target.value)} className="input pr-10 appearance-none">
+                              <option value="">Select stage</option>
+                              <option>Startup</option>
+                              <option>Growing</option>
+                              <option>Established</option>
+                            </select>
+                            <div className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400">▾</div>
+                          </div>
                         </Field>
 
                         <Field label="Target Price (optional)">
                           <input value={form.budget} onChange={(e)=>handleChange("budget", e.target.value)} placeholder="e.g. $5,000 - $20,000" className="input"/>
                         </Field>
                       </div>
-
-                      <Field label="Brand Stage">
-                        <div className="relative">
-                          <select value={form.brandStage} onChange={(e)=>handleChange("brandStage", e.target.value)} className="input pr-10 appearance-none">
-                            <option value="">Select stage</option>
-                            <option>Startup</option>
-                            <option>Growing</option>
-                            <option>Established</option>
-                          </select>
-                          <div className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400">▾</div>
-                        </div>
-                      </Field>
 
                       <Field label="Branding Requirements">
                         <div className="flex flex-wrap gap-3 text-sm">
@@ -693,7 +687,7 @@ function InquiryForm() {
                       </Field>
 
                       <Field label="Shipping Destination *" error={errors.destination}>
-                        <input value={form.destination} onChange={(e)=>handleChange("destination", e.target.value)} placeholder="e.g. Jakarta, Indonesia" className={`input ${errors.destination?"input-error":""}`}/>
+                        <input value={form.destination} onChange={(e)=>handleChange("destination", e.target.value)} placeholder="e.g. Doha, Qatar" className={`input ${errors.destination?"input-error":""}`}/>
                       </Field>
 
                       <Field label="Additional Notes">
@@ -778,7 +772,7 @@ function InquiryForm() {
 
     </section>
   )
-} 
+}
  
 
 function GetYourPI() {
@@ -803,7 +797,6 @@ function GetYourPI() {
     specs: "",
     referenceLink: "",
     quantity: "",
-    timeline: "",
     budget: "",
     brandStage: "",
     branding: "",
@@ -826,7 +819,7 @@ function GetYourPI() {
   const validationConfig = {
     1: ["name", "email"],
     2: ["projectType", "productName", "specs"],
-    3: ["quantity", "timeline"],
+    3: ["quantity"],
     4: ["orderTimeline", "deadline", "destination"]
   }
 
@@ -837,7 +830,6 @@ function GetYourPI() {
     productName: "Product name is required",
     specs: "Product specifications are required",
     quantity: "Quantity is required",
-    timeline: "Timeline is required",
     orderTimeline: "Order timeline is required",
     deadline: "Delivery deadline is required",
     destination: "Shipping destination is required"
@@ -972,6 +964,7 @@ function GetYourPI() {
 
               <div className="border-t border-neutral-200 pt-10 space-y-8">
 
+                {/* STEP 1 */}
                 {step === 1 && (
                   <>
                     <Field label="Full Name *" error={errors.name}>
@@ -994,6 +987,7 @@ function GetYourPI() {
                   </>
                 )}
 
+                {/* STEP 2 */}
                 {step === 2 && (
                   <>
                     <Field label="Project Type *" error={errors.projectType}>
@@ -1039,6 +1033,7 @@ function GetYourPI() {
                   </>
                 )}
 
+                {/* STEP 3 */}
                 {step === 3 && (
                   <>
                     <Field label="Quantity Range *" error={errors.quantity}>
@@ -1046,26 +1041,22 @@ function GetYourPI() {
                     </Field>
 
                     <div className="grid md:grid-cols-2 gap-4">
-                      <Field label="Target Timeline *" error={errors.timeline}>
-                        <input value={form.timeline} onChange={(e)=>handleChange("timeline", e.target.value)} placeholder="e.g. 4–8 weeks" className={`input ${errors.timeline?"input-error":""}`}/>
+                      <Field label="Brand Stage">
+                        <div className="relative">
+                          <select value={form.brandStage} onChange={(e)=>handleChange("brandStage", e.target.value)} className="input pr-10 appearance-none">
+                            <option value="">Select stage</option>
+                            <option>Startup</option>
+                            <option>Growing</option>
+                            <option>Established</option>
+                          </select>
+                          <div className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400">▾</div>
+                        </div>
                       </Field>
 
                       <Field label="Target Price (optional)">
                         <input value={form.budget} onChange={(e)=>handleChange("budget", e.target.value)} placeholder="e.g. $5,000 - $20,000" className="input"/>
                       </Field>
                     </div>
-
-                    <Field label="Brand Stage">
-                      <div className="relative">
-                        <select value={form.brandStage} onChange={(e)=>handleChange("brandStage", e.target.value)} className="input pr-10 appearance-none">
-                          <option value="">Select stage</option>
-                          <option>Startup</option>
-                          <option>Growing</option>
-                          <option>Established</option>
-                        </select>
-                        <div className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400">▾</div>
-                      </div>
-                    </Field>
 
                     <Field label="Branding Requirements">
                       <div className="flex flex-wrap gap-3 text-sm">
@@ -1083,6 +1074,7 @@ function GetYourPI() {
                   </>
                 )}
 
+                {/* STEP 4 */}
                 {step === 4 && (
                   <>
                     <Field label="Order Timeline *" error={errors.orderTimeline}>
@@ -1094,7 +1086,7 @@ function GetYourPI() {
                     </Field>
 
                     <Field label="Shipping Destination *" error={errors.destination}>
-                      <input value={form.destination} onChange={(e)=>handleChange("destination", e.target.value)} placeholder="e.g. Jakarta, Indonesia" className={`input ${errors.destination?"input-error":""}`}/>
+                      <input value={form.destination} onChange={(e)=>handleChange("destination", e.target.value)} placeholder="e.g. Doha, Qatar" className={`input ${errors.destination?"input-error":""}`}/>
                     </Field>
 
                     <Field label="Additional Notes">

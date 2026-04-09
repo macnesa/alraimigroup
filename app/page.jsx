@@ -989,14 +989,14 @@ function HowWeWork() {
   }, [emblaApi, isInView])
 
   const stepImages = [
-    "https://res.cloudinary.com/djgu1bhef/image/upload/v1774609069/ChatGPT_Image_Mar_27_2026_05_11_22_PM_ymrlut.png",
     "https://res.cloudinary.com/djgu1bhef/image/upload/v1774609069/ChatGPT_Image_Mar_27_2026_05_08_12_PM_tieqki.png",
-    "https://res.cloudinary.com/djgu1bhef/image/upload/v1774609069/ChatGPT_Image_Mar_27_2026_05_43_13_PM_ceogwk.png",
-    "https://res.cloudinary.com/djgu1bhef/image/upload/v1774609068/ChatGPT_Image_Mar_27_2026_05_37_01_PM_wfzcdd.png",
-    "https://res.cloudinary.com/djgu1bhef/image/upload/v1774609068/ChatGPT_Image_Mar_27_2026_05_25_14_PM_nvkh2a.png",
+    "https://res.cloudinary.com/djgu1bhef/image/upload/v1774609069/ChatGPT_Image_Mar_27_2026_05_11_22_PM_ymrlut.png",
+    "https://res.cloudinary.com/djgu1bhef/image/upload/v1775716609/Cardboard_boxes_with_pricing_details_ch1fmo.png",
     "https://res.cloudinary.com/djgu1bhef/image/upload/v1774609068/ChatGPT_Image_Mar_27_2026_05_56_52_PM_g67kgx.png",
+    "https://res.cloudinary.com/djgu1bhef/image/upload/v1774609069/ChatGPT_Image_Mar_27_2026_05_43_13_PM_ceogwk.png",
     "https://res.cloudinary.com/djgu1bhef/image/upload/v1774609068/ChatGPT_Image_Mar_27_2026_05_45_57_PM_ag4x0d.png",
     "https://res.cloudinary.com/djgu1bhef/image/upload/v1774609068/ChatGPT_Image_Mar_27_2026_05_49_15_PM_x6wyj9.png",
+    "https://res.cloudinary.com/djgu1bhef/image/upload/v1775716389/Loading_dock_with_pallets_and_equipment_tldl87.png",
   ]
 
   const steps = [
@@ -1019,7 +1019,6 @@ function HowWeWork() {
 
           <div className="max-w-[1600px] mx-auto px-6 md:px-10 xl:px-16 py-16 md:py-24">
 
-            {/* HEADER */}
             <div className="grid grid-cols-1 md:grid-cols-[0.65fr_0.35fr] gap-8 md:gap-16 items-start">
 
               <div>
@@ -1039,7 +1038,6 @@ function HowWeWork() {
 
             </div>
 
-            {/* CAROUSEL */}
             <div className="mt-12 md:mt-20 overflow-hidden" ref={emblaRef}>
 
               <div className="flex">
@@ -1068,30 +1066,27 @@ function HowWeWork() {
                         `}
                       >
 
-                        {/* BASE IMAGE */}
                         <div
                           className="absolute inset-0 pointer-events-none transition-all duration-500"
                           style={{
                             backgroundImage: `url(${stepImages[i]})`,
                             backgroundSize: "cover",
                             backgroundPosition: "center",
-                            opacity: isActive ? 0.12 : 0.05,
-                            filter: isActive ? "grayscale(70%)" : "grayscale(100%)",
+                            opacity: isActive ? 0.28 : 0.18,
+                            filter: isActive ? "grayscale(30%)" : "grayscale(60%)",
                           }}
                         />
 
-                        {/* 🔥 WARM TINT (ACTIVE ONLY) */}
                         <div
                           className={`
                             absolute inset-0 pointer-events-none transition-all duration-500
-                            ${isActive ? "opacity-[0.08]" : "opacity-0"}
+                            ${isActive ? "opacity-[0.04]" : "opacity-0"}
                           `}
                           style={{
                             background: "linear-gradient(to bottom right, rgba(140,122,91,0.35), transparent)"
                           }}
                         />
 
-                        {/* NUMBER */}
                         <div
                           className={`
                             absolute top-6 right-8 text-[72px] transition-all duration-500
@@ -1105,7 +1100,6 @@ function HowWeWork() {
                           {String(i + 1).padStart(2, "0")}
                         </div>
 
-                        {/* ICON */}
                         <div
                           className={`
                             w-12 h-12 flex items-center justify-center rounded-lg transition-all duration-300
@@ -1167,7 +1161,6 @@ function HowWeWork() {
 
             </div>
 
-            {/* DOTS */}
             <div className="mt-10 md:mt-14 flex justify-center items-center gap-3">
 
               {scrollSnaps.map((_, index) => {
@@ -1689,10 +1682,7 @@ function Projects() {
     </section>
   );
 }
-
-
-
-
+ 
 
 function Leadership() {
 
@@ -1794,7 +1784,7 @@ function Leadership() {
             We treat every order as if it were our own brand. Your idea is translated into production-ready details, then we manage sampling and execution step by step with our team in China. You receive clear updates, real visibility during production, and a final quality check before anything leaves the factory.
           </h2>
 
-          {/* 🔥 GRADIENT DIVIDER */}
+          {/* DIVIDER */}
           <div className="leadership-divider mt-5 md:mt-8">
             <div
               className="h-[1px] w-full"
@@ -1823,11 +1813,12 @@ function Leadership() {
                   Haitham Al-Raimi
                 </div>
 
+                {/* 🔥 FIXED LINKEDIN TAP AREA */}
                 <a
-                  href="https://linkedin.com/in/YOUR_LINKEDIN"
+                  href="https://www.linkedin.com/in/haitham-alraimi"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center justify-center w-5 h-5"
+                  className="group flex items-center justify-center w-10 h-10 -ml-1 rounded-md hover:bg-black/5 transition"
                 >
                   <img
                     src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg"

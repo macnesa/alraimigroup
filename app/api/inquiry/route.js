@@ -25,7 +25,6 @@ const schema = {
   specs: { required: true, multiline: true },
   referenceLink: {},
   quantity: { required: true },
-  timeline: { required: true },
   budget: {},
   brandStage: {},
   branding: {},
@@ -134,8 +133,7 @@ function buildHTML(data, uploaded) {
 
         <table style="width:100%;border-collapse:collapse;font-size:14px;">
           <tr><td style="padding:8px 0;color:#666;width:140px;">Quantity</td><td>${data.quantity || "-"}</td></tr>
-          <tr><td style="padding:8px 0;color:#666;">Timeline</td><td>${data.timeline || "-"}</td></tr>
-          <tr><td style="padding:8px 0;color:#666;">Target Price</td><td style="color:${budgetColor};">${data.budget || "-"}</td></tr>
+          <tr><td style="padding:8px 0;color:#666;">Budget</td><td style="color:${budgetColor};">${data.budget || "-"}</td></tr>
           <tr><td style="padding:8px 0;color:#666;">Brand Stage</td><td>${data.brandStage || "-"}</td></tr>
           <tr><td style="padding:8px 0;color:#666;">Branding</td><td>${data.branding || "-"}</td></tr>
           <tr><td style="padding:8px 0;color:#666;">Target Price</td><td>${data.targetPrice || "-"}</td></tr>
